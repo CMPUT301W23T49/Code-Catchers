@@ -7,4 +7,15 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    //from palette
+    <color name="davys_grey">#595758</color>
+    <color name="lavender_blush">#FFEEF2</color>
+    <color name="background_pink">#ffe4f3</color>
+    <color name="darker_bg_pink">#ffc8fb</color>
+    <color name="dark_pink_button">#FF92C2</color>
+
+    // extra colors
+    <color name="delete_button_pink">#E0577e</color>
+
 </resources>
