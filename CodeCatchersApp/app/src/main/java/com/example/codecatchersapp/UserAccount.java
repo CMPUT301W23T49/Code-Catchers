@@ -4,7 +4,7 @@ public class UserAccount {
     private String username;
     private String contactInfo;
 
-    public void UserAccount(String username, String contactInfo){
+    public UserAccount(String username, String contactInfo){
         this.username = username;
         this.contactInfo = contactInfo;
 
