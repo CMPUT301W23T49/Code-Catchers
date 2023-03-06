@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "1064282633479",
-    "project_id": "codecatchers-2861c",
-    "storage_bucket": "codecatchers-2861c.appspot.com"
+    "project_number": "193678193381",
+    "project_id": "codecatchers-9d916",
+    "storage_bucket": "codecatchers-9d916.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1064282633479:android:f12282bc9e32f6e6d481a2",
+        "mobilesdk_app_id": "1:193678193381:android:4849bf9bcaa86ebfdf9a0c",
         "android_client_info": {
           "package_name": "com.example.codecatchersapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1064282633479-1n6biktka91honmnkjh0efgmlgn8gen2.apps.googleusercontent.com",
+          "client_id": "193678193381-iqu9567jddk6k6jtjjhf8dodg5pl80k2.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDdpsM2FlJUmJ40fuQPxyDYWq7G8Acg7dY"
+          "current_key": "AIzaSyDZrONNLFWT-OFrtvkPZK_fAQmnBriB0CA"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1064282633479-1n6biktka91honmnkjh0efgmlgn8gen2.apps.googleusercontent.com",
+              "client_id": "193678193381-iqu9567jddk6k6jtjjhf8dodg5pl80k2.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
