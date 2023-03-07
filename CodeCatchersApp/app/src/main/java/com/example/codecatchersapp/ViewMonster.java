@@ -49,6 +49,11 @@ public class ViewMonster extends View {
     public Bitmap getBitmap() {
         return mBitmap;
     }
+
+    public void setBitmap(Bitmap bitmap) {
+        this.mBitmap = bitmap;
+        invalidate();
+    }
 }
 
 
