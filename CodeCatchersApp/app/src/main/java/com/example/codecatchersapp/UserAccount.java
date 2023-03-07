@@ -1,5 +1,10 @@
 package com.example.codecatchersapp;
 
+import org.checkerframework.checker.units.qual.A;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class UserAccount {
     private String username;
     private String contactInfo;
@@ -25,6 +30,7 @@ public class UserAccount {
     public String getContactInfo(){
         return this.contactInfo;
     }
+
 
 };
 

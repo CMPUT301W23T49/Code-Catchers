@@ -2,6 +2,8 @@ package com.example.codecatchersapp;
 
 
 import androidx.annotation.NonNull;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -23,7 +25,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.create_account);
+        Intent intent = new Intent(MainActivity.this, SearchUsersActivity.class);
+        startActivity(intent);
+        //setContentView(R.layout.search_users);
   
         // TODO
         db = FirebaseFirestore.getInstance();
