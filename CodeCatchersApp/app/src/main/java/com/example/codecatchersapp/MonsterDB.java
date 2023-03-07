@@ -6,7 +6,9 @@ import java.security.MessageDigest;
 import java.util.HashMap;
 import java.util.Random;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.PorterDuff;
 import android.graphics.RectF;
 import android.util.Log;
 
@@ -151,22 +153,16 @@ public class MonsterDB {
             // Draw the monster using the selected features
             paint.setStyle(Paint.Style.FILL);
             paint.setColor(0xFFFFFFFF);
+            canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
             canvas.drawRect(new RectF(750, 750, 1000, 1000), paint);
             if (faceType.equals("round face")) {
-                paint.setColor(0xFFD3D3D3);
+                paint.setColor(0xFFac1db8);
                 canvas.drawOval(new RectF(200, 250, 800, 850), paint); // adjust the height to 850
             } else if (faceType.equals("square face")) { // changed to else if
-                paint.setColor(0xFFD3D3D3);
+                paint.setColor(0xFFac1db8);
                 canvas.drawRect(new RectF(200, 250, 800, 850), paint); // adjust the height to 850
             }
-            if (earType.equals("ears")) {
-                paint.setColor(0xFFD3D3D3);
-                int earSize = 75; // adjust this value to resize the ears
-                int earTop = 200 + earSize/2;
-                int earBottom = 250 + earSize/2;
-                canvas.drawCircle(325, earTop, earSize/2, paint);
-                canvas.drawCircle(675, earTop, earSize/2, paint);
-            }
+
             if (eyebrowType.equals("mean eyebrows")) {
                 paint.setColor(0xFF000000);
                 int eyebrowHeight = 10; // adjust this value to make the eyebrows thicker or thinner
@@ -175,10 +171,24 @@ public class MonsterDB {
                 canvas.drawRect(325, eyebrowTop, 425, eyebrowBottom + eyebrowHeight, paint);
                 canvas.drawRect(575, eyebrowTop, 675, eyebrowBottom + eyebrowHeight, paint);
             } else if (eyebrowType.equals("no eyebrows")) {
-                paint.setColor(0xFFD3D3D3);
+                paint.setColor(0xFFac1db8);
                 canvas.drawRect(325, 300, 425, 305, paint);
                 canvas.drawRect(575, 300, 675, 305, paint);
             }
+            if (earType.equals("ears")) {
+                paint.setColor(0xFF68d058);
+                int earSize = 125; // adjust this value to resize the ears
+                int earTop = 185 + earSize/2; // adjust this value to lower the ear on the top of the face
+                int earBottom = 270 + earSize/2;
+                canvas.drawCircle(325, earTop, earSize/2, paint);
+                canvas.drawCircle(675, earTop, earSize/2, paint);
+            }   else if (earType.equals("no ears")) {
+                paint.setColor(0xFFFFFFFF);
+                // do nothing, no ears will be drawn
+            }
+
+            float startAngle = 0;
+            float sweepAngle = -180;
 
             if (eyeType.equals("bright eyes")) {
                 // draw the whites of the eyes
@@ -196,12 +206,11 @@ public class MonsterDB {
                 canvas.drawCircle(390, 385, 8, paint);
                 canvas.drawCircle(590, 385, 8, paint);
             } else {
-                paint.setColor(0xFF000000);
-                canvas.drawCircle(400, 400, 25, paint);
-                canvas.drawCircle(600, 400, 25, paint);
-                paint.setColor(0xFFFFFFFF);
-                canvas.drawRect(375, 375, 425, 425, paint);
-                canvas.drawRect(575, 375, 625, 425, paint);
+                paint.setColor(0xFF933f94);
+                canvas.drawArc(new RectF(550, 350, 650, 450), startAngle, -sweepAngle, true, paint);
+                canvas.drawArc(new RectF(350, 350, 450, 450), startAngle, -sweepAngle, true, paint);
+//
+
             }
 
             if (noseType.equals("big nose")) {
@@ -211,10 +220,14 @@ public class MonsterDB {
 
             if (mouthType.equals("smile")) {
                 paint.setColor(0xFF000000);
-                canvas.drawArc(new RectF(350, 575, 650, 675), 0, 180, false, paint);
+                canvas.drawArc(new RectF(300, 600, 700, 750), 0, 180, false, paint);
+                paint.setColor(0xFFFFFFFF);
+                canvas.drawArc(new RectF(375, 650, 625, 700), 0, 180, false, paint);
             } else {
                 paint.setColor(0xFF000000);
-                canvas.drawArc(new RectF(350, 575, 650, 675), 0, -180, false, paint);
+                canvas.drawArc(new RectF(300, 600, 700, 750), 0, -180, false, paint);
+                paint.setColor(0xFF000000);
+                canvas.drawArc(new RectF(375, 650, 625, 700), 0, -180, false, paint);
             }
 
             // Print the monster features

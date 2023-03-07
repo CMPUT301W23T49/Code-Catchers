@@ -10,6 +10,9 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
 import android.widget.Button;
+import androidx.annotation.NonNull;
+
+
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -60,10 +63,35 @@ public class monsterActivity extends AppCompatActivity{
         // Set up the "Generate Monster" button
         ConstraintLayout layout = findViewById(R.id.monster_layout);
         Button button_Generate = findViewById(R.id.button_generate_monster);
+        Log.d(TAG, "onClick method called");
         button_Generate.setOnClickListener(v->generateMonster(layout));
+
+        // Check if the Firebase Firestore is properly set up and if the monsters collection exists.
+        checkFirestoreSetup();
+
+        Log.d(TAG, "Logging level set to verbose");
+        if (BuildConfig.DEBUG) {
+            Log.d(TAG, "Debug mode enabled");
+            Log.d(TAG, "Verbose logging enabled");
+            Log.d(TAG, "Logging to Firebase enabled");
+            FirebaseFirestore.setLoggingEnabled(true);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == REQUEST_WRITE_STORAGE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                saveMonsterImage();
+            } else {
+                Log.e("MonsterActivity", "WRITE_EXTERNAL_STORAGE permission denied");
+            }
+        }
     }
 
     private void generateMonster(ConstraintLayout layout) {
+        Log.d(TAG, "generateMonster method called");
         // Create a new ViewMonster object and add it to the layout
         ViewMonster viewMonster = new ViewMonster(this, null);
         layout.addView(viewMonster);
@@ -85,6 +113,7 @@ public class monsterActivity extends AppCompatActivity{
 
         // Save the monster features to Firebase Firestore
         saveMonsterToFirestore(monsterDB);
+        Log.d(TAG, "generateMonster method called");
     }
 
     private void saveMonsterImage() {
@@ -126,8 +155,9 @@ public class monsterActivity extends AppCompatActivity{
     }
 
     private void saveMonsterToFirestore(MonsterDB monsterDB) {
+        Log.d(TAG, "saveMonsterToFirestore method called");
         // Create a new document in the "monsters" collection with a random ID
-        DocumentReference docRef = db.collection("monsters").document();
+        DocumentReference docRef = db.collection("monsters").document(db.collection("monsters").document().getId());
 
         // Create a map to store the monster features
         Map<String, Object> monster = new HashMap<>();
@@ -141,7 +171,26 @@ public class monsterActivity extends AppCompatActivity{
         // Add the map to the document and listen for success/failure
         docRef.set(monster)
                 .addOnSuccessListener(aVoid -> Log.d(TAG, "Monster saved to Firebase Firestore"))
-                .addOnFailureListener(e -> Log.w(TAG, "Error saving monster to Firebase Firestore", e));
+                .addOnFailureListener(e -> {
+                    Log.w(TAG, "Error saving monster to Firebase Firestore", e);
+                    e.printStackTrace();
+                });
+    }
+    private void checkFirestoreSetup() {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference docRef = db.collection("monsters").document("8nGVg0TatZ9bjOzIyQ5C");
+        docRef.get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        Log.d(TAG, "Firestore setup is correct");
+                    } else {
+                        Log.w(TAG, "Error getting documents.", task.getException());
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    Log.e(TAG, "Error getting documents.", e);
+                    e.printStackTrace();
+                });
     }
 
 }

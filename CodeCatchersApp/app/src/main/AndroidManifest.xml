@@ -4,6 +4,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="28"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
 
     <application
@@ -14,7 +15,12 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.CodeCatchersApp"
+        android:debuggable="true"
         tools:targetApi="31">
+
+    <meta-data
+        android:name="com.google.firebase.components.ComponentRegistrar"
+        android:value="com.google.firebase.firestore.FirebaseFirestoreRegistrar" />
         <activity android:name=".monsterActivity"
             android:exported="true">
             <intent-filter>
