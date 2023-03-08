@@ -1,29 +1,27 @@
 package com.example.codecatchersapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.AttributeSet;
 import android.util.Log;
-import android.view.Menu;
 import android.view.View;
-import android.widget.ArrayAdapter;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
-import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.checkerframework.checker.units.qual.A;
-
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SearchUsersActivity extends AppCompatActivity {
+public class SearchUsersActivity extends AppCompatActivity implements UserAdapter.ItemClickListener {
 
     private SearchView searchView;
     private RecyclerView rvUsers;
@@ -31,7 +29,7 @@ public class SearchUsersActivity extends AppCompatActivity {
     private List<UserAccount> searchedUsers;
     private UserAdapter userAdapter;
 
-
+    // TODO: Setup firebase and maintain its connection between screens
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,10 +41,12 @@ public class SearchUsersActivity extends AppCompatActivity {
         searchView = findViewById(R.id.search_view);
         searchView.clearFocus();
 
+
         // Set query listeners
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+                filterUsers(query);
                 return false;
             }
 
@@ -71,11 +71,20 @@ public class SearchUsersActivity extends AppCompatActivity {
         // Create an ArrayList for the searched users
         searchedUsers = new ArrayList<>();
 
-        // Set up the RecycleView with the UserAdapter
+        // Set up the RecycleView with UserAdapter and ClickListener
         rvUsers = findViewById(R.id.rv_users);
         rvUsers.setLayoutManager(new LinearLayoutManager(this));
         userAdapter = new UserAdapter((ArrayList<UserAccount>) searchedUsers);
+        userAdapter.setClickListener(this);
         rvUsers.setAdapter(userAdapter);
+
+        // Set query if the user is navigating back from the UserProfileFragment
+        Intent intent = getIntent();
+        CharSequence prevQuery = intent.getCharSequenceExtra("PreviousQuery");
+        if (prevQuery != null) {
+            searchView.setQuery(prevQuery, true);
+        }
+
 
     }
 
@@ -114,5 +123,21 @@ public class SearchUsersActivity extends AppCompatActivity {
         }
     }
 
+    // onItemClick function for the usernames
+    @Override
+    public void onItemClick(View view, int position) {
+        Log.i("TAG", "User account " + userAdapter.getUser(position).getUsername() + " has been clicked");
 
+        // Hide the keyboard before moving to UserProfileFragment
+        InputMethodManager inputMethodManager = (InputMethodManager) SearchUsersActivity.this.getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(SearchUsersActivity.this.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+
+        // Move to the UserProfileFragment and pass the selected UserAccount and search query to it
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        Fragment profileFragment = new UserProfileFragment(userAdapter.getUser(position), searchView.getQuery());
+        fragmentManager.beginTransaction()
+                .replace(R.id.search_users, profileFragment)
+                .commit();
+
+    }
 }

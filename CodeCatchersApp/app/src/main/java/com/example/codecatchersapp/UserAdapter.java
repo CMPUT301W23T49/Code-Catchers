@@ -1,14 +1,17 @@
 package com.example.codecatchersapp;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.Filterable;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -19,6 +22,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     private List<UserAccount> userList;
 
     private LayoutInflater inflater;
+    private ItemClickListener itemClickListener;
 
     // Initialize the UserAdapter
     public UserAdapter(ArrayList<UserAccount> users) {
@@ -53,17 +57,41 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     public int getItemCount() {
         return userList.size();
     }
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public TextView userName;
+        public CardView userCard;
 
         // Initialize the ViewHolder
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            // Get the user name view
+            // Get the user name view and set the OnClickListener for the view
             userName = itemView.findViewById(R.id.user_name_item);
+            itemView.setOnClickListener(this);
         }
 
+        @Override
+        public void onClick(View view) {
+            // Invoke onItemClick if the itemClickListener is not null
+            if (itemClickListener != null) {
+                itemClickListener.onItemClick(view, getAbsoluteAdapterPosition());
+            }
+        }
+    }
+
+    // ClickListener setter
+    void setClickListener(ItemClickListener clickListener) {
+        this.itemClickListener = clickListener;
+    }
+
+    // Returns UserAccount object from the userList
+    UserAccount getUser(int id) {
+        return userList.get(id);
+    }
+
+    // Implementation for the SearchUsersActivity
+    public interface ItemClickListener {
+      void onItemClick(View view, int position);
     }
 
     // Update the user list when a query is made
