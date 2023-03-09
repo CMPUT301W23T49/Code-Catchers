@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.provider.Settings.Secure;
 
 import androidx.fragment.app.Fragment;
 public class CreateAccountFragment extends Fragment {
@@ -38,7 +39,8 @@ public class CreateAccountFragment extends Fragment {
                 UserAccount userAccount = new UserAccount(username, contactInfo);
 
                 // TODO: Save the user account object to your app's data store
-
+                String deviceID = Secure.getString(getContext().getContentResolver(),
+                        Secure.ANDROID_ID);
                 // Navigate to the next screen
             }
         });
