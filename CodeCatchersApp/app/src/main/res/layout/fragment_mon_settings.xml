@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <Button
+        android:id="@+id/return_mon_settings"
+
+        android:layout_width="110dp"
+        android:layout_height="70dp"
+        android:backgroundTint="@color/dark_pink_button"
+        android:text="Return" />
+
+    <Button
+        android:id="@+id/delete_mon_settings"
+        android:layout_width="110dp"
+        android:layout_height="70dp"
+        android:backgroundTint="@color/delete_button_pink"
+        android:layout_marginTop="30dp"
+        android:text="Delete" />
+</LinearLayout>
