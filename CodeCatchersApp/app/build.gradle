@@ -42,4 +42,7 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:31.2.2')
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.google.firebase:firebase-firestore'
+
+    // === FOR SCANNING QR CODES ===
+    implementation 'com.github.yuriy-budiyev:code-scanner:2.3.2'
 }
