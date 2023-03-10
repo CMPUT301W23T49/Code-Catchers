@@ -34,6 +34,7 @@ public class ScannerActivity extends AppCompatActivity {
     private CodeScanner codeScanner;
     private CodeScannerView scannerView;
     private ImageView screenshotView;
+    private String qrCodeValue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +60,10 @@ public class ScannerActivity extends AppCompatActivity {
                     public void run() {
                         takeScreenshot();
                         Snackbar.make(scannerView, result.getText(), Snackbar.LENGTH_LONG).show();
+
+                        // RETURN THE QR CODE
+                        qrCodeValue = result.getText();
+                        System.out.println("QR code value: " + qrCodeValue); // PRINT TO CONSOLE -> FOR TESTING
                     }
                 });
             }
@@ -139,5 +144,9 @@ public class ScannerActivity extends AppCompatActivity {
                 finish();
             }
         }
+    }
+
+    public String getQRCode() {
+        return qrCodeValue;
     }
 }

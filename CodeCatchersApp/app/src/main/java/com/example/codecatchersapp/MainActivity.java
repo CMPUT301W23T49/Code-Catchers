@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void startScannerActivity() {
-        Intent intent = new Intent(MainActivity.this, ScannerActivity.class);
+        Intent intent = new Intent(MainActivity.this, ScannerActivity_OLD.class);
         startActivity(intent);
     }
 
