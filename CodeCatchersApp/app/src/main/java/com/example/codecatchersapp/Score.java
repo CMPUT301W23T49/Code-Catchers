@@ -5,12 +5,16 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class Score {
-
+    private String score;
     public String qr_contents;
 
 
     public Score(String qr_contents){
         this.qr_contents = qr_contents;
+    }
+
+    public void setScore(String score) {
+        this.score = score;
     }
 
     public int calculateScore() throws NoSuchAlgorithmException {

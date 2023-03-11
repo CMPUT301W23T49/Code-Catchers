@@ -18,6 +18,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 public class MainActivity extends AppCompatActivity {
+    protected String qrCode;
     FirebaseFirestore db;
 
     @Override
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
   
         // TODO
         db = FirebaseFirestore.getInstance();
+
 
     }
 }
