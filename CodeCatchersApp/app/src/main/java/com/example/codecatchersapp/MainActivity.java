@@ -3,6 +3,7 @@ package com.example.codecatchersapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -13,7 +14,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import java.security.NoSuchAlgorithmException;
 
 public class MainActivity extends AppCompatActivity {
-
+    protected String qrCode;
+    //FirebaseFirestore db;
 
     private static final int MAX_BATCH_COUNT = 50; // maximum number of batches to send
     private HashGenerator hashGenerator;
@@ -63,14 +65,11 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    protected String qrCode;
-    FirebaseFirestore db;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.create_account);
+        Intent userAccountIntent = new Intent(this, UserAccountActivity.class);
+        startActivity(userAccountIntent);
 
 
         hashGenerator = new HashGenerator();
@@ -78,8 +77,5 @@ public class MainActivity extends AppCompatActivity {
         // Start the write operation with a delay
         currentBackoffTime = INITIAL_BACKOFF_TIME;
         handler.postDelayed(myRunnable, currentBackoffTime);
-
-
-
     }
 }

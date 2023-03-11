@@ -2,16 +2,22 @@ package com.example.codecatchersapp;
 
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class MainMenuActivity extends Activity {
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.firestore.auth.User;
+
+public class MainMenuActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_menu);
+        Intent intent = getIntent();
 
         Button scanQrButton = findViewById(R.id.scan_qr_button);
         Button socialButton = findViewById(R.id.social_button);
