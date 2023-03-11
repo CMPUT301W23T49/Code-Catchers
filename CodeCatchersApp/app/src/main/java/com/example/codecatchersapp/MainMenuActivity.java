@@ -26,7 +26,8 @@ public class MainMenuActivity extends AppCompatActivity {
         scanQrButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: Implement scan QR code functionality
+                Intent scannerIntent = new Intent(MainMenuActivity.this, ScannerActivity.class);
+                startActivity(scannerIntent);
             }
         });
 
