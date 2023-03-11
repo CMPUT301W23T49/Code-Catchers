@@ -112,7 +112,7 @@ public class SearchUsersActivity extends AppCompatActivity implements UserAdapte
 
     }
 
-    
+
     // Filters the user's search query
     private void filterUsers(String text) {
 
