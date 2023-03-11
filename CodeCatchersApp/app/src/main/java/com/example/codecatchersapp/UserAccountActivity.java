@@ -1,5 +1,6 @@
 package com.example.codecatchersapp;
 
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,7 +8,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class UserAccountActivity extends Activity {
+import androidx.appcompat.app.AppCompatActivity;
+
+import java.io.Serializable;
+
+public class UserAccountActivity extends AppCompatActivity {
 
     private EditText etUsername;
     private EditText etContact;
@@ -33,6 +38,14 @@ public class UserAccountActivity extends Activity {
 
                 Intent intent = new Intent(UserAccountActivity.this, MainMenuActivity.class);
                 startActivity(intent);
+
+                //String username = etUsername.getText().toString().trim();
+
+                Intent intent = new Intent(UserAccountActivity.this, MainMenuActivity.class);
+
+                //UserAccountActivity.this.startActivity(intent);
+                startActivity(intent);      // TODO: ERROR CHECK FOR NO USERNAME! --> NOAH
+
             }
         });
     }

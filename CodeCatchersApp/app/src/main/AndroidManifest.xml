@@ -28,6 +28,26 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name="com.example.codecatchersapp.MainMenuActivity"
+            android:exported="true">
+        </activity>
+
+        <activity
+            android:name="com.example.codecatchersapp.UserAccountActivity"
+            android:exported="true">
+        </activity>
+
+        <activity
+            android:name="com.example.codecatchersapp.ScannerActivity"
+            android:exported="true">
+        </activity>
+
+        <activity
+            android:name="com.example.codecatchersapp.SocialMenuActivity"
+            android:exported="true">
+        </activity>
     </application>
 
 </manifest>
