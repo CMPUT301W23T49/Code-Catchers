@@ -85,4 +85,27 @@ lint/generated/
 lint/outputs/
 lint/tmp/
 .DS_Store
+# Android Studio generated files
+.gradle/
+.idea/
+*.iml
+.gradle/
+/local.properties
+
+# Build generated
+/app/build/
+/app/release/
+/app/build.gradle
+/app/src/main/AndroidManifest.xml
+/app/src/main/java/com/example/codecatchersapp/MainActivity.java
+
+# Checksum and file hashes files
+/.gradle/*/checksums/checksums.lock
+/.gradle/*/checksums/md5-checksums.bin
+/.gradle/*/checksums/sha1-checksums.bin
+/.gradle/*/executionHistory/executionHistory.lock
+/.gradle/*/fileHashes/fileHashes.bin
+/.gradle/*/fileHashes/fileHashes.lock
+/.gradle/buildOutputCleanup/buildOutputCleanup.lock
+/.gradle/buildOutputCleanup/outputFiles.bin
 
