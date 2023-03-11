@@ -14,6 +14,7 @@ import java.security.NoSuchAlgorithmException;
 
 public class MainActivity extends AppCompatActivity {
 
+
     private static final int MAX_BATCH_COUNT = 50; // maximum number of batches to send
     private HashGenerator hashGenerator;
 
@@ -62,15 +63,23 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+    protected String qrCode;
+    FirebaseFirestore db;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_account);
+
 
         hashGenerator = new HashGenerator();
 
         // Start the write operation with a delay
         currentBackoffTime = INITIAL_BACKOFF_TIME;
         handler.postDelayed(myRunnable, currentBackoffTime);
+
+
+
     }
 }
