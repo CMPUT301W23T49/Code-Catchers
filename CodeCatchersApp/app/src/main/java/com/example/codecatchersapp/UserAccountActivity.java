@@ -8,7 +8,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class UserAccountActivity extends Activity {
+import androidx.appcompat.app.AppCompatActivity;
+
+import java.io.Serializable;
+
+public class UserAccountActivity extends AppCompatActivity {
 
     private EditText etUsername;
     private EditText etContact;
@@ -27,13 +31,12 @@ public class UserAccountActivity extends Activity {
             @Override
             public void onClick(View view) {
                 // Get the username entered by the user
-                String username = etUsername.getText().toString().trim();
-
-                // Create a new UserAccount object and set the username
-                UserAccount userAccount = new UserAccount(username, "");
+                //String username = etUsername.getText().toString().trim();
 
                 Intent intent = new Intent(UserAccountActivity.this, MainMenuActivity.class);
-                startActivity(intent);
+
+                //UserAccountActivity.this.startActivity(intent);
+                startActivity(intent);      // TODO: ERROR CHECK FOR NO USERNAME! --> NOAH
             }
         });
     }
