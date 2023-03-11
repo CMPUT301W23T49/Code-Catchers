@@ -35,6 +35,8 @@ public class MainMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // TODO: Implement social functionality
+                Intent socialIntent = new Intent(MainMenuActivity.this, SocialMenuActivity.class);
+                startActivity(socialIntent)
             }
         });
 
