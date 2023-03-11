@@ -8,6 +8,7 @@ import java.util.List;
 public class UserAccount {
     private String username;
     private String contactInfo;
+    private ArrayList<String> scannedMonsters;
 
     public UserAccount(String username, String contactInfo){
         this.username = username;

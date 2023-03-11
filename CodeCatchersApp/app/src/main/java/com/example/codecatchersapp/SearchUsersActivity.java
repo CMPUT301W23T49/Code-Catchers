@@ -1,5 +1,7 @@
 package com.example.codecatchersapp;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +11,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
@@ -17,7 +20,16 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.io.Serializable;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,13 +41,21 @@ public class SearchUsersActivity extends AppCompatActivity implements UserAdapte
     private List<UserAccount> searchedUsers;
     private UserAdapter userAdapter;
 
-    // TODO: Setup firebase and maintain its connection between screens
+    FirebaseFirestore db;
+    CollectionReference userCollection;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // Set content view
         setContentView(R.layout.search_users);
+
+        // Initialize Firebase
+        db = FirebaseFirestore.getInstance();
+
+        userCollection = db.collection("PlayerDB");
+
 
         // Get the view for the searchbar
         searchView = findViewById(R.id.search_view);
@@ -45,14 +65,13 @@ public class SearchUsersActivity extends AppCompatActivity implements UserAdapte
         // Set query listeners
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public boolean onQueryTextSubmit(String query) {
-                filterUsers(query);
+            public boolean onQueryTextSubmit(String text) {
+                filterUsers(text);
                 return false;
             }
 
 
             // Filter the user list with the user's query
-            // TODO: Replace with firebase queries
             @Override
             public boolean onQueryTextChange(String newText) {
                 filterUsers(newText);
@@ -60,17 +79,22 @@ public class SearchUsersActivity extends AppCompatActivity implements UserAdapte
             }
         });
 
-        // Temporary:
-        // Create an ArrayList of users (for testing purposes)
+        // Create an ArrayList for users
         users = new ArrayList<>();
-        users.add(new UserAccount("User123", "1234"));
-        users.add(new UserAccount("CoolUser537", "5672"));
-        users.add(new UserAccount("CodeCatcher4Ever", "6272829"));
-        users.add(new UserAccount("Pikachu", "6527288929"));
 
         // Create an ArrayList for the searched users
         searchedUsers = new ArrayList<>();
 
+        // Get the users stored in the DB and add them to the list of users
+        Query query = userCollection.orderBy("userName");
+        query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                for (DocumentSnapshot doc : task.getResult()) {
+                    users.add(new UserAccount(doc.getString("userName"), doc.getString("contactInfo")));
+                }
+            }
+        });
         // Set up the RecycleView with UserAdapter and ClickListener
         rvUsers = findViewById(R.id.rv_users);
         rvUsers.setLayoutManager(new LinearLayoutManager(this));
@@ -88,8 +112,7 @@ public class SearchUsersActivity extends AppCompatActivity implements UserAdapte
 
     }
 
-
-    // Temporary:
+    
     // Filters the user's search query
     private void filterUsers(String text) {
 
@@ -99,7 +122,6 @@ public class SearchUsersActivity extends AppCompatActivity implements UserAdapte
             // Create a new ArrayList for the filtered users
             List<UserAccount> filteredUsers = new ArrayList<>();
 
-            // Loop through the test ArrayList of users
             for (UserAccount user : users) {
                 // Check for match and add user to the filtered list
                 if (user.getUsername().toLowerCase().contains(text.toLowerCase())) {
@@ -107,18 +129,15 @@ public class SearchUsersActivity extends AppCompatActivity implements UserAdapte
                 }
             }
 
+
+
             // Update the userAdapter if the filtered list is not empty
             if (!filteredUsers.isEmpty()) {
                 userAdapter.setFilterList(filteredUsers);
-            } else {
+            }
+            else {
                 // Otherwise clear the list and display toast message
                 userAdapter.setFilterList(new ArrayList<>());
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(SearchUsersActivity.this, "Username not found", Toast.LENGTH_SHORT).show();
-                    }
-                }, 200);
             }
         }
     }

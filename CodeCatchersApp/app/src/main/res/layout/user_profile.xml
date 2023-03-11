@@ -21,12 +21,13 @@
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/back_button"
-            style="@style/Widget.AppCompat.Button.Borderless"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clickable="true"
             android:tint="#00FFFFFF"
-            app:srcCompat="?attr/actionModeCloseDrawable"/>
+            app:srcCompat="?attr/actionModeCloseDrawable"
+            tools:layout_editor_absoluteX="16dp" />
 
     </androidx.appcompat.widget.Toolbar>
 

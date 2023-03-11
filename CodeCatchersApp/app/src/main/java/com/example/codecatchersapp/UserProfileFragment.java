@@ -52,7 +52,6 @@ public class UserProfileFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         // Set onClickListener for the back button
         backButton = view.findViewById(R.id.back_button);
         backButton.setOnClickListener(new View.OnClickListener() {
