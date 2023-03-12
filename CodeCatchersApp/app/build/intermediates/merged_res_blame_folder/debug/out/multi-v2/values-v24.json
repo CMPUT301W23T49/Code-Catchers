@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.codecatchersapp-mergeDebugResources-27:/values-v24/values-v24.xml",
+            "outputFile": "com.example.codecatchersapp-mergeDebugResources-32:/values-v24/values-v24.xml",
             "map": [
                 {
-                    "source": "/Users/nteglauer/.gradle/caches/transforms-3/4fbcf167c94e837ff1be43cd429a082f/transformed/material-1.8.0/res/values-v24/values-v24.xml",
+                    "source": "/Users/nteglauer/.gradle/caches/transforms-3/488519bf88b141369e1f2b3fffc88e8e/transformed/material-1.8.0/res/values-v24/values-v24.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,9,12,15",
                         "startColumns": "4,4,4,4,4,4,4,4",
@@ -23,7 +23,7 @@
                     }
                 },
                 {
-                    "source": "/Users/nteglauer/.gradle/caches/transforms-3/5521fd259f8332737a22b3743c01d4b7/transformed/appcompat-1.6.0/res/values-v24/values-v24.xml",
+                    "source": "/Users/nteglauer/.gradle/caches/transforms-3/5f9f9e3ce68e3649a720f8f8504c0c2c/transformed/appcompat-1.6.0/res/values-v24/values-v24.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",
