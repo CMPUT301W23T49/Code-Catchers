@@ -1,41 +1,90 @@
 package com.example.codecatchersapp;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-public class MonInfoActivity extends Fragment {
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.Collection;
+import java.util.HashMap;
+
+public class MonInfoActivity extends AppCompatActivity {
+    FirebaseFirestore db;
+
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    protected void onCreate(Bundle savedInstanceState) {
+        db = FirebaseFirestore.getInstance();
+        System.out.println("--------------------------------------------------TEST");
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.qr_options);
 
+        EditText commentEditText = findViewById(R.id.editTextNewMonComment);
 
-        EditText commentEditText = view.findViewById(R.id.editTextNewMonComment);
+        Switch geolocationToggle = findViewById(R.id.geolocation_switch);
+        Switch locationPhotoToggle = findViewById(R.id.photo_switch);
 
-        Switch geolocationToggle = view.findViewById(R.id.geolocation_switch);
-        Switch locationPhotoToggle = view.findViewById(R.id.photo_switch);
-
-        Button continueMonSettings = view.findViewById(R.id.continue_photo_button);
-
+        Button continueMonSettings = findViewById(R.id.continue_photo_button);
         continueMonSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String ogComment = commentEditText.getText().toString();
-                // ADD COMMENT TO DATABASE
+                CollectionReference collectionReference = db.collection("CommentsCollectionTest");
+                // TODO: ADD COMMENT TO DATABASE
+                final String ogComment = commentEditText.getText().toString();
+                HashMap<String,String> data = new HashMap<>();
+                if (ogComment.length() > 0){
+                    data.put("Username", ogComment);
+                    collectionReference
+                            .document("someMonster")
+                            .set(data)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess (Void unused){
+                                    Log.d("Success", "Comment added successfully!");
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener(){
+                                @Override
+                                public void onFailure(@NonNull Exception e){
+                                    Log.d("Failure", "Comment addition failed"+ e.toString());
+                                }
+                            });
+
+                }
 
                 Boolean geolocationToggleState = geolocationToggle.isChecked();
-                // IF TRUE, RECORD LOCATION
+                // TODO: IF TRUE, RECORD LOCATION
+
+
                 Boolean locationPhotoToggleState = locationPhotoToggle.isChecked();
-                // IF TRUE, GO TO CAMERA AFTER CONTINUE CLICKED
+                // TODO: IF TRUE, GO TO CAMERA AFTER CONTINUE CLICKED, ELSE GO MAIN MENU?
+                if (locationPhotoToggleState = false){
+                    goMainMenu();
+                }
+                //else{
+                    // TODO: OPEN CAMERA, SAVED TO DB
+                //}
             }
         });
 
 
+    }
+    public void goMainMenu(){
+        Intent intent = new Intent(MonInfoActivity.this, MainActivity.class);
+        startActivity(intent);
     }
 }
