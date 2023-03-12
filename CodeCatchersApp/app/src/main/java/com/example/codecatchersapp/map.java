@@ -1,5 +1,6 @@
 package com.example.codecatchersapp;
 
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -26,6 +27,8 @@ public class map extends AppCompatActivity implements OnMapReadyCallback {
 
         // Connect to  map_layout.xml
         setContentView(R.layout.map_layout);
+
+        Intent intent = getIntent();
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
