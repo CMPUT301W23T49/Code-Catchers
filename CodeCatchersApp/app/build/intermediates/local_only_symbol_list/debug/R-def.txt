@@ -37,7 +37,6 @@ id hb_main_menu_button
 id hb_profile_button
 id leaderboards_button
 id map_button
-id monsterImageView
 id monsterNameTextView
 id monster_image
 id monster_label
@@ -98,6 +97,7 @@ string google_app_id
 string google_crash_reporting_api_key
 string google_storage_bucket
 string project_id
+string qr_contents
 style Theme.CodeCatchersApp
 xml backup_rules
 xml data_extraction_rules

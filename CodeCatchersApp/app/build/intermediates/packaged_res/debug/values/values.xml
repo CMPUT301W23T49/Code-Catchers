@@ -21,6 +21,7 @@
     <string name="google_crash_reporting_api_key" translatable="false">AIzaSyDdpsM2FlJUmJ40fuQPxyDYWq7G8Acg7dY</string>
     <string name="google_storage_bucket" translatable="false">codecatchers-2861c.appspot.com</string>
     <string name="project_id" translatable="false">codecatchers-2861c</string>
+    <string name="qr_contents">My string resource value</string>
     <style name="Theme.CodeCatchersApp" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         
         <item name="colorPrimary">@color/purple_500</item>
