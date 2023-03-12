@@ -33,7 +33,6 @@ public class MonInfoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         db = FirebaseFirestore.getInstance();
-        System.out.println("--------------------------------------------------TEST");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.qr_options);
         Intent intent = getIntent();
