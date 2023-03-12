@@ -11,8 +11,11 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.security.NoSuchAlgorithmException;
 
-public class MainActivity extends AppCompatActivity {
+import retrofit2.http.HEAD;
 
+public class MainActivity extends AppCompatActivity {
+    protected String qrCode;
+    //FirebaseFirestore db;
 
     private static final int MAX_BATCH_COUNT = 50; // maximum number of batches to send
     private HashGenerator hashGenerator;
@@ -61,10 +64,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     };
-
-    protected String qrCode;
-    FirebaseFirestore db;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
