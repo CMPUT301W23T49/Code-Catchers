@@ -32,7 +32,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MonInfoActivity"
+            android:name=".QROptionsActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
-import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,7 +26,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MonInfoActivity extends AppCompatActivity {
+public class QROptionsActivity extends AppCompatActivity {
     FirebaseFirestore db;
 
     @Override
@@ -136,7 +135,7 @@ public class MonInfoActivity extends AppCompatActivity {
     }
     public void goMainMenu(){
         // Change MainActivity.class to MainMenuActivity.class once merged
-        Intent intent = new Intent(MonInfoActivity.this, MainActivity.class);
+        Intent intent = new Intent(QROptionsActivity.this, MainActivity.class);
         startActivity(intent);
     }
 }
