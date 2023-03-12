@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.codecatchersapp-mergeDebugResources-32:/values-ldltr-v21/values-ldltr-v21.xml",
+            "outputFile": "com.example.codecatchersapp-mergeDebugResources-33:/values-ldltr-v21/values-ldltr-v21.xml",
             "map": [
                 {
-                    "source": "/Users/nteglauer/.gradle/caches/transforms-3/5f9f9e3ce68e3649a720f8f8504c0c2c/transformed/appcompat-1.6.0/res/values-ldltr-v21/values-ldltr-v21.xml",
+                    "source": "/Users/josiematalski/.gradle/caches/transforms-3/b58fc9dafd3b67607843592dcdb2cd94/transformed/appcompat-1.6.0/res/values-ldltr-v21/values-ldltr-v21.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
