@@ -8,11 +8,10 @@ public class Score {
 
     private int score_;
 
-
     public Score(String qr_contents) throws NoSuchAlgorithmException {
 
         MessageDigest md = MessageDigest.getInstance("SHA-256");
-        byte[] hash = md.digest(this.qr_contents.getBytes());
+        byte[] hash = md.digest(qr_contents.getBytes());
 
         // Convert Hash to Hex String
         BigInteger bigInt = new BigInteger(1, hash);

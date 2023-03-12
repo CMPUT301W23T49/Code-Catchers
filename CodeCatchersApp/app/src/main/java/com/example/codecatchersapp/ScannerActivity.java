@@ -77,14 +77,10 @@ public class ScannerActivity extends AppCompatActivity {
             }
         });
 
-        /*
-        * TEMP TEST CODE
-        * REPLACE WITH -> ON ERROR DISPLAY SCAN ERROR VIEW -> WAIT FOR USER TO TAP -> GO BACK TO START SCANNER
-        */
         codeScanner.setErrorCallback(error -> {
             Log.e(TAG, "Scan error", error);
-            Toast.makeText(ScannerActivity.this, "Scan error: " + error.getMessage(),
-                    Toast.LENGTH_LONG).show();
+            /*Toast.makeText(ScannerActivity.this, "Scan error: " + error.getMessage(),
+                    Toast.LENGTH_LONG).show();*/
 
             Intent errorIntent = new Intent(ScannerActivity.this, ScanErrorActivity.class);
             startActivity(errorIntent);
