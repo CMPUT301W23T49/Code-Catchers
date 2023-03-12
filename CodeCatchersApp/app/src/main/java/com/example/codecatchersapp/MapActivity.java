@@ -1,12 +1,10 @@
 package com.example.codecatchersapp;
 
-import android.content.pm.PackageManager;
-import android.os.Build;
+import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
+
 import java.util.Random;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -16,7 +14,8 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class map extends AppCompatActivity implements OnMapReadyCallback {
+
+public class MapActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
 
@@ -26,6 +25,7 @@ public class map extends AppCompatActivity implements OnMapReadyCallback {
 
         // Connect to  map_layout.xml
         setContentView(R.layout.map_layout);
+        Intent intent = getIntent();
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);

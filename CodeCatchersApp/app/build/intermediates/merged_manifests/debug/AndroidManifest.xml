@@ -98,7 +98,7 @@
             android:exported="true" >
         </activity>
         <activity
-            android:name="com.example.codecatchersapp.map"
+            android:name="com.example.codecatchersapp.MapActivity"
             android:exported="true" >
         </activity>
 

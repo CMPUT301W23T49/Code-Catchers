@@ -5,6 +5,8 @@ plugins {
 
 }
 
+android {
+}
 
 android {
     namespace 'com.example.codecatchersapp'

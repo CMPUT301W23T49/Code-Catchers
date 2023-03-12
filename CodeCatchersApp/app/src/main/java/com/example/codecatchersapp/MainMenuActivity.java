@@ -1,7 +1,6 @@
 package com.example.codecatchersapp;
 
 
-import android.app.Activity;
 import android.content.Intent;
 
 import android.os.Bundle;
@@ -11,8 +10,6 @@ import android.widget.Button;
 
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.google.firebase.firestore.auth.User;
 
 public class MainMenuActivity extends AppCompatActivity {
 
@@ -57,6 +54,9 @@ public class MainMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // TODO: Implement map functionality
+
+                Intent mapIntent = new Intent(MainMenuActivity.this, MapActivity.class);
+                startActivity(mapIntent);
             }
         });
     }}

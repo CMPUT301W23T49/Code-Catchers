@@ -1,16 +1,16 @@
 -- Merging decision tree log ---
 meta-data#com.google.android.geo.API_KEY
-INJECTED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:29:9-31:47
+INJECTED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:30:9-32:47
 	android:value
 		INJECTED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml
-		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:31:13-44
+		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:32:13-44
 	android:name
-		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:30:13-58
+		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:31:13-58
 manifest
-ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:2:1-83:12
-INJECTED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:2:1-83:12
-INJECTED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:2:1-83:12
-INJECTED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:2:1-83:12
+ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:2:1-84:12
+INJECTED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:2:1-84:12
+INJECTED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:2:1-84:12
+INJECTED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:2:1-84:12
 MERGED from [com.google.android.material:material:1.8.0] /Users/josiematalski/.gradle/caches/transforms-3/2ad3c7ad7e4a591b5f025aa4a1e3f33b/transformed/material-1.8.0/AndroidManifest.xml:17:1-26:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /Users/josiematalski/.gradle/caches/transforms-3/33c1d19b5af052b2215a02c692e867b4/transformed/constraintlayout-2.1.4/AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.appcompat:appcompat-resources:1.6.0] /Users/josiematalski/.gradle/caches/transforms-3/bd833abd244d53a2f75257316204791b/transformed/appcompat-resources-1.6.0/AndroidManifest.xml:17:1-22:12
@@ -76,47 +76,47 @@ MERGED from [androidx.print:print:1.0.0] /Users/josiematalski/.gradle/caches/tra
 MERGED from [androidx.annotation:annotation-experimental:1.3.0] /Users/josiematalski/.gradle/caches/transforms-3/801e8d0c13e41e9fff251b1cae6d69cf/transformed/annotation-experimental-1.3.0/AndroidManifest.xml:17:1-22:12
 MERGED from [io.grpc:grpc-android:1.50.2] /Users/josiematalski/.gradle/caches/transforms-3/3332a99f36ab8eb1b9498983a12b3433/transformed/grpc-android-1.50.2/AndroidManifest.xml:2:1-11:12
 MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] /Users/josiematalski/.gradle/caches/transforms-3/38ae0b4c662ab8588cd0370429a0c51e/transformed/protolite-well-known-types-18.0.0/AndroidManifest.xml:2:1-11:12
-INJECTED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:2:1-83:12
-INJECTED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:2:1-83:12
-INJECTED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:2:1-83:12
+INJECTED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:2:1-84:12
+INJECTED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:2:1-84:12
+INJECTED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:2:1-84:12
 	package
+		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:4:5-42
 		INJECTED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml
-		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:2:1-83:12
 		INJECTED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml
 	android:versionName
 		INJECTED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml
-		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:2:1-83:12
+		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:2:1-84:12
 		INJECTED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml
 	xmlns:tools
 		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:3:5-51
 	android:versionCode
 		INJECTED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml
-		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:2:1-83:12
+		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:2:1-84:12
 		INJECTED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml
 	xmlns:android
 		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:2:11-69
 uses-permission#android.permission.CAMERA
-ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:6:5-64
+ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:7:5-64
 	android:name
-		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:6:22-62
+		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:7:22-62
 uses-permission#android.permission.ACCESS_COARSE_LOCATION
-ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:7:5-81
+ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:8:5-81
 	android:name
-		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:7:22-78
+		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:8:22-78
 uses-permission#android.permission.ACCESS_FINE_LOCATION
-ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:8:5-79
+ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:9:5-79
 	android:name
-		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:8:22-76
+		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:9:22-76
 uses-permission#android.permission.READ_EXTERNAL_STORAGE
-ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:9:5-80
+ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:10:5-80
 	android:name
-		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:9:22-77
+		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:10:22-77
 uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
-ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:10:5-81
+ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:11:5-81
 	android:name
-		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:10:22-78
+		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:11:22-78
 uses-permission#android.permission.INTERNET
-ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:11:5-67
+ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:12:5-67
 MERGED from [com.google.android.gms:play-services-maps:18.1.0] /Users/josiematalski/.gradle/caches/transforms-3/4153dd048646f4b89717e8af5385a61c/transformed/play-services-maps-18.1.0/AndroidManifest.xml:24:5-67
 MERGED from [com.google.android.gms:play-services-maps:18.1.0] /Users/josiematalski/.gradle/caches/transforms-3/4153dd048646f4b89717e8af5385a61c/transformed/play-services-maps-18.1.0/AndroidManifest.xml:24:5-67
 MERGED from [com.google.firebase:firebase-firestore:24.4.3] /Users/josiematalski/.gradle/caches/transforms-3/6072dedbda8a28e36ac7417ff797cc42/transformed/firebase-firestore-24.4.3/AndroidManifest.xml:13:5-67
@@ -132,15 +132,15 @@ MERGED from [com.google.android.gms:play-services-measurement-impl:21.2.0] /User
 MERGED from [com.google.android.gms:play-services-measurement-sdk-api:21.2.0] /Users/josiematalski/.gradle/caches/transforms-3/cae84e21bbaf4665d0e788ae9f2ae352/transformed/play-services-measurement-sdk-api-21.2.0/AndroidManifest.xml:23:5-67
 MERGED from [com.google.android.gms:play-services-measurement-sdk-api:21.2.0] /Users/josiematalski/.gradle/caches/transforms-3/cae84e21bbaf4665d0e788ae9f2ae352/transformed/play-services-measurement-sdk-api-21.2.0/AndroidManifest.xml:23:5-67
 	android:name
-		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:11:22-64
+		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:12:22-64
 uses-feature#android.hardware.camera
-ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:13:5-15:35
+ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:14:5-16:35
 	android:required
-		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:15:9-33
+		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:16:9-33
 	android:name
-		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:14:9-47
+		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:15:9-47
 application
-ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:18:5-80:19
+ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:19:5-81:19
 MERGED from [com.google.android.material:material:1.8.0] /Users/josiematalski/.gradle/caches/transforms-3/2ad3c7ad7e4a591b5f025aa4a1e3f33b/transformed/material-1.8.0/AndroidManifest.xml:24:5-20
 MERGED from [com.google.android.material:material:1.8.0] /Users/josiematalski/.gradle/caches/transforms-3/2ad3c7ad7e4a591b5f025aa4a1e3f33b/transformed/material-1.8.0/AndroidManifest.xml:24:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /Users/josiematalski/.gradle/caches/transforms-3/33c1d19b5af052b2215a02c692e867b4/transformed/constraintlayout-2.1.4/AndroidManifest.xml:9:5-20
@@ -192,89 +192,89 @@ MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/josiematalski/.gradl
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/josiematalski/.gradle/caches/transforms-3/68700f0473c8d7572c091f628410ff64/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/josiematalski/.gradle/caches/transforms-3/68700f0473c8d7572c091f628410ff64/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
 	android:requestLegacyExternalStorage
-		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:27:9-52
+		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:28:9-52
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.9.0] /Users/josiematalski/.gradle/caches/transforms-3/362cbd293a403b1c188dded7a0ae129d/transformed/core-1.9.0/AndroidManifest.xml:28:18-86
 	android:supportsRtl
-		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:24:9-35
+		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:25:9-35
 	android:label
-		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:23:9-41
+		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:24:9-41
 	android:fullBackupContent
-		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:21:9-54
+		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:22:9-54
 	tools:targetApi
-		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:26:9-29
+		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:27:9-29
 	android:icon
-		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:22:9-43
+		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:23:9-43
 	android:allowBackup
-		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:19:9-35
+		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:20:9-35
 	android:theme
-		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:25:9-53
+		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:26:9-53
 	android:dataExtractionRules
-		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:20:9-65
+		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:21:9-65
 activity#com.example.codecatchersapp.MainActivity
-ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:33:9-41:20
+ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:34:9-42:20
 	android:exported
-		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:35:13-36
+		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:36:13-36
 	android:name
-		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:34:13-41
+		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:35:13-41
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:36:13-40:29
+ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:37:13-41:29
 action#android.intent.action.MAIN
-ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:37:17-69
+ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:38:17-69
 	android:name
-		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:37:25-66
+		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:38:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:39:17-77
+ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:40:17-77
 	android:name
-		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:39:27-74
+		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:40:27-74
 activity#com.example.codecatchersapp.MainMenuActivity
-ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:42:9-45:20
+ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:43:9-46:20
 	android:exported
-		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:44:13-36
+		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:45:13-36
 	android:name
-		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:43:13-72
+		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:44:13-72
 activity#com.example.codecatchersapp.UserAccountActivity
-ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:47:9-50:20
+ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:48:9-51:20
 	android:exported
-		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:49:13-36
+		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:50:13-36
 	android:name
-		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:48:13-75
+		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:49:13-75
 activity#com.example.codecatchersapp.ScannerActivity
-ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:52:9-55:20
+ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:53:9-56:20
 	android:exported
-		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:54:13-36
+		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:55:13-36
 	android:name
-		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:53:13-71
+		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:54:13-71
 activity#com.example.codecatchersapp.ScanErrorActivity
-ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:57:9-60:20
+ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:58:9-61:20
 	android:exported
-		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:59:13-36
+		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:60:13-36
 	android:name
-		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:58:13-73
+		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:59:13-73
 activity#com.example.codecatchersapp.SocialMenuActivity
-ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:62:9-65:20
+ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:63:9-66:20
 	android:exported
-		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:64:13-36
+		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:65:13-36
 	android:name
-		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:63:13-74
+		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:64:13-74
 activity#com.example.codecatchersapp.ScoreRevealActivity
-ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:67:9-70:20
+ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:68:9-71:20
 	android:exported
-		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:69:13-36
+		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:70:13-36
 	android:name
-		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:68:13-75
+		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:69:13-75
 activity#com.example.codecatchersapp.QrActionsActivity
-ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:71:9-74:20
+ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:72:9-75:20
 	android:exported
-		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:73:13-36
+		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:74:13-36
 	android:name
-		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:72:13-73
-activity#com.example.codecatchersapp.map
-ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:75:9-78:20
+		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:73:13-73
+activity#com.example.codecatchersapp.MapActivity
+ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:76:9-79:20
 	android:exported
-		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:77:13-36
+		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:78:13-36
 	android:name
-		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:76:13-32
+		ADDED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:77:13-40
 uses-sdk
 INJECTED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/josiematalski/Documents/School/CMPUTcourses/CMPUT301/code_catchers/mapNEW/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml
