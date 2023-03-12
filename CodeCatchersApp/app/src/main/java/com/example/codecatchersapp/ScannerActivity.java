@@ -71,10 +71,6 @@ public class ScannerActivity extends AppCompatActivity {
 
                         // RETURN THE QR CODE
                         qrCodeValue = result.getText();
-
-                        Intent successIntent = new Intent(ScannerActivity.this, ScoreRevealActivity.class);
-                        successIntent.putExtra("qrCodeValue", qrCodeValue);
-                        startActivity(successIntent);
                     }
                 });
 
@@ -99,6 +95,13 @@ public class ScannerActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Bitmap screenshot = takeScreenshot();
                 saveScreenshotToInternalStorage(screenshot);
+
+                System.out.println("QR CODE = " + qrCodeValue);
+
+                Intent successIntent = new Intent(ScannerActivity.this, ScoreRevealActivity.class);
+                successIntent.putExtra("qrCodeValue", qrCodeValue);
+                startActivity(successIntent);
+
                 codeScanner.startPreview();
             }
         });

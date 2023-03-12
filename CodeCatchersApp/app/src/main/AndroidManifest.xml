@@ -58,6 +58,11 @@
             android:exported="true">
         </activity>
 
+        <activity
+            android:name="com.example.codecatchersapp.ScoreRevealActivity"
+            android:exported="true">
+        </activity>
+
     </application>
 
 </manifest>
