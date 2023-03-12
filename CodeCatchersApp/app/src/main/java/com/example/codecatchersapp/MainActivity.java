@@ -13,6 +13,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 
 import java.security.NoSuchAlgorithmException;
 
+import retrofit2.http.HEAD;
+
 public class MainActivity extends AppCompatActivity {
     protected String qrCode;
     //FirebaseFirestore db;
@@ -68,8 +70,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         Intent userAccountIntent = new Intent(this, UserAccountActivity.class);
         startActivity(userAccountIntent);
+
 
 
         hashGenerator = new HashGenerator();

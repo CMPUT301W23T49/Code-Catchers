@@ -36,6 +36,7 @@ id geolocation_switch
 id hb_main_menu_button
 id hb_profile_button
 id leaderboards_button
+id map
 id map_button
 id monsterNameTextView
 id monster_image
@@ -79,6 +80,7 @@ layout create_account
 layout fragment_hamburger
 layout fragment_mon_settings
 layout main_menu
+layout map_layout
 layout monster_item
 layout qr_actions
 layout scanner
