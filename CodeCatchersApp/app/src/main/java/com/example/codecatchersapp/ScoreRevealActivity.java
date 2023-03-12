@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class ScoreRevealActivity extends Activity {
@@ -21,28 +23,22 @@ public class ScoreRevealActivity extends Activity {
         Intent intent = getIntent();
         String qr_contents = intent.getStringExtra("qrContents");
 
-
-        Score score = new Score(qr_contents);
-
-        // TODO: Check this later
+        Score score;
         try {
-            score.calculateScore();
+            score = new Score(qr_contents);
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
         }
 
-        int new_score = score.getScore_();
-
-
+        int calculated_score = score.getScore_();
 
         // Find score value and update it
         TextView scoreTextView = findViewById(R.id.scoreTextView);
-        scoreTextView.setText(new_score);
+        scoreTextView.setText(calculated_score);
 
         // Find monster image and set it's image resource
         ImageView monsterImageView = findViewById(R.id.monsterImageView);
         //monsterImageView.setImageResource(R.drawable.monster_image);
     }
-
 
 }
