@@ -35,7 +35,9 @@ public class MainMenuActivity extends AppCompatActivity {
 
                 // TODO: Implement scan QR code functionality
 
-                Intent scannerIntent = new Intent(MainMenuActivity.this, ScannerActivity.class);
+
+
+                Intent scannerIntent = new Intent(MainMenuActivity.this, ScoreRevealActivity.class); // changed from scanner activity
                 startActivity(scannerIntent);
             }
         });

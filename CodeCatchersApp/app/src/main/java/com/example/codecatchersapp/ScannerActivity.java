@@ -73,7 +73,7 @@ public class ScannerActivity extends AppCompatActivity {
                         qrCodeValue = result.getText();
 
                         Intent successIntent = new Intent(ScannerActivity.this, ScoreRevealActivity.class);
-                        successIntent.putExtra("qrCodeValue", qrCodeValue);
+                        successIntent.putExtra("contents", qrCodeValue);
                         startActivity(successIntent);
                     }
                 });
