@@ -40,7 +40,7 @@ public class MonInfoActivity extends AppCompatActivity {
                 CollectionReference collectionReference = db.collection("PlayerDB/someUserID1/Monsters/someMonsterID/comment");
                 // TODO: ADD COMMENT TO DATABASE
                 final String ogComment = commentEditText.getText().toString();
-                HashMap<String,String> data = new HashMap<>();
+                HashMap<String,String> data = new HashMap<>();//aa
                 if (ogComment.length() > 0){
                     // TODO: change SomeUserID to current user's ID, change someMonsterID to monster hash
                     data.put("UserID","SomeUserID");
