@@ -11,6 +11,9 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <!-- Location Permission -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false"/>
@@ -41,6 +44,13 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".QROptionsActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
             android:name="com.example.codecatchersapp.MainMenuActivity"
             android:exported="true">
         </activity>
