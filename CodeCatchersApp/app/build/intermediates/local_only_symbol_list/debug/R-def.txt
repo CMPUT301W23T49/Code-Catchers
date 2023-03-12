@@ -50,6 +50,7 @@ id points_textview
 id quit_to_menu_button
 id retry_button
 id return_mon_settings
+id root_layout
 id rv_users
 id scan_qr_button
 id scanner_view
@@ -79,7 +80,7 @@ layout fragment_hamburger
 layout fragment_mon_settings
 layout main_menu
 layout monster_item
-layout qr_options
+layout qr_actions
 layout scanner
 layout scanner_error
 layout score_reveal_activity

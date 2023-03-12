@@ -142,5 +142,9 @@
     {
         "merged": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-merged_res-34:/layout_social_menu.xml.flat",
         "source": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-main-36:/layout/social_menu.xml"
+    },
+    {
+        "merged": "com.example.codecatchersapp-merged_res-34:/layout_qr_actions.xml.flat",
+        "source": "com.example.codecatchersapp-main-36:/layout/qr_actions.xml"
     }
 ]

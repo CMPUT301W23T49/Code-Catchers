@@ -3264,6 +3264,7 @@ int id right 0x7f08017e
 int id rightToLeft 0x7f08017f
 int id right_icon 0x7f080180
 int id right_side 0x7f080181
+int id root_layout 0x7f08022c
 int id rounded 0x7f080182
 int id row_index_key 0x7f080183
 int id rv_users 0x7f080184
@@ -3621,7 +3622,7 @@ int layout notification_template_custom_big 0x7f0b0068
 int layout notification_template_icon_group 0x7f0b0069
 int layout notification_template_part_chronometer 0x7f0b006a
 int layout notification_template_part_time 0x7f0b006b
-int layout qr_options 0x7f0b006c
+int layout qr_actions 0x7f0b0078
 int layout scanner 0x7f0b006d
 int layout scanner_error 0x7f0b006e
 int layout score_reveal_activity 0x7f0b006f
