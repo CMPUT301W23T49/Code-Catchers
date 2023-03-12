@@ -3171,7 +3171,6 @@ int id matrix 0x7f080120
 int id message 0x7f080121
 int id middle 0x7f080122
 int id mini 0x7f080123
-int id monsterImageView 0x7f080124
 int id monsterNameTextView 0x7f080125
 int id monster_image 0x7f080126
 int id monster_label 0x7f080127
@@ -3811,6 +3810,7 @@ int string path_password_eye_mask_strike_through 0x7f1000a9
 int string path_password_eye_mask_visible 0x7f1000aa
 int string path_password_strike_through 0x7f1000ab
 int string project_id 0x7f1000ac
+int string qr_contents 0x7f1000b4
 int string search_menu_title 0x7f1000ad
 int string searchbar_scrolling_view_behavior 0x7f1000ae
 int string searchview_clear_text_content_description 0x7f1000af

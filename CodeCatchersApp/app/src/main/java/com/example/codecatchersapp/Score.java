@@ -6,7 +6,7 @@ import java.security.NoSuchAlgorithmException;
 
 public class Score {
 
-    private int score_;
+    private String score;
 
     public Score(String qr_contents) throws NoSuchAlgorithmException {
 
@@ -34,7 +34,8 @@ public class Score {
                 consecutive = 1;
             }
         }
-        this.score_=score;
+        String stringScore = Integer.toString(score);
+        this.score=stringScore;
     }
 
 
@@ -50,7 +51,7 @@ public class Score {
         }
     }
 
-    public int getScore_(){
-        return this.score_;
+    public String getScore(){
+        return this.score;
     }
 }
