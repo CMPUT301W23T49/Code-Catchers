@@ -3265,6 +3265,7 @@ id right
 id rightToLeft
 id right_icon
 id right_side
+id root_layout
 id rounded
 id row_index_key
 id rv_users
@@ -3622,7 +3623,7 @@ layout notification_template_custom_big
 layout notification_template_icon_group
 layout notification_template_part_chronometer
 layout notification_template_part_time
-layout qr_options
+layout qr_actions
 layout scanner
 layout scanner_error
 layout score_reveal_activity
