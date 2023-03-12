@@ -51,12 +51,15 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            android:name="com.example.codecatchersapp.MainMenuActivity"
-            android:exported="true">
         </activity>
 
         <activity
             android:name="com.example.codecatchersapp.UserAccountActivity"
+            android:exported="true">
+        </activity>
+
+        <activity
+            android:name="com.example.codecatchersapp.MainMenuActivity"
             android:exported="true">
         </activity>
 
@@ -77,10 +80,6 @@
 
         <activity
             android:name="com.example.codecatchersapp.ScoreRevealActivity"
-            android:exported="true">
-        </activity>
-        <activity
-            android:name="com.example.codecatchersapp.QrActionsActivity"
             android:exported="true">
         </activity>
         <activity
