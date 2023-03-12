@@ -1,0 +1,150 @@
+[
+    {
+        "merged": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-merged_res-34:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-main-36:/mipmap-anydpi-v26/ic_launcher_round.xml"
+    },
+    {
+        "merged": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-merged_res-34:/layout_scanner_error.xml.flat",
+        "source": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-main-36:/layout/scanner_error.xml"
+    },
+    {
+        "merged": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-merged_res-34:/layout_create_account.xml.flat",
+        "source": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-main-36:/layout/create_account.xml"
+    },
+    {
+        "merged": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-merged_res-34:/xml_data_extraction_rules.xml.flat",
+        "source": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-main-36:/xml/data_extraction_rules.xml"
+    },
+    {
+        "merged": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-merged_res-34:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-main-36:/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-merged_res-34:/mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-main-36:/mipmap-mdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-merged_res-34:/layout_main_menu.xml.flat",
+        "source": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-main-36:/layout/main_menu.xml"
+    },
+    {
+        "merged": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-merged_res-34:/layout_search_users.xml.flat",
+        "source": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-main-36:/layout/search_users.xml"
+    },
+    {
+        "merged": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-merged_res-34:/drawable_search_by_users_bg.xml.flat",
+        "source": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-main-36:/drawable/search_by_users_bg.xml"
+    },
+    {
+        "merged": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-merged_res-34:/drawable_barney.png.flat",
+        "source": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-main-36:/drawable/barney.png"
+    },
+    {
+        "merged": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-merged_res-34:/layout_activity_main.xml.flat",
+        "source": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-main-36:/layout/activity_main.xml"
+    },
+    {
+        "merged": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-merged_res-34:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-main-36:/mipmap-xxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-merged_res-34:/drawable_ic_launcher_background.xml.flat",
+        "source": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-main-36:/drawable/ic_launcher_background.xml"
+    },
+    {
+        "merged": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-merged_res-34:/layout_monster_item.xml.flat",
+        "source": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-main-36:/layout/monster_item.xml"
+    },
+    {
+        "merged": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-merged_res-34:/layout_user_profile.xml.flat",
+        "source": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-main-36:/layout/user_profile.xml"
+    },
+    {
+        "merged": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-merged_res-34:/mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-main-36:/mipmap-xhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-merged_res-34:/layout_user_item.xml.flat",
+        "source": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-main-36:/layout/user_item.xml"
+    },
+    {
+        "merged": "com.example.codecatchersapp-merged_res-34:/layout_score_reveal_activity.xml.flat",
+        "source": "com.example.codecatchersapp-main-36:/layout/score_reveal_activity.xml"
+    },
+    {
+        "merged": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-merged_res-34:/mipmap-anydpi-v33_ic_launcher.xml.flat",
+        "source": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-main-36:/mipmap-anydpi-v33/ic_launcher.xml"
+    },
+    {
+        "merged": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-merged_res-34:/layout_fragment_hamburger.xml.flat",
+        "source": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-main-36:/layout/fragment_hamburger.xml"
+    },
+    {
+        "merged": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-merged_res-34:/layout_activity_monster.xml.flat",
+        "source": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-main-36:/layout/activity_monster.xml"
+    },
+    {
+        "merged": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-merged_res-34:/mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-main-36:/mipmap-xxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-merged_res-34:/drawable-v24_ic_launcher_foreground.xml.flat",
+        "source": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-main-36:/drawable-v24/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-merged_res-34:/drawable_user_item_bg.xml.flat",
+        "source": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-main-36:/drawable/user_item_bg.xml"
+    },
+    {
+        "merged": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-merged_res-34:/layout_score_reveal_activity.xml.flat",
+        "source": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-main-36:/layout/score_reveal_activity.xml"
+    },
+    {
+        "merged": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-merged_res-34:/mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-main-36:/mipmap-hdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-merged_res-34:/layout_fragment_mon_settings.xml.flat",
+        "source": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-main-36:/layout/fragment_mon_settings.xml"
+    },
+    {
+        "merged": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-merged_res-34:/mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-main-36:/mipmap-xhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-merged_res-34:/layout_qr_options.xml.flat",
+        "source": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-main-36:/layout/qr_options.xml"
+    },
+    {
+        "merged": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-merged_res-34:/mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-main-36:/mipmap-xxxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-merged_res-34:/mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-main-36:/mipmap-hdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-merged_res-34:/mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-main-36:/mipmap-mdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-merged_res-34:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-main-36:/mipmap-xxxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-merged_res-34:/xml_backup_rules.xml.flat",
+        "source": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-main-36:/xml/backup_rules.xml"
+    },
+    {
+        "merged": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-merged_res-34:/layout_scanner.xml.flat",
+        "source": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-main-36:/layout/scanner.xml"
+    },
+    {
+        "merged": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-merged_res-34:/layout_social_menu.xml.flat",
+        "source": "/Users/nteglauer/.gradle/daemon/7.5/com.example.codecatchersapp-main-36:/layout/social_menu.xml"
+    },
+    {
+        "merged": "com.example.codecatchersapp-merged_res-34:/layout_qr_actions.xml.flat",
+        "source": "com.example.codecatchersapp-main-36:/layout/qr_actions.xml"
+    }
+]

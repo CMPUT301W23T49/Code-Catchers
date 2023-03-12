@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.example.codecatchersapp-mergeDebugResources-32:/values-port/values-port.xml",
+            "map": [
+                {
+                    "source": "/Users/nteglauer/.gradle/caches/transforms-3/5f9f9e3ce68e3649a720f8f8504c0c2c/transformed/appcompat-1.6.0/res/values-port/values-port.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "55",
+                        "endOffsets": "106"
+                    }
+                }
+            ]
+        }
+    ]
+}
