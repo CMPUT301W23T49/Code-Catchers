@@ -1,6 +1,5 @@
 package com.example.codecatchersapp;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -8,8 +7,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.security.NoSuchAlgorithmException;
@@ -70,10 +67,14 @@ public class MainActivity extends AppCompatActivity {
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {//
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Intent intent = new Intent(this, MonInfoActivity.class);
-        startActivity(intent);
+
+//        setContentView(R.layout.map_layout);
+
+        Intent userAccountIntent = new Intent(this, UserAccountActivity.class);
+        startActivity(userAccountIntent);
+
 
 
         hashGenerator = new HashGenerator();
@@ -81,8 +82,5 @@ public class MainActivity extends AppCompatActivity {
         // Start the write operation with a delay
         currentBackoffTime = INITIAL_BACKOFF_TIME;
         handler.postDelayed(myRunnable, currentBackoffTime);
-
-
-
     }
 }
