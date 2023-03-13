@@ -5,19 +5,12 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class Score {
+
     private String score;
-    public String qr_contents;
 
 
-    public Score(String qr_contents){
-        this.qr_contents = qr_contents;
-    }
+    public Score(String qr_contents) throws NoSuchAlgorithmException {
 
-    public void setScore(String score) {
-        this.score = score;
-    }
-
-    public int calculateScore() throws NoSuchAlgorithmException {
         MessageDigest md = MessageDigest.getInstance("SHA-256");
         byte[] hash = md.digest(qr_contents.getBytes());
 
@@ -42,8 +35,10 @@ public class Score {
                 consecutive = 1;
             }
         }
-        return score;
+        String stringScore = Integer.toString(score);
+        this.score=stringScore;
     }
+
 
     public static int getDigitValue(char hexDigit) {
         if (hexDigit >= '0' && hexDigit <= '9') {
@@ -55,5 +50,9 @@ public class Score {
         } else {
             throw new IllegalArgumentException("Invalid hex digit: " + hexDigit);
         }
+    }
+
+    public String getScore(){
+        return this.score;
     }
 }

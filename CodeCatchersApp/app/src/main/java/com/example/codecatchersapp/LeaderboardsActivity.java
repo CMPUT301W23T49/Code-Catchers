@@ -15,6 +15,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -79,7 +80,16 @@ public class LeaderboardsActivity extends AppCompatActivity {
                     // TODO: calculate actual score
                     // TODO: sort by highest -> lowest
                     // Add username and associated score to ListView
-                    Leaderboards tempLeaderboards = new Leaderboards(username, "0");
+                    String sscore;
+                    try {
+                        Score score = new Score("BFG5DGW54");
+                        sscore = score.getScore();
+                    } catch (NoSuchAlgorithmException e) {
+                        throw new RuntimeException(e);
+                    }
+
+
+                    Leaderboards tempLeaderboards = new Leaderboards(username, sscore);
                     leaderboardsArrayAdapter.add(tempLeaderboards);
 
                 }
