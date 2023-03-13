@@ -83,7 +83,7 @@ public class ScannerActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         onPause();
-                        Snackbar.make(scannerView, result.getText(), Snackbar.LENGTH_LONG).show();
+                        //Snackbar.make(scannerView, result.getText(), Snackbar.LENGTH_LONG).show();
 
                         // RETURN THE QR CODE
                         qrCodeValue = result.getText();
