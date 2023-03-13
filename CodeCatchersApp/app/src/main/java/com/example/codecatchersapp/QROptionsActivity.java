@@ -78,7 +78,7 @@ public class QROptionsActivity extends AppCompatActivity {
                 HashMap<String,String> data = new HashMap<>();//aa
                 if (ogComment.length() > 0){
                     // TODO: change SomeUserID to current user's ID, change someMonsterID to monster hash
-                    data.put("userName","SomeUser");
+                    data.put("userName","myUser");
                     collectionReference
                             .document(ogComment)
                             .set(data)
