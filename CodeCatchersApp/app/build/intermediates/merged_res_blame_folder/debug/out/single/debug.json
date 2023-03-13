@@ -1,0 +1,154 @@
+[
+    {
+        "merged": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-merged_res-39:\\layout_fragment_hamburger.xml.flat",
+        "source": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-main-41:\\layout\\fragment_hamburger.xml"
+    },
+    {
+        "merged": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-merged_res-39:\\mipmap-anydpi-v33_ic_launcher.xml.flat",
+        "source": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-main-41:\\mipmap-anydpi-v33\\ic_launcher.xml"
+    },
+    {
+        "merged": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-merged_res-39:\\layout_map_layout.xml.flat",
+        "source": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-main-41:\\layout\\map_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-merged_res-39:\\mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-main-41:\\mipmap-xxhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-merged_res-39:\\mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-main-41:\\mipmap-xxxhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-merged_res-39:\\layout_search_users.xml.flat",
+        "source": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-main-41:\\layout\\search_users.xml"
+    },
+    {
+        "merged": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-merged_res-39:\\layout_user_profile.xml.flat",
+        "source": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-main-41:\\layout\\user_profile.xml"
+    },
+    {
+        "merged": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-merged_res-39:\\drawable_user_item_bg.xml.flat",
+        "source": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-main-41:\\drawable\\user_item_bg.xml"
+    },
+    {
+        "merged": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-merged_res-39:\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-main-41:\\mipmap-xxxhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-merged_res-39:\\layout_camera_view.xml.flat",
+        "source": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-main-41:\\layout\\camera_view.xml"
+    },
+    {
+        "merged": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-merged_res-39:\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-main-41:\\mipmap-anydpi-v26\\ic_launcher_round.xml"
+    },
+    {
+        "merged": "com.example.codecatchersapp-merged_res-39:/layout_camera_view.xml.flat",
+        "source": "com.example.codecatchersapp-main-41:/layout/camera_view.xml"
+    },
+    {
+        "merged": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-merged_res-39:\\mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-main-41:\\mipmap-mdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-merged_res-39:\\layout_user_item.xml.flat",
+        "source": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-main-41:\\layout\\user_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-merged_res-39:\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-main-41:\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-merged_res-39:\\mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-main-41:\\mipmap-xhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-merged_res-39:\\mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-main-41:\\mipmap-xxhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-merged_res-39:\\drawable_barney.png.flat",
+        "source": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-main-41:\\drawable\\barney.png"
+    },
+    {
+        "merged": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-merged_res-39:\\mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-main-41:\\mipmap-hdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-merged_res-39:\\mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-main-41:\\mipmap-mdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-merged_res-39:\\layout_score_reveal_activity.xml.flat",
+        "source": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-main-41:\\layout\\score_reveal_activity.xml"
+    },
+    {
+        "merged": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-merged_res-39:\\xml_data_extraction_rules.xml.flat",
+        "source": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-main-41:\\xml\\data_extraction_rules.xml"
+    },
+    {
+        "merged": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-merged_res-39:\\drawable_ic_launcher_background.xml.flat",
+        "source": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-main-41:\\drawable\\ic_launcher_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-merged_res-39:\\layout_fragment_mon_settings.xml.flat",
+        "source": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-main-41:\\layout\\fragment_mon_settings.xml"
+    },
+    {
+        "merged": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-merged_res-39:\\mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-main-41:\\mipmap-xhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-merged_res-39:\\mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-main-41:\\mipmap-anydpi-v26\\ic_launcher.xml"
+    },
+    {
+        "merged": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-merged_res-39:\\drawable_search_by_users_bg.xml.flat",
+        "source": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-main-41:\\drawable\\search_by_users_bg.xml"
+    },
+    {
+        "merged": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-merged_res-39:\\layout_scanner_error.xml.flat",
+        "source": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-main-41:\\layout\\scanner_error.xml"
+    },
+    {
+        "merged": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-merged_res-39:\\layout_create_account.xml.flat",
+        "source": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-main-41:\\layout\\create_account.xml"
+    },
+    {
+        "merged": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-merged_res-39:\\layout_monster_item.xml.flat",
+        "source": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-main-41:\\layout\\monster_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-merged_res-39:\\xml_backup_rules.xml.flat",
+        "source": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-main-41:\\xml\\backup_rules.xml"
+    },
+    {
+        "merged": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-merged_res-39:\\drawable-v24_ic_launcher_foreground.xml.flat",
+        "source": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-main-41:\\drawable-v24\\ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-merged_res-39:\\layout_scanner.xml.flat",
+        "source": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-main-41:\\layout\\scanner.xml"
+    },
+    {
+        "merged": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-merged_res-39:\\layout_main_menu.xml.flat",
+        "source": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-main-41:\\layout\\main_menu.xml"
+    },
+    {
+        "merged": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-merged_res-39:\\layout_qr_actions.xml.flat",
+        "source": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-main-41:\\layout\\qr_actions.xml"
+    },
+    {
+        "merged": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-merged_res-39:\\mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-main-41:\\mipmap-hdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-merged_res-39:\\layout_activity_monster.xml.flat",
+        "source": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-main-41:\\layout\\activity_monster.xml"
+    },
+    {
+        "merged": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-merged_res-39:\\layout_social_menu.xml.flat",
+        "source": "C:\\Users\\Kyle\\.gradle\\daemon\\7.5\\com.example.codecatchersapp-main-41:\\layout\\social_menu.xml"
+    }
+]
