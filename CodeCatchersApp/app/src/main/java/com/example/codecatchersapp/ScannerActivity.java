@@ -89,7 +89,7 @@ public class ScannerActivity extends AppCompatActivity {
                         qrCodeValue = result.getText();
 
                         qrBitmap = generateQRCode(qrCodeValue, 300, 300);
-                        saveToInternalStorage(qrBitmap);
+                        //saveToInternalStorage(qrBitmap);
 
                         Intent successIntent = new Intent(ScannerActivity.this, ScoreRevealActivity.class);
                         successIntent.putExtra("contents", qrCodeValue);
