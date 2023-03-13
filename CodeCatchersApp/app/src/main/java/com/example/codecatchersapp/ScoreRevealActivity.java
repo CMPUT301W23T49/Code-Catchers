@@ -1,3 +1,10 @@
+/**
+ * This class is responsible for displaying the score to the user
+ * It also calculates the score based on the contents of the QR code
+ *  @author [Noah Eglauer]
+ *  @version 1.0
+ *  @since [Thursday March 9 2021]
+ */
 package com.example.codecatchersapp;
 
 import android.app.Activity;
@@ -11,10 +18,15 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.example.codecatchersapp.QrActionsActivity;
+
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-
+/**
+ * This class is responsible for displaying the score to the user
+ * It also calculates the score based on the contents of the QR code
+ */
 public class ScoreRevealActivity extends AppCompatActivity {
 
     private int score;

@@ -1,3 +1,12 @@
+/**
+
+ MainMenuActivity is an Android activity that provides the main menu for the Codecatchers app.
+ The main menu allows the user to navigate to different parts of the app, such as scanning QR codes,
+ accessing social features, and viewing a map.
+ @author [Noah E, Kyle, Josie]
+ @version 1.0
+ @since [Feb 23 2023]
+ */
 package com.example.codecatchersapp;
 
 
@@ -25,7 +34,9 @@ public class MainMenuActivity extends AppCompatActivity {
         Button scanQrButton = findViewById(R.id.scan_qr_button);
         Button socialButton = findViewById(R.id.social_button);
         Button mapButton = findViewById(R.id.map_button);
-
+        /**
+         * When the scanQrButton is clicked, the user is navigated to the ScannerActivity.
+         */
         scanQrButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -33,7 +44,9 @@ public class MainMenuActivity extends AppCompatActivity {
                 startActivity(scannerIntent);
             }
         });
-
+        /**
+         * When the socialButton is clicked, the user is navigated to the SocialMenuActivity.
+         */
         socialButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -44,7 +57,9 @@ public class MainMenuActivity extends AppCompatActivity {
 
             }
         });
-
+        /**
+         * When the mapButton is clicked, the user is navigated to the MapActivity.
+         */
         mapButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

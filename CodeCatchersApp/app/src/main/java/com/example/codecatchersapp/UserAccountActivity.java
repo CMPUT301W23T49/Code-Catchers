@@ -1,3 +1,11 @@
+/**
+ The HashGenerator class is used to generate and write hashes to Firebase Firestore.
+ The generated hash is a six bit representation of a SHA-256 hash of the first six characters of a QR code.
+ The generated hash and the QR code are written to the "hashes" collection in Firebase Firestore.
+ @author [Mathew Maki]
+ @version 1.0
+ @since [Sunday March 5 2023]
+ */
 package com.example.codecatchersapp;
 
 import android.app.Activity;
@@ -9,12 +17,17 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.io.Serializable;
+ import com.example.codecatchersapp.MainMenuActivity;
+ import com.example.codecatchersapp.UserAccount;
+
+ import java.io.Serializable;
 
 public class UserAccountActivity extends AppCompatActivity {
-
+    /** EditText view for entering the username */
     private EditText etUsername;
+    /** EditText view for entering the contact information */
     private EditText etContact;
+    /** Continue button */
     private Button continueButton;
 
     @Override

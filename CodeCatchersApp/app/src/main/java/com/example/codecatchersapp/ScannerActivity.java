@@ -1,3 +1,9 @@
+/**
+ ScannerActivity provides a code scanning view where the user can scan QR codes.
+ @author Kyle
+ @version 1.0
+ @since Mar 3 2021
+ */
 package com.example.codecatchersapp;
 
 import android.Manifest;
@@ -30,7 +36,6 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
-
 public class ScannerActivity extends AppCompatActivity {
     // ERROR HANDLING VARS
     private static final String TAG = "ScannerActivity";
@@ -43,7 +48,10 @@ public class ScannerActivity extends AppCompatActivity {
     // EXTRA VARS
     private String qrCodeValue;
     private Bitmap qrBitmap;
-
+    /**
+     * onCreate is called when the activity is first created.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,7 +76,12 @@ public class ScannerActivity extends AppCompatActivity {
             startScanner();
         }
     }
-
+    /**
+     * onRequestPermissionsResult is called when the user responds to the permission request.
+     * @param requestCode
+     * @param permissions
+     * @param grantResults
+     */
     private void startScanner() {
         codeScanner = new CodeScanner(this, scannerView);
         codeScanner.setDecodeCallback(new DecodeCallback() {
@@ -110,7 +123,9 @@ public class ScannerActivity extends AppCompatActivity {
 
         codeScanner.startPreview();
     }
-
+    /**
+     * onResume is called when the activity is resumed.
+     */
     @Override
     protected void onResume() {
         super.onResume();
@@ -118,7 +133,9 @@ public class ScannerActivity extends AppCompatActivity {
             codeScanner.startPreview();
         }
     }
-
+    /**
+     * onPause is called when the activity is paused.
+     */
     @Override
     protected void onPause() {
         if (codeScanner != null) {
@@ -126,7 +143,12 @@ public class ScannerActivity extends AppCompatActivity {
         }
         super.onPause();
     }
-
+    /**
+     * onRequestPermissionsResult is called when the user responds to the permission request.
+     * @param requestCode
+     * @param permissions
+     * @param grantResults
+     */
     private Bitmap generateQRCode(String data, int width, int height) {
         try {
             BitMatrix bitMatrix = new MultiFormatWriter().encode(data, BarcodeFormat.QR_CODE, width, height);
@@ -145,7 +167,12 @@ public class ScannerActivity extends AppCompatActivity {
             return null;
         }
     }
-
+    /**
+     * onRequestPermissionsResult is called when the user responds to the permission request.
+     * @param requestCode
+     * @param permissions
+     * @param grantResults
+     */
     private void saveToInternalStorage(Bitmap screenshot) {
         try {
             // Create a subdirectory within the internal storage directory
@@ -170,7 +197,12 @@ public class ScannerActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
+    /**
+     * onRequestPermissionsResult is called when the user responds to the permission request.
+     * @param requestCode
+     * @param permissions
+     * @param grantResults
+     */
     public void onRequestPermissionResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (requestCode == REQUEST_CODE) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -181,11 +213,17 @@ public class ScannerActivity extends AppCompatActivity {
             }
         }
     }
-
+    /**
+     * getQRCode is called to get the QR code value.
+     * @return
+     */
     public String getQRCode() {
         return qrCodeValue;
     }
-
+    /**
+     * getQRBitmap is called to get the QR code bitmap.
+     * @return
+     */
     public Bitmap getQRBitmap() {
         return qrBitmap;
     }

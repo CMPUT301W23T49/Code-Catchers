@@ -1,3 +1,13 @@
+/**
+ * This activity is used to set the options for a new monster, such as whether it should be
+ * geolocated, and whether it should have a photo taken of it.
+ * It also allows the user to add a comment to the monster.
+ * It is called from the QRScannerActivity, and passes the data to the PhotoActivity.
+ * @author [Zhashe V]
+ *  @version 1.0
+ *  @since [Thursday March 9 2021]
+ */
+
 package com.example.codecatchersapp;
 
 import android.Manifest;
@@ -31,7 +41,12 @@ import java.util.Map;
 
 public class QROptionsActivity extends AppCompatActivity {
     FirebaseFirestore db;
-
+    /**
+     * This method is called when the activity is first created.
+     * It sets the content view to the QR actions layout, finds views by their IDs, and sets click listeners for the buttons.
+     *
+     * @param savedInstanceState  The saved instance state.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         db = FirebaseFirestore.getInstance();
@@ -68,6 +83,12 @@ public class QROptionsActivity extends AppCompatActivity {
         double finalLatitude = latitude;
         double finalLongitude = longitude;
         continueMonSettings.setOnClickListener(new View.OnClickListener() {
+            /**
+             * This method is called when the continue button is clicked.
+             * It gets the comment, geolocation, and photo toggle states, and passes them to the PhotoActivity.
+             *
+             * @param view  The view.
+             */
             @Override
             public void onClick(View view) {
 
@@ -138,7 +159,12 @@ public class QROptionsActivity extends AppCompatActivity {
 
 
     }
-
+    /**
+     * This method is called when the continue button is clicked.
+     * It gets the comment, geolocation, and photo toggle states, and passes them to the PhotoActivity.
+     *
+     * @param comment  The comment.
+     */
     public void goMainMenu(String comment){
         // Change MainActivity.class to MainMenuActivity.class once merged
         Intent intent = new Intent(QROptionsActivity.this, ViewMonProfile.class);
