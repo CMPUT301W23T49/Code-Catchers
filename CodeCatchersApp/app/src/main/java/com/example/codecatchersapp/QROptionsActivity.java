@@ -93,7 +93,7 @@ public class QROptionsActivity extends AppCompatActivity {
 
                 Boolean geolocationToggleState = geolocationToggle.isChecked();
                 if (geolocationToggleState == true) {
-                    getGeolocation();
+                    saveGeolocation();
 
                 }
 
@@ -110,7 +110,7 @@ public class QROptionsActivity extends AppCompatActivity {
             /**
              * Retrieves user's geolocation and saves it in the database
              */
-            private void getGeolocation() {
+            private void saveGeolocation() {
                 // TODO: change SomeUserID to current user's ID, change someMonsterID to monster hash
                 CollectionReference collectionReferenceGeoLocation = db.collection("PlayerDB/someUserID1/Monsters/someMonsterID/geolocationData");
 
