@@ -94,7 +94,7 @@ public class QROptionsActivity extends AppCompatActivity {
                 Boolean geolocationToggleState = geolocationToggle.isChecked();
                 if (geolocationToggleState == true) {
                     saveGeolocation();
-
+                    //
                 }
 
                 Boolean locationPhotoToggleState = locationPhotoToggle.isChecked();
