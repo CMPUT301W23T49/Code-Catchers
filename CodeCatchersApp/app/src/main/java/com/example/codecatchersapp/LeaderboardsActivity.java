@@ -27,6 +27,7 @@ public class LeaderboardsActivity extends AppCompatActivity {
     private ArrayList<Leaderboards> dataList = new ArrayList<>();
     private ArrayList<String> testScannedMonstersList = new ArrayList<>();
 
+    // TODO: Sort highest->lowest. Sort by most unique monsters
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,40 +61,41 @@ public class LeaderboardsActivity extends AppCompatActivity {
                     for (String key : usersData.keySet()) {
                         // key can be userName, contactInfo, or scannedMonsters.
                          ArrayList<String> testScannedMonstersList = new ArrayList<>();
+                        String temporaryScore;
+                        Integer totalScore = 0;
 
                         // Get all monster IDs of monsters scanned from userID
                         if (key.compareTo("scannedMonsters") == 0) {
                             // When in this if statement, usersData.get(key) is an array containing all monsters collected by user
-                            System.out.println("User "+ username + " has a field '" + key + "' that contains the arraylist of monsterIDs: " + usersData.get(key));
                             testScannedMonstersList = (ArrayList<String>) usersData.get(key);
 
+                            System.out.println("User "+ username + " has a field '" + key + "' that contains the arraylist of monsterIDs: " + usersData.get(key));
                             System.out.print("List of monster IDs: ");
-                            for (String item : testScannedMonstersList){
-                                System.out.print(item + ", ");
+
+                            // Iterate through all monster IDs
+                            for (String currMonsterID : testScannedMonstersList){
+                                System.out.print(currMonsterID + ", ");
+
+                                try {
+                                    Score score = new Score(currMonsterID);
+                                    temporaryScore = score.getScore();
+                                    totalScore += Integer.parseInt(temporaryScore);
+                                } catch (NoSuchAlgorithmException e) {
+                                    throw new RuntimeException(e);
+                                }
+
+
                             }
                             System.out.println();
+
+                            Leaderboards tempLeaderboards = new Leaderboards(username, totalScore.toString());
+                            leaderboardsArrayAdapter.add(tempLeaderboards);
+
                         }
                     }
                     // After the for loop above, this section is where each hash has its score calculated
                     // and then the username and score are added to the ListView
-
-                    // TODO: calculate actual score
-                    // TODO: sort by highest -> lowest
-                    // Add username and associated score to ListView
-                    String sscore;
-                    try {
-                        Score score = new Score("BFG5DGW54");
-                        sscore = score.getScore();
-                    } catch (NoSuchAlgorithmException e) {
-                        throw new RuntimeException(e);
-                    }
-
-
-                    Leaderboards tempLeaderboards = new Leaderboards(username, sscore);
-                    leaderboardsArrayAdapter.add(tempLeaderboards);
-
                 }
-
                 // Update leaderboards adapter to display users
                 leaderboardsArrayAdapter.notifyDataSetChanged();
             }
