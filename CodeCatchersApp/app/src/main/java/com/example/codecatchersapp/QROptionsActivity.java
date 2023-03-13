@@ -103,9 +103,10 @@ public class QROptionsActivity extends AppCompatActivity {
                 if (locationPhotoToggleState == false){
                     goMainMenu();
                 }
-                //else{
-                // TODO: OPEN CAMERA, SAVED TO DB
-                //}
+                else{
+                    Intent intent = new Intent(QROptionsActivity.this, CameraActivity.class);
+                    startActivity(intent);
+                }
             }
 
             /**
