@@ -1,3 +1,10 @@
+/**
+ * The ScannerActivity class contains methods for
+ * scanning QR code related operations
+ * @author [Kyle Karpyshyn]
+ * @version 1.0
+ * @since [Monday March 13 2021]
+ */
 package com.example.codecatchersapp;
 
 import android.Manifest;
@@ -31,6 +38,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+/**
+ * UserAccountActivity is an extends AppCompatActivity.
+ */
 public class ScannerActivity extends AppCompatActivity {
     // ERROR HANDLING VARS
     private static final String TAG = "ScannerActivity";
@@ -44,6 +54,14 @@ public class ScannerActivity extends AppCompatActivity {
     private String qrCodeValue;
     private Bitmap qrBitmap;
 
+    /**
+     * Called when the activity is starting.
+     * Connects to the scanner.xml and sets it as the content view.
+     * Requests the user for permissions
+     *
+     * @param savedInstanceState If the activity is being re-initialized after previously being shut down
+     *                           then this Bundle contains the data it most recently supplied.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,6 +87,13 @@ public class ScannerActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * When called starts scanning for qr codes
+     * on successful scan:
+     * convert the qr code value into a string and pass the value to ScoreRevealActivity
+     * on failed scan:
+     * Swap intent to ScanErrorActivity
+     */
     private void startScanner() {
         codeScanner = new CodeScanner(this, scannerView);
         codeScanner.setDecodeCallback(new DecodeCallback() {
@@ -127,6 +152,7 @@ public class ScannerActivity extends AppCompatActivity {
         super.onPause();
     }
 
+    // === USED FOR TESTING ===
     private Bitmap generateQRCode(String data, int width, int height) {
         try {
             BitMatrix bitMatrix = new MultiFormatWriter().encode(data, BarcodeFormat.QR_CODE, width, height);
@@ -146,6 +172,7 @@ public class ScannerActivity extends AppCompatActivity {
         }
     }
 
+    // === USED FOR TESTING ===
     private void saveToInternalStorage(Bitmap screenshot) {
         try {
             // Create a subdirectory within the internal storage directory
@@ -171,6 +198,9 @@ public class ScannerActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * When called handles permissions
+     */
     public void onRequestPermissionResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (requestCode == REQUEST_CODE) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -182,6 +212,9 @@ public class ScannerActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Getters
+     */
     public String getQRCode() {
         return qrCodeValue;
     }

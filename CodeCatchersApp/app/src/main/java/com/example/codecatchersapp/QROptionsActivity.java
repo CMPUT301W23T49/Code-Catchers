@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -28,6 +29,7 @@ import java.util.Map;
 
 public class QROptionsActivity extends AppCompatActivity {
     FirebaseFirestore db;
+    Bitmap picture;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,14 +126,14 @@ public class QROptionsActivity extends AppCompatActivity {
                 // TODO: IF TRUE, GO TO CAMERA AFTER CONTINUE CLICKED, ELSE GO MAIN MENU?
                 if (locationPhotoToggleState == false){
                     goMainMenu();
+                } else{
+                     // TODO: OPEN CAMERA, SAVED TO DB
+                    Intent SwapIntent = new Intent(QROptionsActivity.this, CameraActivity.class);
+                    startActivity(SwapIntent);
+
                 }
-                //else{
-                    // TODO: OPEN CAMERA, SAVED TO DB
-                //}
             }
         });
-
-
     }
     public void goMainMenu(){
         // Change MainActivity.class to MainMenuActivity.class once merged

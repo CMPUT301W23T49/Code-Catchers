@@ -2,6 +2,7 @@ package com.example.codecatchersapp;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Matrix;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -46,12 +48,16 @@ import static io.fotoapparat.selector.ResolutionSelectorsKt.highestResolution;
 import static io.fotoapparat.selector.SelectorsKt.firstAvailable;
 import static io.fotoapparat.selector.SensorSensitivitySelectorsKt.highestSensorSensitivity;
 
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
 public class CameraActivity extends AppCompatActivity {
     private static final String LOGGING_TAG = "Fotoapparat";
     private CameraView cameraView;
     private Button capture;
     private Fotoapparat fotoapparat;
-
 
     private CameraConfiguration cameraConfiguration = CameraConfiguration
             .builder()
@@ -124,9 +130,10 @@ public class CameraActivity extends AppCompatActivity {
                         }
 
                         saveToInternalStorage(bitmapPhoto.bitmap);
+                        Bitmap image = resizeBitmap(bitmapPhoto.bitmap);
                         try {
                             Thread.sleep(100);
-                            Swap();
+                            SwapIntent();
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
@@ -134,9 +141,23 @@ public class CameraActivity extends AppCompatActivity {
                 });
     }
 
-    private void Swap() {
-        Intent intent = new Intent(CameraActivity.this, QROptionsActivity.class);
+    private void SwapIntent() {
+        Intent intent = new Intent(CameraActivity.this, ScannerActivity.class);
         startActivity(intent);
+    }
+
+    private Bitmap resizeBitmap(Bitmap image) {
+        int width = image.getWidth();
+        int height = image.getHeight();
+        float scaleWidth = ((float) 216) / width;
+        float scaleHeight = ((float) 384) / height;
+
+        Matrix matrix = new Matrix();
+        matrix.postScale(scaleWidth, scaleHeight);
+
+        Bitmap resizedBitmap = Bitmap.createBitmap(image, 0, 0, width, height, matrix, false);
+
+        return resizedBitmap;
     }
 
     @Override
