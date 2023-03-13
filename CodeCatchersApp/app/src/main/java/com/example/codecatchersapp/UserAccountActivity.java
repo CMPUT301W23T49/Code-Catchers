@@ -37,7 +37,7 @@ public class UserAccountActivity extends AppCompatActivity {
                 UserAccount userAccount = new UserAccount(username, "");
 
                 Intent intent = new Intent(UserAccountActivity.this, MainMenuActivity.class);
-                startActivity(intent);
+                //startActivity(intent);
 
                 //UserAccountActivity.this.startActivity(intent);
                 startActivity(intent);      // TODO: ERROR CHECK FOR NO USERNAME! --> NOAH
