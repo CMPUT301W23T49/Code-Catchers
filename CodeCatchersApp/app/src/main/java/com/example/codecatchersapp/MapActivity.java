@@ -1,10 +1,3 @@
-/**
- The MapActivity class is an activity that displays a Google Map with multiple randomized markers.
- It implements the OnMapReadyCallback interface to listen for the map to become ready and display the markers.
- @author [Josie Matalski]
- @version 1.0
- @since [Sunday March 5 2021]
- */
 package com.example.codecatchersapp;
 
 import android.content.Intent;
@@ -25,11 +18,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    /**
-     * Called when the activity is starting. Sets the content view and gets the Google Map asynchronously.
-     *
-     * @param savedInstanceState Bundle object containing the activity's previously saved state.
-     */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,11 +31,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
-    /**
-     * Called when the Google Map is ready to be displayed. Adds markers to the map for specific locations and random locations.
-     *
-     * @param googleMap GoogleMap object representing the map.
-     */
+
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
