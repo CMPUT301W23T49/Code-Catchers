@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -94,7 +95,7 @@ public class QROptionsActivity extends AppCompatActivity {
                 Boolean geolocationToggleState = geolocationToggle.isChecked();
                 if (geolocationToggleState == true) {
                     saveGeolocation();
-
+                    //
                 }
 
                 Boolean locationPhotoToggleState = locationPhotoToggle.isChecked();
@@ -110,7 +111,7 @@ public class QROptionsActivity extends AppCompatActivity {
             /**
              * Retrieves user's geolocation and saves it in the database
              */
-            private void saveGeolocation() {
+            public void saveGeolocation() {
                 // TODO: change SomeUserID to current user's ID, change someMonsterID to monster hash
                 CollectionReference collectionReferenceGeoLocation = db.collection("PlayerDB/someUserID1/Monsters/someMonsterID/geolocationData");
 
@@ -138,7 +139,7 @@ public class QROptionsActivity extends AppCompatActivity {
             /**
              * Saves the users comment to the database
              */
-            private void saveComment() {
+            public void saveComment() {
                 CollectionReference collectionReference = db.collection("PlayerDB/someUserID1/Monsters/someMonsterID/comments");
                 final String ogComment = commentEditText.getText().toString();
                 HashMap<String,String> data = new HashMap<>();//aa
