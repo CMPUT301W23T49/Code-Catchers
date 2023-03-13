@@ -1,3 +1,10 @@
+/**
+ * The LeaderboardsActivity class contains methods for
+ * operations that display a leaderboard
+ * @author [Noah Silva]
+ * @version 1.0
+ * @since [Monday March 13 2023]
+ */
 package com.example.codecatchersapp;
 
 import android.os.Bundle;
@@ -21,6 +28,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * LeaderboardsActivity extends AppCompatActivity.
+ * It is responsible for displaying leaderboards.xml.
+ */
 public class LeaderboardsActivity extends AppCompatActivity {
     FirebaseFirestore db;
     private LeaderboardsArrayAdapter leaderboardsArrayAdapter;
@@ -29,6 +40,13 @@ public class LeaderboardsActivity extends AppCompatActivity {
     private ArrayList<String> testScannedMonstersList = new ArrayList<>();
 
     // TODO: Sort highest->lowest. Sort by most unique monsters
+    /**
+     * Called when the activity is starting.
+     * Connects to the leaderboards.xml and sets it as the content view.
+     *
+     * @param savedInstanceState If the activity is being re-initialized after previously being shut down
+     *                           then this Bundle contains the data it most recently supplied.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
