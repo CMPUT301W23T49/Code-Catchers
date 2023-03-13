@@ -1,3 +1,11 @@
+/**
+ * This class is used to display a map with markers on it.
+ * The markers are randomly generated and placed on the map.
+ * The map is displayed in map_layout.xml
+ * @author [Josie Matalski]
+ * @version 1.0
+ * @since [Sunday March 7 2021]
+ */
 package com.example.codecatchersapp;
 
 import android.content.Intent;
@@ -14,11 +22,24 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-
+/**
+ * MapActivity is an implementation of the OnMapReadyCallback interface.
+ * It is responsible for displaying a Google Map with markers on it.
+ */
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback {
-
+    /**
+     * The GoogleMap object used to display the map.
+     */
     private GoogleMap mMap;
-
+    /**
+     * Called when the activity is starting.
+     * Connects to the map_layout.xml and sets it as the content view.
+     * Gets the intent and gets the SupportMapFragment for the map.
+     * Registers this activity as the callback for when the map is ready.
+     *
+     * @param savedInstanceState If the activity is being re-initialized after previously being shut down
+     *                           then this Bundle contains the data it most recently supplied.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,13 +47,19 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         // Connect to  map_layout.xml
         setContentView(R.layout.map_layout);
         Intent intent = getIntent();
-
+        // Get the SupportMapFragment for the map
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
 
-
+    /**
+     * Called when the map is ready to be used.
+     * Adds markers for five fixed locations and ten randomly generated locations.
+     * Moves the camera to one of the random locations.
+     *
+     * @param googleMap The GoogleMap object used to display the map.
+     */
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
