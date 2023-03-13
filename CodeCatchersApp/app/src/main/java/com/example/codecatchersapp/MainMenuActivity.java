@@ -29,7 +29,12 @@ public class MainMenuActivity extends AppCompatActivity {
         scanQrButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent scannerIntent = new Intent(MainMenuActivity.this, ScannerActivity.class);
+
+                // TODO: Implement scan QR code functionality
+
+
+
+                Intent scannerIntent = new Intent(MainMenuActivity.this, ScoreRevealActivity.class); // changed from scanner activity
                 startActivity(scannerIntent);
             }
         });
