@@ -31,10 +31,8 @@ public class UserAccountActivityTest extends JUnitCore {
     @Test
     public void checkButtons() {
 
+        // Test continue button
         onView(withId(R.id.button)).perform(click());
-
-        System.out.print(MainMenuActivity.class.getName());
-
         intended(hasComponent(MainMenuActivity.class.getName()));
     }
 
