@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
 
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -41,7 +42,6 @@ public class QROptionsActivity extends AppCompatActivity {
         Switch geolocationToggle = findViewById(R.id.geolocation_switch);
         Switch locationPhotoToggle = findViewById(R.id.photo_switch);
         Button continueMonSettings = findViewById(R.id.continue_photo_button);
-
 
         double latitude = 0;
         double longitude = 0;
@@ -72,6 +72,7 @@ public class QROptionsActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 // Adds comment to firebase
+
                 CollectionReference collectionReference = db.collection("PlayerDB/someUserID1/Monsters/someMonsterID/comments");
                 // TODO: ADD COMMENT TO DATABASE
                 final String ogComment = commentEditText.getText().toString();
@@ -137,6 +138,7 @@ public class QROptionsActivity extends AppCompatActivity {
 
 
     }
+
     public void goMainMenu(String comment){
         // Change MainActivity.class to MainMenuActivity.class once merged
         Intent intent = new Intent(QROptionsActivity.this, ViewMonProfile.class);
