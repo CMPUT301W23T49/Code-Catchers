@@ -8,10 +8,13 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
+import android.widget.TextView;
+
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,12 +36,13 @@ public class QROptionsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         db = FirebaseFirestore.getInstance();
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.qr_actions);
+        setContentView(R.layout.qr_options);
         Intent intent = getIntent();
         EditText commentEditText = findViewById(R.id.editTextNewMonComment);
         Switch geolocationToggle = findViewById(R.id.geolocation_switch);
         Switch locationPhotoToggle = findViewById(R.id.photo_switch);
         Button continueMonSettings = findViewById(R.id.continue_photo_button);
+
         double latitude = 0;
         double longitude = 0;
         final int PERMISSIONS_REQUEST_CODE = 123;
@@ -68,13 +72,14 @@ public class QROptionsActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 // Adds comment to firebase
-                CollectionReference collectionReference = db.collection("PlayerDB/someUserID1/Monsters/someMonsterID/comment");
+
+                CollectionReference collectionReference = db.collection("PlayerDB/someUserID1/Monsters/someMonsterID/comments");
                 // TODO: ADD COMMENT TO DATABASE
                 final String ogComment = commentEditText.getText().toString();
                 HashMap<String,String> data = new HashMap<>();//aa
                 if (ogComment.length() > 0){
                     // TODO: change SomeUserID to current user's ID, change someMonsterID to monster hash
-                    data.put("UserID","SomeUserID");
+                    data.put("userName","myUser");
                     collectionReference
                             .document(ogComment)
                             .set(data)
@@ -123,19 +128,21 @@ public class QROptionsActivity extends AppCompatActivity {
                 Boolean locationPhotoToggleState = locationPhotoToggle.isChecked();
                 // TODO: IF TRUE, GO TO CAMERA AFTER CONTINUE CLICKED, ELSE GO MAIN MENU?
                 if (locationPhotoToggleState == false){
-                    goMainMenu();
+                    goMainMenu(ogComment);
                 }
                 //else{
-                    // TODO: OPEN CAMERA, SAVED TO DB
+                // TODO: OPEN CAMERA, SAVED TO DB
                 //}
             }
         });
 
 
     }
-    public void goMainMenu(){
+
+    public void goMainMenu(String comment){
         // Change MainActivity.class to MainMenuActivity.class once merged
-        Intent intent = new Intent(QROptionsActivity.this, MainActivity.class);
+        Intent intent = new Intent(QROptionsActivity.this, ViewMonProfile.class);
+        intent.putExtra("ogComment",comment);
         startActivity(intent);
     }
 }
