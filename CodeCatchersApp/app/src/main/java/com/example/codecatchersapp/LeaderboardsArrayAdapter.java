@@ -1,3 +1,7 @@
+/**
+ * LeaderboardsArrayAdapter extends ArrayAdapter<Leaderboards>.
+ * It is responsible for displaying leaderboards_layout.xml.
+ */
 package com.example.codecatchersapp;
 
 import android.content.Context;
@@ -17,6 +21,15 @@ public class LeaderboardsArrayAdapter extends ArrayAdapter<Leaderboards> {
         super(context, 0, values);
     }
 
+    /**
+     * Called when the object is made in LeaderboardsActivity.
+     * Connects to the leaderboards_layout.xml and sets it as the content view.
+     *
+     * @param position position indicates which element in ArrayAdapter is being analyzed
+     *        convertView
+     *
+     * @return view View of Leaderboards objects
+     */
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View view;
