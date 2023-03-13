@@ -20,6 +20,7 @@ import androidx.core.content.ContextCompat;
 import com.budiyev.android.codescanner.CodeScanner;
 import com.budiyev.android.codescanner.CodeScannerView;
 import com.budiyev.android.codescanner.DecodeCallback;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
@@ -82,7 +83,7 @@ public class ScannerActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         onPause();
-                        //Snackbar.make(scannerView, result.getText(), Snackbar.LENGTH_LONG).show();
+                        Snackbar.make(scannerView, result.getText(), Snackbar.LENGTH_LONG).show();
 
                         // RETURN THE QR CODE
                         qrCodeValue = result.getText();
