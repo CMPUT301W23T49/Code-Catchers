@@ -1,6 +1,5 @@
 package com.example.codecatchersapp;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -8,10 +7,11 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.security.NoSuchAlgorithmException;
+
+import retrofit2.http.HEAD;
 
 public class MainActivity extends AppCompatActivity {
     protected String qrCode;
@@ -68,8 +68,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+//        setContentView(R.layout.map_layout);
+
         Intent userAccountIntent = new Intent(this, UserAccountActivity.class);
         startActivity(userAccountIntent);
+
 
 
         hashGenerator = new HashGenerator();

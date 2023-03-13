@@ -8,7 +8,6 @@ public class Score {
 
     private String score;
 
-
     public Score(String qr_contents) throws NoSuchAlgorithmException {
 
         MessageDigest md = MessageDigest.getInstance("SHA-256");
