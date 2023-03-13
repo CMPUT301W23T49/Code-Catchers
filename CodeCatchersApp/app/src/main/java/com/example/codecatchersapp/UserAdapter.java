@@ -60,7 +60,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public TextView userName;
-        public CardView userCard;
 
         // Initialize the ViewHolder
         public ViewHolder(@NonNull View itemView) {

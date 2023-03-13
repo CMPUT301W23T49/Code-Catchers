@@ -3055,6 +3055,7 @@ id custom
 id customPanel
 id cut
 id dark
+id dataBinding
 id date_picker_actions
 id decelerate
 id decelerateAndComplete
@@ -3201,7 +3202,6 @@ id middle
 id mini
 id monsterNameTextView
 id monster_image
-id monster_label
 id monster_name
 id monster_score
 id month_grid
@@ -3254,10 +3254,10 @@ id north
 id notification_background
 id notification_main_column
 id notification_main_column_container
-id num_monster
-id num_monster_label
 id off
 id on
+id onAttachStateChangeListener
+id onDateChanged
 id onInterceptTouchReturnSwipe
 id outline
 id outward
@@ -3304,7 +3304,6 @@ id scale
 id scan_qr_button
 id scanner_view
 id scoreTextView
-id score_label
 id screen
 id screenshot_view
 id scroll
@@ -3402,6 +3401,7 @@ id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
 id textTop
+id textWatcher
 id text_input_end_icon
 id text_input_error_icon
 id text_input_start_icon
@@ -3440,11 +3440,7 @@ id unlabeled
 id up
 id useLogo
 id user_monster_rv
-id user_monsters_info
 id user_name_item
-id user_name_label
-id user_score
-id user_stat_layout
 id vertical_only
 id view_offset_helper
 id view_transition

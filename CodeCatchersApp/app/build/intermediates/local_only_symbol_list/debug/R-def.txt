@@ -40,12 +40,9 @@ id map
 id map_button
 id monsterNameTextView
 id monster_image
-id monster_label
 id monster_name
 id monster_score
 id my_profile_button
-id num_monster
-id num_monster_label
 id photo_switch
 id points_textview
 id quit_to_menu_button
@@ -56,7 +53,6 @@ id rv_users
 id scan_qr_button
 id scanner_view
 id scoreTextView
-id score_label
 id screenshot_view
 id search_users
 id search_view
@@ -68,11 +64,7 @@ id tv_contact_title
 id tv_create_account
 id tv_username_title
 id user_monster_rv
-id user_monsters_info
 id user_name_item
-id user_name_label
-id user_score
-id user_stat_layout
 id you_gotTextview
 layout activity_main
 layout activity_monster

@@ -85,7 +85,7 @@
 47-->[androidx.core:core:1.9.0] /Users/mathewmaki/.gradle/caches/transforms-3/362cbd293a403b1c188dded7a0ae129d/transformed/core-1.9.0/AndroidManifest.xml:26:22-94
 48
 49    <application
-49-->/Users/mathewmaki/Documents/University/CMPUT 301/Project/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:22:5-97:19
+49-->/Users/mathewmaki/Documents/University/CMPUT 301/Project/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:22:5-101:19
 50        android:allowBackup="true"
 50-->/Users/mathewmaki/Documents/University/CMPUT 301/Project/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:23:9-35
 51        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
@@ -205,127 +205,134 @@
 115        </activity>
 116        <activity
 116-->/Users/mathewmaki/Documents/University/CMPUT 301/Project/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:92:9-95:20
-117            android:name="com.example.codecatchersapp.MapActivity"
-117-->/Users/mathewmaki/Documents/University/CMPUT 301/Project/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:93:13-40
+117            android:name="com.example.codecatchersapp.UserProfileActivity"
+117-->/Users/mathewmaki/Documents/University/CMPUT 301/Project/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:93:13-75
 118            android:exported="true" >
 118-->/Users/mathewmaki/Documents/University/CMPUT 301/Project/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:94:13-36
 119        </activity>
-120
-121        <!-- Needs to be explicitly declared on P+ -->
-122        <uses-library
-122-->[com.google.android.gms:play-services-maps:18.1.0] /Users/mathewmaki/.gradle/caches/transforms-3/4153dd048646f4b89717e8af5385a61c/transformed/play-services-maps-18.1.0/AndroidManifest.xml:39:9-41:40
-123            android:name="org.apache.http.legacy"
-123-->[com.google.android.gms:play-services-maps:18.1.0] /Users/mathewmaki/.gradle/caches/transforms-3/4153dd048646f4b89717e8af5385a61c/transformed/play-services-maps-18.1.0/AndroidManifest.xml:40:13-50
-124            android:required="false" />
-124-->[com.google.android.gms:play-services-maps:18.1.0] /Users/mathewmaki/.gradle/caches/transforms-3/4153dd048646f4b89717e8af5385a61c/transformed/play-services-maps-18.1.0/AndroidManifest.xml:41:13-37
-125
-126        <service
-126-->[com.google.firebase:firebase-firestore:24.4.3] /Users/mathewmaki/.gradle/caches/transforms-3/6072dedbda8a28e36ac7417ff797cc42/transformed/firebase-firestore-24.4.3/AndroidManifest.xml:16:9-22:19
-127            android:name="com.google.firebase.components.ComponentDiscoveryService"
-127-->[com.google.firebase:firebase-firestore:24.4.3] /Users/mathewmaki/.gradle/caches/transforms-3/6072dedbda8a28e36ac7417ff797cc42/transformed/firebase-firestore-24.4.3/AndroidManifest.xml:17:13-84
-128            android:directBootAware="true"
-128-->[com.google.firebase:firebase-common:20.3.0] /Users/mathewmaki/.gradle/caches/transforms-3/1105f01deb7c6102a06b169ada3dd5f3/transformed/firebase-common-20.3.0/AndroidManifest.xml:34:13-43
-129            android:exported="false" >
-129-->[com.google.firebase:firebase-firestore:24.4.3] /Users/mathewmaki/.gradle/caches/transforms-3/6072dedbda8a28e36ac7417ff797cc42/transformed/firebase-firestore-24.4.3/AndroidManifest.xml:18:13-37
-130            <meta-data
-130-->[com.google.firebase:firebase-firestore:24.4.3] /Users/mathewmaki/.gradle/caches/transforms-3/6072dedbda8a28e36ac7417ff797cc42/transformed/firebase-firestore-24.4.3/AndroidManifest.xml:19:13-21:85
-131                android:name="com.google.firebase.components:com.google.firebase.firestore.FirestoreRegistrar"
-131-->[com.google.firebase:firebase-firestore:24.4.3] /Users/mathewmaki/.gradle/caches/transforms-3/6072dedbda8a28e36ac7417ff797cc42/transformed/firebase-firestore-24.4.3/AndroidManifest.xml:20:17-111
-132                android:value="com.google.firebase.components.ComponentRegistrar" />
-132-->[com.google.firebase:firebase-firestore:24.4.3] /Users/mathewmaki/.gradle/caches/transforms-3/6072dedbda8a28e36ac7417ff797cc42/transformed/firebase-firestore-24.4.3/AndroidManifest.xml:21:17-82
-133            <meta-data
-133-->[com.google.android.gms:play-services-measurement-api:21.2.0] /Users/mathewmaki/.gradle/caches/transforms-3/c3c303620c1a601eddb9cc44c8f68188/transformed/play-services-measurement-api-21.2.0/AndroidManifest.xml:31:13-33:85
-134                android:name="com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar"
-134-->[com.google.android.gms:play-services-measurement-api:21.2.0] /Users/mathewmaki/.gradle/caches/transforms-3/c3c303620c1a601eddb9cc44c8f68188/transformed/play-services-measurement-api-21.2.0/AndroidManifest.xml:32:17-139
-135                android:value="com.google.firebase.components.ComponentRegistrar" />
-135-->[com.google.android.gms:play-services-measurement-api:21.2.0] /Users/mathewmaki/.gradle/caches/transforms-3/c3c303620c1a601eddb9cc44c8f68188/transformed/play-services-measurement-api-21.2.0/AndroidManifest.xml:33:17-82
-136            <meta-data
-136-->[com.google.firebase:firebase-installations:17.1.2] /Users/mathewmaki/.gradle/caches/transforms-3/a4fa1e97e88acca2b34f7e4998c435b0/transformed/firebase-installations-17.1.2/AndroidManifest.xml:17:13-19:85
-137                android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsRegistrar"
-137-->[com.google.firebase:firebase-installations:17.1.2] /Users/mathewmaki/.gradle/caches/transforms-3/a4fa1e97e88acca2b34f7e4998c435b0/transformed/firebase-installations-17.1.2/AndroidManifest.xml:18:17-127
-138                android:value="com.google.firebase.components.ComponentRegistrar" />
-138-->[com.google.firebase:firebase-installations:17.1.2] /Users/mathewmaki/.gradle/caches/transforms-3/a4fa1e97e88acca2b34f7e4998c435b0/transformed/firebase-installations-17.1.2/AndroidManifest.xml:19:17-82
-139        </service>
-140
-141        <provider
-141-->[com.google.firebase:firebase-common:20.3.0] /Users/mathewmaki/.gradle/caches/transforms-3/1105f01deb7c6102a06b169ada3dd5f3/transformed/firebase-common-20.3.0/AndroidManifest.xml:25:9-30:39
-142            android:name="com.google.firebase.provider.FirebaseInitProvider"
-142-->[com.google.firebase:firebase-common:20.3.0] /Users/mathewmaki/.gradle/caches/transforms-3/1105f01deb7c6102a06b169ada3dd5f3/transformed/firebase-common-20.3.0/AndroidManifest.xml:26:13-77
-143            android:authorities="com.example.codecatchersapp.firebaseinitprovider"
-143-->[com.google.firebase:firebase-common:20.3.0] /Users/mathewmaki/.gradle/caches/transforms-3/1105f01deb7c6102a06b169ada3dd5f3/transformed/firebase-common-20.3.0/AndroidManifest.xml:27:13-72
-144            android:directBootAware="true"
-144-->[com.google.firebase:firebase-common:20.3.0] /Users/mathewmaki/.gradle/caches/transforms-3/1105f01deb7c6102a06b169ada3dd5f3/transformed/firebase-common-20.3.0/AndroidManifest.xml:28:13-43
-145            android:exported="false"
-145-->[com.google.firebase:firebase-common:20.3.0] /Users/mathewmaki/.gradle/caches/transforms-3/1105f01deb7c6102a06b169ada3dd5f3/transformed/firebase-common-20.3.0/AndroidManifest.xml:29:13-37
-146            android:initOrder="100" />
-146-->[com.google.firebase:firebase-common:20.3.0] /Users/mathewmaki/.gradle/caches/transforms-3/1105f01deb7c6102a06b169ada3dd5f3/transformed/firebase-common-20.3.0/AndroidManifest.xml:30:13-36
-147
-148        <activity
-148-->[com.google.android.gms:play-services-base:18.0.1] /Users/mathewmaki/.gradle/caches/transforms-3/9f68d072b3b4eaa74fe5489215639b4c/transformed/play-services-base-18.0.1/AndroidManifest.xml:20:9-22:45
-149            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-149-->[com.google.android.gms:play-services-base:18.0.1] /Users/mathewmaki/.gradle/caches/transforms-3/9f68d072b3b4eaa74fe5489215639b4c/transformed/play-services-base-18.0.1/AndroidManifest.xml:20:19-85
-150            android:exported="false"
-150-->[com.google.android.gms:play-services-base:18.0.1] /Users/mathewmaki/.gradle/caches/transforms-3/9f68d072b3b4eaa74fe5489215639b4c/transformed/play-services-base-18.0.1/AndroidManifest.xml:22:19-43
-151            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-151-->[com.google.android.gms:play-services-base:18.0.1] /Users/mathewmaki/.gradle/caches/transforms-3/9f68d072b3b4eaa74fe5489215639b4c/transformed/play-services-base-18.0.1/AndroidManifest.xml:21:19-78
-152
-153        <receiver
-153-->[com.google.android.gms:play-services-measurement:21.2.0] /Users/mathewmaki/.gradle/caches/transforms-3/90ca47ae2854a12d5f5613ca665b14ac/transformed/play-services-measurement-21.2.0/AndroidManifest.xml:29:9-33:20
-154            android:name="com.google.android.gms.measurement.AppMeasurementReceiver"
-154-->[com.google.android.gms:play-services-measurement:21.2.0] /Users/mathewmaki/.gradle/caches/transforms-3/90ca47ae2854a12d5f5613ca665b14ac/transformed/play-services-measurement-21.2.0/AndroidManifest.xml:30:13-85
-155            android:enabled="true"
-155-->[com.google.android.gms:play-services-measurement:21.2.0] /Users/mathewmaki/.gradle/caches/transforms-3/90ca47ae2854a12d5f5613ca665b14ac/transformed/play-services-measurement-21.2.0/AndroidManifest.xml:31:13-35
-156            android:exported="false" >
-156-->[com.google.android.gms:play-services-measurement:21.2.0] /Users/mathewmaki/.gradle/caches/transforms-3/90ca47ae2854a12d5f5613ca665b14ac/transformed/play-services-measurement-21.2.0/AndroidManifest.xml:32:13-37
-157        </receiver>
-158
-159        <service
-159-->[com.google.android.gms:play-services-measurement:21.2.0] /Users/mathewmaki/.gradle/caches/transforms-3/90ca47ae2854a12d5f5613ca665b14ac/transformed/play-services-measurement-21.2.0/AndroidManifest.xml:35:9-38:40
-160            android:name="com.google.android.gms.measurement.AppMeasurementService"
-160-->[com.google.android.gms:play-services-measurement:21.2.0] /Users/mathewmaki/.gradle/caches/transforms-3/90ca47ae2854a12d5f5613ca665b14ac/transformed/play-services-measurement-21.2.0/AndroidManifest.xml:36:13-84
-161            android:enabled="true"
-161-->[com.google.android.gms:play-services-measurement:21.2.0] /Users/mathewmaki/.gradle/caches/transforms-3/90ca47ae2854a12d5f5613ca665b14ac/transformed/play-services-measurement-21.2.0/AndroidManifest.xml:37:13-35
-162            android:exported="false" />
-162-->[com.google.android.gms:play-services-measurement:21.2.0] /Users/mathewmaki/.gradle/caches/transforms-3/90ca47ae2854a12d5f5613ca665b14ac/transformed/play-services-measurement-21.2.0/AndroidManifest.xml:38:13-37
+120        <activity
+120-->/Users/mathewmaki/Documents/University/CMPUT 301/Project/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:96:9-99:20
+121            android:name="com.example.codecatchersapp.MapActivity"
+121-->/Users/mathewmaki/Documents/University/CMPUT 301/Project/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:97:13-40
+122            android:exported="true" >
+122-->/Users/mathewmaki/Documents/University/CMPUT 301/Project/Code-Catchers-MAIN/CodeCatchersApp/app/src/main/AndroidManifest.xml:98:13-36
+123        </activity>
+124
+125        <!-- Needs to be explicitly declared on P+ -->
+126        <uses-library
+126-->[com.google.android.gms:play-services-maps:18.1.0] /Users/mathewmaki/.gradle/caches/transforms-3/4153dd048646f4b89717e8af5385a61c/transformed/play-services-maps-18.1.0/AndroidManifest.xml:39:9-41:40
+127            android:name="org.apache.http.legacy"
+127-->[com.google.android.gms:play-services-maps:18.1.0] /Users/mathewmaki/.gradle/caches/transforms-3/4153dd048646f4b89717e8af5385a61c/transformed/play-services-maps-18.1.0/AndroidManifest.xml:40:13-50
+128            android:required="false" />
+128-->[com.google.android.gms:play-services-maps:18.1.0] /Users/mathewmaki/.gradle/caches/transforms-3/4153dd048646f4b89717e8af5385a61c/transformed/play-services-maps-18.1.0/AndroidManifest.xml:41:13-37
+129
+130        <service
+130-->[com.google.firebase:firebase-firestore:24.4.3] /Users/mathewmaki/.gradle/caches/transforms-3/6072dedbda8a28e36ac7417ff797cc42/transformed/firebase-firestore-24.4.3/AndroidManifest.xml:16:9-22:19
+131            android:name="com.google.firebase.components.ComponentDiscoveryService"
+131-->[com.google.firebase:firebase-firestore:24.4.3] /Users/mathewmaki/.gradle/caches/transforms-3/6072dedbda8a28e36ac7417ff797cc42/transformed/firebase-firestore-24.4.3/AndroidManifest.xml:17:13-84
+132            android:directBootAware="true"
+132-->[com.google.firebase:firebase-common:20.3.0] /Users/mathewmaki/.gradle/caches/transforms-3/1105f01deb7c6102a06b169ada3dd5f3/transformed/firebase-common-20.3.0/AndroidManifest.xml:34:13-43
+133            android:exported="false" >
+133-->[com.google.firebase:firebase-firestore:24.4.3] /Users/mathewmaki/.gradle/caches/transforms-3/6072dedbda8a28e36ac7417ff797cc42/transformed/firebase-firestore-24.4.3/AndroidManifest.xml:18:13-37
+134            <meta-data
+134-->[com.google.firebase:firebase-firestore:24.4.3] /Users/mathewmaki/.gradle/caches/transforms-3/6072dedbda8a28e36ac7417ff797cc42/transformed/firebase-firestore-24.4.3/AndroidManifest.xml:19:13-21:85
+135                android:name="com.google.firebase.components:com.google.firebase.firestore.FirestoreRegistrar"
+135-->[com.google.firebase:firebase-firestore:24.4.3] /Users/mathewmaki/.gradle/caches/transforms-3/6072dedbda8a28e36ac7417ff797cc42/transformed/firebase-firestore-24.4.3/AndroidManifest.xml:20:17-111
+136                android:value="com.google.firebase.components.ComponentRegistrar" />
+136-->[com.google.firebase:firebase-firestore:24.4.3] /Users/mathewmaki/.gradle/caches/transforms-3/6072dedbda8a28e36ac7417ff797cc42/transformed/firebase-firestore-24.4.3/AndroidManifest.xml:21:17-82
+137            <meta-data
+137-->[com.google.android.gms:play-services-measurement-api:21.2.0] /Users/mathewmaki/.gradle/caches/transforms-3/c3c303620c1a601eddb9cc44c8f68188/transformed/play-services-measurement-api-21.2.0/AndroidManifest.xml:31:13-33:85
+138                android:name="com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar"
+138-->[com.google.android.gms:play-services-measurement-api:21.2.0] /Users/mathewmaki/.gradle/caches/transforms-3/c3c303620c1a601eddb9cc44c8f68188/transformed/play-services-measurement-api-21.2.0/AndroidManifest.xml:32:17-139
+139                android:value="com.google.firebase.components.ComponentRegistrar" />
+139-->[com.google.android.gms:play-services-measurement-api:21.2.0] /Users/mathewmaki/.gradle/caches/transforms-3/c3c303620c1a601eddb9cc44c8f68188/transformed/play-services-measurement-api-21.2.0/AndroidManifest.xml:33:17-82
+140            <meta-data
+140-->[com.google.firebase:firebase-installations:17.1.2] /Users/mathewmaki/.gradle/caches/transforms-3/a4fa1e97e88acca2b34f7e4998c435b0/transformed/firebase-installations-17.1.2/AndroidManifest.xml:17:13-19:85
+141                android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsRegistrar"
+141-->[com.google.firebase:firebase-installations:17.1.2] /Users/mathewmaki/.gradle/caches/transforms-3/a4fa1e97e88acca2b34f7e4998c435b0/transformed/firebase-installations-17.1.2/AndroidManifest.xml:18:17-127
+142                android:value="com.google.firebase.components.ComponentRegistrar" />
+142-->[com.google.firebase:firebase-installations:17.1.2] /Users/mathewmaki/.gradle/caches/transforms-3/a4fa1e97e88acca2b34f7e4998c435b0/transformed/firebase-installations-17.1.2/AndroidManifest.xml:19:17-82
+143        </service>
+144
+145        <provider
+145-->[com.google.firebase:firebase-common:20.3.0] /Users/mathewmaki/.gradle/caches/transforms-3/1105f01deb7c6102a06b169ada3dd5f3/transformed/firebase-common-20.3.0/AndroidManifest.xml:25:9-30:39
+146            android:name="com.google.firebase.provider.FirebaseInitProvider"
+146-->[com.google.firebase:firebase-common:20.3.0] /Users/mathewmaki/.gradle/caches/transforms-3/1105f01deb7c6102a06b169ada3dd5f3/transformed/firebase-common-20.3.0/AndroidManifest.xml:26:13-77
+147            android:authorities="com.example.codecatchersapp.firebaseinitprovider"
+147-->[com.google.firebase:firebase-common:20.3.0] /Users/mathewmaki/.gradle/caches/transforms-3/1105f01deb7c6102a06b169ada3dd5f3/transformed/firebase-common-20.3.0/AndroidManifest.xml:27:13-72
+148            android:directBootAware="true"
+148-->[com.google.firebase:firebase-common:20.3.0] /Users/mathewmaki/.gradle/caches/transforms-3/1105f01deb7c6102a06b169ada3dd5f3/transformed/firebase-common-20.3.0/AndroidManifest.xml:28:13-43
+149            android:exported="false"
+149-->[com.google.firebase:firebase-common:20.3.0] /Users/mathewmaki/.gradle/caches/transforms-3/1105f01deb7c6102a06b169ada3dd5f3/transformed/firebase-common-20.3.0/AndroidManifest.xml:29:13-37
+150            android:initOrder="100" />
+150-->[com.google.firebase:firebase-common:20.3.0] /Users/mathewmaki/.gradle/caches/transforms-3/1105f01deb7c6102a06b169ada3dd5f3/transformed/firebase-common-20.3.0/AndroidManifest.xml:30:13-36
+151
+152        <activity
+152-->[com.google.android.gms:play-services-base:18.0.1] /Users/mathewmaki/.gradle/caches/transforms-3/9f68d072b3b4eaa74fe5489215639b4c/transformed/play-services-base-18.0.1/AndroidManifest.xml:20:9-22:45
+153            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+153-->[com.google.android.gms:play-services-base:18.0.1] /Users/mathewmaki/.gradle/caches/transforms-3/9f68d072b3b4eaa74fe5489215639b4c/transformed/play-services-base-18.0.1/AndroidManifest.xml:20:19-85
+154            android:exported="false"
+154-->[com.google.android.gms:play-services-base:18.0.1] /Users/mathewmaki/.gradle/caches/transforms-3/9f68d072b3b4eaa74fe5489215639b4c/transformed/play-services-base-18.0.1/AndroidManifest.xml:22:19-43
+155            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+155-->[com.google.android.gms:play-services-base:18.0.1] /Users/mathewmaki/.gradle/caches/transforms-3/9f68d072b3b4eaa74fe5489215639b4c/transformed/play-services-base-18.0.1/AndroidManifest.xml:21:19-78
+156
+157        <receiver
+157-->[com.google.android.gms:play-services-measurement:21.2.0] /Users/mathewmaki/.gradle/caches/transforms-3/90ca47ae2854a12d5f5613ca665b14ac/transformed/play-services-measurement-21.2.0/AndroidManifest.xml:29:9-33:20
+158            android:name="com.google.android.gms.measurement.AppMeasurementReceiver"
+158-->[com.google.android.gms:play-services-measurement:21.2.0] /Users/mathewmaki/.gradle/caches/transforms-3/90ca47ae2854a12d5f5613ca665b14ac/transformed/play-services-measurement-21.2.0/AndroidManifest.xml:30:13-85
+159            android:enabled="true"
+159-->[com.google.android.gms:play-services-measurement:21.2.0] /Users/mathewmaki/.gradle/caches/transforms-3/90ca47ae2854a12d5f5613ca665b14ac/transformed/play-services-measurement-21.2.0/AndroidManifest.xml:31:13-35
+160            android:exported="false" >
+160-->[com.google.android.gms:play-services-measurement:21.2.0] /Users/mathewmaki/.gradle/caches/transforms-3/90ca47ae2854a12d5f5613ca665b14ac/transformed/play-services-measurement-21.2.0/AndroidManifest.xml:32:13-37
+161        </receiver>
+162
 163        <service
-163-->[com.google.android.gms:play-services-measurement:21.2.0] /Users/mathewmaki/.gradle/caches/transforms-3/90ca47ae2854a12d5f5613ca665b14ac/transformed/play-services-measurement-21.2.0/AndroidManifest.xml:39:9-43:72
-164            android:name="com.google.android.gms.measurement.AppMeasurementJobService"
-164-->[com.google.android.gms:play-services-measurement:21.2.0] /Users/mathewmaki/.gradle/caches/transforms-3/90ca47ae2854a12d5f5613ca665b14ac/transformed/play-services-measurement-21.2.0/AndroidManifest.xml:40:13-87
+163-->[com.google.android.gms:play-services-measurement:21.2.0] /Users/mathewmaki/.gradle/caches/transforms-3/90ca47ae2854a12d5f5613ca665b14ac/transformed/play-services-measurement-21.2.0/AndroidManifest.xml:35:9-38:40
+164            android:name="com.google.android.gms.measurement.AppMeasurementService"
+164-->[com.google.android.gms:play-services-measurement:21.2.0] /Users/mathewmaki/.gradle/caches/transforms-3/90ca47ae2854a12d5f5613ca665b14ac/transformed/play-services-measurement-21.2.0/AndroidManifest.xml:36:13-84
 165            android:enabled="true"
-165-->[com.google.android.gms:play-services-measurement:21.2.0] /Users/mathewmaki/.gradle/caches/transforms-3/90ca47ae2854a12d5f5613ca665b14ac/transformed/play-services-measurement-21.2.0/AndroidManifest.xml:41:13-35
-166            android:exported="false"
-166-->[com.google.android.gms:play-services-measurement:21.2.0] /Users/mathewmaki/.gradle/caches/transforms-3/90ca47ae2854a12d5f5613ca665b14ac/transformed/play-services-measurement-21.2.0/AndroidManifest.xml:42:13-37
-167            android:permission="android.permission.BIND_JOB_SERVICE" />
-167-->[com.google.android.gms:play-services-measurement:21.2.0] /Users/mathewmaki/.gradle/caches/transforms-3/90ca47ae2854a12d5f5613ca665b14ac/transformed/play-services-measurement-21.2.0/AndroidManifest.xml:43:13-69
-168
-169        <meta-data
-169-->[com.google.android.gms:play-services-basement:18.1.0] /Users/mathewmaki/.gradle/caches/transforms-3/52541131c3e3209920a6c1cb739f4065/transformed/play-services-basement-18.1.0/AndroidManifest.xml:21:9-23:69
-170            android:name="com.google.android.gms.version"
-170-->[com.google.android.gms:play-services-basement:18.1.0] /Users/mathewmaki/.gradle/caches/transforms-3/52541131c3e3209920a6c1cb739f4065/transformed/play-services-basement-18.1.0/AndroidManifest.xml:22:13-58
-171            android:value="@integer/google_play_services_version" />
-171-->[com.google.android.gms:play-services-basement:18.1.0] /Users/mathewmaki/.gradle/caches/transforms-3/52541131c3e3209920a6c1cb739f4065/transformed/play-services-basement-18.1.0/AndroidManifest.xml:23:13-66
+165-->[com.google.android.gms:play-services-measurement:21.2.0] /Users/mathewmaki/.gradle/caches/transforms-3/90ca47ae2854a12d5f5613ca665b14ac/transformed/play-services-measurement-21.2.0/AndroidManifest.xml:37:13-35
+166            android:exported="false" />
+166-->[com.google.android.gms:play-services-measurement:21.2.0] /Users/mathewmaki/.gradle/caches/transforms-3/90ca47ae2854a12d5f5613ca665b14ac/transformed/play-services-measurement-21.2.0/AndroidManifest.xml:38:13-37
+167        <service
+167-->[com.google.android.gms:play-services-measurement:21.2.0] /Users/mathewmaki/.gradle/caches/transforms-3/90ca47ae2854a12d5f5613ca665b14ac/transformed/play-services-measurement-21.2.0/AndroidManifest.xml:39:9-43:72
+168            android:name="com.google.android.gms.measurement.AppMeasurementJobService"
+168-->[com.google.android.gms:play-services-measurement:21.2.0] /Users/mathewmaki/.gradle/caches/transforms-3/90ca47ae2854a12d5f5613ca665b14ac/transformed/play-services-measurement-21.2.0/AndroidManifest.xml:40:13-87
+169            android:enabled="true"
+169-->[com.google.android.gms:play-services-measurement:21.2.0] /Users/mathewmaki/.gradle/caches/transforms-3/90ca47ae2854a12d5f5613ca665b14ac/transformed/play-services-measurement-21.2.0/AndroidManifest.xml:41:13-35
+170            android:exported="false"
+170-->[com.google.android.gms:play-services-measurement:21.2.0] /Users/mathewmaki/.gradle/caches/transforms-3/90ca47ae2854a12d5f5613ca665b14ac/transformed/play-services-measurement-21.2.0/AndroidManifest.xml:42:13-37
+171            android:permission="android.permission.BIND_JOB_SERVICE" />
+171-->[com.google.android.gms:play-services-measurement:21.2.0] /Users/mathewmaki/.gradle/caches/transforms-3/90ca47ae2854a12d5f5613ca665b14ac/transformed/play-services-measurement-21.2.0/AndroidManifest.xml:43:13-69
 172
-173        <provider
-173-->[androidx.emoji2:emoji2:1.2.0] /Users/mathewmaki/.gradle/caches/transforms-3/4eda5cb396df59dc893af96a6c83bd01/transformed/emoji2-1.2.0/AndroidManifest.xml:24:9-32:20
-174            android:name="androidx.startup.InitializationProvider"
-174-->[androidx.emoji2:emoji2:1.2.0] /Users/mathewmaki/.gradle/caches/transforms-3/4eda5cb396df59dc893af96a6c83bd01/transformed/emoji2-1.2.0/AndroidManifest.xml:25:13-67
-175            android:authorities="com.example.codecatchersapp.androidx-startup"
-175-->[androidx.emoji2:emoji2:1.2.0] /Users/mathewmaki/.gradle/caches/transforms-3/4eda5cb396df59dc893af96a6c83bd01/transformed/emoji2-1.2.0/AndroidManifest.xml:26:13-68
-176            android:exported="false" >
-176-->[androidx.emoji2:emoji2:1.2.0] /Users/mathewmaki/.gradle/caches/transforms-3/4eda5cb396df59dc893af96a6c83bd01/transformed/emoji2-1.2.0/AndroidManifest.xml:27:13-37
-177            <meta-data
-177-->[androidx.emoji2:emoji2:1.2.0] /Users/mathewmaki/.gradle/caches/transforms-3/4eda5cb396df59dc893af96a6c83bd01/transformed/emoji2-1.2.0/AndroidManifest.xml:29:13-31:52
-178                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-178-->[androidx.emoji2:emoji2:1.2.0] /Users/mathewmaki/.gradle/caches/transforms-3/4eda5cb396df59dc893af96a6c83bd01/transformed/emoji2-1.2.0/AndroidManifest.xml:30:17-75
-179                android:value="androidx.startup" />
-179-->[androidx.emoji2:emoji2:1.2.0] /Users/mathewmaki/.gradle/caches/transforms-3/4eda5cb396df59dc893af96a6c83bd01/transformed/emoji2-1.2.0/AndroidManifest.xml:31:17-49
-180            <meta-data
-180-->[androidx.lifecycle:lifecycle-process:2.4.1] /Users/mathewmaki/.gradle/caches/transforms-3/69d69d27b66c0f524d8ba3fc95747712/transformed/lifecycle-process-2.4.1/AndroidManifest.xml:31:13-33:52
-181                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-181-->[androidx.lifecycle:lifecycle-process:2.4.1] /Users/mathewmaki/.gradle/caches/transforms-3/69d69d27b66c0f524d8ba3fc95747712/transformed/lifecycle-process-2.4.1/AndroidManifest.xml:32:17-78
-182                android:value="androidx.startup" />
-182-->[androidx.lifecycle:lifecycle-process:2.4.1] /Users/mathewmaki/.gradle/caches/transforms-3/69d69d27b66c0f524d8ba3fc95747712/transformed/lifecycle-process-2.4.1/AndroidManifest.xml:33:17-49
-183        </provider>
-184    </application>
-185
-186</manifest>
+173        <meta-data
+173-->[com.google.android.gms:play-services-basement:18.1.0] /Users/mathewmaki/.gradle/caches/transforms-3/52541131c3e3209920a6c1cb739f4065/transformed/play-services-basement-18.1.0/AndroidManifest.xml:21:9-23:69
+174            android:name="com.google.android.gms.version"
+174-->[com.google.android.gms:play-services-basement:18.1.0] /Users/mathewmaki/.gradle/caches/transforms-3/52541131c3e3209920a6c1cb739f4065/transformed/play-services-basement-18.1.0/AndroidManifest.xml:22:13-58
+175            android:value="@integer/google_play_services_version" />
+175-->[com.google.android.gms:play-services-basement:18.1.0] /Users/mathewmaki/.gradle/caches/transforms-3/52541131c3e3209920a6c1cb739f4065/transformed/play-services-basement-18.1.0/AndroidManifest.xml:23:13-66
+176
+177        <provider
+177-->[androidx.emoji2:emoji2:1.2.0] /Users/mathewmaki/.gradle/caches/transforms-3/4eda5cb396df59dc893af96a6c83bd01/transformed/emoji2-1.2.0/AndroidManifest.xml:24:9-32:20
+178            android:name="androidx.startup.InitializationProvider"
+178-->[androidx.emoji2:emoji2:1.2.0] /Users/mathewmaki/.gradle/caches/transforms-3/4eda5cb396df59dc893af96a6c83bd01/transformed/emoji2-1.2.0/AndroidManifest.xml:25:13-67
+179            android:authorities="com.example.codecatchersapp.androidx-startup"
+179-->[androidx.emoji2:emoji2:1.2.0] /Users/mathewmaki/.gradle/caches/transforms-3/4eda5cb396df59dc893af96a6c83bd01/transformed/emoji2-1.2.0/AndroidManifest.xml:26:13-68
+180            android:exported="false" >
+180-->[androidx.emoji2:emoji2:1.2.0] /Users/mathewmaki/.gradle/caches/transforms-3/4eda5cb396df59dc893af96a6c83bd01/transformed/emoji2-1.2.0/AndroidManifest.xml:27:13-37
+181            <meta-data
+181-->[androidx.emoji2:emoji2:1.2.0] /Users/mathewmaki/.gradle/caches/transforms-3/4eda5cb396df59dc893af96a6c83bd01/transformed/emoji2-1.2.0/AndroidManifest.xml:29:13-31:52
+182                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+182-->[androidx.emoji2:emoji2:1.2.0] /Users/mathewmaki/.gradle/caches/transforms-3/4eda5cb396df59dc893af96a6c83bd01/transformed/emoji2-1.2.0/AndroidManifest.xml:30:17-75
+183                android:value="androidx.startup" />
+183-->[androidx.emoji2:emoji2:1.2.0] /Users/mathewmaki/.gradle/caches/transforms-3/4eda5cb396df59dc893af96a6c83bd01/transformed/emoji2-1.2.0/AndroidManifest.xml:31:17-49
+184            <meta-data
+184-->[androidx.lifecycle:lifecycle-process:2.4.1] /Users/mathewmaki/.gradle/caches/transforms-3/69d69d27b66c0f524d8ba3fc95747712/transformed/lifecycle-process-2.4.1/AndroidManifest.xml:31:13-33:52
+185                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+185-->[androidx.lifecycle:lifecycle-process:2.4.1] /Users/mathewmaki/.gradle/caches/transforms-3/69d69d27b66c0f524d8ba3fc95747712/transformed/lifecycle-process-2.4.1/AndroidManifest.xml:32:17-78
+186                android:value="androidx.startup" />
+186-->[androidx.lifecycle:lifecycle-process:2.4.1] /Users/mathewmaki/.gradle/caches/transforms-3/69d69d27b66c0f524d8ba3fc95747712/transformed/lifecycle-process-2.4.1/AndroidManifest.xml:33:17-49
+187        </provider>
+188    </application>
+189
+190</manifest>

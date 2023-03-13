@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.codecatchersapp-mergeDebugResources-33:/values-da/values-da.xml",
+            "outputFile": "com.example.codecatchersapp-mergeDebugResources-35:/values-da/values-da.xml",
             "map": [
                 {
                     "source": "/Users/mathewmaki/.gradle/caches/transforms-3/362cbd293a403b1c188dded7a0ae129d/transformed/core-1.9.0/res/values-da/values-da.xml",

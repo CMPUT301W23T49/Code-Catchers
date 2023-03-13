@@ -30,9 +30,13 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.auth.User;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class SearchUsersActivity extends AppCompatActivity implements UserAdapter.ItemClickListener {
 
@@ -46,6 +50,7 @@ public class SearchUsersActivity extends AppCompatActivity implements UserAdapte
 
     FirebaseFirestore db;
     CollectionReference userCollection;
+    Map<String, ArrayList<String>> scannedMonsters;
 
 
     @Override
@@ -102,13 +107,26 @@ public class SearchUsersActivity extends AppCompatActivity implements UserAdapte
         // Create an ArrayList for the searched users
         searchedUsers = new ArrayList<>();
 
+        final Map<String, ArrayList<String>> scannedMonsters = new HashMap<>();
+
         // Get the users stored in the DB and add them to the list of users
         Query query = userCollection.orderBy("userName");
         query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 for (DocumentSnapshot doc : task.getResult()) {
-                    users.add(new UserAccount(doc.getString("userName"), doc.getString("contactInfo")));
+                    if (doc.exists()) {
+                        String userName = doc.getString("userName");
+                        String contactInfo = doc.getString("contactInfo");
+                        users.add(new UserAccount(userName, contactInfo));
+                        ArrayList<String> monsterList = (ArrayList<String>) doc.get("scannedMonsters");
+                        if (!monsterList.isEmpty()) {
+                            scannedMonsters.put(userName, monsterList);
+                        } else {
+                            scannedMonsters.put(userName, new ArrayList<>());
+                        }
+                    }
+
                 }
             }
         });
@@ -170,10 +188,13 @@ public class SearchUsersActivity extends AppCompatActivity implements UserAdapte
 
         // Move to the UserProfileFragment and pass the selected UserAccount and search query to it
         FragmentManager fragmentManager = getSupportFragmentManager();
-        Fragment profileFragment = new UserProfileFragment(userAdapter.getUser(position), searchView.getQuery());
-        fragmentManager.beginTransaction()
-                .replace(R.id.search_users, profileFragment)
-                .commit();
+        UserAccount user = userAdapter.getUser(position);
+        ArrayList<String> monsters = scannedMonsters != null ? scannedMonsters.getOrDefault(user.getUsername(), new ArrayList<>()) : new ArrayList<>();
+        Intent intent = new Intent(SearchUsersActivity.this, UserProfileActivity.class);
+        intent.putExtra("UserAccount", user);
+        intent.putExtra("Query", searchView.getQuery());
+        intent.putExtra("Monsters", monsters);
+        startActivity(intent);
 
     }
 }

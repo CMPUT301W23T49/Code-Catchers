@@ -1,16 +1,22 @@
-#Sun Mar 12 18:15:57 MDT 2023
-path.4=classes3.dex
-path.3=classes2.dex
-path.2=5/classes.dex
+#Mon Mar 13 03:06:10 MDT 2023
+path.4=9/classes.dex
+path.3=5/classes.dex
+path.2=11/classes.dex
 path.1=0/classes.dex
+path.6=classes3.dex
+path.5=classes2.dex
 path.0=classes.dex
-base.4=/Users/mathewmaki/Documents/University/CMPUT 301/Project/Code-Catchers-MAIN/CodeCatchersApp/app/build/intermediates/dex/debug/mergeExtDexDebug/classes3.dex
-base.3=/Users/mathewmaki/Documents/University/CMPUT 301/Project/Code-Catchers-MAIN/CodeCatchersApp/app/build/intermediates/dex/debug/mergeExtDexDebug/classes2.dex
-base.2=/Users/mathewmaki/Documents/University/CMPUT 301/Project/Code-Catchers-MAIN/CodeCatchersApp/app/build/intermediates/dex/debug/mergeProjectDexDebug/5/classes.dex
+base.4=/Users/mathewmaki/Documents/University/CMPUT 301/Project/Code-Catchers-MAIN/CodeCatchersApp/app/build/intermediates/dex/debug/mergeProjectDexDebug/9/classes.dex
+base.3=/Users/mathewmaki/Documents/University/CMPUT 301/Project/Code-Catchers-MAIN/CodeCatchersApp/app/build/intermediates/dex/debug/mergeProjectDexDebug/5/classes.dex
+base.2=/Users/mathewmaki/Documents/University/CMPUT 301/Project/Code-Catchers-MAIN/CodeCatchersApp/app/build/intermediates/dex/debug/mergeProjectDexDebug/11/classes.dex
 base.1=/Users/mathewmaki/Documents/University/CMPUT 301/Project/Code-Catchers-MAIN/CodeCatchersApp/app/build/intermediates/dex/debug/mergeProjectDexDebug/0/classes.dex
 base.0=/Users/mathewmaki/Documents/University/CMPUT 301/Project/Code-Catchers-MAIN/CodeCatchersApp/app/build/intermediates/dex/debug/mergeExtDexDebug/classes.dex
 renamed.3=classes4.dex
 renamed.2=classes3.dex
 renamed.1=classes2.dex
 renamed.0=classes.dex
+renamed.6=classes7.dex
+renamed.5=classes6.dex
+base.6=/Users/mathewmaki/Documents/University/CMPUT 301/Project/Code-Catchers-MAIN/CodeCatchersApp/app/build/intermediates/dex/debug/mergeExtDexDebug/classes3.dex
 renamed.4=classes5.dex
+base.5=/Users/mathewmaki/Documents/University/CMPUT 301/Project/Code-Catchers-MAIN/CodeCatchersApp/app/build/intermediates/dex/debug/mergeExtDexDebug/classes2.dex

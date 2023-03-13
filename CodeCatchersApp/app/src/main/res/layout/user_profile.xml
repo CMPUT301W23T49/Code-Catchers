@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFE4F3"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".UserProfileActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/top_toolbar"
@@ -143,7 +144,7 @@
             android:id="@+id/user_monster_rv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"/>
+            />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

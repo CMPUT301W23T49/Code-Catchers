@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.codecatchersapp-mergeDebugResources-33:/values-b+sr+Latn/values-b+sr+Latn.xml",
+            "outputFile": "com.example.codecatchersapp-mergeDebugResources-35:/values-b+sr+Latn/values-b+sr+Latn.xml",
             "map": [
                 {
                     "source": "/Users/mathewmaki/.gradle/caches/transforms-3/9f68d072b3b4eaa74fe5489215639b4c/transformed/play-services-base-18.0.1/res/values-b+sr+Latn/values.xml",

@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.codecatchersapp-mergeDebugResources-33:/values-xlarge-v4/values-xlarge-v4.xml",
+            "outputFile": "com.example.codecatchersapp-mergeDebugResources-35:/values-xlarge-v4/values-xlarge-v4.xml",
             "map": [
                 {
                     "source": "/Users/mathewmaki/.gradle/caches/transforms-3/b58fc9dafd3b67607843592dcdb2cd94/transformed/appcompat-1.6.0/res/values-xlarge-v4/values-xlarge-v4.xml",

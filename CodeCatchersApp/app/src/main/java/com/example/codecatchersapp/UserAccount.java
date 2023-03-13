@@ -1,6 +1,8 @@
 package com.example.codecatchersapp;
 
-public class UserAccount {
+import java.io.Serializable;
+
+public class UserAccount implements Serializable {
     private String username;
     private String contactInfo;
 
