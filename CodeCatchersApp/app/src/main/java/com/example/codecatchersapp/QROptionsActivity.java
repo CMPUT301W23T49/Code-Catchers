@@ -102,15 +102,16 @@ public class QROptionsActivity extends AppCompatActivity {
                 if (locationPhotoToggleState == false){
                     goMainMenu();
                 }
-                //else{
-                // TODO: OPEN CAMERA, SAVED TO DB
-                //}
+                else{
+                    Intent intent = new Intent(QROptionsActivity.this, CameraActivity.class);
+                    startActivity(intent);
+                }
             }
 
             /**
              * Retrieves user's geolocation and saves it in the database
              */
-            private void saveGeolocation() {
+            public void saveGeolocation() {
                 // TODO: change SomeUserID to current user's ID, change someMonsterID to monster hash
                 CollectionReference collectionReferenceGeoLocation = db.collection("PlayerDB/someUserID1/Monsters/someMonsterID/geolocationData");
 
@@ -138,7 +139,7 @@ public class QROptionsActivity extends AppCompatActivity {
             /**
              * Saves the users comment to the database
              */
-            private void saveComment() {
+            public void saveComment() {
                 CollectionReference collectionReference = db.collection("PlayerDB/someUserID1/Monsters/someMonsterID/comments");
                 final String ogComment = commentEditText.getText().toString();
                 HashMap<String,String> data = new HashMap<>();//aa
