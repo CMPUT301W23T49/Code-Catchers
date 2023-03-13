@@ -32,7 +32,11 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ ViewMonProfile displays the image of a monster along with its comments from the database.
+ Currently settings button is not implemented, back button is not implemented, and new comment functionality
+ is not implemented.
+ */
 public class ViewMonProfile extends AppCompatActivity {
 
     private LayoutInflater layoutInflater;
@@ -45,6 +49,10 @@ public class ViewMonProfile extends AppCompatActivity {
     private CommentAdapter commentAdapter;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
+    /**
+     Sets up the RecyclerView to display the comments and fetches them from the database.
+     @param savedInstanceState A Bundle object containing the activity's saved state.
+     */
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +63,7 @@ public class ViewMonProfile extends AppCompatActivity {
         Button deleteButton = findViewById(R.id.mon_settings_button);
 
         CollectionReference collectionReference = db.collection("PlayerDB/someUserID1/Monsters/someMonsterID/comments");
-        // Create an ArrayList for users
+        // Create an ArrayList for comments
         comments = new ArrayList<>();
 
         // Set up the RecycleView with UserAdapter and ClickListener
@@ -67,6 +75,7 @@ public class ViewMonProfile extends AppCompatActivity {
 
         // Get the users stored in the DB and add them to the list of users
         Query query = collectionReference.orderBy("userName");
+
         query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -84,43 +93,5 @@ public class ViewMonProfile extends AppCompatActivity {
                 }
             }
         });
-
-        /*
-        collectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(QuerySnapshot querySnapshot) {
-                for (DocumentSnapshot documentSnapshot : querySnapshot.getDocuments()) {
-                    String username = documentSnapshot.getString("Username");
-                    String ogComment = documentSnapshot.getId();
-                    // do something with the username and ogComment values
-                    usernameText.setText(username);
-                    comment.setText(ogComment);
-                }
-            }
-        });
-
-        //collectionReference.document();
-
-
-        deleteButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                layoutInflater = (LayoutInflater) getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
-                ViewGroup container = (ViewGroup) layoutInflater.inflate(R.layout.fragment_mon_settings, null);
-
-                popupWindow = new PopupWindow(container, 400,400, true);
-                relativeLayout = (RelativeLayout) findViewById(R.id.mon_settings_layout);
-                popupWindow.showAtLocation(relativeLayout, Gravity.NO_GRAVITY, 500,500);
-
-                container.setOnTouchListener(new View.OnTouchListener() {
-                    @Override
-                    public boolean onTouch(View view, MotionEvent motionEvent) {
-                        popupWindow.dismiss();
-                        return true;
-                    }
-                });
-
-            }
-        });*/
     }
 }

@@ -29,12 +29,20 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Activity to display QR code saving options, such as geolocation, picture, and comment
+ * Does not yet connect to true user's account/their collection in the database
+ * Does not connect to specific monster's comment collection yet
+ */
 public class QROptionsActivity extends AppCompatActivity {
-    FirebaseFirestore db;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
+    /**
+     Takes in choices for photo and geolocation, saves comment to database
+     @param savedInstanceState A Bundle object containing the activity's saved state.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        db = FirebaseFirestore.getInstance();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.qr_options);
         Intent intent = getIntent();
@@ -68,6 +76,10 @@ public class QROptionsActivity extends AppCompatActivity {
         double finalLatitude = latitude;
         double finalLongitude = longitude;
         continueMonSettings.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Triggers options to save their respective data to the database
+             * @param view view that was clicked (continue button)
+             */
             @Override
             public void onClick(View view) {
 
@@ -128,7 +140,7 @@ public class QROptionsActivity extends AppCompatActivity {
                 Boolean locationPhotoToggleState = locationPhotoToggle.isChecked();
                 // TODO: IF TRUE, GO TO CAMERA AFTER CONTINUE CLICKED, ELSE GO MAIN MENU?
                 if (locationPhotoToggleState == false){
-                    goMainMenu(ogComment);
+                    goMainMenu();
                 }
                 //else{
                 // TODO: OPEN CAMERA, SAVED TO DB
@@ -139,10 +151,12 @@ public class QROptionsActivity extends AppCompatActivity {
 
     }
 
-    public void goMainMenu(String comment){
+    /**
+     * Directs activity to main menu
+     */
+    public void goMainMenu(){
         // Change MainActivity.class to MainMenuActivity.class once merged
-        Intent intent = new Intent(QROptionsActivity.this, ViewMonProfile.class);
-        intent.putExtra("ogComment",comment);
+        Intent intent = new Intent(QROptionsActivity.this, MainMenuActivity.class);
         startActivity(intent);
     }
 }
