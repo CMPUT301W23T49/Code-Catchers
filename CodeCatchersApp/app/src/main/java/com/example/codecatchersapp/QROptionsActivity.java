@@ -4,8 +4,8 @@
  * It also allows the user to add a comment to the monster.
  * It is called from the QRScannerActivity, and passes the data to the PhotoActivity.
  * @author [Zhashe V]
- *  @version 1.0
- *  @since [Thursday March 9 2021]
+ * @version 1.0
+ * @since [Thursday March 9 2021]
  */
 
 package com.example.codecatchersapp;
