@@ -34,3 +34,4 @@ public class ScannerActivityTest extends JUnitCore {
             });
     }
 }
+
