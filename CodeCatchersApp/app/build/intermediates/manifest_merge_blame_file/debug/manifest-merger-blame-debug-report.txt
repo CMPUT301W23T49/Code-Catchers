@@ -85,7 +85,7 @@
 47-->[androidx.core:core:1.9.0] C:\Users\Kyle\.gradle\caches\transforms-3\f3d51bfea696170ddff80dae282a5b7c\transformed\core-1.9.0\AndroidManifest.xml:26:22-94
 48
 49    <application
-49-->D:\CMPUT301\Code-Catchers-MAIN\CodeCatchersApp\app\src\main\AndroidManifest.xml:22:5-102:19
+49-->D:\CMPUT301\Code-Catchers-MAIN\CodeCatchersApp\app\src\main\AndroidManifest.xml:22:5-106:19
 50        android:allowBackup="true"
 50-->D:\CMPUT301\Code-Catchers-MAIN\CodeCatchersApp\app\src\main\AndroidManifest.xml:23:9-35
 51        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
@@ -131,7 +131,7 @@
 73            </intent-filter>
 74        </activity>
 75        <activity
-75-->D:\CMPUT301\Code-Catchers-MAIN\CodeCatchersApp\app\src\main\AndroidManifest.xml:46:9-55:20
+75-->D:\CMPUT301\Code-Catchers-MAIN\CodeCatchersApp\app\src\main\AndroidManifest.xml:46:9-54:20
 76            android:name="com.example.codecatchersapp.QROptionsActivity"
 76-->D:\CMPUT301\Code-Catchers-MAIN\CodeCatchersApp\app\src\main\AndroidManifest.xml:47:13-46
 77            android:exported="true" >
@@ -148,196 +148,203 @@
 82            </intent-filter>
 83        </activity>
 84        <activity
-84-->D:\CMPUT301\Code-Catchers-MAIN\CodeCatchersApp\app\src\main\AndroidManifest.xml:57:9-60:20
-85            android:name="com.example.codecatchersapp.UserAccountActivity"
-85-->D:\CMPUT301\Code-Catchers-MAIN\CodeCatchersApp\app\src\main\AndroidManifest.xml:58:13-75
+84-->D:\CMPUT301\Code-Catchers-MAIN\CodeCatchersApp\app\src\main\AndroidManifest.xml:56:9-59:20
+85            android:name="com.example.codecatchersapp.MainMenuActivity"
+85-->D:\CMPUT301\Code-Catchers-MAIN\CodeCatchersApp\app\src\main\AndroidManifest.xml:57:13-72
 86            android:exported="true" >
-86-->D:\CMPUT301\Code-Catchers-MAIN\CodeCatchersApp\app\src\main\AndroidManifest.xml:59:13-36
+86-->D:\CMPUT301\Code-Catchers-MAIN\CodeCatchersApp\app\src\main\AndroidManifest.xml:58:13-36
 87        </activity>
 88        <activity
-88-->D:\CMPUT301\Code-Catchers-MAIN\CodeCatchersApp\app\src\main\AndroidManifest.xml:62:9-65:20
-89            android:name="com.example.codecatchersapp.ScannerActivity"
-89-->D:\CMPUT301\Code-Catchers-MAIN\CodeCatchersApp\app\src\main\AndroidManifest.xml:63:13-71
+88-->D:\CMPUT301\Code-Catchers-MAIN\CodeCatchersApp\app\src\main\AndroidManifest.xml:61:9-64:20
+89            android:name="com.example.codecatchersapp.UserAccountActivity"
+89-->D:\CMPUT301\Code-Catchers-MAIN\CodeCatchersApp\app\src\main\AndroidManifest.xml:62:13-75
 90            android:exported="true" >
-90-->D:\CMPUT301\Code-Catchers-MAIN\CodeCatchersApp\app\src\main\AndroidManifest.xml:64:13-36
+90-->D:\CMPUT301\Code-Catchers-MAIN\CodeCatchersApp\app\src\main\AndroidManifest.xml:63:13-36
 91        </activity>
 92        <activity
-92-->D:\CMPUT301\Code-Catchers-MAIN\CodeCatchersApp\app\src\main\AndroidManifest.xml:67:9-70:20
-93            android:name="com.example.codecatchersapp.ScanErrorActivity"
-93-->D:\CMPUT301\Code-Catchers-MAIN\CodeCatchersApp\app\src\main\AndroidManifest.xml:68:13-73
+92-->D:\CMPUT301\Code-Catchers-MAIN\CodeCatchersApp\app\src\main\AndroidManifest.xml:66:9-69:20
+93            android:name="com.example.codecatchersapp.ScannerActivity"
+93-->D:\CMPUT301\Code-Catchers-MAIN\CodeCatchersApp\app\src\main\AndroidManifest.xml:67:13-71
 94            android:exported="true" >
-94-->D:\CMPUT301\Code-Catchers-MAIN\CodeCatchersApp\app\src\main\AndroidManifest.xml:69:13-36
+94-->D:\CMPUT301\Code-Catchers-MAIN\CodeCatchersApp\app\src\main\AndroidManifest.xml:68:13-36
 95        </activity>
 96        <activity
-96-->D:\CMPUT301\Code-Catchers-MAIN\CodeCatchersApp\app\src\main\AndroidManifest.xml:72:9-75:20
-97            android:name="com.example.codecatchersapp.CameraActivity"
-97-->D:\CMPUT301\Code-Catchers-MAIN\CodeCatchersApp\app\src\main\AndroidManifest.xml:73:13-70
+96-->D:\CMPUT301\Code-Catchers-MAIN\CodeCatchersApp\app\src\main\AndroidManifest.xml:71:9-74:20
+97            android:name="com.example.codecatchersapp.ScanErrorActivity"
+97-->D:\CMPUT301\Code-Catchers-MAIN\CodeCatchersApp\app\src\main\AndroidManifest.xml:72:13-73
 98            android:exported="true" >
-98-->D:\CMPUT301\Code-Catchers-MAIN\CodeCatchersApp\app\src\main\AndroidManifest.xml:74:13-36
+98-->D:\CMPUT301\Code-Catchers-MAIN\CodeCatchersApp\app\src\main\AndroidManifest.xml:73:13-36
 99        </activity>
 100        <activity
-100-->D:\CMPUT301\Code-Catchers-MAIN\CodeCatchersApp\app\src\main\AndroidManifest.xml:77:9-80:20
-101            android:name="com.example.codecatchersapp.SocialMenuActivity"
-101-->D:\CMPUT301\Code-Catchers-MAIN\CodeCatchersApp\app\src\main\AndroidManifest.xml:78:13-74
+100-->D:\CMPUT301\Code-Catchers-MAIN\CodeCatchersApp\app\src\main\AndroidManifest.xml:76:9-79:20
+101            android:name="com.example.codecatchersapp.CameraActivity"
+101-->D:\CMPUT301\Code-Catchers-MAIN\CodeCatchersApp\app\src\main\AndroidManifest.xml:77:13-70
 102            android:exported="true" >
-102-->D:\CMPUT301\Code-Catchers-MAIN\CodeCatchersApp\app\src\main\AndroidManifest.xml:79:13-36
+102-->D:\CMPUT301\Code-Catchers-MAIN\CodeCatchersApp\app\src\main\AndroidManifest.xml:78:13-36
 103        </activity>
 104        <activity
-104-->D:\CMPUT301\Code-Catchers-MAIN\CodeCatchersApp\app\src\main\AndroidManifest.xml:82:9-85:20
-105            android:name="com.example.codecatchersapp.ScoreRevealActivity"
-105-->D:\CMPUT301\Code-Catchers-MAIN\CodeCatchersApp\app\src\main\AndroidManifest.xml:83:13-75
+104-->D:\CMPUT301\Code-Catchers-MAIN\CodeCatchersApp\app\src\main\AndroidManifest.xml:81:9-84:20
+105            android:name="com.example.codecatchersapp.SocialMenuActivity"
+105-->D:\CMPUT301\Code-Catchers-MAIN\CodeCatchersApp\app\src\main\AndroidManifest.xml:82:13-74
 106            android:exported="true" >
-106-->D:\CMPUT301\Code-Catchers-MAIN\CodeCatchersApp\app\src\main\AndroidManifest.xml:84:13-36
+106-->D:\CMPUT301\Code-Catchers-MAIN\CodeCatchersApp\app\src\main\AndroidManifest.xml:83:13-36
 107        </activity>
 108        <activity
-108-->D:\CMPUT301\Code-Catchers-MAIN\CodeCatchersApp\app\src\main\AndroidManifest.xml:87:9-90:20
-109            android:name="com.example.codecatchersapp.QrActionsActivity"
-109-->D:\CMPUT301\Code-Catchers-MAIN\CodeCatchersApp\app\src\main\AndroidManifest.xml:88:13-73
+108-->D:\CMPUT301\Code-Catchers-MAIN\CodeCatchersApp\app\src\main\AndroidManifest.xml:86:9-89:20
+109            android:name="com.example.codecatchersapp.SearchUsersActivity"
+109-->D:\CMPUT301\Code-Catchers-MAIN\CodeCatchersApp\app\src\main\AndroidManifest.xml:87:13-75
 110            android:exported="true" >
-110-->D:\CMPUT301\Code-Catchers-MAIN\CodeCatchersApp\app\src\main\AndroidManifest.xml:89:13-36
+110-->D:\CMPUT301\Code-Catchers-MAIN\CodeCatchersApp\app\src\main\AndroidManifest.xml:88:13-36
 111        </activity>
 112        <activity
-112-->D:\CMPUT301\Code-Catchers-MAIN\CodeCatchersApp\app\src\main\AndroidManifest.xml:92:9-95:20
-113            android:name="com.example.codecatchersapp.MapActivity"
-113-->D:\CMPUT301\Code-Catchers-MAIN\CodeCatchersApp\app\src\main\AndroidManifest.xml:93:13-40
+112-->D:\CMPUT301\Code-Catchers-MAIN\CodeCatchersApp\app\src\main\AndroidManifest.xml:91:9-94:20
+113            android:name="com.example.codecatchersapp.ScoreRevealActivity"
+113-->D:\CMPUT301\Code-Catchers-MAIN\CodeCatchersApp\app\src\main\AndroidManifest.xml:92:13-75
 114            android:exported="true" >
-114-->D:\CMPUT301\Code-Catchers-MAIN\CodeCatchersApp\app\src\main\AndroidManifest.xml:94:13-36
+114-->D:\CMPUT301\Code-Catchers-MAIN\CodeCatchersApp\app\src\main\AndroidManifest.xml:93:13-36
 115        </activity>
 116        <activity
-116-->D:\CMPUT301\Code-Catchers-MAIN\CodeCatchersApp\app\src\main\AndroidManifest.xml:97:9-100:20
-117            android:name="com.example.codecatchersapp.MainMenuActivity"
-117-->D:\CMPUT301\Code-Catchers-MAIN\CodeCatchersApp\app\src\main\AndroidManifest.xml:98:13-72
+116-->D:\CMPUT301\Code-Catchers-MAIN\CodeCatchersApp\app\src\main\AndroidManifest.xml:96:9-99:20
+117            android:name="com.example.codecatchersapp.QrActionsActivity"
+117-->D:\CMPUT301\Code-Catchers-MAIN\CodeCatchersApp\app\src\main\AndroidManifest.xml:97:13-73
 118            android:exported="true" >
-118-->D:\CMPUT301\Code-Catchers-MAIN\CodeCatchersApp\app\src\main\AndroidManifest.xml:99:13-36
+118-->D:\CMPUT301\Code-Catchers-MAIN\CodeCatchersApp\app\src\main\AndroidManifest.xml:98:13-36
 119        </activity>
-120
-121        <!-- Needs to be explicitly declared on P+ -->
-122        <uses-library
-122-->[com.google.android.gms:play-services-maps:18.1.0] C:\Users\Kyle\.gradle\caches\transforms-3\acef2a44a7e3301fa64384949a60f84f\transformed\play-services-maps-18.1.0\AndroidManifest.xml:39:9-41:40
-123            android:name="org.apache.http.legacy"
-123-->[com.google.android.gms:play-services-maps:18.1.0] C:\Users\Kyle\.gradle\caches\transforms-3\acef2a44a7e3301fa64384949a60f84f\transformed\play-services-maps-18.1.0\AndroidManifest.xml:40:13-50
-124            android:required="false" />
-124-->[com.google.android.gms:play-services-maps:18.1.0] C:\Users\Kyle\.gradle\caches\transforms-3\acef2a44a7e3301fa64384949a60f84f\transformed\play-services-maps-18.1.0\AndroidManifest.xml:41:13-37
-125
-126        <service
-126-->[com.google.firebase:firebase-firestore:24.4.3] C:\Users\Kyle\.gradle\caches\transforms-3\e9247b15a5aff8f711ae9be1235faba8\transformed\firebase-firestore-24.4.3\AndroidManifest.xml:16:9-22:19
-127            android:name="com.google.firebase.components.ComponentDiscoveryService"
-127-->[com.google.firebase:firebase-firestore:24.4.3] C:\Users\Kyle\.gradle\caches\transforms-3\e9247b15a5aff8f711ae9be1235faba8\transformed\firebase-firestore-24.4.3\AndroidManifest.xml:17:13-84
-128            android:directBootAware="true"
-128-->[com.google.firebase:firebase-common:20.3.0] C:\Users\Kyle\.gradle\caches\transforms-3\9807ba8c91a168609f8b8fe0755749fb\transformed\firebase-common-20.3.0\AndroidManifest.xml:34:13-43
-129            android:exported="false" >
-129-->[com.google.firebase:firebase-firestore:24.4.3] C:\Users\Kyle\.gradle\caches\transforms-3\e9247b15a5aff8f711ae9be1235faba8\transformed\firebase-firestore-24.4.3\AndroidManifest.xml:18:13-37
-130            <meta-data
-130-->[com.google.firebase:firebase-firestore:24.4.3] C:\Users\Kyle\.gradle\caches\transforms-3\e9247b15a5aff8f711ae9be1235faba8\transformed\firebase-firestore-24.4.3\AndroidManifest.xml:19:13-21:85
-131                android:name="com.google.firebase.components:com.google.firebase.firestore.FirestoreRegistrar"
-131-->[com.google.firebase:firebase-firestore:24.4.3] C:\Users\Kyle\.gradle\caches\transforms-3\e9247b15a5aff8f711ae9be1235faba8\transformed\firebase-firestore-24.4.3\AndroidManifest.xml:20:17-111
-132                android:value="com.google.firebase.components.ComponentRegistrar" />
-132-->[com.google.firebase:firebase-firestore:24.4.3] C:\Users\Kyle\.gradle\caches\transforms-3\e9247b15a5aff8f711ae9be1235faba8\transformed\firebase-firestore-24.4.3\AndroidManifest.xml:21:17-82
-133            <meta-data
-133-->[com.google.android.gms:play-services-measurement-api:21.2.0] C:\Users\Kyle\.gradle\caches\transforms-3\1992e525d6e79e3ea17000012afe803d\transformed\play-services-measurement-api-21.2.0\AndroidManifest.xml:31:13-33:85
-134                android:name="com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar"
-134-->[com.google.android.gms:play-services-measurement-api:21.2.0] C:\Users\Kyle\.gradle\caches\transforms-3\1992e525d6e79e3ea17000012afe803d\transformed\play-services-measurement-api-21.2.0\AndroidManifest.xml:32:17-139
-135                android:value="com.google.firebase.components.ComponentRegistrar" />
-135-->[com.google.android.gms:play-services-measurement-api:21.2.0] C:\Users\Kyle\.gradle\caches\transforms-3\1992e525d6e79e3ea17000012afe803d\transformed\play-services-measurement-api-21.2.0\AndroidManifest.xml:33:17-82
-136            <meta-data
-136-->[com.google.firebase:firebase-installations:17.1.2] C:\Users\Kyle\.gradle\caches\transforms-3\4ef42dcbb477f1b1d19016d5db54e734\transformed\firebase-installations-17.1.2\AndroidManifest.xml:17:13-19:85
-137                android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsRegistrar"
-137-->[com.google.firebase:firebase-installations:17.1.2] C:\Users\Kyle\.gradle\caches\transforms-3\4ef42dcbb477f1b1d19016d5db54e734\transformed\firebase-installations-17.1.2\AndroidManifest.xml:18:17-127
-138                android:value="com.google.firebase.components.ComponentRegistrar" />
-138-->[com.google.firebase:firebase-installations:17.1.2] C:\Users\Kyle\.gradle\caches\transforms-3\4ef42dcbb477f1b1d19016d5db54e734\transformed\firebase-installations-17.1.2\AndroidManifest.xml:19:17-82
-139        </service>
-140
-141        <provider
-141-->[com.google.firebase:firebase-common:20.3.0] C:\Users\Kyle\.gradle\caches\transforms-3\9807ba8c91a168609f8b8fe0755749fb\transformed\firebase-common-20.3.0\AndroidManifest.xml:25:9-30:39
-142            android:name="com.google.firebase.provider.FirebaseInitProvider"
-142-->[com.google.firebase:firebase-common:20.3.0] C:\Users\Kyle\.gradle\caches\transforms-3\9807ba8c91a168609f8b8fe0755749fb\transformed\firebase-common-20.3.0\AndroidManifest.xml:26:13-77
-143            android:authorities="com.example.codecatchersapp.firebaseinitprovider"
-143-->[com.google.firebase:firebase-common:20.3.0] C:\Users\Kyle\.gradle\caches\transforms-3\9807ba8c91a168609f8b8fe0755749fb\transformed\firebase-common-20.3.0\AndroidManifest.xml:27:13-72
-144            android:directBootAware="true"
-144-->[com.google.firebase:firebase-common:20.3.0] C:\Users\Kyle\.gradle\caches\transforms-3\9807ba8c91a168609f8b8fe0755749fb\transformed\firebase-common-20.3.0\AndroidManifest.xml:28:13-43
-145            android:exported="false"
-145-->[com.google.firebase:firebase-common:20.3.0] C:\Users\Kyle\.gradle\caches\transforms-3\9807ba8c91a168609f8b8fe0755749fb\transformed\firebase-common-20.3.0\AndroidManifest.xml:29:13-37
-146            android:initOrder="100" />
-146-->[com.google.firebase:firebase-common:20.3.0] C:\Users\Kyle\.gradle\caches\transforms-3\9807ba8c91a168609f8b8fe0755749fb\transformed\firebase-common-20.3.0\AndroidManifest.xml:30:13-36
-147
-148        <activity
-148-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\Kyle\.gradle\caches\transforms-3\c27b355c5b4cb07fc08881c264fd8861\transformed\play-services-base-18.0.1\AndroidManifest.xml:20:9-22:45
-149            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-149-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\Kyle\.gradle\caches\transforms-3\c27b355c5b4cb07fc08881c264fd8861\transformed\play-services-base-18.0.1\AndroidManifest.xml:20:19-85
-150            android:exported="false"
-150-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\Kyle\.gradle\caches\transforms-3\c27b355c5b4cb07fc08881c264fd8861\transformed\play-services-base-18.0.1\AndroidManifest.xml:22:19-43
-151            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-151-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\Kyle\.gradle\caches\transforms-3\c27b355c5b4cb07fc08881c264fd8861\transformed\play-services-base-18.0.1\AndroidManifest.xml:21:19-78
-152
-153        <receiver
-153-->[com.google.android.gms:play-services-measurement:21.2.0] C:\Users\Kyle\.gradle\caches\transforms-3\aaa990ff34d22627869d06e95a802f23\transformed\play-services-measurement-21.2.0\AndroidManifest.xml:29:9-33:20
-154            android:name="com.google.android.gms.measurement.AppMeasurementReceiver"
-154-->[com.google.android.gms:play-services-measurement:21.2.0] C:\Users\Kyle\.gradle\caches\transforms-3\aaa990ff34d22627869d06e95a802f23\transformed\play-services-measurement-21.2.0\AndroidManifest.xml:30:13-85
-155            android:enabled="true"
-155-->[com.google.android.gms:play-services-measurement:21.2.0] C:\Users\Kyle\.gradle\caches\transforms-3\aaa990ff34d22627869d06e95a802f23\transformed\play-services-measurement-21.2.0\AndroidManifest.xml:31:13-35
-156            android:exported="false" >
-156-->[com.google.android.gms:play-services-measurement:21.2.0] C:\Users\Kyle\.gradle\caches\transforms-3\aaa990ff34d22627869d06e95a802f23\transformed\play-services-measurement-21.2.0\AndroidManifest.xml:32:13-37
-157        </receiver>
-158
-159        <service
-159-->[com.google.android.gms:play-services-measurement:21.2.0] C:\Users\Kyle\.gradle\caches\transforms-3\aaa990ff34d22627869d06e95a802f23\transformed\play-services-measurement-21.2.0\AndroidManifest.xml:35:9-38:40
-160            android:name="com.google.android.gms.measurement.AppMeasurementService"
-160-->[com.google.android.gms:play-services-measurement:21.2.0] C:\Users\Kyle\.gradle\caches\transforms-3\aaa990ff34d22627869d06e95a802f23\transformed\play-services-measurement-21.2.0\AndroidManifest.xml:36:13-84
-161            android:enabled="true"
-161-->[com.google.android.gms:play-services-measurement:21.2.0] C:\Users\Kyle\.gradle\caches\transforms-3\aaa990ff34d22627869d06e95a802f23\transformed\play-services-measurement-21.2.0\AndroidManifest.xml:37:13-35
-162            android:exported="false" />
-162-->[com.google.android.gms:play-services-measurement:21.2.0] C:\Users\Kyle\.gradle\caches\transforms-3\aaa990ff34d22627869d06e95a802f23\transformed\play-services-measurement-21.2.0\AndroidManifest.xml:38:13-37
+120        <activity
+120-->D:\CMPUT301\Code-Catchers-MAIN\CodeCatchersApp\app\src\main\AndroidManifest.xml:101:9-104:20
+121            android:name="com.example.codecatchersapp.MapActivity"
+121-->D:\CMPUT301\Code-Catchers-MAIN\CodeCatchersApp\app\src\main\AndroidManifest.xml:102:13-40
+122            android:exported="true" >
+122-->D:\CMPUT301\Code-Catchers-MAIN\CodeCatchersApp\app\src\main\AndroidManifest.xml:103:13-36
+123        </activity>
+124
+125        <!-- Needs to be explicitly declared on P+ -->
+126        <uses-library
+126-->[com.google.android.gms:play-services-maps:18.1.0] C:\Users\Kyle\.gradle\caches\transforms-3\acef2a44a7e3301fa64384949a60f84f\transformed\play-services-maps-18.1.0\AndroidManifest.xml:39:9-41:40
+127            android:name="org.apache.http.legacy"
+127-->[com.google.android.gms:play-services-maps:18.1.0] C:\Users\Kyle\.gradle\caches\transforms-3\acef2a44a7e3301fa64384949a60f84f\transformed\play-services-maps-18.1.0\AndroidManifest.xml:40:13-50
+128            android:required="false" />
+128-->[com.google.android.gms:play-services-maps:18.1.0] C:\Users\Kyle\.gradle\caches\transforms-3\acef2a44a7e3301fa64384949a60f84f\transformed\play-services-maps-18.1.0\AndroidManifest.xml:41:13-37
+129
+130        <service
+130-->[com.google.firebase:firebase-firestore:24.4.3] C:\Users\Kyle\.gradle\caches\transforms-3\e9247b15a5aff8f711ae9be1235faba8\transformed\firebase-firestore-24.4.3\AndroidManifest.xml:16:9-22:19
+131            android:name="com.google.firebase.components.ComponentDiscoveryService"
+131-->[com.google.firebase:firebase-firestore:24.4.3] C:\Users\Kyle\.gradle\caches\transforms-3\e9247b15a5aff8f711ae9be1235faba8\transformed\firebase-firestore-24.4.3\AndroidManifest.xml:17:13-84
+132            android:directBootAware="true"
+132-->[com.google.firebase:firebase-common:20.3.0] C:\Users\Kyle\.gradle\caches\transforms-3\9807ba8c91a168609f8b8fe0755749fb\transformed\firebase-common-20.3.0\AndroidManifest.xml:34:13-43
+133            android:exported="false" >
+133-->[com.google.firebase:firebase-firestore:24.4.3] C:\Users\Kyle\.gradle\caches\transforms-3\e9247b15a5aff8f711ae9be1235faba8\transformed\firebase-firestore-24.4.3\AndroidManifest.xml:18:13-37
+134            <meta-data
+134-->[com.google.firebase:firebase-firestore:24.4.3] C:\Users\Kyle\.gradle\caches\transforms-3\e9247b15a5aff8f711ae9be1235faba8\transformed\firebase-firestore-24.4.3\AndroidManifest.xml:19:13-21:85
+135                android:name="com.google.firebase.components:com.google.firebase.firestore.FirestoreRegistrar"
+135-->[com.google.firebase:firebase-firestore:24.4.3] C:\Users\Kyle\.gradle\caches\transforms-3\e9247b15a5aff8f711ae9be1235faba8\transformed\firebase-firestore-24.4.3\AndroidManifest.xml:20:17-111
+136                android:value="com.google.firebase.components.ComponentRegistrar" />
+136-->[com.google.firebase:firebase-firestore:24.4.3] C:\Users\Kyle\.gradle\caches\transforms-3\e9247b15a5aff8f711ae9be1235faba8\transformed\firebase-firestore-24.4.3\AndroidManifest.xml:21:17-82
+137            <meta-data
+137-->[com.google.android.gms:play-services-measurement-api:21.2.0] C:\Users\Kyle\.gradle\caches\transforms-3\1992e525d6e79e3ea17000012afe803d\transformed\play-services-measurement-api-21.2.0\AndroidManifest.xml:31:13-33:85
+138                android:name="com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar"
+138-->[com.google.android.gms:play-services-measurement-api:21.2.0] C:\Users\Kyle\.gradle\caches\transforms-3\1992e525d6e79e3ea17000012afe803d\transformed\play-services-measurement-api-21.2.0\AndroidManifest.xml:32:17-139
+139                android:value="com.google.firebase.components.ComponentRegistrar" />
+139-->[com.google.android.gms:play-services-measurement-api:21.2.0] C:\Users\Kyle\.gradle\caches\transforms-3\1992e525d6e79e3ea17000012afe803d\transformed\play-services-measurement-api-21.2.0\AndroidManifest.xml:33:17-82
+140            <meta-data
+140-->[com.google.firebase:firebase-installations:17.1.2] C:\Users\Kyle\.gradle\caches\transforms-3\4ef42dcbb477f1b1d19016d5db54e734\transformed\firebase-installations-17.1.2\AndroidManifest.xml:17:13-19:85
+141                android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsRegistrar"
+141-->[com.google.firebase:firebase-installations:17.1.2] C:\Users\Kyle\.gradle\caches\transforms-3\4ef42dcbb477f1b1d19016d5db54e734\transformed\firebase-installations-17.1.2\AndroidManifest.xml:18:17-127
+142                android:value="com.google.firebase.components.ComponentRegistrar" />
+142-->[com.google.firebase:firebase-installations:17.1.2] C:\Users\Kyle\.gradle\caches\transforms-3\4ef42dcbb477f1b1d19016d5db54e734\transformed\firebase-installations-17.1.2\AndroidManifest.xml:19:17-82
+143        </service>
+144
+145        <provider
+145-->[com.google.firebase:firebase-common:20.3.0] C:\Users\Kyle\.gradle\caches\transforms-3\9807ba8c91a168609f8b8fe0755749fb\transformed\firebase-common-20.3.0\AndroidManifest.xml:25:9-30:39
+146            android:name="com.google.firebase.provider.FirebaseInitProvider"
+146-->[com.google.firebase:firebase-common:20.3.0] C:\Users\Kyle\.gradle\caches\transforms-3\9807ba8c91a168609f8b8fe0755749fb\transformed\firebase-common-20.3.0\AndroidManifest.xml:26:13-77
+147            android:authorities="com.example.codecatchersapp.firebaseinitprovider"
+147-->[com.google.firebase:firebase-common:20.3.0] C:\Users\Kyle\.gradle\caches\transforms-3\9807ba8c91a168609f8b8fe0755749fb\transformed\firebase-common-20.3.0\AndroidManifest.xml:27:13-72
+148            android:directBootAware="true"
+148-->[com.google.firebase:firebase-common:20.3.0] C:\Users\Kyle\.gradle\caches\transforms-3\9807ba8c91a168609f8b8fe0755749fb\transformed\firebase-common-20.3.0\AndroidManifest.xml:28:13-43
+149            android:exported="false"
+149-->[com.google.firebase:firebase-common:20.3.0] C:\Users\Kyle\.gradle\caches\transforms-3\9807ba8c91a168609f8b8fe0755749fb\transformed\firebase-common-20.3.0\AndroidManifest.xml:29:13-37
+150            android:initOrder="100" />
+150-->[com.google.firebase:firebase-common:20.3.0] C:\Users\Kyle\.gradle\caches\transforms-3\9807ba8c91a168609f8b8fe0755749fb\transformed\firebase-common-20.3.0\AndroidManifest.xml:30:13-36
+151
+152        <activity
+152-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\Kyle\.gradle\caches\transforms-3\c27b355c5b4cb07fc08881c264fd8861\transformed\play-services-base-18.0.1\AndroidManifest.xml:20:9-22:45
+153            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+153-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\Kyle\.gradle\caches\transforms-3\c27b355c5b4cb07fc08881c264fd8861\transformed\play-services-base-18.0.1\AndroidManifest.xml:20:19-85
+154            android:exported="false"
+154-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\Kyle\.gradle\caches\transforms-3\c27b355c5b4cb07fc08881c264fd8861\transformed\play-services-base-18.0.1\AndroidManifest.xml:22:19-43
+155            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+155-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\Kyle\.gradle\caches\transforms-3\c27b355c5b4cb07fc08881c264fd8861\transformed\play-services-base-18.0.1\AndroidManifest.xml:21:19-78
+156
+157        <receiver
+157-->[com.google.android.gms:play-services-measurement:21.2.0] C:\Users\Kyle\.gradle\caches\transforms-3\aaa990ff34d22627869d06e95a802f23\transformed\play-services-measurement-21.2.0\AndroidManifest.xml:29:9-33:20
+158            android:name="com.google.android.gms.measurement.AppMeasurementReceiver"
+158-->[com.google.android.gms:play-services-measurement:21.2.0] C:\Users\Kyle\.gradle\caches\transforms-3\aaa990ff34d22627869d06e95a802f23\transformed\play-services-measurement-21.2.0\AndroidManifest.xml:30:13-85
+159            android:enabled="true"
+159-->[com.google.android.gms:play-services-measurement:21.2.0] C:\Users\Kyle\.gradle\caches\transforms-3\aaa990ff34d22627869d06e95a802f23\transformed\play-services-measurement-21.2.0\AndroidManifest.xml:31:13-35
+160            android:exported="false" >
+160-->[com.google.android.gms:play-services-measurement:21.2.0] C:\Users\Kyle\.gradle\caches\transforms-3\aaa990ff34d22627869d06e95a802f23\transformed\play-services-measurement-21.2.0\AndroidManifest.xml:32:13-37
+161        </receiver>
+162
 163        <service
-163-->[com.google.android.gms:play-services-measurement:21.2.0] C:\Users\Kyle\.gradle\caches\transforms-3\aaa990ff34d22627869d06e95a802f23\transformed\play-services-measurement-21.2.0\AndroidManifest.xml:39:9-43:72
-164            android:name="com.google.android.gms.measurement.AppMeasurementJobService"
-164-->[com.google.android.gms:play-services-measurement:21.2.0] C:\Users\Kyle\.gradle\caches\transforms-3\aaa990ff34d22627869d06e95a802f23\transformed\play-services-measurement-21.2.0\AndroidManifest.xml:40:13-87
+163-->[com.google.android.gms:play-services-measurement:21.2.0] C:\Users\Kyle\.gradle\caches\transforms-3\aaa990ff34d22627869d06e95a802f23\transformed\play-services-measurement-21.2.0\AndroidManifest.xml:35:9-38:40
+164            android:name="com.google.android.gms.measurement.AppMeasurementService"
+164-->[com.google.android.gms:play-services-measurement:21.2.0] C:\Users\Kyle\.gradle\caches\transforms-3\aaa990ff34d22627869d06e95a802f23\transformed\play-services-measurement-21.2.0\AndroidManifest.xml:36:13-84
 165            android:enabled="true"
-165-->[com.google.android.gms:play-services-measurement:21.2.0] C:\Users\Kyle\.gradle\caches\transforms-3\aaa990ff34d22627869d06e95a802f23\transformed\play-services-measurement-21.2.0\AndroidManifest.xml:41:13-35
-166            android:exported="false"
-166-->[com.google.android.gms:play-services-measurement:21.2.0] C:\Users\Kyle\.gradle\caches\transforms-3\aaa990ff34d22627869d06e95a802f23\transformed\play-services-measurement-21.2.0\AndroidManifest.xml:42:13-37
-167            android:permission="android.permission.BIND_JOB_SERVICE" />
-167-->[com.google.android.gms:play-services-measurement:21.2.0] C:\Users\Kyle\.gradle\caches\transforms-3\aaa990ff34d22627869d06e95a802f23\transformed\play-services-measurement-21.2.0\AndroidManifest.xml:43:13-69
-168
-169        <meta-data
-169-->[com.google.android.gms:play-services-basement:18.1.0] C:\Users\Kyle\.gradle\caches\transforms-3\1be5a84dfe85c9f41773bb78b68ec900\transformed\play-services-basement-18.1.0\AndroidManifest.xml:21:9-23:69
-170            android:name="com.google.android.gms.version"
-170-->[com.google.android.gms:play-services-basement:18.1.0] C:\Users\Kyle\.gradle\caches\transforms-3\1be5a84dfe85c9f41773bb78b68ec900\transformed\play-services-basement-18.1.0\AndroidManifest.xml:22:13-58
-171            android:value="@integer/google_play_services_version" />
-171-->[com.google.android.gms:play-services-basement:18.1.0] C:\Users\Kyle\.gradle\caches\transforms-3\1be5a84dfe85c9f41773bb78b68ec900\transformed\play-services-basement-18.1.0\AndroidManifest.xml:23:13-66
+165-->[com.google.android.gms:play-services-measurement:21.2.0] C:\Users\Kyle\.gradle\caches\transforms-3\aaa990ff34d22627869d06e95a802f23\transformed\play-services-measurement-21.2.0\AndroidManifest.xml:37:13-35
+166            android:exported="false" />
+166-->[com.google.android.gms:play-services-measurement:21.2.0] C:\Users\Kyle\.gradle\caches\transforms-3\aaa990ff34d22627869d06e95a802f23\transformed\play-services-measurement-21.2.0\AndroidManifest.xml:38:13-37
+167        <service
+167-->[com.google.android.gms:play-services-measurement:21.2.0] C:\Users\Kyle\.gradle\caches\transforms-3\aaa990ff34d22627869d06e95a802f23\transformed\play-services-measurement-21.2.0\AndroidManifest.xml:39:9-43:72
+168            android:name="com.google.android.gms.measurement.AppMeasurementJobService"
+168-->[com.google.android.gms:play-services-measurement:21.2.0] C:\Users\Kyle\.gradle\caches\transforms-3\aaa990ff34d22627869d06e95a802f23\transformed\play-services-measurement-21.2.0\AndroidManifest.xml:40:13-87
+169            android:enabled="true"
+169-->[com.google.android.gms:play-services-measurement:21.2.0] C:\Users\Kyle\.gradle\caches\transforms-3\aaa990ff34d22627869d06e95a802f23\transformed\play-services-measurement-21.2.0\AndroidManifest.xml:41:13-35
+170            android:exported="false"
+170-->[com.google.android.gms:play-services-measurement:21.2.0] C:\Users\Kyle\.gradle\caches\transforms-3\aaa990ff34d22627869d06e95a802f23\transformed\play-services-measurement-21.2.0\AndroidManifest.xml:42:13-37
+171            android:permission="android.permission.BIND_JOB_SERVICE" />
+171-->[com.google.android.gms:play-services-measurement:21.2.0] C:\Users\Kyle\.gradle\caches\transforms-3\aaa990ff34d22627869d06e95a802f23\transformed\play-services-measurement-21.2.0\AndroidManifest.xml:43:13-69
 172
-173        <provider
-173-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Kyle\.gradle\caches\transforms-3\2466eaf4a073dfa3aa7557bbe46f76f9\transformed\emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
-174            android:name="androidx.startup.InitializationProvider"
-174-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Kyle\.gradle\caches\transforms-3\2466eaf4a073dfa3aa7557bbe46f76f9\transformed\emoji2-1.2.0\AndroidManifest.xml:25:13-67
-175            android:authorities="com.example.codecatchersapp.androidx-startup"
-175-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Kyle\.gradle\caches\transforms-3\2466eaf4a073dfa3aa7557bbe46f76f9\transformed\emoji2-1.2.0\AndroidManifest.xml:26:13-68
-176            android:exported="false" >
-176-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Kyle\.gradle\caches\transforms-3\2466eaf4a073dfa3aa7557bbe46f76f9\transformed\emoji2-1.2.0\AndroidManifest.xml:27:13-37
-177            <meta-data
-177-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Kyle\.gradle\caches\transforms-3\2466eaf4a073dfa3aa7557bbe46f76f9\transformed\emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
-178                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-178-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Kyle\.gradle\caches\transforms-3\2466eaf4a073dfa3aa7557bbe46f76f9\transformed\emoji2-1.2.0\AndroidManifest.xml:30:17-75
-179                android:value="androidx.startup" />
-179-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Kyle\.gradle\caches\transforms-3\2466eaf4a073dfa3aa7557bbe46f76f9\transformed\emoji2-1.2.0\AndroidManifest.xml:31:17-49
-180            <meta-data
-180-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\Kyle\.gradle\caches\transforms-3\5127f80b85867cccab87be3d3456a639\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:31:13-33:52
-181                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-181-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\Kyle\.gradle\caches\transforms-3\5127f80b85867cccab87be3d3456a639\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:32:17-78
-182                android:value="androidx.startup" />
-182-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\Kyle\.gradle\caches\transforms-3\5127f80b85867cccab87be3d3456a639\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:33:17-49
-183        </provider>
-184        <!--
-185        Service for holding metadata. Cannot be instantiated.
-186        Metadata will be merged from other manifests.
-187        -->
-188        <service
-188-->[androidx.camera:camera-core:1.2.1] C:\Users\Kyle\.gradle\caches\transforms-3\8bf788d13bc81859f5ca246fdffecf2f\transformed\camera-core-1.2.1\AndroidManifest.xml:29:9-33:78
-189            android:name="androidx.camera.core.impl.MetadataHolderService"
-189-->[androidx.camera:camera-core:1.2.1] C:\Users\Kyle\.gradle\caches\transforms-3\8bf788d13bc81859f5ca246fdffecf2f\transformed\camera-core-1.2.1\AndroidManifest.xml:30:13-75
-190            android:enabled="false"
-190-->[androidx.camera:camera-core:1.2.1] C:\Users\Kyle\.gradle\caches\transforms-3\8bf788d13bc81859f5ca246fdffecf2f\transformed\camera-core-1.2.1\AndroidManifest.xml:31:13-36
-191            android:exported="false" />
-191-->[androidx.camera:camera-core:1.2.1] C:\Users\Kyle\.gradle\caches\transforms-3\8bf788d13bc81859f5ca246fdffecf2f\transformed\camera-core-1.2.1\AndroidManifest.xml:32:13-37
-192    </application>
-193
-194</manifest>
+173        <meta-data
+173-->[com.google.android.gms:play-services-basement:18.1.0] C:\Users\Kyle\.gradle\caches\transforms-3\1be5a84dfe85c9f41773bb78b68ec900\transformed\play-services-basement-18.1.0\AndroidManifest.xml:21:9-23:69
+174            android:name="com.google.android.gms.version"
+174-->[com.google.android.gms:play-services-basement:18.1.0] C:\Users\Kyle\.gradle\caches\transforms-3\1be5a84dfe85c9f41773bb78b68ec900\transformed\play-services-basement-18.1.0\AndroidManifest.xml:22:13-58
+175            android:value="@integer/google_play_services_version" />
+175-->[com.google.android.gms:play-services-basement:18.1.0] C:\Users\Kyle\.gradle\caches\transforms-3\1be5a84dfe85c9f41773bb78b68ec900\transformed\play-services-basement-18.1.0\AndroidManifest.xml:23:13-66
+176
+177        <provider
+177-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Kyle\.gradle\caches\transforms-3\2466eaf4a073dfa3aa7557bbe46f76f9\transformed\emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
+178            android:name="androidx.startup.InitializationProvider"
+178-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Kyle\.gradle\caches\transforms-3\2466eaf4a073dfa3aa7557bbe46f76f9\transformed\emoji2-1.2.0\AndroidManifest.xml:25:13-67
+179            android:authorities="com.example.codecatchersapp.androidx-startup"
+179-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Kyle\.gradle\caches\transforms-3\2466eaf4a073dfa3aa7557bbe46f76f9\transformed\emoji2-1.2.0\AndroidManifest.xml:26:13-68
+180            android:exported="false" >
+180-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Kyle\.gradle\caches\transforms-3\2466eaf4a073dfa3aa7557bbe46f76f9\transformed\emoji2-1.2.0\AndroidManifest.xml:27:13-37
+181            <meta-data
+181-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Kyle\.gradle\caches\transforms-3\2466eaf4a073dfa3aa7557bbe46f76f9\transformed\emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
+182                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+182-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Kyle\.gradle\caches\transforms-3\2466eaf4a073dfa3aa7557bbe46f76f9\transformed\emoji2-1.2.0\AndroidManifest.xml:30:17-75
+183                android:value="androidx.startup" />
+183-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Kyle\.gradle\caches\transforms-3\2466eaf4a073dfa3aa7557bbe46f76f9\transformed\emoji2-1.2.0\AndroidManifest.xml:31:17-49
+184            <meta-data
+184-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\Kyle\.gradle\caches\transforms-3\5127f80b85867cccab87be3d3456a639\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:31:13-33:52
+185                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+185-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\Kyle\.gradle\caches\transforms-3\5127f80b85867cccab87be3d3456a639\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:32:17-78
+186                android:value="androidx.startup" />
+186-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\Kyle\.gradle\caches\transforms-3\5127f80b85867cccab87be3d3456a639\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:33:17-49
+187        </provider>
+188        <!--
+189        Service for holding metadata. Cannot be instantiated.
+190        Metadata will be merged from other manifests.
+191        -->
+192        <service
+192-->[androidx.camera:camera-core:1.2.1] C:\Users\Kyle\.gradle\caches\transforms-3\8bf788d13bc81859f5ca246fdffecf2f\transformed\camera-core-1.2.1\AndroidManifest.xml:29:9-33:78
+193            android:name="androidx.camera.core.impl.MetadataHolderService"
+193-->[androidx.camera:camera-core:1.2.1] C:\Users\Kyle\.gradle\caches\transforms-3\8bf788d13bc81859f5ca246fdffecf2f\transformed\camera-core-1.2.1\AndroidManifest.xml:30:13-75
+194            android:enabled="false"
+194-->[androidx.camera:camera-core:1.2.1] C:\Users\Kyle\.gradle\caches\transforms-3\8bf788d13bc81859f5ca246fdffecf2f\transformed\camera-core-1.2.1\AndroidManifest.xml:31:13-36
+195            android:exported="false" />
+195-->[androidx.camera:camera-core:1.2.1] C:\Users\Kyle\.gradle\caches\transforms-3\8bf788d13bc81859f5ca246fdffecf2f\transformed\camera-core-1.2.1\AndroidManifest.xml:32:13-37
+196    </application>
+197
+198</manifest>
