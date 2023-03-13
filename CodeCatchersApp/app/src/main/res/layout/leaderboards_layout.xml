@@ -16,6 +16,7 @@
     <TextView
         android:id="@+id/leaderboard_score_text"
         android:layout_width="221dp"
+        android:layout_marginTop="10dp"
         android:layout_height="match_parent"
         android:padding="5dp"
         android:text="Total score"
