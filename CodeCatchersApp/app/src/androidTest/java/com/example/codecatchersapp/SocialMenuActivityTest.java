@@ -33,6 +33,11 @@ public class SocialMenuActivityTest extends JUnitCore {
         onView(withId(R.id.browse_users_button)).perform(click());
         intended(hasComponent(SearchUsersActivity.class.getName()));
         pressBack();
+
+        // Test leaderboards button
+        onView(withId(R.id.leaderboards_button)).perform(click());
+        intended(hasComponent(LeaderboardsActivity.class.getName()));
+        pressBack();
     }
 
     @After
