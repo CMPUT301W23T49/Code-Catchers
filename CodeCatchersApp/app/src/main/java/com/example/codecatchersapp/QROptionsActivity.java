@@ -44,7 +44,7 @@ public class QROptionsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.qr_actions);
+        setContentView(R.layout.qr_options);
         Intent intent = getIntent();
         EditText commentEditText = findViewById(R.id.editTextNewMonComment);
         Switch geolocationToggle = findViewById(R.id.geolocation_switch);
@@ -85,8 +85,61 @@ public class QROptionsActivity extends AppCompatActivity {
 
                 // Adds comment to firebase
 
-                CollectionReference collectionReference = db.collection("PlayerDB/someUserID1/Monsters/someMonsterID/comments");
+
                 // TODO: ADD COMMENT TO DATABASE
+                saveComment();
+
+                // Adds geolocation data to firebase
+
+                Boolean geolocationToggleState = geolocationToggle.isChecked();
+                if (geolocationToggleState == true) {
+                    getGeolocation();
+
+                }
+
+                Boolean locationPhotoToggleState = locationPhotoToggle.isChecked();
+                // TODO: IF TRUE, GO TO CAMERA AFTER CONTINUE CLICKED, ELSE GO MAIN MENU?
+                if (locationPhotoToggleState == false){
+                    goMainMenu();
+                }
+                //else{
+                // TODO: OPEN CAMERA, SAVED TO DB
+                //}
+            }
+
+            /**
+             * Retrieves user's geolocation and saves it in the database
+             */
+            private void getGeolocation() {
+                // TODO: change SomeUserID to current user's ID, change someMonsterID to monster hash
+                CollectionReference collectionReferenceGeoLocation = db.collection("PlayerDB/someUserID1/Monsters/someMonsterID/geolocationData");
+
+                Map<String, Object> coordinates = new HashMap<>();
+                coordinates.put("Latitude", finalLatitude);
+                coordinates.put("Longitude", finalLongitude);
+
+                collectionReferenceGeoLocation
+                        .document("Location Data")
+                        .update(coordinates)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess (Void unused){
+                                Log.d("Success", "LOCATION ADDED SUCCESSFULLY");
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener(){
+                            @Override
+                            public void onFailure(@NonNull Exception e){
+                                Log.d("Failure", "Location addition failed"+ e.toString());
+                            }
+                        });
+            }
+
+            /**
+             * Saves the users comment to the database
+             */
+            private void saveComment() {
+                CollectionReference collectionReference = db.collection("PlayerDB/someUserID1/Monsters/someMonsterID/comments");
                 final String ogComment = commentEditText.getText().toString();
                 HashMap<String,String> data = new HashMap<>();//aa
                 if (ogComment.length() > 0){
@@ -109,45 +162,8 @@ public class QROptionsActivity extends AppCompatActivity {
                             });
 
                 }
-
-                // Adds geolocation data to firebase
-                Boolean geolocationToggleState = geolocationToggle.isChecked();
-                if (geolocationToggleState == true) {
-                    // TODO: change SomeUserID to current user's ID, change someMonsterID to monster hash
-                    CollectionReference collectionReferenceGeoLocation = db.collection("PlayerDB/someUserID1/Monsters/someMonsterID/geolocationData");
-
-                    Map<String, Object> coordinates = new HashMap<>();
-                    coordinates.put("Latitude", finalLatitude);
-                    coordinates.put("Longitude", finalLongitude);
-
-                    collectionReferenceGeoLocation
-                            .document("Location Data")
-                            .update(coordinates)
-                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess (Void unused){
-                                    Log.d("Success", "LOCATION ADDED SUCCESSFULLY");
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener(){
-                                @Override
-                                public void onFailure(@NonNull Exception e){
-                                    Log.d("Failure", "Comment addition failed"+ e.toString());
-                                }
-                            });
-                }
-
-                Boolean locationPhotoToggleState = locationPhotoToggle.isChecked();
-                // TODO: IF TRUE, GO TO CAMERA AFTER CONTINUE CLICKED, ELSE GO MAIN MENU?
-                if (locationPhotoToggleState == false){
-                    goMainMenu();
-                }
-                //else{
-                // TODO: OPEN CAMERA, SAVED TO DB
-                //}
             }
         });
-
 
     }
 
