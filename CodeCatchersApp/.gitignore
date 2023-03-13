@@ -1,11 +1,13 @@
-.DS_Store`/
+
+.DS_Store/
 .DS_Store
+.DS_Store?
+../.DS_Store
  Miscellaneous
 *.class
 *.log
 *.pyc
 *.swp
-.DS_Store
 .atom/
 .buildlog/
 .history

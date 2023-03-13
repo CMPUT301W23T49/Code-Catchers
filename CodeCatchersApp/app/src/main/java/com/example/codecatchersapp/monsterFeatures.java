@@ -1,3 +1,11 @@
+/**
+ The monsterFeatures class defines a set of features for a monster and generates a random monster using these features.
+ The class uses a canvas and paint object to draw the generated monster.
+ The class contains log messages for debugging purposes.
+ @author [Josie Matalski]
+ @version 1.0
+ @since [Sunday March 4 2021]
+ */
 package com.example.codecatchersapp;
 
 import java.util.HashMap;
@@ -61,7 +69,13 @@ public class monsterFeatures {
     private String nose;
     private String mouth;
     private String ears;
-
+    /**
+     * Constructor for the monsterFeatures class.
+     *
+     * @param context Context object used to access resources and services.
+     * @param canvas  Canvas object used to draw the monster.
+     * @param paint   Paint object used to apply colors and styles to the monster.
+     */
     // Constructor
     public monsterFeatures(Context context, Canvas canvas, Paint paint) {
         mContext = context;
@@ -69,31 +83,52 @@ public class monsterFeatures {
         mPaint = paint;
         mPaint.setStyle(Paint.Style.FILL);
     }
-
+    /**
+     * Returns the type of eyes for the generated monster.
+     * @return A string representing the type of eyes.
+     */
     public String getEyes() {
         return this.eyes;
     }
-
+    /**
+     * Returns the type of eyebrows for the generated monster.
+     * @return A string representing the type of eyebrows.
+     */
     public String getEyebrows() {
         return this.eyebrows;
     }
-
+    /**
+     * Returns the type of face for the generated monster.
+     * @return A string representing the type of face.
+     */
     public String getFace() {
         return this.face;
     }
-
+    /**
+     * Returns the type of nose for the generated monster.
+     * @return A string representing the type of nose.
+     */
     public String getNose() {
         return this.nose;
     }
-
+    /**
+     * Returns the type of mouth for the generated monster.
+     * @return A string representing the type of mouth.
+     * */
     public String getMouth() {
         return this.mouth;
     }
-
+    /**
+     * Returns the type of mouth for the generated monster.
+     * @return A string representing the type of mouth.
+     */
     public String getEars() {
         return this.ears;
     }
-
+    /** Generates a random monster using the features defined in the features HashMap.
+     * @param canvas Canvas object used to draw the monster.
+     * @param paint Paint object used to apply colors and styles to the monster.
+     */
     public static void generateRandomMonster(Canvas canvas, Paint paint) {
         mCanvas = canvas;
         mPaint = paint;
