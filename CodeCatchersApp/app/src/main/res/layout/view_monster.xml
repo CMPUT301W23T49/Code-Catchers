@@ -10,21 +10,28 @@
         android:id="@+id/view_mon_comment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:background="@color/dark_pink_button"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/rounded_corners"
+        android:paddingLeft="10sp"
+        android:paddingRight="200sp"
         android:text="Comment"
         android:textSize="18sp"
-        app:layout_constraintTop_toBottomOf="@+id/view_comment_username"
-        tools:layout_editor_absoluteX="60dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.317"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_comment_username" />
 
     <TextView
         android:id="@+id/view_comment_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text= "Username"
+        android:layout_marginTop="4dp"
+        android:text="Username"
         android:textSize="17sp"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        tools:layout_editor_absoluteX="59dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.116"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <TextView
         android:id="@+id/textView"
@@ -35,16 +42,19 @@
         android:textColor="@color/black"
         android:textSize="25dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.317"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/mon_delete_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/mon_settings_button"
+        android:layout_width="110dp"
+        android:layout_height="66dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:text="Delete"
+        android:background="@null"
+        android:backgroundTint="@color/dark_pink_button"
+        android:text="Settings"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -52,8 +62,12 @@
         android:id="@+id/imageView2"
         android:layout_width="287dp"
         android:layout_height="254dp"
-        tools:layout_editor_absoluteX="60dp"
-        tools:layout_editor_absoluteY="80dp"
-        tools:srcCompat="@tools:sample/avatars" />
+        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.836"
+        app:srcCompat="@drawable/barney" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
