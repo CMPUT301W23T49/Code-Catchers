@@ -2,49 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/search_users"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_pink">
-
-    <TextView
-        android:id="@+id/view_mon_comment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/rounded_corners"
-        android:paddingLeft="10sp"
-        android:paddingRight="200sp"
-        android:text="Comment"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.317"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view_comment_username" />
-
-    <TextView
-        android:id="@+id/view_comment_username"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="Username"
-        android:textSize="17sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.116"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="288dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="352dp"
-        android:text="MONSTER NAME"
-        android:textColor="@color/black"
-        android:textSize="25dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.317"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    android:background="#FFE4F3">
 
     <Button
         android:id="@+id/mon_settings_button"
@@ -62,12 +23,37 @@
         android:id="@+id/imageView2"
         android:layout_width="287dp"
         android:layout_height="254dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintBottom_toTopOf="@+id/monster_name_monster_profile"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.836"
         app:srcCompat="@drawable/barney" />
+
+    <TextView
+        android:id="@+id/monster_name_monster_profile"
+        android:layout_width="288dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="352dp"
+        android:text="MONSTER NAME"
+        android:textColor="@color/black"
+        android:textSize="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.317"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_comments"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="6dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/monster_name_monster_profile" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
