@@ -36,7 +36,7 @@ public class QROptionsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         db = FirebaseFirestore.getInstance();
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.qr_options);
+        setContentView(R.layout.qr_actions);
         Intent intent = getIntent();
         EditText commentEditText = findViewById(R.id.editTextNewMonComment);
         Switch geolocationToggle = findViewById(R.id.geolocation_switch);

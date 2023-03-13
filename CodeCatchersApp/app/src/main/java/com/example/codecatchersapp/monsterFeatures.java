@@ -4,7 +4,7 @@
  The class contains log messages for debugging purposes.
  @author [Josie Matalski]
  @version 1.0
- @since [Sunday March 4 2021]
+ @since [Saturday March 4 2021]
  */
 package com.example.codecatchersapp;
 

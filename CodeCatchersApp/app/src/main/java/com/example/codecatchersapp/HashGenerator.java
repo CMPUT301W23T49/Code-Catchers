@@ -1,3 +1,9 @@
+/**
+ A class responsible for generating SHA-256 hashes and writing them to a Firestore database.
+ @author [Josie Matalski]
+ @version 1.0
+ @since [Sunday March 4 2021]
+ */
 package com.example.codecatchersapp;
 
 import android.util.Log;
@@ -21,7 +27,9 @@ import java.util.Map;
 
 
 public class HashGenerator {
-
+    /**
+     * Constructor for the HashGenerator class.
+     */
     private FirebaseFirestore db;
 
 
@@ -29,7 +37,11 @@ public class HashGenerator {
     public HashGenerator() {
         db = FirebaseFirestore.getInstance();
     }
-
+    /**
+     * Generates a SHA-256 hash of the first 6 characters of a given QR code string and writes it to a Firestore database.
+     * @param qrCode A string representing the QR code to be hashed and written to the database.
+     * @throws NoSuchAlgorithmException if the SHA-256 algorithm is not available on the current platform.
+     */
     public void generateAndWriteHash(String qrCode) throws NoSuchAlgorithmException {
         // Take the first 6 characters of qrCode
         qrCode = qrCode.substring(0, Math.min(qrCode.length(), 6));
@@ -81,16 +93,23 @@ public class HashGenerator {
         }
         System.out.println("Number of writes: " + writeCount);
     }
-
-
-
+    /**
+     * Generates a SHA-256 hash of a given string.
+     * @param qrCode A string to be hashed.
+     * @return A string representing the first 6 characters of the SHA-256 hash of the input string.
+     * @throws NoSuchAlgorithmException if the SHA-256 algorithm is not available on the current platform.
+     */
     private String generateSHA256Hash(String qrCode) throws NoSuchAlgorithmException {
         MessageDigest digest = MessageDigest.getInstance("SHA-256");
         byte[] encodedHash = digest.digest(qrCode.getBytes(StandardCharsets.UTF_8));
         String hexHash = bytesToHex(encodedHash);
         return hexHash.substring(0, 6); // return only the first 6 characters of the hash string
     }
-
+    /**
+     * Converts a byte array to a hexadecimal string.
+     * @param hash A byte array to be converted to a hexadecimal string.
+     * @return A string representing the hexadecimal representation of the input byte array.
+     */
     private String bytesToHex(byte[] hash) {
         StringBuilder hexString = new StringBuilder(2 * hash.length);
         for (byte b : hash) {

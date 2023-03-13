@@ -1,3 +1,10 @@
+/**
+ The MonsterView class is a custom View class that displays a randomly generated monster.
+ It extends the View class and overrides the onDraw method to draw the monster using the monsterFeatures class.
+ @author [Josie Matalski]
+ @version 1.0
+ @since [Saturday March 4 2021]
+ */
 package com.example.codecatchersapp;
 
 import android.content.Context;
