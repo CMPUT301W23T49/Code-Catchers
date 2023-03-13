@@ -9,10 +9,13 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
+import android.widget.TextView;
+
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,20 +30,28 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Activity to display QR code saving options, such as geolocation, picture, and comment
+ * Does not yet connect to true user's account/their collection in the database
+ * Does not connect to specific monster's comment collection yet
+ */
 public class QROptionsActivity extends AppCompatActivity {
-    FirebaseFirestore db;
-    Bitmap picture;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
+    /**
+     Takes in choices for photo and geolocation, saves comment to database
+     @param savedInstanceState A Bundle object containing the activity's saved state.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        db = FirebaseFirestore.getInstance();
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.qr_actions);
+        setContentView(R.layout.qr_options);
         Intent intent = getIntent();
         EditText commentEditText = findViewById(R.id.editTextNewMonComment);
         Switch geolocationToggle = findViewById(R.id.geolocation_switch);
         Switch locationPhotoToggle = findViewById(R.id.photo_switch);
         Button continueMonSettings = findViewById(R.id.continue_photo_button);
+
         double latitude = 0;
         double longitude = 0;
         final int PERMISSIONS_REQUEST_CODE = 123;
@@ -66,17 +77,75 @@ public class QROptionsActivity extends AppCompatActivity {
         double finalLatitude = latitude;
         double finalLongitude = longitude;
         continueMonSettings.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Triggers options to save their respective data to the database
+             * @param view view that was clicked (continue button)
+             */
             @Override
             public void onClick(View view) {
 
                 // Adds comment to firebase
-                CollectionReference collectionReference = db.collection("PlayerDB/someUserID1/Monsters/someMonsterID/comment");
+
+
                 // TODO: ADD COMMENT TO DATABASE
+                saveComment();
+
+                // Adds geolocation data to firebase
+
+                Boolean geolocationToggleState = geolocationToggle.isChecked();
+                if (geolocationToggleState == true) {
+                    saveGeolocation();
+                    //
+                }
+
+                Boolean locationPhotoToggleState = locationPhotoToggle.isChecked();
+                // TODO: IF TRUE, GO TO CAMERA AFTER CONTINUE CLICKED, ELSE GO MAIN MENU?
+                if (locationPhotoToggleState == false){
+                    goMainMenu();
+                }
+                //else{
+                // TODO: OPEN CAMERA, SAVED TO DB
+                //}
+            }
+
+            /**
+             * Retrieves user's geolocation and saves it in the database
+             */
+            public void saveGeolocation() {
+                // TODO: change SomeUserID to current user's ID, change someMonsterID to monster hash
+                CollectionReference collectionReferenceGeoLocation = db.collection("PlayerDB/someUserID1/Monsters/someMonsterID/geolocationData");
+
+                Map<String, Object> coordinates = new HashMap<>();
+                coordinates.put("Latitude", finalLatitude);
+                coordinates.put("Longitude", finalLongitude);
+
+                collectionReferenceGeoLocation
+                        .document("Location Data")
+                        .update(coordinates)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess (Void unused){
+                                Log.d("Success", "LOCATION ADDED SUCCESSFULLY");
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener(){
+                            @Override
+                            public void onFailure(@NonNull Exception e){
+                                Log.d("Failure", "Location addition failed"+ e.toString());
+                            }
+                        });
+            }
+
+            /**
+             * Saves the users comment to the database
+             */
+            public void saveComment() {
+                CollectionReference collectionReference = db.collection("PlayerDB/someUserID1/Monsters/someMonsterID/comments");
                 final String ogComment = commentEditText.getText().toString();
                 HashMap<String,String> data = new HashMap<>();//aa
                 if (ogComment.length() > 0){
                     // TODO: change SomeUserID to current user's ID, change someMonsterID to monster hash
-                    data.put("UserID","SomeUserID");
+                    data.put("userName","myUser");
                     collectionReference
                             .document(ogComment)
                             .set(data)
@@ -94,50 +163,17 @@ public class QROptionsActivity extends AppCompatActivity {
                             });
 
                 }
-
-                // Adds geolocation data to firebase
-                Boolean geolocationToggleState = geolocationToggle.isChecked();
-                if (geolocationToggleState == true) {
-                    // TODO: change SomeUserID to current user's ID, change someMonsterID to monster hash
-                    CollectionReference collectionReferenceGeoLocation = db.collection("PlayerDB/someUserID1/Monsters/someMonsterID/geolocationData");
-
-                    Map<String, Object> coordinates = new HashMap<>();
-                    coordinates.put("Latitude", finalLatitude);
-                    coordinates.put("Longitude", finalLongitude);
-
-                    collectionReferenceGeoLocation
-                            .document("Location Data")
-                            .update(coordinates)
-                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess (Void unused){
-                                    Log.d("Success", "LOCATION ADDED SUCCESSFULLY");
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener(){
-                                @Override
-                                public void onFailure(@NonNull Exception e){
-                                    Log.d("Failure", "Comment addition failed"+ e.toString());
-                                }
-                            });
-                }
-
-                Boolean locationPhotoToggleState = locationPhotoToggle.isChecked();
-                // TODO: IF TRUE, GO TO CAMERA AFTER CONTINUE CLICKED, ELSE GO MAIN MENU?
-                if (locationPhotoToggleState == false){
-                    goMainMenu();
-                } else{
-                     // TODO: OPEN CAMERA, SAVED TO DB
-                    Intent SwapIntent = new Intent(QROptionsActivity.this, CameraActivity.class);
-                    startActivity(SwapIntent);
-
-                }
             }
         });
+
     }
+
+    /**
+     * Directs activity to main menu
+     */
     public void goMainMenu(){
         // Change MainActivity.class to MainMenuActivity.class once merged
-        Intent intent = new Intent(QROptionsActivity.this, MainActivity.class);
+        Intent intent = new Intent(QROptionsActivity.this, MainMenuActivity.class);
         startActivity(intent);
     }
 }
