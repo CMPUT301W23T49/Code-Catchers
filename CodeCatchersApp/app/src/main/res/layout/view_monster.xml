@@ -7,6 +7,19 @@
     android:layout_height="match_parent"
     android:background="#FFE4F3">
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/back_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:tint="#00FFFFFF"
+        app:backgroundTint="#00FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/barneyimg"
+        app:layout_constraintStart_toStartOf="parent"
+        app:rippleColor="#00FFFFFF"
+        app:srcCompat="?attr/actionModeCloseDrawable" />
+
     <Button
         android:id="@+id/mon_settings_button"
         android:layout_width="110dp"
@@ -20,9 +33,9 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="287dp"
-        android:layout_height="254dp"
+        android:id="@+id/barneyimg"
+        android:layout_width="322dp"
+        android:layout_height="260dp"
         app:layout_constraintBottom_toTopOf="@+id/monster_name_monster_profile"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

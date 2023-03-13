@@ -1,5 +1,6 @@
 package com.example.codecatchersapp;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +31,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
         Comment comment = commentList.get(position);
         holder.usernameTextView.setText(comment.getUserName());
         holder.commentTextView.setText(comment.getCommentText());
+        Log.d("CommentAdapter", "Displaying comment: " + comment.getCommentText());
     }
 
     @Override

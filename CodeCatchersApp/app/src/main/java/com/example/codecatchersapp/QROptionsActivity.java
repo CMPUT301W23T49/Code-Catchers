@@ -72,7 +72,7 @@ public class QROptionsActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 // Adds comment to firebase
-                CollectionReference collectionReference = db.collection("PlayerDB/someUserID1/Monsters/someMonsterID/comment");
+                CollectionReference collectionReference = db.collection("PlayerDB/someUserID1/Monsters/someMonsterID/comments");
                 // TODO: ADD COMMENT TO DATABASE
                 final String ogComment = commentEditText.getText().toString();
                 HashMap<String,String> data = new HashMap<>();//aa

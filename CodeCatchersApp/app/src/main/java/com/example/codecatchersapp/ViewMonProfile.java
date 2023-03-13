@@ -54,7 +54,7 @@ public class ViewMonProfile extends AppCompatActivity {
 
         Button deleteButton = findViewById(R.id.mon_settings_button);
 
-        CollectionReference collectionReference = db.collection("PlayerDB/someUserID1/Monsters/someMonsterID/comment");
+        CollectionReference collectionReference = db.collection("PlayerDB/someUserID1/Monsters/someMonsterID/comments");
         // Create an ArrayList for users
         comments = new ArrayList<>();
 
@@ -78,6 +78,7 @@ public class ViewMonProfile extends AppCompatActivity {
                         comments.add(comment);
                     }
                     commentAdapter.notifyDataSetChanged();
+                    Log.d("CommentAdapter", "Number of comments retrieved: " + comments.size());
                 } else {
                     Log.d("ERROR", "Error getting documents: ", task.getException());
                 }
