@@ -55,9 +55,6 @@ public class QROptionsActivityTest extends JUnitCore {
         });
     }
 
-    /**
-     *
-     */
     @Test
     public void testSaveComment() {
         String comment = "QROptionsActivityTest test comment";
