@@ -1,7 +1,7 @@
 package com.example.codecatchersapp;
 
 
-public class Leaderboards {
+public class Leaderboards implements Comparable<Leaderboards> {
 
     private String username;
     private String score;
@@ -27,4 +27,14 @@ public class Leaderboards {
         return scoreString;
     }
 
+    @Override
+    public int compareTo(Leaderboards otherScore) {
+        if (Integer.parseInt(this.score) > Integer.parseInt(otherScore.score)){
+            return -1;
+        } else if (Integer.parseInt(this.score) == Integer.parseInt(otherScore.score)) {
+            return 0;
+        } else {
+            return 1;
+        }
+    }
 }

@@ -17,6 +17,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -45,6 +46,7 @@ public class LeaderboardsActivity extends AppCompatActivity {
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 List<String> userIDsList = new ArrayList<>();
                 List<String> listOfMonsters = new ArrayList<>();
+                List<Leaderboards> listOfLeaderboardEntries = new ArrayList<>();
 
                 // Iterates through every userID in PlayerDB collection
                 for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
@@ -84,19 +86,20 @@ public class LeaderboardsActivity extends AppCompatActivity {
                                     throw new RuntimeException(e);
                                 }
 
-
                             }
                             System.out.println();
 
-                            Leaderboards tempLeaderboards = new Leaderboards(username, totalScore.toString());
-                            leaderboardsArrayAdapter.add(tempLeaderboards);
-
+                            listOfLeaderboardEntries.add(new Leaderboards(username, totalScore.toString()));
                         }
                     }
-                    // After the for loop above, this section is where each hash has its score calculated
-                    // and then the username and score are added to the ListView
                 }
-                // Update leaderboards adapter to display users
+
+                // Sort the list of leaderboard entries by their score
+                Collections.sort(listOfLeaderboardEntries);
+                for(Leaderboards item:listOfLeaderboardEntries){
+                    leaderboardsArrayAdapter.add(item);
+                }
+                // Update leaderboards adapter to display users and their scores
                 leaderboardsArrayAdapter.notifyDataSetChanged();
             }
         }).addOnFailureListener(new OnFailureListener() {
