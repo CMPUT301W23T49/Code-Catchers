@@ -1,3 +1,10 @@
+/**
+ * This class is used to search for users in the database
+ * and display them in a recycler view.
+ * @author Mathew Maki
+ * @version 1.0
+ * @since Saturday 11 2023
+ */
 package com.example.codecatchersapp;
 
 import static android.content.ContentValues.TAG;
@@ -20,6 +27,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.codecatchersapp.UserAccount;
+import com.example.codecatchersapp.UserAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -35,19 +44,44 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SearchUsersActivity extends AppCompatActivity implements UserAdapter.ItemClickListener {
-
+    /**
+     * This method is used to filter the users based on the user's query.
+     * @param text The user's query.
+     */
     private SearchView searchView;
+    /**
+     * This method is used to filter the users based on the user's query.
+     * @param text The user's query.
+     */
     private RecyclerView rvUsers;
+    /**
+     * This method is used to filter the users based on the user's query.
+     * @param text The user's query.
+     */
     private FloatingActionButton backButton;
+    /**
+     * This method is used to filter the users based on the user's query.
+     * @param text The user's query.
+     */
     private List<UserAccount> users;
+    /**
+     * This method is used to filter the users based on the user's query.
+     * @param text The user's query.
+     */
     private List<UserAccount> searchedUsers;
+    /** This method is used to filter the users based on the user's query.
+     * @param text The user's query.
+     */
     private UserAdapter userAdapter;
 
 
     FirebaseFirestore db;
     CollectionReference userCollection;
 
-
+    /**
+     * This method is used to filter the users based on the user's query.
+     * @param text The user's query.
+     */
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +104,9 @@ public class SearchUsersActivity extends AppCompatActivity implements UserAdapte
         // Set click listener for back button
 
         backButton.setOnClickListener(new View.OnClickListener() {
+            /**  This method is used to filter the users based on the user's query.
+             * @param text The user's query.
+             */
             @Override
             public void onClick(View view) {
                 Intent socialMenuIntent = new Intent(SearchUsersActivity.this, SocialMenuActivity.class);
@@ -79,20 +116,23 @@ public class SearchUsersActivity extends AppCompatActivity implements UserAdapte
 
         // Set query listeners
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            /**  This method is used to filter the users based on the user's query.
+             * @param text The user's query.
+             */
             @Override
             public boolean onQueryTextSubmit(String text) {
                 filterUsers(text);
                 return false;
             }
 
-
+            /**  This method is used to filter the users based on the user's query.
+             * @param text The user's query.
+             */
             // Filter the user list with the user's query
             @Override
             public boolean onQueryTextChange(String newText) {
                 filterUsers(newText);
                 return true;
-
-
             }
         });
 
@@ -105,6 +145,9 @@ public class SearchUsersActivity extends AppCompatActivity implements UserAdapte
         // Get the users stored in the DB and add them to the list of users
         Query query = userCollection.orderBy("userName");
         query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            /**  This method is used to filter the users based on the user's query.
+             * @param text The user's query.
+             */
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 for (DocumentSnapshot doc : task.getResult()) {
@@ -128,8 +171,10 @@ public class SearchUsersActivity extends AppCompatActivity implements UserAdapte
 
 
     }
-
-
+    /**
+     * This method is used to filter the users based on the user's query.
+     * @param text The user's query.
+     */
     // Filters the user's search query
     private void filterUsers(String text) {
 
@@ -158,7 +203,10 @@ public class SearchUsersActivity extends AppCompatActivity implements UserAdapte
             }
         }
     }
-
+    /**
+     * This method is used to filter the users based on the user's query.
+     * @param text The user's query.
+     */
     // onItemClick function for the usernames
     @Override
     public void onItemClick(View view, int position) {
@@ -174,6 +222,5 @@ public class SearchUsersActivity extends AppCompatActivity implements UserAdapte
         fragmentManager.beginTransaction()
                 .replace(R.id.search_users, profileFragment)
                 .commit();
-
     }
 }

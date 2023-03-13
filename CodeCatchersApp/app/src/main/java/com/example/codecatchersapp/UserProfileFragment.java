@@ -1,3 +1,12 @@
+/**
+ * This class is the fragment that displays the user's profile
+ * It is called when the user clicks on a user in the search results
+ * It displays the user's username, score, and monsters
+ * It also has a back button that returns the user to the search results
+ *  @author [Mathew Maki]
+ *  @version 1.0
+ *  @since [Saturday March 11 2023]
+ */
 package com.example.codecatchersapp;
 
 import android.content.Intent;
@@ -14,6 +23,8 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.codecatchersapp.MonsterAdapter;
+import com.example.codecatchersapp.UserAccount;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.w3c.dom.Text;
@@ -27,12 +38,16 @@ public class UserProfileFragment extends Fragment {
     private TextView userName;
     private TextView userScore;
     private TextView userNumMonsters;
-
     private ArrayList<String> monsters;
-
     private RecyclerView rv_monsters;
     private MonsterAdapter monsterAdapter;
-
+    /**
+     * Constructor that receives a `UserAccount` object and a `CharSequence` object representing
+     * the search query.
+     *
+     * @param user The `UserAccount` object representing the user's profile.
+     * @param searchQuery The `CharSequence` object representing the search query.
+     */
     public UserProfileFragment(UserAccount user, CharSequence searchQuery) {
         this.searchQuery = searchQuery;
         this.user = user;
@@ -40,7 +55,16 @@ public class UserProfileFragment extends Fragment {
 
     // TODO: Receive UserAccount object in onCreateView
 
-
+    /**
+     * This method is called to create the view hierarchy associated with the fragment. It inflates
+     * the layout for the user's profile and returns the view.
+     *
+     * @param inflater The LayoutInflater object that can be used to inflate any views in the fragment.
+     * @param container The parent view that the fragment's UI should be attached to.
+     * @param savedInstanceState A bundle that can be used to save the state of the fragment.
+     *
+     * @return The view hierarchy associated with the fragment.
+     */
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -48,7 +72,14 @@ public class UserProfileFragment extends Fragment {
         View view = inflater.inflate(R.layout.user_profile, container, false);
         return view;
     }
-
+    /**
+     * This method is called after `onCreateView` to complete the fragment's UI setup. It sets the
+     * `onClickListener` for the back button and initializes the user's data TextViews, monsters
+     * list, and monster recycler view.
+     *
+     * @param view The view hierarchy associated with the fragment.
+     * @param savedInstanceState A bundle that can be used to save the state of the fragment.
+     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
