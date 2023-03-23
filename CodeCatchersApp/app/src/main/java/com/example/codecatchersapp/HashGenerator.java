@@ -99,7 +99,7 @@ public class HashGenerator {
      * @return A string representing the first 6 characters of the SHA-256 hash of the input string.
      * @throws NoSuchAlgorithmException if the SHA-256 algorithm is not available on the current platform.
      */
-    private String generateSHA256Hash(String qrCode) throws NoSuchAlgorithmException {
+    public String generateSHA256Hash(String qrCode) throws NoSuchAlgorithmException {
         MessageDigest digest = MessageDigest.getInstance("SHA-256");
         byte[] encodedHash = digest.digest(qrCode.getBytes(StandardCharsets.UTF_8));
         String hexHash = bytesToHex(encodedHash);
