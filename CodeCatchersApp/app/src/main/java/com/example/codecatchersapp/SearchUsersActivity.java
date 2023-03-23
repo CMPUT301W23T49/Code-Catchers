@@ -56,19 +56,17 @@ public class SearchUsersActivity extends AppCompatActivity implements UserAdapte
 
         // Initialize Firebase
         db = FirebaseFirestore.getInstance();
-
         userCollection = db.collection("PlayerDB");
 
-
-        // Get the view for the searchbar
+        // Get the views for for searchUsersActivity
         searchView = findViewById(R.id.search_view);
         searchView.clearFocus();
-
-        // Get the view for the back button
         backButton = findViewById(R.id.back_button);
+        rvUsers = findViewById(R.id.rv_users);
+        // Set the layout manager for the RecyclerView
+        rvUsers.setLayoutManager(new LinearLayoutManager(this));
 
         // Set click listener for back button
-
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -110,14 +108,22 @@ public class SearchUsersActivity extends AppCompatActivity implements UserAdapte
                 for (DocumentSnapshot doc : task.getResult()) {
                     users.add(new UserAccount(doc.getString("userName"), doc.getString("contactInfo")));
                 }
+                // Set the found users equal to the searched users
+                searchedUsers = users;
+                // Set the user adapter with the users from the database
+                userAdapter = new UserAdapter((ArrayList<UserAccount>) searchedUsers);
+                userAdapter.setClickListener(SearchUsersActivity.this);
+                rvUsers.setAdapter(userAdapter);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(SearchUsersActivity.this, "Failed to load users from database", Toast.LENGTH_SHORT).show();
             }
         });
-        // Set up the RecycleView with UserAdapter and ClickListener
-        rvUsers = findViewById(R.id.rv_users);
-        rvUsers.setLayoutManager(new LinearLayoutManager(this));
-        userAdapter = new UserAdapter((ArrayList<UserAccount>) searchedUsers);
-        userAdapter.setClickListener(this);
-        rvUsers.setAdapter(userAdapter);
+
+
+
 
         // Set query if the user is navigating back from the UserProfileFragment
         Intent intent = getIntent();
