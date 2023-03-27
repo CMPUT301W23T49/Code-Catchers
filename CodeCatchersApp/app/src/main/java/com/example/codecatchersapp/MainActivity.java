@@ -5,13 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.Settings;
 import android.util.Log;
 
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.security.NoSuchAlgorithmException;
-
-import retrofit2.http.HEAD;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class MainActivity extends AppCompatActivity {
     protected String qrCode;
@@ -71,10 +72,24 @@ public class MainActivity extends AppCompatActivity {
 
 //        setContentView(R.layout.map_layout);
 
-        Intent userAccountIntent = new Intent(this, UserAccountActivity.class);
-        startActivity(userAccountIntent);
-
-
+        String deviceID = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("PlayerDB")
+                .whereEqualTo("deviceID", deviceID)
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        QuerySnapshot querySnapshot = task.getResult();
+                        if (querySnapshot != null && !querySnapshot.isEmpty()) {
+                            // device ID exists in database
+                            Intent intent = new Intent(this, MainMenuActivity.class);
+                            startActivity(intent);
+                        } else {
+                            Intent intent = new Intent(this, UserAccountActivity.class);
+                            startActivity(intent);
+                        }
+                    }
+                });
 
         hashGenerator = new HashGenerator();
 
@@ -82,4 +97,5 @@ public class MainActivity extends AppCompatActivity {
         currentBackoffTime = INITIAL_BACKOFF_TIME;
         handler.postDelayed(myRunnable, currentBackoffTime);
     }
+
 }

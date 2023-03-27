@@ -90,6 +90,12 @@ public class UserAccountActivity extends AppCompatActivity {
             }
         });
     }
+
+    /**
+     * Saves a user to the database by device ID
+     * @param userName
+     * @param contactInfo
+     */
     public void saveAccount(String userName, String contactInfo){
         Log.d(TAG, "Saving account for user: " + userName);
         Context context = getApplicationContext();
@@ -117,7 +123,6 @@ public class UserAccountActivity extends AppCompatActivity {
                         Log.e(TAG, "Error saving user account to database.", e);
                     }
                 });
-
 
     }
 }
