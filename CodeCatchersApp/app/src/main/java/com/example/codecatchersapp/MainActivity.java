@@ -72,6 +72,8 @@ public class MainActivity extends AppCompatActivity {
 
 //        setContentView(R.layout.map_layout);
 
+
+        // Checks if device is registered already or not
         String deviceID = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("PlayerDB")
