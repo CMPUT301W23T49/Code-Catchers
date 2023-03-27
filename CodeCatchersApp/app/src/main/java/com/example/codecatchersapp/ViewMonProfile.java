@@ -18,12 +18,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -47,6 +50,8 @@ public class ViewMonProfile extends AppCompatActivity {
     private List<Comment> comments;
 
     private CommentAdapter commentAdapter;
+
+    private TextView monsterName;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     /**
@@ -58,7 +63,20 @@ public class ViewMonProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_monster);
         Intent intent = getIntent();
+        String selectedMonsterHash = intent.getStringExtra("monsterHash");
+        String selectedMonsterName = intent.getStringExtra("monsterName");
+        String selectedMonsterScore = intent.getStringExtra("monsterScore");
 
+        monsterName = findViewById(R.id.monster_name_monster_profile);
+        monsterName.setText(selectedMonsterName);
+
+        FloatingActionButton backButton = findViewById(R.id.back_button);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
 
         Button deleteButton = findViewById(R.id.mon_settings_button);
 

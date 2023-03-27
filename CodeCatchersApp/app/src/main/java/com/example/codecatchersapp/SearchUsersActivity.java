@@ -34,6 +34,12 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A class that represents the Search Users Activity in the Code Catchers app. SearchUsersActivity
+ * allows the user to search for other users by typing in their username into a search bar.
+ * The activity also displays a list of all users in the app and filters the list as the user types
+ * into the search bar.
+ */
 public class SearchUsersActivity extends AppCompatActivity implements UserAdapter.ItemClickListener {
 
     private SearchView searchView;
@@ -42,12 +48,14 @@ public class SearchUsersActivity extends AppCompatActivity implements UserAdapte
     private List<UserAccount> users;
     private List<UserAccount> searchedUsers;
     private UserAdapter userAdapter;
-
-
     FirebaseFirestore db;
     CollectionReference userCollection;
 
-
+    /**
+     * Called when the activity is starting or restarting. It initializes the Firebase instance
+     * and sets up the views, adapters, and listeners for the SearchUsersActivity.
+     * @param savedInstanceState the bundle containing the saved state of the activity
+     */
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,20 +64,21 @@ public class SearchUsersActivity extends AppCompatActivity implements UserAdapte
 
         // Initialize Firebase
         db = FirebaseFirestore.getInstance();
-
         userCollection = db.collection("PlayerDB");
 
-
-        // Get the view for the searchbar
+        // Get the views for for searchUsersActivity and set the layout manager for the RecyclerView
         searchView = findViewById(R.id.search_view);
         searchView.clearFocus();
-
-        // Get the view for the back button
         backButton = findViewById(R.id.back_button);
+        rvUsers = findViewById(R.id.rv_users);
+        rvUsers.setLayoutManager(new LinearLayoutManager(this));
 
         // Set click listener for back button
-
         backButton.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Navigates back to the SocialMenuActivity when clicked.
+             * @param view the clicked view.
+             */
             @Override
             public void onClick(View view) {
                 Intent socialMenuIntent = new Intent(SearchUsersActivity.this, SocialMenuActivity.class);
@@ -79,20 +88,26 @@ public class SearchUsersActivity extends AppCompatActivity implements UserAdapte
 
         // Set query listeners
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            /**
+             * Called when the user submits the search query. Filters the user list with the user's query.
+             * @param text the search query entered by the user
+             * @return false if the query is submitted successfully
+             */
             @Override
             public boolean onQueryTextSubmit(String text) {
                 filterUsers(text);
                 return false;
             }
 
-
-            // Filter the user list with the user's query
+            /**
+             * Called when the user changes the search query. Filters the user list with the user's query.
+             * @param newText the new search query entered by the user
+             * @return true if the query is changed successfully
+             */
             @Override
             public boolean onQueryTextChange(String newText) {
                 filterUsers(newText);
                 return true;
-
-
             }
         });
 
@@ -110,70 +125,91 @@ public class SearchUsersActivity extends AppCompatActivity implements UserAdapte
                 for (DocumentSnapshot doc : task.getResult()) {
                     users.add(new UserAccount(doc.getString("userName"), doc.getString("contactInfo")));
                 }
+                // Set the searched users equal to the found users
+                searchedUsers = users;
+                // Set the user adapter with the users from the database
+                userAdapter = new UserAdapter((ArrayList<UserAccount>) searchedUsers);
+                userAdapter.setClickListener(SearchUsersActivity.this);
+                rvUsers.setAdapter(userAdapter);
+                Log.i("TAG", "In onCreate");
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(SearchUsersActivity.this, "Failed to load users from database", Toast.LENGTH_SHORT).show();
             }
         });
-        // Set up the RecycleView with UserAdapter and ClickListener
-        rvUsers = findViewById(R.id.rv_users);
-        rvUsers.setLayoutManager(new LinearLayoutManager(this));
-        userAdapter = new UserAdapter((ArrayList<UserAccount>) searchedUsers);
-        userAdapter.setClickListener(this);
-        rvUsers.setAdapter(userAdapter);
-
-        // Set query if the user is navigating back from the UserProfileFragment
-        Intent intent = getIntent();
-        CharSequence prevQuery = intent.getCharSequenceExtra("PreviousQuery");
-        if (prevQuery != null) {
-            searchView.setQuery(prevQuery, true);
-        }
 
 
     }
 
-
-    // Filters the user's search query
+    /**
+     * Filters the user's search query by checking each user's username for a match.
+     * If the search query is not empty, searchedUsers is set to a new ArrayList and all the usernames
+     * that match the query are added to the list and the userAdapter is updated to reflect this filtered list.
+     * Otherwise, the userAdapter is set to the list of all users
+     * @param text the user's search query
+     */
     private void filterUsers(String text) {
 
         // Check if the text is empty
         if (!text.isEmpty()) {
 
             // Create a new ArrayList for the filtered users
-            List<UserAccount> filteredUsers = new ArrayList<>();
+            searchedUsers = new ArrayList<>();
 
             for (UserAccount user : users) {
                 // Check for match and add user to the filtered list
                 if (user.getUsername().toLowerCase().contains(text.toLowerCase())) {
-                    filteredUsers.add(user);
+                    searchedUsers.add(user);
                 }
             }
 
-
-
-            // Update the userAdapter if the filtered list is not empty
-            if (!filteredUsers.isEmpty()) {
-                userAdapter.setFilterList(filteredUsers);
+            // Update the userAdapter if the searchedUsers list is not empty
+            if (!searchedUsers.isEmpty()) {
+                userAdapter.setFilterList(searchedUsers);
             }
-            else {
-                // Otherwise clear the list and display toast message
-                userAdapter.setFilterList(new ArrayList<>());
-            }
+        } else {
+            // Otherwise update the userAdapter to the users list
+            userAdapter.setFilterList(users);
         }
     }
 
-    // onItemClick function for the usernames
+    /**
+     * Overrides the onBackPressed method to handle back navigation. If there are fragments in the back stack,
+     * it pops the top one. Otherwise, it calls the super method.
+     */
+    @Override
+    public void onBackPressed() {
+        if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
+            getSupportFragmentManager().popBackStack();
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    /**
+     * Handles the onItemClick event for the userAdapter. Ensures that the keyboard is hidden.
+     * It then creates a new UserProfileFragment and passes the selected UserAccount to it.
+     * Replaces the current fragment with the new UserProfileFragment and adds it to the back stack.
+     * @param view the clicked view
+     * @param position the position of the clicked view in the adapter
+     */
     @Override
     public void onItemClick(View view, int position) {
         Log.i("TAG", "User account " + userAdapter.getUser(position).getUsername() + " has been clicked");
 
         // Hide the keyboard before moving to UserProfileFragment
         InputMethodManager inputMethodManager = (InputMethodManager) SearchUsersActivity.this.getSystemService(Context.INPUT_METHOD_SERVICE);
-        inputMethodManager.hideSoftInputFromWindow(SearchUsersActivity.this.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-
-        // Move to the UserProfileFragment and pass the selected UserAccount and search query to it
+        if (SearchUsersActivity.this.getCurrentFocus() != null) {
+            inputMethodManager.hideSoftInputFromWindow(SearchUsersActivity.this.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+        }
+        // Move to the UserProfileFragment and pass the selected UserAccount to it
         FragmentManager fragmentManager = getSupportFragmentManager();
-        Fragment profileFragment = new UserProfileFragment(userAdapter.getUser(position), searchView.getQuery());
+        Fragment profileFragment = new UserProfileFragment(userAdapter.getUser(position));
         fragmentManager.beginTransaction()
                 .replace(R.id.search_users, profileFragment)
+                .addToBackStack(null)
                 .commit();
-
     }
 }
