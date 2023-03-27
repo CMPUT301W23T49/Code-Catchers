@@ -43,7 +43,7 @@ public class ScoreRevealActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Start the next activity here
-                Intent intent = new Intent(ScoreRevealActivity.this, QrActionsActivity.class);
+                Intent intent = new Intent(ScoreRevealActivity.this, QROptionsActivity.class);
                 startActivity(intent);
             }
         });
