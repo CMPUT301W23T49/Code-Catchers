@@ -44,7 +44,7 @@ dependencies {
 
     // For java docs and android.graphics.Paint
 //    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation files('/Users/josiematalski/Library/Android/sdk/platforms/android-33/android.jar')
+//    implementation files('/Users/josiematalski/Library/Android/sdk/platforms/android-33/android.jar')
 
 
     // Unit tests
