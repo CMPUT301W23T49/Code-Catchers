@@ -201,7 +201,7 @@ public class ScannerActivity extends AppCompatActivity {
     /**
      * When called handles permissions
      */
-    public void onRequestPermissionResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (requestCode == REQUEST_CODE) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 startScanner();
@@ -213,7 +213,9 @@ public class ScannerActivity extends AppCompatActivity {
     }
 
     /**
-     * Getters
+     * When called returns the qr code value
+     *
+     * @return qrCodeValue
      */
     public String getQRCode() {
         return qrCodeValue;

@@ -1,3 +1,11 @@
+package com.example.codecatchersapp;
+
+import android.graphics.Paint;
+import android.os.Bundle;
+
+
+import androidx.appcompat.app.AppCompatActivity;
+
 /**
  The monster_main class is an activity that displays a monster using the MonsterView class.
  It generates a new monster using the monsterFeatures class.
@@ -5,15 +13,6 @@
  @version 1.0
  @since [Sunday March 4 2021]
  */
-package com.example.codecatchersapp;
-
-import android.graphics.Paint;
-import android.os.Bundle;
-import com.example.codecatchersapp.R;
-
-import androidx.appcompat.app.AppCompatActivity;
-
-
 
 public class monster_main extends AppCompatActivity {
 

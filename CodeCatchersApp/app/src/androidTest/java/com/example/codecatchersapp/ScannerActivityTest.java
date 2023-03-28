@@ -2,22 +2,21 @@ package com.example.codecatchersapp;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
-
-import android.view.View;
+import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static androidx.test.espresso.assertion.ViewAssertions.matches;
 
 import androidx.test.core.app.ActivityScenario;
-import androidx.test.espresso.NoMatchingViewException;
-import androidx.test.espresso.ViewAssertion;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+
+import com.example.codecatchersapp.ScannerActivity;
 
 import org.junit.Rule;
 import org.junit.Test;
-import org.junit.runner.JUnitCore;
 import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
 
-@RunWith(JUnit4.class)
-public class ScannerActivityTest extends JUnitCore {
+@RunWith(AndroidJUnit4.class)
+public class ScannerActivityTest {
 
     @Rule
     public ActivityScenarioRule<ScannerActivity> activityScenarioRule =
@@ -26,12 +25,8 @@ public class ScannerActivityTest extends JUnitCore {
     @Test
     public void checkError() {
         ActivityScenario<ScannerActivity> activityScenario = activityScenarioRule.getScenario();
-            onView(withId(R.id.scanner_view)).check(new ViewAssertion() {
-                @Override
-                public void check(View view, NoMatchingViewException noViewFoundException) {
-                    System.out.println("TEST");
-                }
-            });
+
+        // Check if the scanner view is displayed
+        onView(withId(R.id.scanner_view)).check(matches(isDisplayed()));
     }
 }
-

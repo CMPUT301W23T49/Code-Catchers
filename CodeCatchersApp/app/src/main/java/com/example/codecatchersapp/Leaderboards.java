@@ -6,9 +6,8 @@
  * @since [Monday March 13 2023]
  */
 package com.example.codecatchersapp;
-
 /**
- * Leaderboards implements ArrayAdapter<Leaderboards>.
+ * Leaderboards implements Comparable
  * It is responsible for being a Leaderboard object, returning
  *  and comparing values when needed
  */

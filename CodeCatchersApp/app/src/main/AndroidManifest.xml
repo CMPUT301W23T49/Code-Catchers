@@ -46,11 +46,7 @@
         <activity
             android:name=".QROptionsActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <activity
@@ -79,7 +75,7 @@
         </activity>
 
         <activity
-            android:name="com.example.codecatchersapp.SocialMenuActivity"
+            android:name=".SocialMenuActivity"
             android:exported="true">
         </activity>
         <activity
@@ -98,7 +94,7 @@
         </activity>
 
         <activity
-            android:name="com.example.codecatchersapp.ScoreRevealActivity"
+            android:name=".ScoreRevealActivity"
             android:exported="true">
         </activity>
 

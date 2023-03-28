@@ -1,9 +1,3 @@
-/**
- A class responsible for generating SHA-256 hashes and writing them to a Firestore database.
- @author [Josie Matalski]
- @version 1.0
- @since [Sunday March 4 2021]
- */
 package com.example.codecatchersapp;
 
 import android.util.Log;
@@ -24,7 +18,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+/**
+ A class responsible for generating SHA-256 hashes and writing them to a Firestore database.
+ @author [Josie Matalski]
+ @version 1.0
+ @since [Sunday March 4 2021]
+ */
 
 public class HashGenerator {
     /**
@@ -99,7 +98,7 @@ public class HashGenerator {
      * @return A string representing the first 6 characters of the SHA-256 hash of the input string.
      * @throws NoSuchAlgorithmException if the SHA-256 algorithm is not available on the current platform.
      */
-    private String generateSHA256Hash(String qrCode) throws NoSuchAlgorithmException {
+    public String generateSHA256Hash(String qrCode) throws NoSuchAlgorithmException {
         MessageDigest digest = MessageDigest.getInstance("SHA-256");
         byte[] encodedHash = digest.digest(qrCode.getBytes(StandardCharsets.UTF_8));
         String hexHash = bytesToHex(encodedHash);

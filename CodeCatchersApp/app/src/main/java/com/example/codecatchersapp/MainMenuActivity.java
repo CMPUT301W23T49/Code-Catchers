@@ -21,7 +21,6 @@ public class MainMenuActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-
         Button scanQrButton = findViewById(R.id.scan_qr_button);
         Button socialButton = findViewById(R.id.social_button);
         Button mapButton = findViewById(R.id.map_button);
@@ -37,7 +36,6 @@ public class MainMenuActivity extends AppCompatActivity {
         socialButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: Implement social functionality
 
                 Intent socialIntent = new Intent(MainMenuActivity.this, SocialMenuActivity.class);
                 startActivity(socialIntent);
@@ -48,7 +46,6 @@ public class MainMenuActivity extends AppCompatActivity {
         mapButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: Implement map functionality
 
                 Intent mapIntent = new Intent(MainMenuActivity.this, MapActivity.class);
                 startActivity(mapIntent);
