@@ -213,7 +213,9 @@ public class ScannerActivity extends AppCompatActivity {
     }
 
     /**
-     * Getters
+     * When called returns the qr code value
+     *
+     * @return qrCodeValue
      */
     public String getQRCode() {
         return qrCodeValue;

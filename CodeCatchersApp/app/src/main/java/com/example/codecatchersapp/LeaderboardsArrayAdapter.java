@@ -16,7 +16,7 @@ import androidx.annotation.NonNull;
 import java.util.List;
 
 /**
- * LeaderboardsArrayAdapter extends ArrayAdapter<Leaderboards>.
+ * LeaderboardsArrayAdapter extends ArrayAdapter.
  * It is responsible for displaying leaderboards_layout.xml.
  */
 public class LeaderboardsArrayAdapter extends ArrayAdapter<Leaderboards> {

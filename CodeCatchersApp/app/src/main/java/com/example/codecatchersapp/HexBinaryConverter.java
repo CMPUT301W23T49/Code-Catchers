@@ -1,10 +1,3 @@
-/**
- The HexBinaryConverter class contains methods for converting hexadecimal and binary strings, as well as generating
- SHA-256 hashes and extracting the first six bits of a hash.
- @author [Josie Matalski]
- @version 1.0
- @since [Saturday March 4 2021]
- */
 package com.example.codecatchersapp;
 
 import java.io.UnsupportedEncodingException;
@@ -12,7 +5,13 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Random;
-
+/**
+ The HexBinaryConverter class contains methods for converting hexadecimal and binary strings, as well as generating
+ SHA-256 hashes and extracting the first six bits of a hash.
+ @author [Josie Matalski]
+ @version 1.0
+ @since [Saturday March 4 2021]
+ */
 /**
  * The HexBinaryConverter class provides methods for converting between hexadecimal and binary strings,
  * generating a random SHA-256 hash, and getting the first six bits of the hash value.

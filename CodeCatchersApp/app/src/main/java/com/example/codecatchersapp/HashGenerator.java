@@ -1,9 +1,3 @@
-/**
- A class responsible for generating SHA-256 hashes and writing them to a Firestore database.
- @author [Josie Matalski]
- @version 1.0
- @since [Sunday March 4 2021]
- */
 package com.example.codecatchersapp;
 
 import android.util.Log;
@@ -24,7 +18,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+/**
+ A class responsible for generating SHA-256 hashes and writing them to a Firestore database.
+ @author [Josie Matalski]
+ @version 1.0
+ @since [Sunday March 4 2021]
+ */
 
 public class HashGenerator {
     /**
