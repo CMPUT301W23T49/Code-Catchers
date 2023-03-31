@@ -98,6 +98,12 @@ public class QROptionsActivity extends AppCompatActivity {
                     saveGeolocation();
                     //
                 }
+                else{
+                    Monster monster = new Monster("someMonsterID");
+                    CollectionReference collectionReference = db.collection("MonsterDB");
+                    DocumentReference documentReference = collectionReference.document("someMonsterID");
+                    documentReference.set(monster);
+                }
 
                 Boolean locationPhotoToggleState = locationPhotoToggle.isChecked();
                 // TODO: IF TRUE, GO TO CAMERA AFTER CONTINUE CLICKED, ELSE GO MAIN MENU?
@@ -115,19 +121,17 @@ public class QROptionsActivity extends AppCompatActivity {
              */
             public void saveGeolocation() {
                 // TODO: change SomeUserID to current user's ID, change someMonsterID to monster hash
-                CollectionReference collectionReferenceGeoLocation = db.collection("PlayerDB/someUserID1/Monsters/someMonsterID/geolocationData");
+                db = FirebaseFirestore.getInstance();
 
+                Monster monster = new Monster("someMonsterID", finalLatitude, finalLongitude);
+                CollectionReference collectionReference = db.collection("MonsterDB");
+                DocumentReference documentReference = collectionReference.document("someMonsterID");
+                documentReference.set(monster);
+
+                CollectionReference collectionReferenceGeoLocation = db.collection("PlayerDB/someUserID1/Monsters/someMonsterID/geolocationData");
                 Map<String, Object> coordinates = new HashMap<>();
                 coordinates.put("Latitude", finalLatitude);
                 coordinates.put("Longitude", finalLongitude);
-
-                Monster monster = new Monster("someMonsterID", finalLatitude, finalLongitude);
-
-                db = FirebaseFirestore.getInstance();
-                CollectionReference collectionReference = db.collection("MonsterDB");
-
-                DocumentReference documentReference = collectionReference.document("someMonsterID");
-                documentReference.set(monster);
 
                 collectionReferenceGeoLocation
                         .document("Location Data")

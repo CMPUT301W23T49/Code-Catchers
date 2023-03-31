@@ -26,10 +26,19 @@ public class Monster {
         } catch (NoSuchAlgorithmException e) {
             this.monsterScore = "0";
         }
+        this.Latitude = null;
+        this.Longitude = null;
     }
 
     public Monster(String monsterHash, Double latitude, Double longitude) {
         this.monsterHash = monsterHash;
+        this.monsterName = new MonsterNameGenerator().generateName(monsterHash);
+        try {
+            Score score = new Score(this.monsterHash);
+            this.monsterScore = score.getScore();
+        } catch (NoSuchAlgorithmException e) {
+            this.monsterScore = "0";
+        }
         Latitude = latitude;
         Longitude = longitude;
     }
@@ -56,5 +65,13 @@ public class Monster {
      */
     public String getMonsterScore() {
         return monsterScore;
+    }
+
+    public Double getLatitude() {
+        return Latitude;
+    }
+
+    public Double getLongitude() {
+        return Longitude;
     }
 }

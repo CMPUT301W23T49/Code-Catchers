@@ -104,8 +104,6 @@ public class UserAccountActivity extends AppCompatActivity {
 
         UserAccount userAccount = new UserAccount(userName, contactInfo, deviceID);
 
-        System.out.println("got here");
-
         db = FirebaseFirestore.getInstance();
         CollectionReference collectionReference = db.collection("PlayerDB");
 
