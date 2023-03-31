@@ -25,6 +25,7 @@ import androidx.core.content.ContextCompat;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -119,6 +120,14 @@ public class QROptionsActivity extends AppCompatActivity {
                 Map<String, Object> coordinates = new HashMap<>();
                 coordinates.put("Latitude", finalLatitude);
                 coordinates.put("Longitude", finalLongitude);
+
+                Monster monster = new Monster("someMonsterID", finalLatitude, finalLongitude);
+
+                db = FirebaseFirestore.getInstance();
+                CollectionReference collectionReference = db.collection("MonsterDB");
+
+                DocumentReference documentReference = collectionReference.document("someMonsterID");
+                documentReference.set(monster);
 
                 collectionReferenceGeoLocation
                         .document("Location Data")
