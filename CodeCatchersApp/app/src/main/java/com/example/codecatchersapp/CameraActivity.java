@@ -2,9 +2,11 @@ package com.example.codecatchersapp;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -20,8 +22,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import io.fotoapparat.Fotoapparat;
@@ -48,7 +52,11 @@ import static io.fotoapparat.selector.ResolutionSelectorsKt.highestResolution;
 import static io.fotoapparat.selector.SelectorsKt.firstAvailable;
 import static io.fotoapparat.selector.SensorSensitivitySelectorsKt.highestSensorSensitivity;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -58,6 +66,8 @@ public class CameraActivity extends AppCompatActivity {
     private CameraView cameraView;
     private Button capture;
     private Fotoapparat fotoapparat;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    DocumentReference docRef = db.collection("PlayerDB/someUserID1/Monsters/someMonsterID/photo").document("local_image");
 
     private CameraConfiguration cameraConfiguration = CameraConfiguration
             .builder()
@@ -129,8 +139,7 @@ public class CameraActivity extends AppCompatActivity {
                             return;
                         }
 
-                        saveToInternalStorage(bitmapPhoto.bitmap);
-                        Bitmap image = resizeBitmap(bitmapPhoto.bitmap);
+                        toFirestore(bitmapPhoto.bitmap);
                         try {
                             Thread.sleep(100);
                             SwapIntent();
@@ -195,5 +204,48 @@ public class CameraActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void toFirestore(Bitmap bitmap) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] data = baos.toByteArray();
+        String base64Image = Base64.encodeToString(data, Base64.DEFAULT);
+
+        HashMap<String, Object> imageMap = new HashMap<>();
+        imageMap.put("base64", base64Image);
+
+        docRef.set(imageMap)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        // Document saved successfully
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        // Error saving document
+                    }
+                });
+    }
+
+    private void getFireStoreImage() {
+        docRef.get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        String base64Image = documentSnapshot.getString("base64");
+                        byte[] data = Base64.decode(base64Image, Base64.DEFAULT);
+                        Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
+                        // Do something with the bitmap
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        // Error retrieving document
+                    }
+                });
     }
 }

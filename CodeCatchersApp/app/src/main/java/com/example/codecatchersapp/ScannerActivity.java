@@ -8,6 +8,7 @@
 package com.example.codecatchersapp;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -103,13 +104,9 @@ public class ScannerActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         onPause();
-                        //Snackbar.make(scannerView, result.getText(), Snackbar.LENGTH_LONG).show();
 
                         // RETURN THE QR CODE
                         qrCodeValue = result.getText();
-
-                        qrBitmap = generateQRCode(qrCodeValue, 300, 300);
-                        //saveToInternalStorage(qrBitmap);
 
                         Intent successIntent = new Intent(ScannerActivity.this, ScoreRevealActivity.class);
                         successIntent.putExtra("contents", qrCodeValue);
@@ -125,13 +122,6 @@ public class ScannerActivity extends AppCompatActivity {
             Intent errorIntent = new Intent(ScannerActivity.this, ScanErrorActivity.class);
             startActivity(errorIntent);
         });
-
-        /*scannerView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                codeScanner.startPreview();
-            }
-        });*/
 
         codeScanner.startPreview();
     }
@@ -152,56 +142,12 @@ public class ScannerActivity extends AppCompatActivity {
         super.onPause();
     }
 
-    // === USED FOR TESTING ===
-    private Bitmap generateQRCode(String data, int width, int height) {
-        try {
-            BitMatrix bitMatrix = new MultiFormatWriter().encode(data, BarcodeFormat.QR_CODE, width, height);
-            int[] pixels = new int[width * height];
-            for (int y = 0; y < height; y++) {
-                int offset = y * width;
-                for (int x = 0; x < width; x++) {
-                    pixels[offset + x] = bitMatrix.get(x, y) ? Color.BLACK : Color.WHITE;
-                }
-            }
-            Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-            bitmap.setPixels(pixels, 0, width, 0, 0, width, height);
-            return bitmap;
-        } catch (WriterException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-    // === USED FOR TESTING ===
-    private void saveToInternalStorage(Bitmap screenshot) {
-        try {
-            // Create a subdirectory within the internal storage directory
-            File directory = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + File.separator + "qr_screenshots");
-            if (!directory.exists()) {
-                directory.mkdirs();
-            }
-
-            // Create a file object for the screenshot with the current date and time as the file name
-            String fileName = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date()) + ".png";
-            File file = new File(directory, fileName);
-
-            // Write the screenshot to the file
-            FileOutputStream fos = new FileOutputStream(file);
-            screenshot.compress(Bitmap.CompressFormat.PNG, 100, fos);
-            fos.flush();
-            fos.close();
-
-            // For Testing
-            Toast.makeText(this, "Screenshot saved to " + file.getAbsolutePath(), Toast.LENGTH_SHORT).show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     /**
      * When called handles permissions
      */
+
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == REQUEST_CODE) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 startScanner();
@@ -210,18 +156,5 @@ public class ScannerActivity extends AppCompatActivity {
                 Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show();
             }
         }
-    }
-
-    /**
-     * When called returns the qr code value
-     *
-     * @return qrCodeValue
-     */
-    public String getQRCode() {
-        return qrCodeValue;
-    }
-
-    public Bitmap getQRBitmap() {
-        return qrBitmap;
     }
 }
