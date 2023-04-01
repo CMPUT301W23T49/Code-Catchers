@@ -50,7 +50,6 @@ public class ScannerActivity extends AppCompatActivity {
     private String qrCodeValue;
 
 
-
     /**
      * Called when the activity is starting.
      * Connects to the scanner.xml and sets it as the content view.
@@ -82,7 +81,6 @@ public class ScannerActivity extends AppCompatActivity {
             // Permissions already granted, start
             startScanner();
         }
-//        testSHA("87428fc522803d31065e7bce3cf03fe475096631e5e07bbd7a0fde60c4cf25c7");
     }
     /**
      * When called starts scanning for qr codes
