@@ -80,9 +80,9 @@ public class HexBinaryConverter {
     // Converts it to a binary string using the hexToBinary method
     // returns the first six bits of the binary string
     public static String getFirstSixBits(String hex) {
-        String binaryString = hexToBinary(hex.substring(0, 2)).substring(2)
-                + hexToBinary(hex.substring(2, 4))
-                + hexToBinary(hex.substring(4, 6));
-        return binaryString.substring(0, 6);
+            String binaryString = hexToBinary(hex.substring(0, 2)).substring(2)
+                    + hexToBinary(hex.substring(2, 4))
+                    + hexToBinary(hex.substring(4, 6));
+            return binaryString.substring(0, 6);
     }
 }
