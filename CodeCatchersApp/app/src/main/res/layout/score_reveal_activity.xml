@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFC8FB"
-    android:id="@+id/root_layout">
+    android:background="#FFC8FB">
 
     <!-- Score display -->
     <TextView
@@ -13,11 +14,11 @@
         android:textColor="#000000"
         android:text="You Got "
         android:textSize="24sp"
-        android:layout_marginTop="25dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:paddingTop="16dp"
-        android:paddingBottom="16dp" />
+        />
+
     <TextView
         android:id="@+id/scoreTextView"
         android:layout_width="wrap_content"
@@ -25,49 +26,49 @@
         android:textColor="#000000"
         android:text="XX"
         android:textSize="75dp"
-        android:layout_marginTop="50dp"
-        android:layout_alignParentTop="true"
+        android:layout_below="@id/you_gotTextview"
         android:layout_centerHorizontal="true"
-        android:gravity="center"
-        android:paddingTop="16dp"
-        android:paddingBottom="16dp" />
+        android:gravity="center" />
+
     <TextView
         android:id="@+id/points_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#000000"
-        android:layout_marginTop="150dp"
         android:text="Points!"
         android:textSize="24sp"
-        android:layout_alignParentTop="true"
+        android:layout_below="@id/scoreTextView"
         android:layout_centerHorizontal="true"
-        android:paddingTop="16dp"
-        android:paddingBottom="16dp" />
 
+        android:paddingBottom="16dp" />
+    <!-- Monster Face -->
+    <com.example.codecatchersapp.MonsterView
+        android:id="@+id/MonsterView"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_below="@id/points_textview"
+        android:layout_centerHorizontal="true"
+        android:background="@android:color/transparent" />
 
     <!-- Monster name -->
     <TextView
         android:id="@+id/monsterNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#000000"
-        android:text="Monster Name"
-        android:textSize="18sp"
+        android:layout_below="@id/MonsterView"
         android:layout_centerHorizontal="true"
-        android:paddingTop="16dp"
-        android:paddingBottom="16dp" />
+        android:text="Monster Name"
+        android:textColor="#000000"
+        android:textSize="18sp" />
 
+    <!-- Tap anywhere to continue -->
     <TextView
+        android:id="@+id/tap_anywhere_textview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="#000000"
         android:text="Tap Anywhere to Continue"
-        android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
-        android:gravity="center">
-
-    </TextView>
-
-
+        android:gravity="center_horizontal"/>
 
 </RelativeLayout>

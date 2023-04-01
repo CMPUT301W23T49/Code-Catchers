@@ -2,6 +2,7 @@ package com.example.codecatchersapp;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -24,18 +25,24 @@ public class ScoreRevealActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.score_reveal_activity);
 
-        // Get score from intent
+        // Get hash from intent
         Intent intent = getIntent();
-        String contents = intent.getStringExtra("contents");
-
-        String contentss = "BFG5DGW54"; // use to test if the calculator and display is actually working
+        String hash = intent.getStringExtra("hash");
+        String binaryHash = intent.getStringExtra("binaryHash");
+        System.out.println("binaryHashAGAIN: " + binaryHash);
 
         String displayScore;
         try {
-            Score score = new Score(contentss); // New score object that calculates score based on contents delivered from QR
+            Score score = new Score(hash); // New score object that calculates score based on contents delivered from QR
             displayScore = score.getScore();
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
+        }
+
+        // Set the binaryHash value in the MonsterView
+        MonsterView viewMonster = findViewById(R.id.MonsterView);
+        if (viewMonster != null) {
+            viewMonster.setBinaryHash(binaryHash);
         }
 
         RelativeLayout rootLayout = findViewById(R.id.root_layout);
@@ -48,16 +55,10 @@ public class ScoreRevealActivity extends AppCompatActivity {
             }
         });
 
-
-
         // Find score value and update it
         TextView scoreTextView = findViewById(R.id.scoreTextView);
         scoreTextView.setText(displayScore);
 
-        // Find monster image and set it's image resource
-        //ImageView monsterImageView = findViewById(R.id.monsterImageView);
-        //monsterImageView.setImageResource(R.drawable.monster_image);
-    }
 
 
-}
+    }}
