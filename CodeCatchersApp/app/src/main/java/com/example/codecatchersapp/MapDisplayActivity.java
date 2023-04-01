@@ -21,6 +21,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.firebase.geofire.GeoFire;
+import com.firebase.geofire.GeoLocation;
+import com.firebase.geofire.GeoQuery;
+import com.firebase.geofire.GeoQueryEventListener;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -33,7 +37,16 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.example.codecatchersapp.databinding.ActivityMapDisplayBinding;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.GeoPoint;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -54,6 +67,9 @@ public class MapDisplayActivity extends FragmentActivity implements OnMapReadyCa
     private LatLng mCurrentLocation;
     private EditText searchBox;
     private Button searchButton;
+
+    private int latitude;
+    private int longitude;
 
 
     /**
@@ -124,14 +140,43 @@ public class MapDisplayActivity extends FragmentActivity implements OnMapReadyCa
 
     }
 
-
     public void onSearchRadiusSelected(int radius) {
-        // handle the seek bar value here
-        Toast.makeText(this, "Selected search radius: " + radius + " km", Toast.LENGTH_LONG).show();
+        // Query Firebase for QR codes within the specified radius
+        DatabaseReference qrCodeRef = FirebaseDatabase.getInstance().getReference("monster");
+        GeoFire geoFire = new GeoFire(qrCodeRef);
+        GeoQuery geoQuery = geoFire.queryAtLocation(new GeoLocation(mCurrentLocation.latitude, mCurrentLocation.longitude), radius);
+        List<Marker> markers = new ArrayList<>();
+        geoQuery.addGeoQueryEventListener(new GeoQueryEventListener() {
+            @Override
+            public void onKeyEntered(String key, GeoLocation location) {
+                // Create LatLng objects for each QR code within the radius
+                LatLng qrCodeLocation = new LatLng(location.latitude, location.longitude);
+                MarkerOptions markerOptions = new MarkerOptions().position(qrCodeLocation);
+                markers.add(mMap.addMarker(markerOptions));
+            }
 
-        
+            @Override
+            public void onKeyExited(String key) {
+            }
+            @Override
+            public void onKeyMoved(String key, GeoLocation location) {
+            }
+            @Override
+            public void onGeoQueryReady() {
+                // Clear any existing markers on the map and add the new markers
+                mMap.clear();
+                for (Marker marker : markers) {
+                    mMap.addMarker(new MarkerOptions().position(marker.getPosition()));
+                }
+            }
+
+            @Override
+            public void onGeoQueryError(DatabaseError error) {
+                // Handle the error here
+            }
+
+        });
     }
-
 
     /**
      * Called when the map is ready to be used.
