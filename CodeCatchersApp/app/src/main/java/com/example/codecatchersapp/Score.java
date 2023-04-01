@@ -7,16 +7,11 @@ import java.security.NoSuchAlgorithmException;
 public class Score {
 
     private String score;
+    private String hexString;
 
-    public Score(String qr_contents) throws NoSuchAlgorithmException {
+    public Score(String hexString) throws NoSuchAlgorithmException {
 
-        MessageDigest md = MessageDigest.getInstance("SHA-256");
-        byte[] hash = md.digest(qr_contents.getBytes());
-
-        // Convert Hash to Hex String
-        BigInteger bigInt = new BigInteger(1, hash);
-        String hexString = bigInt.toString(16);
-
+        this.hexString = hexString;
         // Find all repeated digits and calculate score based on the proposed scoring method in the notes
         int score = 0;
         int consecutive = 1;
@@ -37,7 +32,6 @@ public class Score {
         String stringScore = Integer.toString(score);
         this.score=stringScore;
     }
-
 
     public static int getDigitValue(char hexDigit) {
         if (hexDigit >= '0' && hexDigit <= '9') {
