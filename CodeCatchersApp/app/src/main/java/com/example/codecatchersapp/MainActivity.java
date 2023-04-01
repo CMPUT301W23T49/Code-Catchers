@@ -39,31 +39,10 @@ public class MainActivity extends AppCompatActivity {
     private final Runnable myRunnable = new Runnable() {
         @Override
         public void run() {
-            try {
-                hashGenerator.generateAndWriteHash("test qr code");
-
-                Log.d("Firestore", "Batch write successful.");
-
-                // Reset the backoff time
-                currentBackoffTime = 0;
-
-                // Increment the batch count
-                batchCount++;
-
-                // Create a new batch write operation if the batch count is less than the maximum batch count
-                if (batchCount < MAX_BATCH_COUNT) {
-                    // Commit the new batch write operation after a delay
-                    handler.postDelayed(myRunnable, currentBackoffTime);
-                }
-            } catch (NoSuchAlgorithmException e) {
-                Log.e("Firestore", "Error generating hash.", e);
-                // Increment the backoff time
-                currentBackoffTime = Math.min(currentBackoffTime * BACKOFF_MULTIPLIER, MAX_BACKOFF_TIME);
-
-                // Commit the batch write operation after a delay
-                handler.postDelayed(myRunnable, currentBackoffTime);
-            }
+            HashGenerator.generateAndWriteHash("test qr code");
         }
+
+
     };
 
     @Override
@@ -72,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
 
 //        setContentView(R.layout.map_layout);
 
+
+        // Checks if device is registered already or not
         String deviceID = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("PlayerDB")
