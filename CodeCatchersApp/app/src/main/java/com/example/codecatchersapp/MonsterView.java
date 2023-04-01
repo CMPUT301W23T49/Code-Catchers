@@ -17,7 +17,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 
-class MonsterView extends View {
+public class MonsterView extends View {
     private Paint paint;
     private monsterFeatures monster;
 
@@ -77,9 +77,6 @@ class MonsterView extends View {
         invalidate(); // redraw the view
     }
 
-//    public Canvas getCanvas() {
-//        return this.mCanvas;
-//    }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {

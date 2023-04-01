@@ -44,6 +44,10 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAy96PHvxzybGU6DSk8TRcMcXexH6GEzsk" />
 
+<!--        <activity-->
+<!--            android:name=".MapDisplayActivity"-->
+<!--            android:exported="false"-->
+<!--            android:label="@string/title_activity_map_display" />-->
         <activity
             android:name=".MapDisplayActivity"
             android:exported="false"

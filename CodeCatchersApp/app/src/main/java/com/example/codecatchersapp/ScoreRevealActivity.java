@@ -19,11 +19,16 @@ import java.security.NoSuchAlgorithmException;
 public class ScoreRevealActivity extends AppCompatActivity {
 
     private int score;
+    private MonsterNameGenerator monsterNameGenerator;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.score_reveal_activity);
+
+        // Find the monster name and update it
+        monsterNameGenerator = new MonsterNameGenerator();
 
         // Get hash from intent
         Intent intent = getIntent();
@@ -39,11 +44,6 @@ public class ScoreRevealActivity extends AppCompatActivity {
             throw new RuntimeException(e);
         }
 
-        // Set the binaryHash value in the MonsterView
-        MonsterView viewMonster = findViewById(R.id.MonsterView);
-        if (viewMonster != null) {
-            viewMonster.setBinaryHash(binaryHash);
-        }
 
         RelativeLayout rootLayout = findViewById(R.id.root_layout);
         rootLayout.setOnClickListener(new View.OnClickListener() {
@@ -58,6 +58,18 @@ public class ScoreRevealActivity extends AppCompatActivity {
         // Find score value and update it
         TextView scoreTextView = findViewById(R.id.scoreTextView);
         scoreTextView.setText(displayScore);
+
+        // Set the binaryHash value in the MonsterView
+        MonsterView viewMonster = findViewById(R.id.MonsterView);
+        if (viewMonster != null) {
+            viewMonster.setBinaryHash(binaryHash);
+        }
+
+
+        // Find the monster name TextView and update it
+        TextView monsterNameTextView = findViewById(R.id.monsterNameTextView);
+        String monsterName = monsterNameGenerator.generateName(binaryHash);
+        monsterNameTextView.setText(monsterName);
 
 
 
