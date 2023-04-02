@@ -1,19 +1,13 @@
 package com.example.codecatchersapp;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
-import java.math.BigInteger;
-import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class ScoreRevealActivity extends AppCompatActivity {
@@ -51,7 +45,8 @@ public class ScoreRevealActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // Start the next activity here
                 Intent intent = new Intent(ScoreRevealActivity.this, QROptionsActivity.class);
-                intent.putExtra("monsterHash", hash);
+                intent.putExtra("shaHash", hash);
+                intent.putExtra("binaryHash", binaryHash);  // changed to binaryHash to work with DB better
                 startActivity(intent);
             }
         });
