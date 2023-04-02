@@ -78,6 +78,9 @@ public class LeaderboardsActivity extends AppCompatActivity {
         mostMonsters = findViewById(R.id.mostMonsters);
         highestIndividualMonsterButton = findViewById(R.id.highestScoringMonster);
 
+        // Upon opening leaderboards screen, display sorted by total score
+        displayLeaderboard("totalscore");
+
         // Set click listener for back button and hamburger menu button
         backButton.setOnClickListener(new View.OnClickListener() {
             /**
@@ -142,7 +145,7 @@ public class LeaderboardsActivity extends AppCompatActivity {
                 for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
                     String userID = documentSnapshot.getId();
 
-                    String username = documentSnapshot.getString("userName");
+                    String username = documentSnapshot.getString("username");
                     Log.e("Success", "USERNAME: " + username);
 
                     // String:Object, as fields can contain a string, number, or list of Strings

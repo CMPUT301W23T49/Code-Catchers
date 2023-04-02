@@ -31,6 +31,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
+
 import android.provider.Settings;
 import android.content.Context;
 
@@ -126,6 +129,26 @@ public class UserAccountActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Log.e(TAG, "Error saving user account to database.", e);
+                    }
+                });
+
+        Map<String,Object> leaderboardFields = new HashMap<>();
+
+        leaderboardFields.put("totalscore", "0");
+        leaderboardFields.put("monstercount", "0");
+        leaderboardFields.put("highestmonsterscore", "0");
+
+        documentReference.update(leaderboardFields)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Log.d("E","FIELDS ADDED");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@androidx.annotation.NonNull Exception e) {
+                        Log.d("E","FAILURE, FIELDS NOT ADDED");
                     }
                 });
 
