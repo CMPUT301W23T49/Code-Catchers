@@ -48,10 +48,6 @@ dependencies {
     //google maps
     implementation 'com.google.android.gms:play-services-location:18.0.0'
 
-    // For java docs and android.graphics.Paint
-//    implementation 'androidx.core:core-ktx:1.7.0'
-//    implementation files('/Users/josiematalski/Library/Android/sdk/platforms/android-33/android.jar')
-
 
     // Unit tests
     testImplementation 'junit:junit:4.13.2'

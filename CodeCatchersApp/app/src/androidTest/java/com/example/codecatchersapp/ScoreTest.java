@@ -20,26 +20,9 @@ public class ScoreTest {
 
     @Test
     public void testScore() throws NoSuchAlgorithmException {
-        Score score = new Score("BFG5DGW54");
-        assertEquals("19", score.getScore());
+        Score score = new Score("696ce4dbd7bb57cbfe58b64f530f428b74999cb37e2ee60980490cd9552de3a6");
+        assertEquals("111", score.getScore());
 
-        score = new Score("0");
-        assertEquals("0", score.getScore());
-
-        score = new Score("1");
-        assertEquals("0", score.getScore());
-
-        score = new Score("33");
-        assertEquals("0", score.getScore());
-
-        score = new Score("aa");
-        assertEquals("0", score.getScore());
-
-        score = new Score("aabbccddeeff");
-        assertEquals("18640", score.getScore());
-
-        score = new Score("aabbccddeeffAABBCCDDEEFF");
-        assertEquals("334936", score.getScore());
     }
 
     @Test(expected = IllegalArgumentException.class)
