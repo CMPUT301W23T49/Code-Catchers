@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
@@ -48,6 +49,9 @@ public class LeaderboardsActivity extends AppCompatActivity {
     private ArrayList<Leaderboards> dataList = new ArrayList<>();
     private ArrayList<String> testScannedMonstersList = new ArrayList<>();
     private Integer usersScore;
+    private Button highestTotalScoreButton;
+    private Button mostMonsters;
+    private Button highestIndividualMonsterButton;
 
     // TODO: Sort highest->lowest. Sort by most unique monsters
     /**
@@ -70,6 +74,9 @@ public class LeaderboardsActivity extends AppCompatActivity {
         leaderboardsList.setAdapter(leaderboardsArrayAdapter);
         backButton = findViewById(R.id.back_button);
         hamburgerMenuButton = findViewById(R.id.hamburger_menu);
+        highestTotalScoreButton = findViewById(R.id.totalScore);
+        mostMonsters = findViewById(R.id.mostMonsters);
+        highestIndividualMonsterButton = findViewById(R.id.highestScoringMonster);
 
         // Set click listener for back button and hamburger menu button
         backButton.setOnClickListener(new View.OnClickListener() {
@@ -99,6 +106,30 @@ public class LeaderboardsActivity extends AppCompatActivity {
             }
         });
 
+        highestTotalScoreButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                displayLeaderboard("totalscore");
+            }
+        });
+
+        mostMonsters.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                displayLeaderboard("monstercount");
+            }
+        });
+
+        highestIndividualMonsterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                displayLeaderboard("highestmonsterscore");
+            }
+        });
+    }
+
+    private void displayLeaderboard(String fieldName){
+        leaderboardsArrayAdapter.clear();
         CollectionReference collectionReference = db.collection("PlayerDB/");
         collectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
@@ -127,7 +158,7 @@ public class LeaderboardsActivity extends AppCompatActivity {
                         Integer totalScore = 0;
 
                         // Get user's total score
-                        if (key.compareTo("score") == 0) {
+                        if (key.compareTo(fieldName) == 0) {
                             System.out.println("User "+ username + " has a score " + usersData.get(key) );
                             usersScore = Integer.parseInt((String)usersData.get(key));
 
@@ -153,4 +184,6 @@ public class LeaderboardsActivity extends AppCompatActivity {
             }
         });
     }
+
+
 }
