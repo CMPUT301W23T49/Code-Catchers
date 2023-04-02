@@ -5,7 +5,7 @@ import android.provider.Settings;
 import java.io.Serializable;
 
 public class UserAccount implements Serializable {
-    private String username;
+    private String userName;
     private String contactInfo;
     private String deviceID;
 
@@ -14,22 +14,22 @@ public class UserAccount implements Serializable {
     }
 
     public UserAccount(String username, String contactInfo, String deviceID) {
-        this.username = username;
+        this.userName = username;
         this.contactInfo = contactInfo;
         this.deviceID = deviceID;
     }
 
     public UserAccount(String username, String contactInfo){
-        this.username = username;
+        this.userName = username;
         this.contactInfo = contactInfo;
-    };
+    }
 
     public String getUsername() {
-        return username;
+        return userName;
     }
 
     public void setUsername(String username) {
-        this.username = username;
+        this.userName = username;
     }
 
     public String getContactInfo() {
