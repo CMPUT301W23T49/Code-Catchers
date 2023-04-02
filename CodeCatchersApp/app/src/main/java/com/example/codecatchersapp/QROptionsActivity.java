@@ -293,25 +293,5 @@ public class QROptionsActivity extends AppCompatActivity {
                     }
                 });
 
-        Log.e("E","OOL NEW TOTAL SCORE VALUE: " + newTotalScore);
-        Log.e("E","OOL NEW TOTAL MONSTER COUNT: " + newMonsterCount);
-        Log.e("E","OOL NEW HIGHEST MONSTER SCORE: " + newHighestMonsterScore);
-
-        /*
-        documentReferenceUserScoreField.update(newLeaderboardInfo)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void unused) {
-                        Log.e("E","SUCCESSFULLY UPDATED FIELDS!");
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.e("E","FAILED UPDATING FIELDS IN DOCUMENT");
-                    }
-                });
-
-         */
     }
 }
