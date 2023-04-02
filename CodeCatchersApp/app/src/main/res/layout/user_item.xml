@@ -16,6 +16,7 @@
             android:background="@drawable/user_item_bg"
             android:padding="6dp"
             android:text="UserName"
+            android:textColor="#000000"
             android:textSize="32sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
