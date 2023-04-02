@@ -65,6 +65,7 @@
                 android:paddingRight="6dp"
                 android:paddingBottom="6dp"
                 android:text="Score: "
+                android:textColor="#000000"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="parent" />
@@ -75,6 +76,7 @@
                 android:layout_height="wrap_content"
                 android:padding="6dp"
                 android:text="0"
+                android:textColor="#000000"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="parent" />
@@ -88,6 +90,7 @@
                 android:paddingRight="6dp"
                 android:paddingBottom="6dp"
                 android:text="Monsters:"
+                android:textColor="#000000"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="parent" />
@@ -98,6 +101,7 @@
                 android:layout_height="wrap_content"
                 android:padding="6dp"
                 android:text="0"
+                android:textColor="#000000"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="parent" />
@@ -129,7 +133,8 @@
                 android:paddingRight="190dp"
                 android:text="Monsters"
                 android:textSize="24sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textColor="#000000"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -137,7 +142,8 @@
                 android:text="Sort by: highest"
                 android:layout_gravity="center"
                 android:textSize="12sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textColor="#000000"/>
         </LinearLayout>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/user_monster_rv"

@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.codecatchersapp-mergeDebugResources-37:/values-ldrtl-v17/values-ldrtl-v17.xml",
+            "outputFile": "com.example.codecatchersapp-mergeDebugResources-38:/values-ldrtl-v17/values-ldrtl-v17.xml",
             "map": [
                 {
                     "source": "C:\\Users\\Kyle\\.gradle\\caches\\transforms-3\\182faf041fdcb262ef4ea683b4175339\\transformed\\material-1.8.0\\res\\values-ldrtl-v17\\values-ldrtl-v17.xml",

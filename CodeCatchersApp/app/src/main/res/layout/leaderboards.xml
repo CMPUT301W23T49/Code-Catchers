@@ -46,6 +46,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Highest total score"
+        android:textColor="#000000"
         app:layout_constraintEnd_toStartOf="@+id/sort_by_switch"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title" />
@@ -55,6 +56,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Most unique monsters"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/sort_by_switch"
         app:layout_constraintTop_toBottomOf="@+id/title" />
@@ -68,7 +70,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sort_by_switch"
         app:layout_constraintVertical_bias="0.128" />
-e
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
