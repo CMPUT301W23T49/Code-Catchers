@@ -155,7 +155,7 @@ public class MapDisplayActivity extends FragmentActivity implements OnMapReadyCa
 
         List<Marker> markers = new ArrayList<>();
 
-
+        // Begin Search Query in DB
         geoQuery.addGeoQueryEventListener(new GeoQueryEventListener() {
             @Override
             public void onKeyEntered(String key, GeoPoint location) {
