@@ -5,11 +5,13 @@ import static android.content.ContentValues.TAG;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,8 +30,13 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.GeoPoint;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import org.imperiumlabs.geofirestore.GeoFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -48,9 +55,15 @@ public class QROptionsActivity extends AppCompatActivity {
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        String myUserName = sharedPreferences.getString("username", "");
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.qr_options);
         Intent intent = getIntent();
+        String monsterHash = intent.getStringExtra("monsterHash");
+        String userID = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
         EditText commentEditText = findViewById(R.id.editTextNewMonComment);
         Switch geolocationToggle = findViewById(R.id.geolocation_switch);
         Switch locationPhotoToggle = findViewById(R.id.photo_switch);
@@ -83,6 +96,7 @@ public class QROptionsActivity extends AppCompatActivity {
         continueMonSettings.setOnClickListener(new View.OnClickListener() {
             /**
              * Triggers options to save their respective data to the database
+             *
              * @param view view that was clicked (continue button)
              */
             @Override
@@ -100,8 +114,7 @@ public class QROptionsActivity extends AppCompatActivity {
                 if (geolocationToggleState == true) {
                     saveGeolocation();
                     //
-                }
-                else{
+                } else {
                     Monster monster = new Monster("someMonsterID");
                     CollectionReference collectionReference = db.collection("MonsterDB");
                     DocumentReference documentReference = collectionReference.document("someMonsterID");
@@ -110,10 +123,9 @@ public class QROptionsActivity extends AppCompatActivity {
 
                 Boolean locationPhotoToggleState = locationPhotoToggle.isChecked();
                 // TODO: IF TRUE, GO TO CAMERA AFTER CONTINUE CLICKED, ELSE GO MAIN MENU?
-                if (locationPhotoToggleState == false){
+                if (locationPhotoToggleState == false) {
                     goMainMenu();
-                }
-                else{
+                } else {
                     Intent intent = new Intent(QROptionsActivity.this, CameraActivity.class);
                     startActivity(intent);
                 }
@@ -126,14 +138,13 @@ public class QROptionsActivity extends AppCompatActivity {
                 // TODO: change SomeUserID to current user's ID, change someMonsterID to monster hash
                 db = FirebaseFirestore.getInstance();
 
-                GeoPoint geoloc = new GeoPoint(finalLatitude,finalLongitude);
+                // save to monsterDB
+                GeoFirestore geoFirestore = new GeoFirestore(db.collection("MonsterDB"));
+                GeoPoint geoloc = new GeoPoint(finalLatitude, finalLongitude);
+                geoFirestore.setLocation(monsterHash, geoloc);
 
-                Monster monster = new Monster("someMonsterID", geoloc);
-                CollectionReference collectionReference = db.collection("MonsterDB");
-                DocumentReference documentReference = collectionReference.document("someMonsterID");
-                documentReference.set(monster);
-
-                CollectionReference collectionReferenceGeoLocation = db.collection("PlayerDB/someUserID1/Monsters/someMonsterID/geoPoint");
+                // save to playerDB
+                CollectionReference collectionReferenceGeoLocation = db.collection("PlayerDB/" + userID + "/Monsters/" + monsterHash + "/geolocationData");
                 Map<String, Object> coordinates = new HashMap<>();
                 coordinates.put("geoPoint", geoloc);
 
@@ -153,44 +164,48 @@ public class QROptionsActivity extends AppCompatActivity {
                         });
             }
 
+
             /**
              * Saves the users comment to the database
              */
+            String userName;
+
             public void saveComment() {
-                CollectionReference collectionReference = db.collection("PlayerDB/someUserID1/Monsters/someMonsterID/comments");
+                CollectionReference collectionReference = db.collection("PlayerDB/" + userID + "/Monsters/" + monsterHash + "/comments");
                 final String ogComment = commentEditText.getText().toString();
-                HashMap<String,String> data = new HashMap<>();//aa
-                if (ogComment.length() > 0){
-                    // TODO: change SomeUserID to current user's ID, change someMonsterID to monster hash
-                    data.put("userName","myUser");
-                    collectionReference
-                            .document(ogComment)
-                            .set(data)
-                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess (Void unused){
-                                    Log.d("Success", "Comment added successfully!");
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener(){
-                                @Override
-                                public void onFailure(@NonNull Exception e){
-                                    Log.d("Failure", "Comment addition failed"+ e.toString());
-                                }
-                            });
+                HashMap<String, String> data = new HashMap<>();
 
-                }
+                if (ogComment.length() > 0) {
+                                    // TODO: change SomeUserID to current user's ID, change someMonsterID to monster hash
+                                    data.put("userName", myUserName);
+                                    collectionReference
+                                            .document(ogComment)
+                                            .set(data)
+                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                @Override
+                                                public void onSuccess(Void unused) {
+                                                    Log.d("Success", "Comment added successfully!");
+                                                }
+                                            })
+                                            .addOnFailureListener(new OnFailureListener() {
+                                                @Override
+                                                public void onFailure(@NonNull Exception e) {
+                                                    Log.d("Failure", "Comment addition failed" + e.toString());
+                                                }
+                                            });
+
+                                }
+                            }
+                        });
+
             }
-        });
 
-    }
-
-    /**
-     * Directs activity to main menu
-     */
-    public void goMainMenu(){
-        // Change MainActivity.class to MainMenuActivity.class once merged
-        Intent intent = new Intent(QROptionsActivity.this, MainMenuActivity.class);
-        startActivity(intent);
-    }
-}
+            /**
+             * Directs activity to main menu
+             */
+            public void goMainMenu() {
+                // Change MainActivity.class to MainMenuActivity.class once merged
+                Intent intent = new Intent(QROptionsActivity.this, MainMenuActivity.class);
+                startActivity(intent);
+            }
+        }
