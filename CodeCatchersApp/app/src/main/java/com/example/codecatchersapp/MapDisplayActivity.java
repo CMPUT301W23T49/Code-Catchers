@@ -142,10 +142,11 @@ public class MapDisplayActivity extends FragmentActivity implements OnMapReadyCa
 
     public void onSearchRadiusSelected(int radius) {
         // Query Firebase for QR codes within the specified radius
-        DatabaseReference qrCodeRef = FirebaseDatabase.getInstance().getReference("monster");
+        DatabaseReference qrCodeRef = FirebaseDatabase.getInstance().getReference("MonsterDB");
         GeoFire geoFire = new GeoFire(qrCodeRef);
         GeoQuery geoQuery = geoFire.queryAtLocation(new GeoLocation(mCurrentLocation.latitude, mCurrentLocation.longitude), radius);
         List<Marker> markers = new ArrayList<>();
+
         geoQuery.addGeoQueryEventListener(new GeoQueryEventListener() {
             @Override
             public void onKeyEntered(String key, GeoLocation location) {
