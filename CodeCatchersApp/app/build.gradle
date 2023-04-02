@@ -78,4 +78,5 @@ dependencies {
 
     // === CAMERA FUNCTIONALITY ===
     implementation 'io.fotoapparat:fotoapparat:2.7.0'
+
 }

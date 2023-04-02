@@ -2,6 +2,9 @@ package com.example.codecatchersapp;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +18,9 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Random;
+
+
 
 public class ScoreRevealActivity extends AppCompatActivity {
 
@@ -44,7 +50,6 @@ public class ScoreRevealActivity extends AppCompatActivity {
             throw new RuntimeException(e);
         }
 
-
         RelativeLayout rootLayout = findViewById(R.id.root_layout);
         rootLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,6 +77,6 @@ public class ScoreRevealActivity extends AppCompatActivity {
         System.out.println("binaryHashNAMEGENERATOR: " + binaryHash);
         monsterNameTextView.setText(monsterName);
 
+    }
 
-
-    }}
+}
