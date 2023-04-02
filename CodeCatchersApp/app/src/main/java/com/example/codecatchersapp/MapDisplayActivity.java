@@ -23,8 +23,7 @@ import android.widget.Toast;
 
 import com.firebase.geofire.GeoFire;
 import com.firebase.geofire.GeoLocation;
-import com.firebase.geofire.GeoQuery;
-import com.firebase.geofire.GeoQueryEventListener;
+import org.imperiumlabs.geofirestore.listeners.GeoQueryEventListener;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -46,8 +45,13 @@ import com.google.firebase.firestore.GeoPoint;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
+import org.imperiumlabs.geofirestore.GeoFirestore;
+import org.imperiumlabs.geofirestore.GeoQuery;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * MapActivity is an implementation of the OnMapReadyCallback interface.
@@ -123,7 +127,7 @@ public class MapDisplayActivity extends FragmentActivity implements OnMapReadyCa
                         if (location != null) {
                             // Set the current location variable and move the camera
                             mCurrentLocation = new LatLng(location.getLatitude(), location.getLongitude());
-                            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mCurrentLocation, 15));
+                            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mCurrentLocation, 10));
                         }
                     }
                 });
@@ -141,27 +145,34 @@ public class MapDisplayActivity extends FragmentActivity implements OnMapReadyCa
     }
 
     public void onSearchRadiusSelected(int radius) {
-        // Query Firebase for QR codes within the specified radius
-        DatabaseReference qrCodeRef = FirebaseDatabase.getInstance().getReference("MonsterDB");
-        GeoFire geoFire = new GeoFire(qrCodeRef);
-        GeoQuery geoQuery = geoFire.queryAtLocation(new GeoLocation(mCurrentLocation.latitude, mCurrentLocation.longitude), radius);
+        // Query Firestore for documents within the specified radius
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        GeoFirestore geoFirestore = new GeoFirestore(db.collection("MonsterDB"));
+
+        // Creates a new geoQuery object using the device's current location
+        GeoPoint currentLocation = new GeoPoint(mCurrentLocation.latitude, mCurrentLocation.longitude);
+        GeoQuery geoQuery = geoFirestore.queryAtLocation(currentLocation, radius);
+
         List<Marker> markers = new ArrayList<>();
+
 
         geoQuery.addGeoQueryEventListener(new GeoQueryEventListener() {
             @Override
-            public void onKeyEntered(String key, GeoLocation location) {
-                // Create LatLng objects for each QR code within the radius
-                LatLng qrCodeLocation = new LatLng(location.latitude, location.longitude);
-                MarkerOptions markerOptions = new MarkerOptions().position(qrCodeLocation);
+            public void onKeyEntered(String key, GeoPoint location) {
+                // Create LatLng objects for each document within the radius
+                LatLng documentLocation = new LatLng(location.getLatitude(), location.getLongitude());
+                MarkerOptions markerOptions = new MarkerOptions().position(documentLocation);
                 markers.add(mMap.addMarker(markerOptions));
             }
 
             @Override
             public void onKeyExited(String key) {
             }
+
             @Override
-            public void onKeyMoved(String key, GeoLocation location) {
+            public void onKeyMoved(String key, GeoPoint location) {
             }
+
             @Override
             public void onGeoQueryReady() {
                 // Clear any existing markers on the map and add the new markers
@@ -172,10 +183,9 @@ public class MapDisplayActivity extends FragmentActivity implements OnMapReadyCa
             }
 
             @Override
-            public void onGeoQueryError(DatabaseError error) {
+            public void onGeoQueryError(Exception error) {
                 // Handle the error here
             }
-
         });
     }
 

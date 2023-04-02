@@ -53,7 +53,7 @@ public class SearchRadiusFragment extends DialogFragment {
         Toast.makeText(getContext(), "Radius selected: ", Toast.LENGTH_SHORT).show();
 
         // Set up the seek bar
-        seekBar.setMax(100);
+        seekBar.setMax(1000000);
         seekBar.setProgress(50);
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 

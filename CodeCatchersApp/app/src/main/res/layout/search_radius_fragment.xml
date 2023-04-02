@@ -17,7 +17,7 @@
         android:id="@+id/search_radius_seekbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:max="100"
+        android:max="1000000"
         android:progress="50" />
 
     <TextView
