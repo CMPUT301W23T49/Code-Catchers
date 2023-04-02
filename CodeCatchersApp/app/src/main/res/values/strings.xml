@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Code Catchers App</string>
     <string name="qr_contents">My string resource value</string>
+    <string name="title_activity_map_display">MapDisplayActivity</string>
 </resources>

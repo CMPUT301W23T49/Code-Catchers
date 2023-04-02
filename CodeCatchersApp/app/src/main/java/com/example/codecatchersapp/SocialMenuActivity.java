@@ -60,8 +60,8 @@ public class SocialMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Handle button click
-//                Intent searchUsersIntent = new Intent(SocialMenuActivity.this, LeaderboardsActivity.class);
-//                startActivity(searchUsersIntent);
+                Intent searchUsersIntent = new Intent(SocialMenuActivity.this, LeaderboardsActivity.class);
+                startActivity(searchUsersIntent);
             }
         });
 

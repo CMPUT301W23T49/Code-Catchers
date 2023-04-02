@@ -54,7 +54,7 @@ public class MainMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent mapIntent = new Intent(MainMenuActivity.this, MapActivity.class);
+                Intent mapIntent = new Intent(MainMenuActivity.this, MapDisplayActivity.class);
                 startActivity(mapIntent);
             }
         });

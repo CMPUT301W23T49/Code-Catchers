@@ -10,7 +10,7 @@ import java.io.Serializable;
  * serialization and deserialization for storage and retrieval from databases.
  */
 public class UserAccount implements Serializable {
-    private String username;
+    private String userName;
     private String contactInfo;
     private String deviceID;
 
@@ -25,7 +25,7 @@ public class UserAccount implements Serializable {
      * @param deviceID The device ID of the user account.
      */
     public UserAccount(String username, String contactInfo, String deviceID) {
-        this.username = username;
+        this.userName = username;
         this.contactInfo = contactInfo;
         this.deviceID = deviceID;
     }
@@ -36,16 +36,16 @@ public class UserAccount implements Serializable {
      * @param contactInfo The contact information of the user account.
      */
     public UserAccount(String username, String contactInfo){
-        this.username = username;
+        this.userName = username;
         this.contactInfo = contactInfo;
-    };
+    }
 
     /**
      * Returns the username of the user account.
      * @return The username of the user account.
      */
     public String getUsername() {
-        return username;
+        return userName;
     }
 
     /**
@@ -53,7 +53,7 @@ public class UserAccount implements Serializable {
      * @param username The new username for the user account.
      */
     public void setUsername(String username) {
-        this.username = username;
+        this.userName = username;
     }
 
     /**
