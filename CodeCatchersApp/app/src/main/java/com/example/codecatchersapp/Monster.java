@@ -20,7 +20,7 @@ public class Monster {
      */
     public Monster(String monsterHash) {
         this.monsterHash = monsterHash;
-        this.monsterName = new MonsterNameGenerator().generateName(monsterHash);
+        this.monsterName = new MonsterNameGenerator().generateNameFromBinary(monsterHash);
         try {
             Score score = new Score(this.monsterHash);
             this.monsterScore = score.getScore();

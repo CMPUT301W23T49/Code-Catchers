@@ -20,76 +20,75 @@ import java.util.Random;
 
 // Define a set of features for a monster and set the values for each feature
 public class monsterFeatures {
-
+    /**
+     * The mContext object is used to access resources and services. Resources: colors, strings, etc.
+     * The mPaint object is used to apply the colors and styles to the monster.
+     * The faceType is used to determine the type of face.
+     * The features is used to store the features of the monster.
+     */
     private Context mContext;
     private Paint mPaint;
-
     private String faceType;
-
-
-
-    // Types of features with values for each feature
     private static HashMap<String, HashMap<String, String>> features = new HashMap<>();
 
-    static {
-        HashMap<String, String> eyes = new HashMap<>();
-        eyes.put("0", "closed eyes");
-        eyes.put("1", "bright eyes");
-        features.put("eyes", eyes);
+    static {                                                // Initialize the features HashMap
+        HashMap<String, String> eyes = new HashMap<>();     // Create a new HashMap object
+        eyes.put("0", "closed eyes");                       // Add a key value pair to the HashMap
+        eyes.put("1", "bright eyes");                       // Add a key value pair to the HashMap
+        features.put("eyes", eyes);                         // Add the HashMap to the features HashMap
 
-        HashMap<String, String> eyebrows = new HashMap<>();
-        eyebrows.put("0", "mean eyebrows");
-        eyebrows.put("1", "no eyebrows");
-        features.put("eyebrows", eyebrows);
+        HashMap<String, String> eyebrows = new HashMap<>(); // Create a new HashMap object
+        eyebrows.put("0", "mean eyebrows");                 // Add a key value pair to the HashMap
+        eyebrows.put("1", "no eyebrows");                   // Add a key value pair to the HashMap
+        features.put("eyebrows", eyebrows);                 // Add the HashMap to the features HashMap
 
-        HashMap<String, String> face = new HashMap<>();
-        face.put("0", "round face");
-        face.put("1", "square face");
-        features.put("face", face);
+        HashMap<String, String> face = new HashMap<>();     // Create a new HashMap object
+        face.put("0", "round face");                        // Add a key value pair to the HashMap
+        face.put("1", "square face");                       // Add a key value pair to the HashMap
+        features.put("face", face);                         // Add the HashMap to the features HashMap
 
-        HashMap<String, String> nose = new HashMap<>();
-        nose.put("0", "big nose");
-        nose.put("1", "no nose");
-        features.put("nose", nose);
+        HashMap<String, String> nose = new HashMap<>();     // Create a new HashMap object
+        nose.put("0", "big nose");                          // Add a key value pair to the HashMap
+        nose.put("1", "no nose");                           // Add a key value pair to the HashMap
+        features.put("nose", nose);                         // Add the HashMap to the features HashMap
 
-        HashMap<String, String> mouth = new HashMap<>();
-        mouth.put("0", "smile");
-        mouth.put("1", "frown");
-        features.put("mouth", mouth);
+        HashMap<String, String> mouth = new HashMap<>();    // Create a new HashMap object
+        mouth.put("0", "smile");                            // Add a key value pair to the HashMap
+        mouth.put("1", "frown");                            // Add a key value pair to the HashMap
+        features.put("mouth", mouth);                       // Add the HashMap to the features HashMap
 
-        HashMap<String, String> ears = new HashMap<>();
-        ears.put("0", "ears");
-        ears.put("1", "no ears");
-        features.put("ears", ears);
+        HashMap<String, String> ears = new HashMap<>();     // Create a new HashMap object
+        ears.put("0", "ears");                              // Add a key value pair to the HashMap
+        ears.put("1", "no ears");                           // Add a key value pair to the HashMap
+        features.put("ears", ears);                         // Add the HashMap to the features HashMap
     }
-
     /**
      * Constructor for the monsterFeatures class.
      *
-     * @param context Context object is used to access resources and services.
-
+     * @param context Context object is used to access resources and services. Resources: colors, strings, etc.
      * @param paint   Paint object is used to apply colors and styles to the monster.
      */
-    // Constructor
-    public monsterFeatures(Context context, Paint paint) {
-        mContext = context;
+    public monsterFeatures(Context context, Paint paint) { // Constructor
+        mContext = context;                                // Set the mContext instance variable to the context parameter
         mPaint = paint;
-        mPaint.setStyle(Paint.Style.FILL);
-        faceType = "round face";
+        mPaint.setStyle(Paint.Style.FILL);                 // Set the style of the paint object to fill
+//        faceType = "round face";                           // Set the faceType instance variable to "round face"
     }
-
-
-
-    //, String binaryHash
-    public void generateMonster(Canvas canvas, String binaryHash) {
-        if(binaryHash == null || binaryHash.isEmpty()) {
-            return;
+    /**
+     * The generateMonster method generates a monster using the features HashMap.
+     * The method uses a canvas and paint object to draw the generated monster.
+     *
+     * @param canvas    Canvas object is used to draw the monster.
+     * @param binaryHash String object is used to generate the monster.
+     */
+    public void generateMonster(Canvas canvas, String binaryHash) { // Generate a monster using the features HashMap
+        if(binaryHash == null || binaryHash.isEmpty()) {            // Check if the binaryHash is null or empty
+            return;                                                 // Return if the binaryHash is null or empty
         }
 
+        System.out.println("binaryHashAGAIN: " + binaryHash); //TODO: remove this line
 
-        System.out.println("binaryHashAGAIN: " + binaryHash);
-
-        faceType = features.get("face").get(Character.toString(binaryHash.charAt(2)));
+//        faceType = features.get("face").get(Character.toString(binaryHash.charAt(2))); // Set the faceType instance variable to the value of the face key in the features HashMap
 
         // Use the mPaint instance variable instead of the paint parameter
         Paint paint = mPaint;

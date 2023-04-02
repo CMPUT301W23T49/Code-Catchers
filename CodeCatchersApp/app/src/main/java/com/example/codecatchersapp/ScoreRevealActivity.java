@@ -65,10 +65,10 @@ public class ScoreRevealActivity extends AppCompatActivity {
             viewMonster.setBinaryHash(binaryHash);
         }
 
-
         // Find the monster name TextView and update it
         TextView monsterNameTextView = findViewById(R.id.monsterNameTextView);
-        String monsterName = monsterNameGenerator.generateName(binaryHash);
+        String monsterName = monsterNameGenerator.generateNameFromBinary(binaryHash);
+        System.out.println("binaryHashNAMEGENERATOR: " + binaryHash);
         monsterNameTextView.setText(monsterName);
 
 
