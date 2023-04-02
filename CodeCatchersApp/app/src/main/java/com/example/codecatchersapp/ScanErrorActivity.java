@@ -8,10 +8,18 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+/**
+ * The ScannerActivity class contains methods for
+ * scanning QR code related operations
+ */
 public class ScanErrorActivity extends AppCompatActivity {
     private Button retryButton;
     private Button quitToMenuButton;
 
+    /**
+     * Sets up the activity's layout and button click listeners.
+     * @param savedInstanceState The saved instance state of the activity.
+     */
     @SuppressLint("MissingInflatedId")  // idk y this is needed
     @Override
     protected void onCreate(Bundle savedInstanceState) {

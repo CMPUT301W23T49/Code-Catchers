@@ -10,14 +10,22 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+/**
+ * The SocialMenuActivity class represents the main activity for the social menu screen.
+ * It allows users to navigate to different parts of the social app.
+ */
 public class SocialMenuActivity extends AppCompatActivity {
-
+    // UI components
     private TextView titleTextView;
     private Button browseUsersButton;
     private Button browseQRCodesButton;
     private Button leaderboardsButton;
     private Button myProfileButton;
 
+    /**
+     * Called when the activity is starting. Initializes the UI components and sets click listeners for the buttons.
+     * @param savedInstanceState a Bundle object containing the activity's previously saved state
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

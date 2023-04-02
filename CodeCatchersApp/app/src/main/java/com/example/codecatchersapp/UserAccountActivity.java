@@ -31,8 +31,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.io.Serializable;
 import android.provider.Settings;
 import android.content.Context;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import org.checkerframework.checker.nullness.qual.NonNull;
 

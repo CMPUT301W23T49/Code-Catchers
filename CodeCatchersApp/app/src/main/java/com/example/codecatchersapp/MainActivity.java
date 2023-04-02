@@ -14,9 +14,14 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.security.NoSuchAlgorithmException;
 import java.util.concurrent.atomic.AtomicReference;
 
+/**
+ * This class represents the MainActivity that initializes the Firebase Firestore and checks if the device ID exists
+ * in the PlayerDB collection. If it does, it starts the MainMenuActivity, otherwise it starts the UserAccountActivity.
+ * It also runs a batch write operation using a Handler and Runnable with exponential backoff and maximum batch count.
+ * The batch write operation generates and writes a hash using the HashGenerator class.
+ */
 public class MainActivity extends AppCompatActivity {
     protected String qrCode;
-    //FirebaseFirestore db;
 
     private static final int MAX_BATCH_COUNT = 50; // maximum number of batches to send
     private HashGenerator hashGenerator;
@@ -45,13 +50,17 @@ public class MainActivity extends AppCompatActivity {
 
     };
 
+    /**
+     * Initializes the Firebase Firestore and checks if the device ID exists in the PlayerDB collection.
+     * If it does, it starts the MainMenuActivity, otherwise it starts the UserAccountActivity.
+     * It also initializes the HashGenerator and starts the batch write operation with a delay using a Handler
+     * and Runnable with exponential backoff and maximum batch count.
+     * @param savedInstanceState the saved state of the activity
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-//        setContentView(R.layout.map_layout);
-
-
+        
         // Checks if device is registered already or not
         String deviceID = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
