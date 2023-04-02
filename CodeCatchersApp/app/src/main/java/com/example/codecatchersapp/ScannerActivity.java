@@ -10,10 +10,11 @@ package com.example.codecatchersapp;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.Color;
+
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.os.Bundle;
-import android.os.Environment;
+
 import android.util.Log;
 import android.widget.Toast;
 
@@ -25,18 +26,13 @@ import androidx.core.content.ContextCompat;
 import com.budiyev.android.codescanner.CodeScanner;
 import com.budiyev.android.codescanner.CodeScannerView;
 import com.budiyev.android.codescanner.DecodeCallback;
-import com.google.zxing.BarcodeFormat;
-import com.google.zxing.MultiFormatWriter;
-import com.google.zxing.Result;
-import com.google.zxing.WriterException;
-import com.google.zxing.common.BitMatrix;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
+import com.google.zxing.Result;
+
+import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * UserAccountActivity is an extends AppCompatActivity.
@@ -52,7 +48,7 @@ public class ScannerActivity extends AppCompatActivity {
 
     // EXTRA VARS
     private String qrCodeValue;
-    private Bitmap qrBitmap;
+
 
     /**
      * Called when the activity is starting.
@@ -86,7 +82,6 @@ public class ScannerActivity extends AppCompatActivity {
             startScanner();
         }
     }
-
     /**
      * When called starts scanning for qr codes
      * on successful scan:
@@ -97,23 +92,37 @@ public class ScannerActivity extends AppCompatActivity {
     private void startScanner() {
         codeScanner = new CodeScanner(this, scannerView);
         codeScanner.setDecodeCallback(new DecodeCallback() {
+            // scan QR code, and onDecoded decode the QR code value
             @Override
             public void onDecoded(@NonNull Result result) {
+                Log.d(TAG, "onDecoded called");
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         onPause();
-                        //Snackbar.make(scannerView, result.getText(), Snackbar.LENGTH_LONG).show();
+                        try {
+                            qrCodeValue = result.getText();
+                            // Generate SHA-256 hash for the qrCodeValue
+                            MessageDigest md = MessageDigest.getInstance("SHA-256");
+                            byte[] hashBytes = md.digest(qrCodeValue.getBytes(StandardCharsets.UTF_8));
+                            String hash = HexBinaryConverter.bytesToHex(hashBytes);
+                            System.out.println("QR Code SHA-256 Hash: " + hash);
+                            Log.d(TAG, "QR Code SHA-256 Hash: " + hash);
 
-                        // RETURN THE QR CODE
-                        qrCodeValue = result.getText();
 
-                        qrBitmap = generateQRCode(qrCodeValue, 300, 300);
-                        //saveToInternalStorage(qrBitmap);
+                            // Convert the hash to binary representation
+                            String binaryHash = HexBinaryConverter.hexToBinary(hash);
+                            System.out.println("binaryHash: " + binaryHash);
 
-                        Intent successIntent = new Intent(ScannerActivity.this, ScoreRevealActivity.class);
-                        successIntent.putExtra("contents", qrCodeValue);
-                        startActivity(successIntent);
+                            // Start ScoreRevealActivity with hash value
+                            Intent successIntent = new Intent(ScannerActivity.this, ScoreRevealActivity.class);
+                            successIntent.putExtra("hash", hash);
+                            successIntent.putExtra("binaryHash", binaryHash);
+                            startActivity(successIntent);
+                        } catch (Exception e) {
+                            Log.e(TAG, "onDecoded: ", e);
+                        }
+
                     }
                 });
             }
@@ -126,14 +135,29 @@ public class ScannerActivity extends AppCompatActivity {
             startActivity(errorIntent);
         });
 
-        /*scannerView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                codeScanner.startPreview();
-            }
-        });*/
-
         codeScanner.startPreview();
+    }
+    private static String bytesToHex(byte[] bytes) {
+        StringBuilder sb = new StringBuilder();
+        for (byte b : bytes) {
+            sb.append(String.format("%02x", b));
+        }
+        return sb.toString();
+    }
+    /**
+     * Converts a hexadecimal string to a binary string.
+     * @param hex the hexadecimal string to be converted
+     * @return the binary string representation of the input hexadecimal string
+     */
+    // Takes a hexadecimal string as input and converts it to a binary string.
+    public static String hexToBinary(String hex) {
+        BigInteger bigInt = new BigInteger(hex, 16);
+        String bin = bigInt.toString(2);
+        int padding = hex.length() * 4 - bin.length();
+        if (padding > 0) {
+            bin = String.format("%0" + padding + "d", 0) + bin;
+        }
+        return bin;
     }
 
     @Override
@@ -152,55 +176,6 @@ public class ScannerActivity extends AppCompatActivity {
         super.onPause();
     }
 
-    // === USED FOR TESTING ===
-    private Bitmap generateQRCode(String data, int width, int height) {
-        try {
-            BitMatrix bitMatrix = new MultiFormatWriter().encode(data, BarcodeFormat.QR_CODE, width, height);
-            int[] pixels = new int[width * height];
-            for (int y = 0; y < height; y++) {
-                int offset = y * width;
-                for (int x = 0; x < width; x++) {
-                    pixels[offset + x] = bitMatrix.get(x, y) ? Color.BLACK : Color.WHITE;
-                }
-            }
-            Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-            bitmap.setPixels(pixels, 0, width, 0, 0, width, height);
-            return bitmap;
-        } catch (WriterException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-    // === USED FOR TESTING ===
-    private void saveToInternalStorage(Bitmap screenshot) {
-        try {
-            // Create a subdirectory within the internal storage directory
-            File directory = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + File.separator + "qr_screenshots");
-            if (!directory.exists()) {
-                directory.mkdirs();
-            }
-
-            // Create a file object for the screenshot with the current date and time as the file name
-            String fileName = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date()) + ".png";
-            File file = new File(directory, fileName);
-
-            // Write the screenshot to the file
-            FileOutputStream fos = new FileOutputStream(file);
-            screenshot.compress(Bitmap.CompressFormat.PNG, 100, fos);
-            fos.flush();
-            fos.close();
-
-            // For Testing
-            Toast.makeText(this, "Screenshot saved to " + file.getAbsolutePath(), Toast.LENGTH_SHORT).show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * When called handles permissions
-     */
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (requestCode == REQUEST_CODE) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -212,16 +187,5 @@ public class ScannerActivity extends AppCompatActivity {
         }
     }
 
-    /**
-     * When called returns the qr code value
-     *
-     * @return qrCodeValue
-     */
-    public String getQRCode() {
-        return qrCodeValue;
-    }
 
-    public Bitmap getQRBitmap() {
-        return qrBitmap;
-    }
 }

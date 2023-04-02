@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="MonsterView">
+        <attr name="binaryHash" format="string" />
+    </declare-styleable>
+</resources>
