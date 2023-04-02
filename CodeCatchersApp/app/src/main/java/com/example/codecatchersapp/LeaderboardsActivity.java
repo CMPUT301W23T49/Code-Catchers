@@ -7,16 +7,21 @@
  */
 package com.example.codecatchersapp;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
+import android.view.View;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -35,6 +40,10 @@ import java.util.Map;
 public class LeaderboardsActivity extends AppCompatActivity {
     FirebaseFirestore db;
     private LeaderboardsArrayAdapter leaderboardsArrayAdapter;
+
+    private FloatingActionButton backButton;
+    private FloatingActionButton hamburgerMenuButton;
+    private DialogFragment hamburgerMenuFragment;
     private ListView leaderboardsList;
     private ArrayList<Leaderboards> dataList = new ArrayList<>();
     private ArrayList<String> testScannedMonstersList = new ArrayList<>();
@@ -48,6 +57,7 @@ public class LeaderboardsActivity extends AppCompatActivity {
      * @param savedInstanceState If the activity is being re-initialized after previously being shut down
      *                           then this Bundle contains the data it most recently supplied.
      */
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +68,36 @@ public class LeaderboardsActivity extends AppCompatActivity {
         leaderboardsList = findViewById(R.id.leaderboard_list);
         leaderboardsArrayAdapter = new LeaderboardsArrayAdapter(this, dataList);
         leaderboardsList.setAdapter(leaderboardsArrayAdapter);
+        backButton = findViewById(R.id.back_button);
+        hamburgerMenuButton = findViewById(R.id.hamburger_menu);
+
+        // Set click listener for back button and hamburger menu button
+        backButton.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Navigates back to the SocialMenuActivity when clicked.
+             * @param view the clicked view.
+             */
+            @Override
+            public void onClick(View view) {
+                Intent socialMenuIntent = new Intent(LeaderboardsActivity.this, SocialMenuActivity.class);
+                startActivity(socialMenuIntent);
+            }
+        });
+
+        hamburgerMenuButton.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Shows the hamburger menu fragment when clicked
+             * @param view the clicked view.
+             */
+            @Override
+            public void onClick(View view) {
+
+                hamburgerMenuFragment =  new HamburgerMenuFragment(R.id.leaderboards);
+                hamburgerMenuFragment.show(getSupportFragmentManager(), "HamburgerFragment");
+
+
+            }
+        });
 
         CollectionReference collectionReference = db.collection("PlayerDB/");
         collectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {

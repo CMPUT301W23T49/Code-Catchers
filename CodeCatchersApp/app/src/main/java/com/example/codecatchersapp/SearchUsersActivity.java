@@ -92,6 +92,10 @@ public class SearchUsersActivity extends AppCompatActivity implements UserAdapte
         });
 
         hamburgerMenuButton.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Shows the hamburger menu fragment when clicked
+             * @param view the clicked view.
+             */
             @Override
             public void onClick(View view) {
 

@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFE4F3"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:id="@+id/user_profile">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/top_toolbar"
@@ -152,14 +153,19 @@
                 android:textStyle="bold"
                 android:textColor="#000000"/>
 
-            <TextView
+
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/sort_button"
                 android:text="Sort by: highest"
                 android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:elevation="0dp"
                 android:textSize="12sp"
                 android:textStyle="bold"
-                android:textColor="#000000"/>
+                android:textColor="#000000"
+                android:clickable="true"/>
         </LinearLayout>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/user_monster_rv"

@@ -69,4 +69,5 @@ public class Monster {
     public GeoPoint getGeoPoint(){
         return geoloc;
     }
+
 }

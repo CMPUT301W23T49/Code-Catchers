@@ -7,11 +7,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -28,6 +30,8 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -41,9 +45,12 @@ public class UserProfileFragment extends Fragment implements MonsterAdapter.Item
     private UserAccount user;
     private String deviceID;
     private FloatingActionButton backButton;
+    private FloatingActionButton hamburgerMenuButton;
+    private DialogFragment hamburgerMenuFragment;
     private TextView userName;
     private TextView userScore;
     private TextView userNumMonsters;
+    private Button sortButton;
 
     private ArrayList<Monster> monsters;
 
@@ -51,7 +58,6 @@ public class UserProfileFragment extends Fragment implements MonsterAdapter.Item
     private MonsterAdapter monsterAdapter;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     CollectionReference userCollection = db.collection("PlayerDB");
-    SearchUsersActivity searchUsersActivity;
 
     // TODO: set the monster image
 
@@ -63,6 +69,10 @@ public class UserProfileFragment extends Fragment implements MonsterAdapter.Item
         this.user = user;
 
     }
+    /**
+     * Constructor for UserProfileFragment that takes a deviceID String as a parameter.
+     * @param deviceID the deviceID for the user whose profile is being displayed
+     */
     public UserProfileFragment(String deviceID) {
         this.deviceID = deviceID;
 
@@ -75,7 +85,6 @@ public class UserProfileFragment extends Fragment implements MonsterAdapter.Item
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        searchUsersActivity = (SearchUsersActivity) context;
     }
 
     /**
@@ -88,7 +97,6 @@ public class UserProfileFragment extends Fragment implements MonsterAdapter.Item
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        Intent intent = getActivity().getIntent();
         View view = inflater.inflate(R.layout.user_profile, container, false);
         return view;
     }
@@ -106,12 +114,16 @@ public class UserProfileFragment extends Fragment implements MonsterAdapter.Item
         userScore = view.findViewById(R.id.user_score);
         userNumMonsters = view.findViewById(R.id.num_monster);
         rv_monsters = view.findViewById(R.id.user_monster_rv);
+        sortButton = view.findViewById((R.id.sort_button));
 
-        // Set onClickListener for the back button
+
+        // Set onClickListener for the back button and hamburger menu
         backButton = view.findViewById(R.id.back_button);
+        hamburgerMenuButton = view.findViewById(R.id.hamburger_menu);
         backButton.setOnClickListener(new View.OnClickListener() {
             /**
              * Navigates back to the SearchUsersActivity when clicked.
+             *
              * @param view the clicked view.
              */
             @Override
@@ -122,11 +134,30 @@ public class UserProfileFragment extends Fragment implements MonsterAdapter.Item
         });
 
 
+        hamburgerMenuButton.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Shows the hamburger menu fragment when clicked
+             *
+             * @param view the clicked view.
+             */
+            @Override
+            public void onClick(View view) {
+
+                hamburgerMenuFragment = new HamburgerMenuFragment(R.id.user_profile);
+                hamburgerMenuFragment.show(getParentFragmentManager(), "HamburgerFragment");
+
+
+            }
+        });
+
+
         // Get the users scanned monsters from the database
         monsters = new ArrayList<>();
 
+        // Check if a deviceID was passed into the constructor
         if (deviceID == null) {
 
+            // Get the user info by username
 
             Query query = userCollection.whereEqualTo("username", user.getUsername());
 
@@ -136,16 +167,26 @@ public class UserProfileFragment extends Fragment implements MonsterAdapter.Item
                     // Get the monster hashes from the user
                     ArrayList<Object> tempList = new ArrayList<>();
                     List<DocumentSnapshot> docs = queryDocumentSnapshots.getDocuments();
-                        for (DocumentSnapshot doc : docs) {
-                            Log.i("TAG", String.valueOf(doc));
-                            tempList = (ArrayList<Object>) doc.get("scannedMonsters");
-                        }
+                    for (DocumentSnapshot doc : docs) {
+                        Log.i("TAG", String.valueOf(doc));
+                        tempList = (ArrayList<Object>) doc.get("scannedMonsters");
+                    }
                     if (tempList != null) {
                         // Add the monster hashes to the monster list
                         for (Object hash : tempList) {
-                            monsters.add(new Monster(hash.toString()));
+                            Monster currMonster = new Monster(hash.toString());
+                            monsters.add(currMonster);
+                            System.out.println("Monster score: " + currMonster.getMonsterScore());
                         }
                         Log.i("TAG", "Length of monsters: " + monsters.size());
+                        Collections.sort(monsters, new Comparator<Monster>() {
+                            @Override
+                            public int compare(Monster monster1, Monster monster2) {
+                                return monster2.getMonsterScore().compareTo(monster1.getMonsterScore());
+
+                            }
+
+                        });
                     }
 
                 }
@@ -167,6 +208,33 @@ public class UserProfileFragment extends Fragment implements MonsterAdapter.Item
                     monsterAdapter.setClickListener(UserProfileFragment.this);
                     rv_monsters.setAdapter(monsterAdapter);
                     userName.setText(user.getUsername());
+                    sortButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            if (sortButton.getText().toString().contains("highest")) {
+                                sortButton.setText("Sort by: lowest");
+                                Collections.sort(monsters, new Comparator<Monster>() {
+                                    @Override
+                                    public int compare(Monster monster1, Monster monster2) {
+                                        return monster1.getMonsterScore().compareTo(monster2.getMonsterScore());
+                                    }
+                                });
+
+                            } else {
+                                sortButton.setText("Sort by: highest");
+                                Collections.sort(monsters, new Comparator<Monster>() {
+                                    @Override
+                                    public int compare(Monster monster1, Monster monster2) {
+                                        return monster2.getMonsterScore().compareTo(monster1.getMonsterScore());
+
+                                    }
+
+                                });
+
+                            }
+                            monsterAdapter.notifyDataSetChanged();
+                        }
+                    });
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
@@ -175,6 +243,7 @@ public class UserProfileFragment extends Fragment implements MonsterAdapter.Item
                 }
             });
         } else {
+            // Get the user info by deviceID
             userCollection.whereEqualTo("deviceID", deviceID).get()
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
@@ -192,9 +261,20 @@ public class UserProfileFragment extends Fragment implements MonsterAdapter.Item
                                 if (tempList != null) {
                                     // Add the monster hashes to the monster list
                                     for (Object hash : tempList) {
-                                        monsters.add(new Monster(hash.toString()));
+                                        Monster currMonster = new Monster(hash.toString());
+                                        monsters.add(currMonster);
+                                        System.out.println("Monster score: " + currMonster.getMonsterScore());
                                     }
+
                                     Log.i("TAG", "Length of monsters: " + monsters.size());
+                                    Collections.sort(monsters, new Comparator<Monster>() {
+                                        @Override
+                                        public int compare(Monster monster1, Monster monster2) {
+                                            return monster2.getMonsterScore().compareTo(monster1.getMonsterScore());
+
+                                        }
+
+                                    });
                                 }
                                 // Calculate the user's total score from their scanned monsters
                                 Integer tempScore = 0;
@@ -211,14 +291,42 @@ public class UserProfileFragment extends Fragment implements MonsterAdapter.Item
                                 monsterAdapter.setClickListener(UserProfileFragment.this);
                                 rv_monsters.setAdapter(monsterAdapter);
                                 userName.setText(user.getUsername());
+                                sortButton.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        if (sortButton.getText().toString().contains("highest")) {
+                                            sortButton.setText("Sort by: lowest");
+                                            Collections.sort(monsters, new Comparator<Monster>() {
+                                                @Override
+                                                public int compare(Monster monster1, Monster monster2) {
+                                                    return monster1.getMonsterScore().compareTo(monster2.getMonsterScore());
+                                                }
+                                            });
+
+                                        } else {
+                                            sortButton.setText("Sort by: highest");
+                                            Collections.sort(monsters, new Comparator<Monster>() {
+                                                @Override
+                                                public int compare(Monster monster1, Monster monster2) {
+                                                    return monster2.getMonsterScore().compareTo(monster1.getMonsterScore());
+
+                                                }
+
+                                            });
+
+                                        }
+                                        monsterAdapter.notifyDataSetChanged();
+                                    }
+                                });
                             }
 
                         }
                     });
-        }
+
+
 
         }
-
+    }
 
 
 
