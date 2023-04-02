@@ -4,14 +4,27 @@ import android.Manifest;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
+import com.firebase.geofire.GeoFire;
+import com.firebase.geofire.GeoLocation;
+import com.firebase.geofire.GeoQuery;
+import com.firebase.geofire.GeoQueryEventListener;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -20,16 +33,28 @@ import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.example.codecatchersapp.databinding.ActivityMapDisplayBinding;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.GeoPoint;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * MapActivity is an implementation of the OnMapReadyCallback interface.
  * It is responsible for displaying a Google Map with markers on it.
  */
 
-public class MapDisplayActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapDisplayActivity extends FragmentActivity implements OnMapReadyCallback{
 
     /**
      * The GoogleMap object used to display the map.
@@ -40,6 +65,12 @@ public class MapDisplayActivity extends FragmentActivity implements OnMapReadyCa
     private ActivityMapDisplayBinding binding;
     private FusedLocationProviderClient mFusedLocationProviderClient;
     private LatLng mCurrentLocation;
+    private EditText searchBox;
+    private Button searchButton;
+
+    private int latitude;
+    private int longitude;
+
 
     /**
      * Called when the activity is starting.
@@ -62,10 +93,12 @@ public class MapDisplayActivity extends FragmentActivity implements OnMapReadyCa
         binding = ActivityMapDisplayBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         MapView mapView = (MapView) findViewById(R.id.map);
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
+
 
         // Get the FusedLocationProviderClient
         mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
@@ -94,6 +127,56 @@ public class MapDisplayActivity extends FragmentActivity implements OnMapReadyCa
                         }
                     }
                 });
+
+        // Initialize the search box and button
+        searchButton = findViewById(R.id.search_button);
+
+        // Set OnClickListener for the search button
+        searchButton.setOnClickListener(v -> {
+            DialogFragment dialog = new SearchRadiusFragment();
+            dialog.show(getSupportFragmentManager(), "SearchRadiusDialogFragment");
+            Log.d("Opening Dialog", "onSearchRadiusSelected: ");
+        });
+
+    }
+
+    public void onSearchRadiusSelected(int radius) {
+        // Query Firebase for QR codes within the specified radius
+        DatabaseReference qrCodeRef = FirebaseDatabase.getInstance().getReference("MonsterDB");
+        GeoFire geoFire = new GeoFire(qrCodeRef);
+        GeoQuery geoQuery = geoFire.queryAtLocation(new GeoLocation(mCurrentLocation.latitude, mCurrentLocation.longitude), radius);
+        List<Marker> markers = new ArrayList<>();
+
+        geoQuery.addGeoQueryEventListener(new GeoQueryEventListener() {
+            @Override
+            public void onKeyEntered(String key, GeoLocation location) {
+                // Create LatLng objects for each QR code within the radius
+                LatLng qrCodeLocation = new LatLng(location.latitude, location.longitude);
+                MarkerOptions markerOptions = new MarkerOptions().position(qrCodeLocation);
+                markers.add(mMap.addMarker(markerOptions));
+            }
+
+            @Override
+            public void onKeyExited(String key) {
+            }
+            @Override
+            public void onKeyMoved(String key, GeoLocation location) {
+            }
+            @Override
+            public void onGeoQueryReady() {
+                // Clear any existing markers on the map and add the new markers
+                mMap.clear();
+                for (Marker marker : markers) {
+                    mMap.addMarker(new MarkerOptions().position(marker.getPosition()));
+                }
+            }
+
+            @Override
+            public void onGeoQueryError(DatabaseError error) {
+                // Handle the error here
+            }
+
+        });
     }
 
     /**
@@ -104,4 +187,5 @@ public class MapDisplayActivity extends FragmentActivity implements OnMapReadyCa
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
     }
+
 }
