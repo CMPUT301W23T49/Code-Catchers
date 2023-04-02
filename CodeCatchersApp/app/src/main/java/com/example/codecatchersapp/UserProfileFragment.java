@@ -93,7 +93,6 @@ public class UserProfileFragment extends Fragment implements MonsterAdapter.Item
         return view;
     }
 
-
     /**
      * Called when the view hierarchy associated with the fragment has been created.
      * @param view the view hierarchy associated with the fragment

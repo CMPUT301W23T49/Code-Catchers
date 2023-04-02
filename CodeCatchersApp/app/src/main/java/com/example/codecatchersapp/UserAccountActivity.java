@@ -29,6 +29,11 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 
+import java.io.Serializable;
+import android.provider.Settings;
+import android.content.Context;
+
+
 import org.checkerframework.checker.nullness.qual.NonNull;
 
 /**
@@ -98,8 +103,6 @@ public class UserAccountActivity extends AppCompatActivity {
         Log.d(TAG, "Device ID: " + deviceID);
 
         UserAccount userAccount = new UserAccount(userName, contactInfo, deviceID);
-
-        System.out.println("got here");
 
         db = FirebaseFirestore.getInstance();
         CollectionReference collectionReference = db.collection("PlayerDB");

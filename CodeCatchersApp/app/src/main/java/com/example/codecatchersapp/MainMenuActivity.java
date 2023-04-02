@@ -11,9 +11,15 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+/**
+ * The MainMenuActivity class represents the main menu screen of the app. It contains buttons for navigating to the scanner,
+ * social menu, and map screens.
+ */
 public class MainMenuActivity extends AppCompatActivity {
-
-
+    /**
+     * Called when the activity is starting. Sets the layout and sets up the click listeners for the buttons.
+     * @param savedInstanceState saved state bundle
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +31,7 @@ public class MainMenuActivity extends AppCompatActivity {
         Button socialButton = findViewById(R.id.social_button);
         Button mapButton = findViewById(R.id.map_button);
 
+        // Set up the click listeners for the buttons
         scanQrButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,9 +54,9 @@ public class MainMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent mapIntent = new Intent(MainMenuActivity.this, MapActivity.class);
+                Intent mapIntent = new Intent(MainMenuActivity.this, MapDisplayActivity.class);
                 startActivity(mapIntent);
             }
         });
-    }}
-
+    }
+}

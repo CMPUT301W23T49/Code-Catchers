@@ -27,12 +27,12 @@ public class MonsterNameGenerator {
      */
     public MonsterNameGenerator() {
         nameDict = new HashMap<Integer, String[]>();
-        nameDict.put(0, new String[]{"Mega", "Super"});
-        nameDict.put(1, new String[]{"Saiyan", "Glo"});
-        nameDict.put(2, new String[]{"Tron", "Hype"});
-        nameDict.put(3, new String[]{"Mega", "Ultra"});
-        nameDict.put(4, new String[]{"Spectral", "Sonic"});
-        nameDict.put(5, new String[]{"BarnZ", "Barney"});
+        nameDict.put(0, new String[]{"Mega", "Zap"});
+        nameDict.put(1, new String[]{"Hype", "Glo"});
+        nameDict.put(2, new String[]{"Hex", "Vex"});
+        nameDict.put(3, new String[]{"Tron", "Flo"});
+        nameDict.put(4, new String[]{"Fury", "X"});
+        nameDict.put(5, new String[]{"BarnZ", "BarnE"});
         random = new Random();
     }
     /**
