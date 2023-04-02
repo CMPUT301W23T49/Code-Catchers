@@ -74,4 +74,5 @@ public class Monster {
     public Double getLongitude() {
         return Longitude;
     }
+
 }

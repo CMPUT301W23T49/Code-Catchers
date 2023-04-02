@@ -62,7 +62,6 @@ public class SocialMenuActivity extends AppCompatActivity {
                 // Handle button click
                Intent searchUsersIntent = new Intent(SocialMenuActivity.this, LeaderboardsActivity.class);
 
-                Intent searchUsersIntent = new Intent(SocialMenuActivity.this, LeaderboardsActivity.class);
                 startActivity(searchUsersIntent);
             }
         });
