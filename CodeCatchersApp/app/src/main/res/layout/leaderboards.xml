@@ -8,6 +8,7 @@
     tools:layout_editor_absoluteX="0dp"
     tools:layout_editor_absoluteY="-52dp"
     android:id="@+id/leaderboards">
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/top_toolbar"
         android:layout_width="match_parent"
@@ -49,21 +50,6 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-    <Switch
-        android:id="@+id/sort_by_switch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:switchMinWidth="75dp"
-        android:switchPadding="50dp"
-        android:text=""
-        android:textOff="NO"
-        android:textOn="YES"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title"
-        app:layout_constraintVertical_bias="0.0" />
-
     <TextView
         android:id="@+id/title"
         android:layout_width="334dp"
@@ -82,34 +68,56 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.086" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Highest total score"
-        android:textColor="#000000"
-        app:layout_constraintEnd_toStartOf="@+id/sort_by_switch"
+
+    <Button
+        android:id="@+id/totalScore"
+        android:layout_width="125dp"
+        android:layout_height="57dp"
+        android:text="Highest Sum"
+        android:textSize="12sp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="132dp"
+        app:layout_constraintEnd_toStartOf="@id/mostMonsters"
+        app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
+        app:layout_constraintTop_toBottomOf="@id/title"
+        app:layout_constraintVertical_chainStyle="packed"/>
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Most unique monsters"
-        android:textColor="#000000"
+    <Button
+        android:id="@+id/mostMonsters"
+        android:layout_width="115dp"
+        android:layout_height="61dp"
+        android:text="Most Monsters"
+        android:textSize="12sp"
+        tools:layout_editor_absoluteX="131dp"
+        tools:layout_editor_absoluteY="128dp"
+        app:layout_constraintEnd_toStartOf="@id/highestScoringMonster"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toEndOf="@id/totalScore"
+        app:layout_constraintTop_toBottomOf="@id/title"
+        app:layout_constraintVertical_chainStyle="packed"/>
+
+    <Button
+        android:id="@+id/highestScoringMonster"
+        android:layout_width="152dp"
+        android:layout_height="66dp"
+        android:text="Highest Scoring Monster"
+        android:textSize="12sp"
+        tools:layout_editor_absoluteX="259dp"
+        tools:layout_editor_absoluteY="123dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/sort_by_switch"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
-
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toEndOf="@id/mostMonsters"
+        app:layout_constraintTop_toBottomOf="@id/title"
+        app:layout_constraintVertical_chainStyle="packed"/>
 
     <ListView
         android:id="@+id/leaderboard_list"
-        android:layout_width="409dp"
-        android:layout_height="580dp"
+        android:layout_width="407dp"
+        android:layout_height="530dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sort_by_switch"
-        app:layout_constraintVertical_bias="0.128" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
