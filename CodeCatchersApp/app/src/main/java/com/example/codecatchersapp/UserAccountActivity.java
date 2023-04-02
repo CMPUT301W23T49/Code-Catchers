@@ -13,6 +13,7 @@ import static android.content.ContentValues.TAG;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
@@ -98,6 +99,12 @@ public class UserAccountActivity extends AppCompatActivity {
      */
     public void saveAccount(String userName, String contactInfo){
         Log.d(TAG, "Saving account for user: " + userName);
+
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("username", userName);
+        editor.apply();
+
         Context context = getApplicationContext();
         String deviceID = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
         Log.d(TAG, "Device ID: " + deviceID);
