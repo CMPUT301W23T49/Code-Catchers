@@ -8,6 +8,7 @@
 package com.example.codecatchersapp;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 
@@ -100,6 +101,7 @@ public class ScannerActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         onPause();
+                        
                         try {
                             qrCodeValue = result.getText();
                             // Generate SHA-256 hash for the qrCodeValue
@@ -175,7 +177,11 @@ public class ScannerActivity extends AppCompatActivity {
         super.onPause();
     }
 
+    /**
+     * When called handles permissions
+     */
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == REQUEST_CODE) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 startScanner();
@@ -185,6 +191,4 @@ public class ScannerActivity extends AppCompatActivity {
             }
         }
     }
-
-
 }

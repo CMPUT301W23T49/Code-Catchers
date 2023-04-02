@@ -5,6 +5,7 @@
  @version 1.0
  @since [Saturday March 4 2021]
  */
+
 package com.example.codecatchersapp;                                     // Package name
 
 import android.content.Context;                                          // Import the Context class
@@ -34,6 +35,7 @@ public class MonsterView extends View {                                  // Mons
         super(context, attrs);                                            // Call the super class constructor
 
                                                                           // Get the binaryHash value from the attributes
+
         TypedArray a = context.getTheme().obtainStyledAttributes(attrs, R.styleable.MonsterView, 0, 0);
         try {
             binaryHash = a.getString(R.styleable.MonsterView_binaryHash); // Get the binaryHash value
@@ -86,6 +88,7 @@ public class MonsterView extends View {                                  // Mons
         this.monster = monster;                             // Set the monster object
         invalidate();                                       // redraw the view
     }
+
     /**
      * The onMeasure method is used to set the size of the MonsterView.
      * It Measures the desired size of the view and determines the actual size based on the MeasureSpec parameters.
@@ -93,6 +96,7 @@ public class MonsterView extends View {                                  // Mons
      * @param widthMeasureSpec The width of the MonsterView, horizontal space requirements as imposed by the parent.
      * @param heightMeasureSpec The height of the MonsterView, vertical space requirements as imposed by the parent.
      */
+
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         int desiredWidth = 1000;                                 // Set the width of MonsterView

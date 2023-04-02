@@ -59,7 +59,7 @@ public class MainMenuActivityTest {
 
         // Test map button
         checkIdDisplayed(R.id.map_button);
-        intended(hasComponent(MapActivity.class.getName()));
+        intended(hasComponent(MapDisplayActivity.class.getName()));
         pressBack();
     }
     private void checkIdDisplayed(int id) {

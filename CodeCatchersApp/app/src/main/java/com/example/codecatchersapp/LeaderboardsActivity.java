@@ -38,6 +38,7 @@ public class LeaderboardsActivity extends AppCompatActivity {
     private ListView leaderboardsList;
     private ArrayList<Leaderboards> dataList = new ArrayList<>();
     private ArrayList<String> testScannedMonstersList = new ArrayList<>();
+    private Integer usersScore;
 
     // TODO: Sort highest->lowest. Sort by most unique monsters
     /**
@@ -69,8 +70,9 @@ public class LeaderboardsActivity extends AppCompatActivity {
                 // Iterates through every userID in PlayerDB collection
                 for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
                     String userID = documentSnapshot.getId();
+
                     String username = documentSnapshot.getString("userName");
-                    //Log.e("Success", "USERNAME: " + username);
+                    Log.e("Success", "USERNAME: " + username);
 
                     // String:Object, as fields can contain a string, number, or list of Strings
                     Map<String, Object> usersData = documentSnapshot.getData();
@@ -80,34 +82,18 @@ public class LeaderboardsActivity extends AppCompatActivity {
                     // Iterates through every field for every userID
                     for (String key : usersData.keySet()) {
                         // key can be userName, contactInfo, or scannedMonsters.
-                         ArrayList<String> testScannedMonstersList = new ArrayList<>();
+                        ArrayList<String> testScannedMonstersList = new ArrayList<>();
                         String temporaryScore;
                         Integer totalScore = 0;
 
-                        // Get all monster IDs of monsters scanned from userID
-                        if (key.compareTo("scannedMonsters") == 0) {
-                            // When in this if statement, usersData.get(key) is an array containing all monsters collected by user
-                            testScannedMonstersList = (ArrayList<String>) usersData.get(key);
+                        // Get user's total score
+                        if (key.compareTo("score") == 0) {
+                            System.out.println("User "+ username + " has a score " + usersData.get(key) );
+                            usersScore = Integer.parseInt((String)usersData.get(key));
 
-                            System.out.println("User "+ username + " has a field '" + key + "' that contains the arraylist of monsterIDs: " + usersData.get(key));
-                            System.out.print("List of monster IDs: ");
-
-                            // Iterate through all monster IDs
-                            for (String currMonsterID : testScannedMonstersList){
-                                System.out.print(currMonsterID + ", ");
-
-                                try {
-                                    Score score = new Score(currMonsterID);
-                                    temporaryScore = score.getScore();
-                                    totalScore += Integer.parseInt(temporaryScore);
-                                } catch (NoSuchAlgorithmException e) {
-                                    throw new RuntimeException(e);
-                                }
-
-                            }
                             System.out.println();
 
-                            listOfLeaderboardEntries.add(new Leaderboards(username, totalScore.toString()));
+                            listOfLeaderboardEntries.add(new Leaderboards(username, usersData.get(key).toString()));
                         }
                     }
                 }
