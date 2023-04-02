@@ -160,7 +160,7 @@ public class CameraActivity extends AppCompatActivity {
                         // Saves the bitmap photo to Firestore database
                         toFirestore(bitmapPhoto.bitmap);
                         try {
-                            Thread.sleep(10);  // hacky thread sleep to swap intent
+                            Thread.sleep(10);
                             SwapIntent();
                         } catch (InterruptedException e) {
                             e.printStackTrace();

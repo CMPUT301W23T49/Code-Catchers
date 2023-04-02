@@ -93,7 +93,8 @@ public class ScannerActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         onPause();
-                        
+
+                        // does stuff
                         try {
                             qrCodeValue = result.getText();
                             // Generate SHA-256 hash for the qrCodeValue

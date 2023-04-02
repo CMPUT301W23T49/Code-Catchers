@@ -109,7 +109,7 @@ public class QROptionsActivity extends AppCompatActivity {
                     saveGeolocation();
                     //
                 } else {
-                    Monster monster = new Monster(binaryHash);
+                    Monster monster = new Monster(binaryHash);      // changed to use binaryHash for better DB implementation
                     CollectionReference collectionReference = db.collection("MonsterDB");
                     DocumentReference documentReference = collectionReference.document(shaHash);
                     documentReference.set(monster);
@@ -124,7 +124,7 @@ public class QROptionsActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
 
-                // if user only presses continue
+                // if user only presses continue => exit
                 if (locationPhotoToggleState == false && geolocationToggleState == false) {
                     goMainMenu();
                 }

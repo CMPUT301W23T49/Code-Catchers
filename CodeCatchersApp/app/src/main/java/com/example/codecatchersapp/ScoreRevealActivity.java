@@ -46,7 +46,7 @@ public class ScoreRevealActivity extends AppCompatActivity {
                 // Start the next activity here
                 Intent intent = new Intent(ScoreRevealActivity.this, QROptionsActivity.class);
                 intent.putExtra("shaHash", hash);
-                intent.putExtra("binaryHash", binaryHash);
+                intent.putExtra("binaryHash", binaryHash);  // changed to binaryHash to work with DB better
                 startActivity(intent);
             }
         });
