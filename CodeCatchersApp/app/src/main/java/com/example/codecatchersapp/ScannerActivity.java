@@ -95,7 +95,7 @@ public class ScannerActivity extends AppCompatActivity {
             // scan QR code, and onDecoded decode the QR code value
             @Override
             public void onDecoded(@NonNull Result result) {
-                Log.d(TAG, "onDecoded called");
+                Log.d(TAG, "onDecoded called"); //TODO: remove this
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -106,13 +106,12 @@ public class ScannerActivity extends AppCompatActivity {
                             MessageDigest md = MessageDigest.getInstance("SHA-256");
                             byte[] hashBytes = md.digest(qrCodeValue.getBytes(StandardCharsets.UTF_8));
                             String hash = HexBinaryConverter.bytesToHex(hashBytes);
-                            System.out.println("QR Code SHA-256 Hash: " + hash);
-                            Log.d(TAG, "QR Code SHA-256 Hash: " + hash);
-
+                            System.out.println("QR Code SHA-256 Hash: " + hash); //TODO: remove this
+                            Log.d(TAG, "QR Code SHA-256 Hash: " + hash);   //TODO: remove this
 
                             // Convert the hash to binary representation
                             String binaryHash = HexBinaryConverter.hexToBinary(hash);
-                            System.out.println("binaryHash: " + binaryHash);
+                            System.out.println("binaryHashCONVERT: " + binaryHash); //TODO: remove this
 
                             // Start ScoreRevealActivity with hash value
                             Intent successIntent = new Intent(ScannerActivity.this, ScoreRevealActivity.class);

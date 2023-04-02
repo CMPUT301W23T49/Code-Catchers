@@ -43,7 +43,7 @@ public class HexBinaryConverter {
         if (padding > 0) {
             bin = String.format("%0" + padding + "d", 0) + bin;
         }
-        return bin;
+        return bin.substring(0, Math.min(bin.length(), 6)); // Return only the first 6 bits
     }
     /**
      * Generates a random string, calculates its SHA-256 hash value, and returns the hash value as an array of bytes.
