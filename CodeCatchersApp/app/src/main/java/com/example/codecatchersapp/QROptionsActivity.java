@@ -62,7 +62,7 @@ public class QROptionsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.qr_options);
         Intent intent = getIntent();
-        String monsterHash = "lols";//intent.getStringExtra("monsterHash");
+        String monsterHash = intent.getStringExtra("monsterHash");
         String userID = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
         EditText commentEditText = findViewById(R.id.editTextNewMonComment);
         Switch geolocationToggle = findViewById(R.id.geolocation_switch);
@@ -144,7 +144,7 @@ public class QROptionsActivity extends AppCompatActivity {
                 geoFirestore.setLocation(monsterHash, geoloc);
 
                 // save to playerDB
-                CollectionReference collectionReferenceGeoLocation = db.collection("PlayerDB/" + userID + "/Monsters/" + "monsterHash" + "/geolocationData");
+                CollectionReference collectionReferenceGeoLocation = db.collection("PlayerDB/" + userID + "/Monsters/" + monsterHash + "/geolocationData");
                 Map<String, Object> coordinates = new HashMap<>();
                 coordinates.put("geoPoint", geoloc);
 
@@ -171,7 +171,7 @@ public class QROptionsActivity extends AppCompatActivity {
             String userName;
 
             public void saveComment() {
-                CollectionReference collectionReference = db.collection("PlayerDB/" + userID + "/Monsters/" + "monsterHash" + "/comments");
+                CollectionReference collectionReference = db.collection("PlayerDB/" + userID + "/Monsters/" + monsterHash + "/comments");
                 final String ogComment = commentEditText.getText().toString();
                 HashMap<String, String> data = new HashMap<>();
 
