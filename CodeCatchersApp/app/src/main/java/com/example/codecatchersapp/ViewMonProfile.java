@@ -52,6 +52,7 @@ public class ViewMonProfile extends AppCompatActivity {
     private CommentAdapter commentAdapter;
 
     private TextView monsterName;
+    private MonsterView monsterView;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     /**
@@ -63,12 +64,16 @@ public class ViewMonProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_monster);
         Intent intent = getIntent();
+        String userName = intent.getStringExtra("userName");
         String selectedMonsterHash = intent.getStringExtra("monsterHash");
         String selectedMonsterName = intent.getStringExtra("monsterName");
         String selectedMonsterScore = intent.getStringExtra("monsterScore");
 
         monsterName = findViewById(R.id.monster_name_monster_profile);
+        monsterView = findViewById(R.id.monster_image);
+
         monsterName.setText(selectedMonsterName);
+        monsterView.setBinaryHash(selectedMonsterHash);
 
         FloatingActionButton backButton = findViewById(R.id.back_button);
         backButton.setOnClickListener(new View.OnClickListener() {
