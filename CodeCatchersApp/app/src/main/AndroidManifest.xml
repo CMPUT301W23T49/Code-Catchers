@@ -44,8 +44,6 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAy96PHvxzybGU6DSk8TRcMcXexH6GEzsk" />
 
-        <!--
-        Currently produces Failed Processing Manifest error
         <activity
             android:name=".MapDisplayActivity"
             android:exported="false"
@@ -92,7 +90,14 @@
             android:exported="true"></activity>
         <activity
             android:name=".ScoreRevealActivity"
-            android:exported="true"></activity>
+            android:exported="true">
+        </activity>
+
+        <activity
+            android:name=".MapActivity"
+            android:exported="true">
+        </activity>
+        
     </application>
 
 </manifest>
