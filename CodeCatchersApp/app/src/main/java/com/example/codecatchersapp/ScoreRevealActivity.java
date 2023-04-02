@@ -38,7 +38,7 @@ public class ScoreRevealActivity extends AppCompatActivity {
 
         String displayScore;
         try {
-            Score score = new Score(hash); // New score object that calculates score based on contents delivered from QR
+            Score score = new Score(binaryHash); // New score object that calculates score based on contents delivered from QR
             displayScore = score.getScore();
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);

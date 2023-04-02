@@ -70,11 +70,11 @@ public class MonsterView extends View {                                  // Mons
         int monsterWidth = 1000;                             // Set the width of the monster
         int monsterHeight = 1000;                            // Set the height of the monster
 
-        float offsetX = (getWidth() - monsterWidth) / 2f;    // Calculate the horizontal offset
-        float offsetY = (getHeight() - monsterHeight) / 2f;  // Calculate the vertical offset
+        float scaleX = (float) getWidth() / monsterWidth;    // Calculate the horizontal scale
+        float scaleY = (float) getHeight() / monsterHeight;  // Calculate the vertical scale
 
         canvas.save();                                       // Save the canvas state
-        canvas.translate(offsetX, offsetY);                  // Translate the canvas
+        canvas.scale(scaleX, scaleY);                        // Scale the canvas
 
         monster.generateMonster(canvas, binaryHash);         // Generate the monster
 
@@ -123,6 +123,13 @@ public class MonsterView extends View {                                  // Mons
             height = Math.min(desiredHeight, heightSize); // Set the height to the minimum of the desired height and the height size
         } else {                                          // If the height mode is unspecified
             height = desiredHeight;                       // Set the height to the desired height
+        }
+
+        float aspectRatio = (float) desiredWidth / desiredHeight; // Get the aspect ratio for the MonsterView
+        if (width < height * aspectRatio) {                       // If the width is less than the height with the aspect ratio taken into account
+            height = (int) (width / aspectRatio);                 // Set the height to the width divided by the aspect ratio
+        } else {
+            width = (int) (height * aspectRatio);                 // Otherwise set the width to the height multiplied by the aspect ratio
         }
         setMeasuredDimension(width, height);              // Set the measured dimension
     }
