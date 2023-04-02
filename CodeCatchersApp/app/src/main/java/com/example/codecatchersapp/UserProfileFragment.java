@@ -61,6 +61,7 @@ public class UserProfileFragment extends Fragment implements MonsterAdapter.Item
 
     // TODO: set the monster image
 
+
     /**
      * Constructor for UserProfileFragment that takes a UserAccount object as a parameter.
      * @param user the user whose profile is being displayed
