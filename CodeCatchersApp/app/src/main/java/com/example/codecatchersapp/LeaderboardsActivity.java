@@ -142,7 +142,7 @@ public class LeaderboardsActivity extends AppCompatActivity {
                 for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
                     String userID = documentSnapshot.getId();
 
-                    String username = documentSnapshot.getString("userName");
+                    String username = documentSnapshot.getString("username");
                     Log.e("Success", "USERNAME: " + username);
 
                     // String:Object, as fields can contain a string, number, or list of Strings

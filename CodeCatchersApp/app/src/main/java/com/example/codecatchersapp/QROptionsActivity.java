@@ -38,6 +38,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import org.imperiumlabs.geofirestore.GeoFirestore;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -48,6 +49,9 @@ import java.util.Map;
  */
 public class QROptionsActivity extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+    String newTotalScore;
+    String newMonsterCount;
+    String newHighestMonsterScore;
 
     /**
      Takes in choices for photo and geolocation, saves comment to database
@@ -69,9 +73,20 @@ public class QROptionsActivity extends AppCompatActivity {
         Switch locationPhotoToggle = findViewById(R.id.photo_switch);
         Button continueMonSettings = findViewById(R.id.continue_photo_button);
 
+        String displayScore;
         double latitude = 0;
         double longitude = 0;
         final int PERMISSIONS_REQUEST_CODE = 123;
+
+        // Get score of scanned monster
+        try {
+            Score score = new Score(monsterHash);
+            displayScore = score.getScore();
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+
+        updateLeaderboardFields(displayScore);
 
         // TODO: Can be made better by only prompting when user toggles for geo-location in future, but issues arise due to use of "this" in line 50
         // This if statement prompts the user for permission to access their location, if not already granted.
@@ -208,4 +223,95 @@ public class QROptionsActivity extends AppCompatActivity {
                 Intent intent = new Intent(QROptionsActivity.this, MainMenuActivity.class);
                 startActivity(intent);
             }
-        }
+
+    private void updateLeaderboardFields(String scoreString){
+        String userID = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
+        DocumentReference documentReferenceUserScoreField = db.collection("PlayerDB/").document(userID);
+
+        documentReferenceUserScoreField.get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        if (documentSnapshot.exists()){
+                            Map<String, Object> data = documentSnapshot.getData();
+
+                            String oldTotalScore = (String) data.get("totalscore");
+                            System.out.println("\n\n\n" + scoreString + "    " + oldTotalScore);
+                            String oldMonsterCount = (String) data.get("monstercount");
+                            String oldHighestMonsterScore = (String) data.get("highestmonsterscore");
+
+                            Log.e("E","OLD TOTAL SCORE VALUE: " + oldTotalScore);
+                            Log.e("E","OLD TOTAL MONSTER COUNT: " + oldMonsterCount);
+                            Log.e("E","OLD HIGHEST MONSTER SCORE: " + oldHighestMonsterScore);
+
+                            newTotalScore = String.valueOf(Integer.parseInt(oldTotalScore) + Integer.parseInt(scoreString));
+                            newMonsterCount = String.valueOf(Integer.parseInt(oldMonsterCount) + 1);
+                            newHighestMonsterScore = oldHighestMonsterScore;
+
+                            // If new score is larger than previous highest score
+                            if (Integer.parseInt(scoreString) > Integer.parseInt(oldHighestMonsterScore)) {
+                                newHighestMonsterScore = scoreString;
+                            }
+
+                            Log.e("E","NEW TOTAL SCORE VALUE: " + newTotalScore);
+                            Log.e("E","NEW TOTAL MONSTER COUNT: " + newMonsterCount);
+                            Log.e("E","NEW HIGHEST MONSTER SCORE: " + newHighestMonsterScore);
+
+                            Map<String, Object> newLeaderboardInfo = new HashMap<>();
+                            newLeaderboardInfo.put("totalscore", newTotalScore);
+                            newLeaderboardInfo.put("monstercount", newMonsterCount);
+                            newLeaderboardInfo.put("highestmonsterscore", newHighestMonsterScore);
+
+                            for (Map.Entry<String, Object> entry : newLeaderboardInfo.entrySet()){
+                                System.out.println("ENTERED LOOP");
+                                System.out.println("Key: " + entry.getKey() + " Value: " + entry.getValue());
+                            }
+
+                            documentReferenceUserScoreField.update(newLeaderboardInfo)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void unused) {
+                                            Log.e("E","UPDATED FIELDS");
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Log.e("E","COULD NOT UPDATE FIELDS");
+                                        }
+                                    });
+
+                        } else {
+                            Log.e("E","DOCUMENT DOES NOT EXIST");
+                        }
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.e("E","ERROR GETTING DOCUMENT");
+                    }
+                });
+
+        Log.e("E","OOL NEW TOTAL SCORE VALUE: " + newTotalScore);
+        Log.e("E","OOL NEW TOTAL MONSTER COUNT: " + newMonsterCount);
+        Log.e("E","OOL NEW HIGHEST MONSTER SCORE: " + newHighestMonsterScore);
+
+        /*
+        documentReferenceUserScoreField.update(newLeaderboardInfo)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Log.e("E","SUCCESSFULLY UPDATED FIELDS!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.e("E","FAILED UPDATING FIELDS IN DOCUMENT");
+                    }
+                });
+
+         */
+    }
+}
