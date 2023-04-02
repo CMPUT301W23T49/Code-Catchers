@@ -5,31 +5,32 @@ import android.provider.Settings;
 import java.io.Serializable;
 
 public class UserAccount implements Serializable {
-    private String username;
+    private String userName;
     private String contactInfo;
     private String deviceID;
+
 
     public UserAccount() {
         // Required default constructor for Firebase
     }
 
-    public UserAccount(String username, String contactInfo, String deviceID) {
-        this.username = username;
+    public UserAccount(String userName, String contactInfo, String deviceID) {
+        this.userName = userName;
         this.contactInfo = contactInfo;
         this.deviceID = deviceID;
     }
 
-    public UserAccount(String username, String contactInfo){
-        this.username = username;
+    public UserAccount(String userName, String contactInfo){
+        this.userName = userName;
         this.contactInfo = contactInfo;
     };
 
     public String getUsername() {
-        return username;
+        return userName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUsername(String userName) {
+        this.userName = userName;
     }
 
     public String getContactInfo() {
@@ -44,8 +45,8 @@ public class UserAccount implements Serializable {
         return deviceID;
     }
 
-    public void setDeviceID(String deviceId) {
-        this.deviceID = deviceId;
+    public void setDeviceID(String deviceID) {
+        this.deviceID = deviceID;
     }
 }
 
