@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -45,6 +46,8 @@ public class SearchUsersActivity extends AppCompatActivity implements UserAdapte
     private SearchView searchView;
     private RecyclerView rvUsers;
     private FloatingActionButton backButton;
+    private FloatingActionButton hamburgerMenuButton;
+    private DialogFragment hamburgerMenuFragment;
     private List<UserAccount> users;
     private List<UserAccount> searchedUsers;
     private UserAdapter userAdapter;
@@ -70,10 +73,12 @@ public class SearchUsersActivity extends AppCompatActivity implements UserAdapte
         searchView = findViewById(R.id.search_view);
         searchView.clearFocus();
         backButton = findViewById(R.id.back_button);
+        hamburgerMenuButton = findViewById(R.id.hamburger_menu);
+
         rvUsers = findViewById(R.id.rv_users);
         rvUsers.setLayoutManager(new LinearLayoutManager(this));
 
-        // Set click listener for back button
+        // Set click listener for back button and hamburger menu button
         backButton.setOnClickListener(new View.OnClickListener() {
             /**
              * Navigates back to the SocialMenuActivity when clicked.
@@ -83,6 +88,17 @@ public class SearchUsersActivity extends AppCompatActivity implements UserAdapte
             public void onClick(View view) {
                 Intent socialMenuIntent = new Intent(SearchUsersActivity.this, SocialMenuActivity.class);
                 startActivity(socialMenuIntent);
+            }
+        });
+
+        hamburgerMenuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                hamburgerMenuFragment =  new HamburgerMenuFragment(R.id.search_users);
+                hamburgerMenuFragment.show(getSupportFragmentManager(), "HamburgerFragment");
+
+
             }
         });
 
@@ -118,12 +134,12 @@ public class SearchUsersActivity extends AppCompatActivity implements UserAdapte
         searchedUsers = new ArrayList<>();
 
         // Get the users stored in the DB and add them to the list of users
-        Query query = userCollection.orderBy("userName");
+        Query query = userCollection.orderBy("username");
         query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 for (DocumentSnapshot doc : task.getResult()) {
-                    users.add(new UserAccount(doc.getString("userName"), doc.getString("contactInfo")));
+                    users.add(new UserAccount(doc.getString("username"), doc.getString("contactInfo")));
                 }
                 // Set the searched users equal to the found users
                 searchedUsers = users;
@@ -187,6 +203,7 @@ public class SearchUsersActivity extends AppCompatActivity implements UserAdapte
             super.onBackPressed();
         }
     }
+
 
     /**
      * Handles the onItemClick event for the userAdapter. Ensures that the keyboard is hidden.

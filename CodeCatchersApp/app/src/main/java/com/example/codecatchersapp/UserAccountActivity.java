@@ -28,9 +28,11 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+
 import java.io.Serializable;
 import android.provider.Settings;
 import android.content.Context;
+
 
 import org.checkerframework.checker.nullness.qual.NonNull;
 
@@ -73,11 +75,11 @@ public class UserAccountActivity extends AppCompatActivity {
             public void onClick(View view) {
                 // Get the username entered by the user
 
-                String username = etUsername.getText().toString().trim();
+                String userName = etUsername.getText().toString().trim();
                 String contactInfo = etContact.getText().toString().trim();
 
                 // Create a new UserAccount object and set the username
-                saveAccount(username,contactInfo);
+                saveAccount(userName,contactInfo);
 
                 Intent intent = new Intent(UserAccountActivity.this, MainMenuActivity.class);
                 //startActivity(intent);

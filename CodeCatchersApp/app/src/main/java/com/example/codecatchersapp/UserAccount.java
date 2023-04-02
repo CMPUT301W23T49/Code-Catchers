@@ -14,6 +14,7 @@ public class UserAccount implements Serializable {
     private String contactInfo;
     private String deviceID;
 
+
     public UserAccount() {
         // Required default constructor for Firebase
     }
@@ -29,6 +30,7 @@ public class UserAccount implements Serializable {
         this.contactInfo = contactInfo;
         this.deviceID = deviceID;
     }
+
 
     /**
      * Constructs a UserAccount object with the specified username and contact information.
@@ -48,12 +50,14 @@ public class UserAccount implements Serializable {
         return userName;
     }
 
+
     /**
      * Sets the username of the user account.
      * @param username The new username for the user account.
      */
     public void setUsername(String username) {
         this.userName = username;
+
     }
 
     /**
@@ -79,6 +83,7 @@ public class UserAccount implements Serializable {
     public String getDeviceID() {
         return deviceID;
     }
+
 
     /**
      * Sets the device ID of the user account.

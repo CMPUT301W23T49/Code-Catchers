@@ -14,7 +14,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -26,18 +25,10 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import org.checkerframework.checker.units.qual.A;
-import org.w3c.dom.Text;
-
-import java.lang.reflect.Array;
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 /**
  * This class represents the fragment displaying a user profile. It extends Fragment and implements MonsterAdapter.ItemClickListener.
@@ -48,6 +39,7 @@ import java.util.Map;
  */
 public class UserProfileFragment extends Fragment implements MonsterAdapter.ItemClickListener {
     private UserAccount user;
+    private String deviceID;
     private FloatingActionButton backButton;
     private TextView userName;
     private TextView userScore;
@@ -57,9 +49,8 @@ public class UserProfileFragment extends Fragment implements MonsterAdapter.Item
 
     private RecyclerView rv_monsters;
     private MonsterAdapter monsterAdapter;
-    FirebaseFirestore db;
-    CollectionReference userCollection;
-
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    CollectionReference userCollection = db.collection("PlayerDB");
     SearchUsersActivity searchUsersActivity;
 
     // TODO: set the monster image
@@ -70,6 +61,10 @@ public class UserProfileFragment extends Fragment implements MonsterAdapter.Item
      */
     public UserProfileFragment(UserAccount user) {
         this.user = user;
+
+    }
+    public UserProfileFragment(String deviceID) {
+        this.deviceID = deviceID;
 
     }
 
@@ -105,16 +100,12 @@ public class UserProfileFragment extends Fragment implements MonsterAdapter.Item
      */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        db = FirebaseFirestore.getInstance();
-        userCollection = db.collection("PlayerDB");
         super.onViewCreated(view, savedInstanceState);
         // Get the TextViews for the user profile and the RecyclerView for the scanned monsters
         userName = view.findViewById(R.id.user_name_label);
         userScore = view.findViewById(R.id.user_score);
         userNumMonsters = view.findViewById(R.id.num_monster);
         rv_monsters = view.findViewById(R.id.user_monster_rv);
-
-        userName.setText(user.getUsername());
 
         // Set onClickListener for the back button
         backButton = view.findViewById(R.id.back_button);
@@ -134,54 +125,104 @@ public class UserProfileFragment extends Fragment implements MonsterAdapter.Item
         // Get the users scanned monsters from the database
         monsters = new ArrayList<>();
 
-        Query query = userCollection.whereEqualTo("userName", user.getUsername());
-        query.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                    @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        // Get the monster hashes from the user
-                        ArrayList<Object> tempList = new ArrayList<>();
-                        List<DocumentSnapshot> docs = queryDocumentSnapshots.getDocuments();
+        if (deviceID == null) {
+
+
+            Query query = userCollection.whereEqualTo("username", user.getUsername());
+
+            query.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                @Override
+                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                    // Get the monster hashes from the user
+                    ArrayList<Object> tempList = new ArrayList<>();
+                    List<DocumentSnapshot> docs = queryDocumentSnapshots.getDocuments();
                         for (DocumentSnapshot doc : docs) {
                             Log.i("TAG", String.valueOf(doc));
                             tempList = (ArrayList<Object>) doc.get("scannedMonsters");
                         }
+                    if (tempList != null) {
                         // Add the monster hashes to the monster list
                         for (Object hash : tempList) {
                             monsters.add(new Monster(hash.toString()));
                         }
                         Log.i("TAG", "Length of monsters: " + monsters.size());
-
-
                     }
-                }).addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                // Calculate the user's total score from their scanned monsters
-                Integer tempScore = 0;
-                for (Monster monster : monsters) {
-                    tempScore += Integer.parseInt(monster.getMonsterScore());
 
                 }
+            }).addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    // Calculate the user's total score from their scanned monsters
+                    Integer tempScore = 0;
+                    for (Monster monster : monsters) {
+                        tempScore += Integer.parseInt(monster.getMonsterScore());
 
-                // Set the TextViews and RecyclerView for the user's profile
-                userScore.setText(tempScore.toString());
-                userNumMonsters.setText(String.valueOf(monsters.size()));
-                rv_monsters.setLayoutManager(new GridLayoutManager(view.getContext(), 2));
-                monsterAdapter = new MonsterAdapter(monsters);
-                monsterAdapter.setClickListener(UserProfileFragment.this);
-                rv_monsters.setAdapter(monsterAdapter);
+                    }
 
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getContext(), "Failed to load user data", Toast.LENGTH_SHORT).show();
-            }
-        });
+                    // Set the TextViews and RecyclerView for the user's profile
+                    userScore.setText(tempScore.toString());
+                    userNumMonsters.setText(String.valueOf(monsters.size()));
+                    rv_monsters.setLayoutManager(new GridLayoutManager(view.getContext(), 2));
+                    monsterAdapter = new MonsterAdapter(monsters);
+                    monsterAdapter.setClickListener(UserProfileFragment.this);
+                    rv_monsters.setAdapter(monsterAdapter);
+                    userName.setText(user.getUsername());
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(getContext(), "Failed to load user data", Toast.LENGTH_SHORT).show();
+                }
+            });
+        } else {
+            userCollection.whereEqualTo("deviceID", deviceID).get()
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            QuerySnapshot querySnapshot = task.getResult();
+                            if (querySnapshot != null && !querySnapshot.isEmpty()) {
+                                DocumentSnapshot doc = querySnapshot.getDocuments().get(0);
+                                Log.i("User Info", doc.toString());
+                                String name = (String) doc.get("username");
+                                String contact = (String) doc.get("contactInfo");
+                                this.user = new UserAccount(name, contact, deviceID);
+                                // Get the monster hashes from the user
+                                ArrayList<Object> tempList = new ArrayList<>();
+                                tempList = (ArrayList<Object>) doc.get("scannedMonsters");
+
+                                if (tempList != null) {
+                                    // Add the monster hashes to the monster list
+                                    for (Object hash : tempList) {
+                                        monsters.add(new Monster(hash.toString()));
+                                    }
+                                    Log.i("TAG", "Length of monsters: " + monsters.size());
+                                }
+                                // Calculate the user's total score from their scanned monsters
+                                Integer tempScore = 0;
+                                for (Monster monster : monsters) {
+                                    tempScore += Integer.parseInt(monster.getMonsterScore());
+
+                                }
+
+                                // Set the TextViews and RecyclerView for the user's profile
+                                userScore.setText(tempScore.toString());
+                                userNumMonsters.setText(String.valueOf(monsters.size()));
+                                rv_monsters.setLayoutManager(new GridLayoutManager(view.getContext(), 2));
+                                monsterAdapter = new MonsterAdapter(monsters);
+                                monsterAdapter.setClickListener(UserProfileFragment.this);
+                                rv_monsters.setAdapter(monsterAdapter);
+                                userName.setText(user.getUsername());
+                            }
+
+                        }
+                    });
+        }
+
+        }
 
 
 
-    }
+
+
 
     /**
      * Handles the onItemClick event for the monsterAdapter. It gets the selected Monster object from

@@ -41,7 +41,24 @@
         app:layout_constraintBottom_toBottomOf="@+id/top_toolbar"
         app:layout_constraintStart_toStartOf="parent"
         app:rippleColor="#00FFFFFF"
-        app:srcCompat="?attr/actionModeCloseDrawable" />
+        app:srcCompat="?attr/actionModeCloseDrawable"
+        app:elevation="0dp"
+        app:pressedTranslationZ="0dp"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/hamburger_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:clickable="true"
+            android:tint="#00FFFFFF"
+            app:backgroundTint="#00FFFFFF"
+            app:layout_constraintBottom_toBottomOf="@+id/top_toolbar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:rippleColor="#00FFFFFF"
+            app:elevation="0dp"
+            app:pressedTranslationZ="0dp"
+            app:srcCompat="@drawable/hamburger_icon" />
 
     </androidx.appcompat.widget.Toolbar>
 
