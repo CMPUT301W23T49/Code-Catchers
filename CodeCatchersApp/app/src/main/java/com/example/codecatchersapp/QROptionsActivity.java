@@ -144,7 +144,7 @@ public class QROptionsActivity extends AppCompatActivity {
                 geoFirestore.setLocation(monsterHash, geoloc);
 
                 // save to playerDB
-                CollectionReference collectionReferenceGeoLocation = db.collection("PlayerDB/" + userID + "/Monsters/ " + "monsterHash" + "/geolocationData");
+                CollectionReference collectionReferenceGeoLocation = db.collection("PlayerDB/" + userID + "/Monsters/" + "monsterHash" + "/geolocationData");
                 Map<String, Object> coordinates = new HashMap<>();
                 coordinates.put("geoPoint", geoloc);
 
