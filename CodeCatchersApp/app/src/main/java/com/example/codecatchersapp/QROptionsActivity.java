@@ -74,7 +74,7 @@ public class QROptionsActivity extends AppCompatActivity {
 
         // Get score of scanned monster
         try {
-            Score score = new Score(monsterHash);
+            Score score = new Score(binaryHash);
             displayScore = score.getScore();
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
