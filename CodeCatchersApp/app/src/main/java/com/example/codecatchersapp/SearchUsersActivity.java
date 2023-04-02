@@ -206,6 +206,9 @@ public class SearchUsersActivity extends AppCompatActivity implements UserAdapte
         } else {
             super.onBackPressed();
         }
+        // Set the previously hidden views to visible
+        searchView.setVisibility(View.VISIBLE);
+        rvUsers.setVisibility(View.VISIBLE);
     }
 
 
@@ -232,5 +235,8 @@ public class SearchUsersActivity extends AppCompatActivity implements UserAdapte
                 .replace(R.id.search_users, profileFragment)
                 .addToBackStack(null)
                 .commit();
+        // Hide the views from SearchUsersActivity
+        searchView.setVisibility(View.GONE);
+        rvUsers.setVisibility(View.GONE);
     }
 }
