@@ -15,7 +15,7 @@
         style="@style/Widget.MaterialComponents.Button.TextButton"
         android:tint="#00FFFFFF"
         app:backgroundTint="#00FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/barneyimg"
+        app:layout_constraintBottom_toTopOf="@+id/monster_image"
         app:layout_constraintStart_toStartOf="parent"
         app:rippleColor="#00FFFFFF"
         app:srcCompat="?attr/actionModeCloseDrawable" />
@@ -32,8 +32,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/barneyimg"
+    <com.example.codecatchersapp.MonsterView
+        android:id="@+id/monster_image"
         android:layout_width="322dp"
         android:layout_height="260dp"
         app:layout_constraintBottom_toTopOf="@+id/monster_name_monster_profile"

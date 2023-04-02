@@ -58,9 +58,12 @@ public class MonsterAdapter extends RecyclerView.Adapter<MonsterAdapter.ViewHold
         String monsterName = monster.getMonsterName();
         String monsterScore = monster.getMonsterScore();
 
-        // Set the TextViews for the monster
+        // Set the TextViews and the MonsterView for the monster
         holder.monsterName.setText(monsterName);
         holder.monsterScore.setText(monsterScore);
+        if (holder.monsterImage != null) {
+            holder.monsterImage.setBinaryHash(monsterHash);
+        }
     }
 
     /**
@@ -78,7 +81,7 @@ public class MonsterAdapter extends RecyclerView.Adapter<MonsterAdapter.ViewHold
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView monsterName;
         public TextView monsterScore;
-        public ImageView monsterImage;
+        public MonsterView monsterImage;
 
         /**
          * Constructs a new ViewHolder instance for the specified item view.
