@@ -44,8 +44,8 @@ public class ScannerActivity extends AppCompatActivity {
     private static final int REQUEST_CODE = 100; // https://stackoverflow.com/questions/38507965/what-does-camera-request-code-mean-in-android
 
     // CODE SCANNING VARS
-    private CodeScanner codeScanner;
-    private CodeScannerView scannerView;
+    CodeScanner codeScanner;
+    CodeScannerView scannerView;
 
     // EXTRA VARS
     private String qrCodeValue;
@@ -90,7 +90,7 @@ public class ScannerActivity extends AppCompatActivity {
      * on failed scan:
      * Swap intent to ScanErrorActivity
      */
-    private void startScanner() {
+    void startScanner() {
         codeScanner = new CodeScanner(this, scannerView);
         codeScanner.setDecodeCallback(new DecodeCallback() {
             // scan QR code, and onDecoded decode the QR code value
