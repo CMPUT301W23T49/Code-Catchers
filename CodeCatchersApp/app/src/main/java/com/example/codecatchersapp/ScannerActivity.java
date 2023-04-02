@@ -8,14 +8,9 @@
 package com.example.codecatchersapp;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-
-import android.graphics.Canvas;
-import android.graphics.Paint;
 import android.os.Bundle;
-
 import android.util.Log;
 import android.widget.Toast;
 
@@ -27,13 +22,11 @@ import androidx.core.content.ContextCompat;
 import com.budiyev.android.codescanner.CodeScanner;
 import com.budiyev.android.codescanner.CodeScannerView;
 import com.budiyev.android.codescanner.DecodeCallback;
-
 import com.google.zxing.Result;
 
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 
 /**
  * UserAccountActivity is an extends AppCompatActivity.
@@ -96,24 +89,21 @@ public class ScannerActivity extends AppCompatActivity {
             // scan QR code, and onDecoded decode the QR code value
             @Override
             public void onDecoded(@NonNull Result result) {
-                Log.d(TAG, "onDecoded called"); //TODO: remove this
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         onPause();
-                        
+
+                        // does stuff
                         try {
                             qrCodeValue = result.getText();
                             // Generate SHA-256 hash for the qrCodeValue
                             MessageDigest md = MessageDigest.getInstance("SHA-256");
                             byte[] hashBytes = md.digest(qrCodeValue.getBytes(StandardCharsets.UTF_8));
                             String hash = HexBinaryConverter.bytesToHex(hashBytes);
-                            System.out.println("QR Code SHA-256 Hash: " + hash); //TODO: remove this
-                            Log.d(TAG, "QR Code SHA-256 Hash: " + hash);   //TODO: remove this
 
                             // Convert the hash to binary representation
                             String binaryHash = HexBinaryConverter.hexToBinary(hash);
-                            System.out.println("binaryHashCONVERT: " + binaryHash); //TODO: remove this
 
                             // Start ScoreRevealActivity with hash value
                             Intent successIntent = new Intent(ScannerActivity.this, ScoreRevealActivity.class);

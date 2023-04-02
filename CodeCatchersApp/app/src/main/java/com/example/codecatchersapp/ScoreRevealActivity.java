@@ -1,22 +1,19 @@
 package com.example.codecatchersapp;
 
-import android.app.Activity;
 import android.content.Intent;
+
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
-import java.math.BigInteger;
-import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Random;
 
@@ -44,7 +41,7 @@ public class ScoreRevealActivity extends AppCompatActivity {
 
         String displayScore;
         try {
-            Score score = new Score(hash); // New score object that calculates score based on contents delivered from QR
+            Score score = new Score(binaryHash); // New score object that calculates score based on contents delivered from QR
             displayScore = score.getScore();
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
@@ -56,7 +53,8 @@ public class ScoreRevealActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // Start the next activity here
                 Intent intent = new Intent(ScoreRevealActivity.this, QROptionsActivity.class);
-                intent.putExtra("monsterHash", hash);
+                intent.putExtra("shaHash", hash);
+                intent.putExtra("binaryHash", binaryHash);  // changed to binaryHash to work with DB better
                 startActivity(intent);
             }
         });

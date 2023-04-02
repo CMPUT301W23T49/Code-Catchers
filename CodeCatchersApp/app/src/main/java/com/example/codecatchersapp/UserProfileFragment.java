@@ -61,6 +61,7 @@ public class UserProfileFragment extends Fragment implements MonsterAdapter.Item
 
     // TODO: set the monster image
 
+
     /**
      * Constructor for UserProfileFragment that takes a UserAccount object as a parameter.
      * @param user the user whose profile is being displayed
@@ -345,8 +346,9 @@ public class UserProfileFragment extends Fragment implements MonsterAdapter.Item
         // Get the selected monster from the adapter
         Monster monster = monsterAdapter.getMonster(position);
 
-        // Create a new intent for the ViewMinProfile activity and pass the monster's info to it
+        // Create a new intent for the ViewMinProfile activity and pass the user and monster's info to it
         Intent monsterIntent = new Intent(getContext(), ViewMonProfile.class);
+        monsterIntent.putExtra("userName", user.getUsername());
         monsterIntent.putExtra("monsterHash", monster.getMonsterHash());
         monsterIntent.putExtra("monsterName", monster.getMonsterName());
         monsterIntent.putExtra("monsterScore", monster.getMonsterScore());
