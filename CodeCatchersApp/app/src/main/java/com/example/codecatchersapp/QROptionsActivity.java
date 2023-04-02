@@ -1,5 +1,7 @@
 package com.example.codecatchersapp;
 
+import static android.content.ContentValues.TAG;
+
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
@@ -27,6 +29,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.GeoPoint;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -123,29 +126,29 @@ public class QROptionsActivity extends AppCompatActivity {
                 // TODO: change SomeUserID to current user's ID, change someMonsterID to monster hash
                 db = FirebaseFirestore.getInstance();
 
-                Monster monster = new Monster("someMonsterID", finalLatitude, finalLongitude);
+                GeoPoint geoloc = new GeoPoint(finalLatitude,finalLongitude);
+
+                Monster monster = new Monster("someMonsterID", geoloc);
                 CollectionReference collectionReference = db.collection("MonsterDB");
                 DocumentReference documentReference = collectionReference.document("someMonsterID");
                 documentReference.set(monster);
 
-                CollectionReference collectionReferenceGeoLocation = db.collection("PlayerDB/someUserID1/Monsters/someMonsterID/geolocationData");
+                CollectionReference collectionReferenceGeoLocation = db.collection("PlayerDB/someUserID1/Monsters/someMonsterID/geoPoint");
                 Map<String, Object> coordinates = new HashMap<>();
-                coordinates.put("Latitude", finalLatitude);
-                coordinates.put("Longitude", finalLongitude);
+                coordinates.put("geoPoint", geoloc);
 
-                collectionReferenceGeoLocation
-                        .document("Location Data")
-                        .update(coordinates)
+                DocumentReference docReference = collectionReferenceGeoLocation.document("geoPoint");
+                docReference.set(coordinates)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
-                            public void onSuccess (Void unused){
-                                Log.d("Success", "LOCATION ADDED SUCCESSFULLY");
+                            public void onSuccess(Void aVoid) {
+                                Log.d(TAG, "Location added to Firestore");
                             }
                         })
-                        .addOnFailureListener(new OnFailureListener(){
+                        .addOnFailureListener(new OnFailureListener() {
                             @Override
-                            public void onFailure(@NonNull Exception e){
-                                Log.d("Failure", "Location addition failed"+ e.toString());
+                            public void onFailure(@NonNull Exception e) {
+                                Log.w(TAG, "Error adding location to Firestore", e);
                             }
                         });
             }
