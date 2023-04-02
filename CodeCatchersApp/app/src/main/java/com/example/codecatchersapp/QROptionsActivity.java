@@ -1,5 +1,7 @@
 package com.example.codecatchersapp;
 
+import static android.content.ContentValues.TAG;
+
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
@@ -131,28 +133,24 @@ public class QROptionsActivity extends AppCompatActivity {
                 DocumentReference documentReference = collectionReference.document("someMonsterID");
                 documentReference.set(monster);
 
-                CollectionReference collectionReferenceGeoLocation = db.collection("PlayerDB/someUserID1/Monsters/someMonsterID/geolocationData");
-                /*Map<String, Object> coordinates = new HashMap<>();
-                coordinates.put("Latitude", finalLatitude);
-                coordinates.put("Longitude", finalLongitude);*/
+                CollectionReference collectionReferenceGeoLocation = db.collection("PlayerDB/someUserID1/Monsters/someMonsterID/geoPoint");
+                Map<String, Object> coordinates = new HashMap<>();
+                coordinates.put("geoPoint", geoloc);
 
-                DocumentReference docReference = collectionReferenceGeoLocation.document("GeoPoint");
-                docReference.set(geoloc);
-                /*
-                docReference
-                        .set(geoloc)
+                DocumentReference docReference = collectionReferenceGeoLocation.document("geoPoint");
+                docReference.set(coordinates)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
-                            public void onSuccess (Void unused){
-                                Log.d("Success", "LOCATION ADDED SUCCESSFULLY");
+                            public void onSuccess(Void aVoid) {
+                                Log.d(TAG, "Location added to Firestore");
                             }
                         })
-                        .addOnFailureListener(new OnFailureListener(){
+                        .addOnFailureListener(new OnFailureListener() {
                             @Override
-                            public void onFailure(@NonNull Exception e){
-                                Log.d("Failure", "Location addition failed"+ e.toString());
+                            public void onFailure(@NonNull Exception e) {
+                                Log.w(TAG, "Error adding location to Firestore", e);
                             }
-                        });*/
+                        });
             }
 
             /**
