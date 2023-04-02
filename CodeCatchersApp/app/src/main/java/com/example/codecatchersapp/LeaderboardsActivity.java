@@ -78,6 +78,9 @@ public class LeaderboardsActivity extends AppCompatActivity {
         mostMonsters = findViewById(R.id.mostMonsters);
         highestIndividualMonsterButton = findViewById(R.id.highestScoringMonster);
 
+        // Upon opening leaderboards screen, display sorted by total score
+        displayLeaderboard("totalscore");
+
         // Set click listener for back button and hamburger menu button
         backButton.setOnClickListener(new View.OnClickListener() {
             /**
