@@ -227,19 +227,7 @@ public class CameraActivity extends AppCompatActivity {
         HashMap<String, Object> imageMap = new HashMap<>();
         imageMap.put("base64", base64Image);
 
-        docRef.set(imageMap)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        // Document saved successfully
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        // Error saving document
-                    }
-                });
+        docRef.set(imageMap);
     }
 
     // for testing
