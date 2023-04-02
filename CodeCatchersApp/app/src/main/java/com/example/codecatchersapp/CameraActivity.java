@@ -8,44 +8,6 @@
  */
 package com.example.codecatchersapp;
 
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Matrix;
-import android.os.Bundle;
-import android.os.Environment;
-import android.util.Base64;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
-
-
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Locale;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
-import io.fotoapparat.Fotoapparat;
-import io.fotoapparat.configuration.CameraConfiguration;
-import io.fotoapparat.error.CameraErrorListener;
-import io.fotoapparat.exception.camera.CameraException;
-import io.fotoapparat.parameter.ScaleType;
-import io.fotoapparat.result.BitmapPhoto;
-import io.fotoapparat.result.PhotoResult;
-import io.fotoapparat.result.WhenDoneListener;
-import io.fotoapparat.view.CameraView;
-
 import static io.fotoapparat.selector.AspectRatioSelectorsKt.standardRatio;
 import static io.fotoapparat.selector.FlashSelectorsKt.autoFlash;
 import static io.fotoapparat.selector.FlashSelectorsKt.autoRedEye;
@@ -60,14 +22,40 @@ import static io.fotoapparat.selector.ResolutionSelectorsKt.highestResolution;
 import static io.fotoapparat.selector.SelectorsKt.firstAvailable;
 import static io.fotoapparat.selector.SensorSensitivitySelectorsKt.highestSensorSensitivity;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Bundle;
+import android.util.Base64;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
+
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import java.io.ByteArrayOutputStream;
+import java.util.HashMap;
+
+import io.fotoapparat.Fotoapparat;
+import io.fotoapparat.configuration.CameraConfiguration;
+import io.fotoapparat.error.CameraErrorListener;
+import io.fotoapparat.exception.camera.CameraException;
+import io.fotoapparat.parameter.ScaleType;
+import io.fotoapparat.result.BitmapPhoto;
+import io.fotoapparat.result.PhotoResult;
+import io.fotoapparat.result.WhenDoneListener;
+import io.fotoapparat.view.CameraView;
 
 /**
  * CameraActivity is an activity that allows the user to capture a photo using the device's camera
@@ -172,7 +160,7 @@ public class CameraActivity extends AppCompatActivity {
                         // Saves the bitmap photo to Firestore database
                         toFirestore(bitmapPhoto.bitmap);
                         try {
-                            Thread.sleep(1);  // hacky thread sleep to swap intent
+                            Thread.sleep(10);  // hacky thread sleep to swap intent
                             SwapIntent();
                         } catch (InterruptedException e) {
                             e.printStackTrace();
@@ -188,7 +176,7 @@ public class CameraActivity extends AppCompatActivity {
      * @return void.
      */
     private void SwapIntent() {
-        Intent intent = new Intent(CameraActivity.this, ScannerActivity.class);
+        Intent intent = new Intent(CameraActivity.this, MainMenuActivity.class);
         startActivity(intent);
     }
 
