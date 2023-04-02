@@ -51,7 +51,7 @@ public class ScoreRevealActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // Start the next activity here
                 Intent intent = new Intent(ScoreRevealActivity.this, QROptionsActivity.class);
-                intent.putExtra("monsterHash", binaryHash);
+                intent.putExtra("monsterHash", hash);
                 startActivity(intent);
             }
         });
