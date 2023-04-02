@@ -1,3 +1,11 @@
+/**
+ * This class represents a camera activity that captures a photo using the device camera and stores it in Firebase.
+ * It also resizes the captured photo and saves it to the device's internal storage.
+ * The class uses the Fotoapparat library for camera functionalities and the Firebase Firestore SDK for database operations.
+ * @author Kyle Karpyshyn
+ * @version 1.0
+ * @since 2023-04-01
+ */
 package com.example.codecatchersapp;
 
 import android.content.Intent;
@@ -61,6 +69,10 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+/**
+ * CameraActivity is an activity that allows the user to capture a photo using the device's camera
+ * and save it to Firebase Firestore and local storage. The photo can also be resized and displayed.
+ */
 public class CameraActivity extends AppCompatActivity {
     private static final String LOGGING_TAG = "Fotoapparat";
     private CameraView cameraView;
@@ -69,6 +81,9 @@ public class CameraActivity extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     DocumentReference docRef = db.collection("PlayerDB/someUserID1/Monsters/someMonsterID/photo").document("local_image");
 
+    /**
+     * The camera configuration used to configure the device's camera.
+     */
     private CameraConfiguration cameraConfiguration = CameraConfiguration
             .builder()
             .photoResolution(standardRatio(
@@ -89,6 +104,12 @@ public class CameraActivity extends AppCompatActivity {
             .sensorSensitivity(highestSensorSensitivity())
             .build();
 
+    /**
+     * Called when the activity is created. Initializes the camera view and capture button, and
+     * creates the Fotoapparat instance.
+     *
+     * @param savedInstanceState The saved instance state, if any.
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.camera_view);
@@ -102,6 +123,9 @@ public class CameraActivity extends AppCompatActivity {
         takePictureOnClick();
     }
 
+    /**
+     * Creates a new Fotoapparat instance with the desired configuration.
+     */
     private Fotoapparat createFotoapparat() {
         return Fotoapparat
                 .with(this)
@@ -117,6 +141,9 @@ public class CameraActivity extends AppCompatActivity {
                 .build();
     }
 
+    /**
+     * Sets the takePicture() method to be called when the capture button is clicked.
+     */
     private void takePictureOnClick() {
         capture.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -126,6 +153,9 @@ public class CameraActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Captures a photo using the device's camera and saves it to Firebase
+     */
     private void takePicture() {
         PhotoResult photoResult = fotoapparat.takePicture();
 
@@ -139,9 +169,10 @@ public class CameraActivity extends AppCompatActivity {
                             return;
                         }
 
+                        // Saves the bitmap photo to Firestore database
                         toFirestore(bitmapPhoto.bitmap);
                         try {
-                            Thread.sleep(100);
+                            Thread.sleep(1);  // hacky thread sleep to swap intent
                             SwapIntent();
                         } catch (InterruptedException e) {
                             e.printStackTrace();
@@ -150,62 +181,43 @@ public class CameraActivity extends AppCompatActivity {
                 });
     }
 
+    /**
+     * SwapIntent method starts a new ScannerActivity for barcode scanning.
+     * The method creates an Intent object to start a new activity and starts it.
+     * @throws NullPointerException if CameraActivity context is null.
+     * @return void.
+     */
     private void SwapIntent() {
         Intent intent = new Intent(CameraActivity.this, ScannerActivity.class);
         startActivity(intent);
     }
 
-    private Bitmap resizeBitmap(Bitmap image) {
-        int width = image.getWidth();
-        int height = image.getHeight();
-        float scaleWidth = ((float) 216) / width;
-        float scaleHeight = ((float) 384) / height;
-
-        Matrix matrix = new Matrix();
-        matrix.postScale(scaleWidth, scaleHeight);
-
-        Bitmap resizedBitmap = Bitmap.createBitmap(image, 0, 0, width, height, matrix, false);
-
-        return resizedBitmap;
-    }
-
+    /**
+     * Called when the activity is starting or resuming.
+     * This method starts the Fotoapparat camera and prepares it for use.
+     * @see Fotoapparat#start()
+     */
     @Override
     protected void onStart() {
         super.onStart();
         fotoapparat.start();
     }
 
+    /**
+     * Called when the activity is no longer visible to the user.
+     * This method stops the Fotoapparat camera and releases its resources.
+     * @see Fotoapparat#stop()
+     */
     @Override
     protected void onStop() {
         super.onStop();
         fotoapparat.stop();
     }
 
-    private void saveToInternalStorage(Bitmap screenshot) {
-        try {
-            // Create a subdirectory within the internal storage directory
-            File directory = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + File.separator + "qr_screenshots");
-            if (!directory.exists()) {
-                directory.mkdirs();
-            }
-
-            // Create a file object for the screenshot with the current date and time as the file name
-            String fileName = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date()) + ".png";
-            File file = new File(directory, fileName);
-
-            // Write the screenshot to the file
-            FileOutputStream fos = new FileOutputStream(file);
-            screenshot.compress(Bitmap.CompressFormat.PNG, 100, fos);
-            fos.flush();
-            fos.close();
-
-            // For Testing
-            Toast.makeText(this, "Screenshot saved to " + file.getAbsolutePath(), Toast.LENGTH_SHORT).show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
+    /**
+     * Converts a Bitmap to a base64-encoded string and saves it to Firestore.
+     * @param bitmap the Bitmap to be saved
+     */
     private void toFirestore(Bitmap bitmap) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
@@ -230,6 +242,7 @@ public class CameraActivity extends AppCompatActivity {
                 });
     }
 
+    // for testing
     private void getFireStoreImage() {
         docRef.get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
