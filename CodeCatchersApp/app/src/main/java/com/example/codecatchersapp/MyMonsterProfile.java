@@ -1,3 +1,9 @@
+/**
+ * a class
+ * @author CMPUT301W23T49
+ * @version 1.0
+ * @since [Monday April 3]
+ */
 package com.example.codecatchersapp;
 
 import static android.content.ContentValues.TAG;
@@ -41,7 +47,6 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

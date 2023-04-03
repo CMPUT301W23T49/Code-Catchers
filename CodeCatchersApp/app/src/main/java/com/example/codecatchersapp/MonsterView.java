@@ -27,8 +27,6 @@ public class MonsterView extends View {                                  // Mons
     private String binaryHash;                                           // Binary hash value
     /**
      * The MonsterView constructor is used to initialize the MonsterView object.
-     * @param context Context of the views creation
-     * @param attrs Attributes of the view
      */
 
     public MonsterView(Context context, AttributeSet attrs) {             // Constructor

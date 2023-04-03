@@ -1,3 +1,9 @@
+/**
+ * a class
+ * @author CMPUT301W23T49
+ * @version 1.0
+ * @since [Monday April 3]
+ */
 package com.example.codecatchersapp;
 /**
  The Comment class represents a user's comment on a monster.
