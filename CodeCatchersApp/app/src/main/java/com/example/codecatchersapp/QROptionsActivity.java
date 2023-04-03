@@ -61,7 +61,7 @@ public class QROptionsActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String shaHash = intent.getStringExtra("shaHash");
         String binaryHash = intent.getStringExtra("binaryHash");
-//        String hash = intent.getStringExtra("hash");
+//      String hash = intent.getStringExtra("hash");
         String userID = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
         EditText commentEditText = findViewById(R.id.editTextNewMonComment);
         Switch geolocationToggle = findViewById(R.id.geolocation_switch);
