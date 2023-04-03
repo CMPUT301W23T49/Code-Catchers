@@ -46,7 +46,7 @@ public class LeaderboardsActivity extends AppCompatActivity {
     private FloatingActionButton hamburgerMenuButton;
     private DialogFragment hamburgerMenuFragment;
     private ListView leaderboardsList;
-    private ArrayList<Leaderboards> dataList = new ArrayList<>();
+    ArrayList<Leaderboards> dataList = new ArrayList<>();
     private ArrayList<String> testScannedMonstersList = new ArrayList<>();
     private Integer usersScore;
     private Button highestTotalScoreButton;
@@ -187,6 +187,4 @@ public class LeaderboardsActivity extends AppCompatActivity {
             }
         });
     }
-
-
 }

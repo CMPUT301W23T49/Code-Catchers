@@ -22,6 +22,7 @@ import static io.fotoapparat.selector.ResolutionSelectorsKt.highestResolution;
 import static io.fotoapparat.selector.SelectorsKt.firstAvailable;
 import static io.fotoapparat.selector.SensorSensitivitySelectorsKt.highestSensorSensitivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -175,7 +176,7 @@ public class CameraActivity extends AppCompatActivity {
      * @throws NullPointerException if CameraActivity context is null.
      * @return void.
      */
-    private void SwapIntent() {
+    void SwapIntent() {
         Intent intent = new Intent(CameraActivity.this, MainMenuActivity.class);
         startActivity(intent);
     }

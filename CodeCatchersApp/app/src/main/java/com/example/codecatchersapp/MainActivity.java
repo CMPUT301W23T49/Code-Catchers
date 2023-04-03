@@ -21,7 +21,6 @@ import java.util.concurrent.atomic.AtomicReference;
  * The batch write operation generates and writes a hash using the HashGenerator class.
  */
 public class MainActivity extends AppCompatActivity {
-    protected String qrCode;
 
     private static final int MAX_BATCH_COUNT = 50; // maximum number of batches to send
     private HashGenerator hashGenerator;
@@ -87,5 +86,4 @@ public class MainActivity extends AppCompatActivity {
         currentBackoffTime = INITIAL_BACKOFF_TIME;
         handler.postDelayed(myRunnable, currentBackoffTime);
     }
-
 }

@@ -1,26 +1,28 @@
 package com.example.codecatchersapp;
 
 import android.Manifest;
+
+
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.os.Bundle;
 
 import android.util.Log;
-import android.widget.Button;
-import android.widget.EditText;
-
-import androidx.core.app.ActivityCompat;
-import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.FragmentActivity;
-
-import com.example.codecatchersapp.databinding.ActivityMapDisplayBinding;
-
-
-import android.util.Log;
 
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import org.imperiumlabs.geofirestore.listeners.GeoQueryEventListener;
 
@@ -30,20 +32,27 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.example.codecatchersapp.databinding.ActivityMapDisplayBinding;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+
 
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.GeoPoint;
 
 import org.imperiumlabs.geofirestore.GeoFirestore;
 import org.imperiumlabs.geofirestore.GeoQuery;
-import org.imperiumlabs.geofirestore.listeners.GeoQueryEventListener;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * MapActivity is an implementation of the OnMapReadyCallback interface.
@@ -63,6 +72,7 @@ public class MapDisplayActivity extends FragmentActivity implements OnMapReadyCa
     private LatLng mCurrentLocation;
     private EditText searchBox;
     private Button searchButton;
+
     /**
      * Called when the activity is starting.
      * Connects to the map_layout.xml and sets it as the content view.
@@ -130,14 +140,9 @@ public class MapDisplayActivity extends FragmentActivity implements OnMapReadyCa
             int zoomLevel = getZoomLevelFromRadius(10);
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mCurrentLocation, zoomLevel));
 
-            // Add a purple marker for the current location
-            float huePurple = 290;
-            MarkerOptions currentLocationMarker = new MarkerOptions()
-                    .position(mCurrentLocation)
-                    .icon(BitmapDescriptorFactory.defaultMarker(huePurple));
-            mMap.addMarker(currentLocationMarker);
         }
     }
+
     private int getZoomLevelFromRadius(double radiusInKilometers) {
         double scale = radiusInKilometers * 1000 / 900; // 500 is a rough estimation of the number of meters per pixel at zoom level 1
         int zoomLevel = (int) (16 - Math.log(scale) / Math.log(2));
@@ -155,24 +160,68 @@ public class MapDisplayActivity extends FragmentActivity implements OnMapReadyCa
 
         List<Marker> markers = new ArrayList<>();
 
+        // save to monsterDB
+        // uncomment for testing purposes - adds a point in edmonton to db with correct format
+        // GeoPoint geoloc = new GeoPoint(53.63, -113.3239);
+        // geoFirestore.setLocation("696ce4dbd7bb57cbfe58b64f530f428b74999cb37e2ee60980490cd9552de3a6", geoloc);
+
         // Begin Search Query in DB
         geoQuery.addGeoQueryEventListener(new GeoQueryEventListener() {
             @Override
             public void onKeyEntered(String key, GeoPoint location) {
                 // Retrieve the MonsterDB name associated with the GeoPoint
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
-                db.collection("monsters").document(key)
+                db.collection("MonsterDB").document(key)
                         .get()
                         .addOnSuccessListener(documentSnapshot -> {
-                            String monsterName = key;
+                            String monsterHash = key;
+
+                            // creates a new score object to calculate marker score
+                            Score markerScore;
+                            try {
+                                markerScore = new Score(monsterHash);
+                            } catch (NoSuchAlgorithmException e) {
+                                throw new RuntimeException(e);
+                            }
+
+                            String score = markerScore.getScore();
+                            String scoreNew = "QR Score: " + score;
+                            Log.d("MarkerScore", "Score for " + key + " is " + score);
+
                             // Create LatLng objects for each document within the radius
                             LatLng documentLocation = new LatLng(location.getLatitude(), location.getLongitude());
                             MarkerOptions markerOptions = new MarkerOptions()
                                     .position(documentLocation)
-                                    .title(monsterName) // set the MonsterDB name as the marker title
+                                    .title(score) // set the score as the marker title
                                     .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET));
-                            markers.add(mMap.addMarker(markerOptions));
-                            Log.d("MyApp", "Marker title set to: " + monsterName);
+                            Marker marker = mMap.addMarker(markerOptions);
+                            markers.add(marker);
+
+                            // Add an OnMarkerClickListener to the marker
+                            mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                                @Override
+                                public boolean onMarkerClick(Marker marker) {
+                                    // Get the user's location
+                                    Location userLocation = mMap.getMyLocation();
+                                    if (userLocation == null) {
+                                        // If the user's location is unknown, show an error message
+                                        Toast.makeText(MapDisplayActivity.this, "Unable to determine your location", Toast.LENGTH_SHORT).show();
+                                        return true;
+                                    }
+
+                                    // Calculate the distance between the user's location and the marker
+                                    float[] results = new float[1];
+                                    Location.distanceBetween(userLocation.getLatitude(), userLocation.getLongitude(),
+                                            marker.getPosition().latitude, marker.getPosition().longitude, results);
+                                    float distance = results[0] / 1000; // Convert to kilometers
+
+                                    // Show a Toast with the distance and score
+                                    String distanceText = String.format("Distance: %.2f km", distance);
+                                    String scoreText = marker.getTitle();
+                                    Toast.makeText(MapDisplayActivity.this, scoreText + "\n" + distanceText, Toast.LENGTH_LONG).show();
+                                    return true;
+                                }
+                            });
                         })
                         .addOnFailureListener(e -> {
                             // handle any errors retrieving the MonsterDB name
@@ -202,13 +251,45 @@ public class MapDisplayActivity extends FragmentActivity implements OnMapReadyCa
             }
         });
     }
-        /**
-         * Called when the map is ready to be used.
-         * @param googleMap The GoogleMap object used to display the map.
-         */
-        @Override
-        public void onMapReady(GoogleMap googleMap){
-            mMap = googleMap;
-            moveCameraToCurrentLocation();
+
+    /**
+     * Called when the map is ready to be used.
+     * @param googleMap The GoogleMap object used to display the map.
+     */
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+        moveCameraToCurrentLocation();
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
         }
+        mMap.setMyLocationEnabled(true);
     }
+
+    public void onMarkerClick(Marker marker) {
+        // Get the user's location
+        Location userLocation = mMap.getMyLocation();
+        if (userLocation == null) {
+            // If the user's location is unknown, show an error message
+            Toast.makeText(this, "Unable to determine your location", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Calculate the distance between the user's location and the marker
+        float[] results = new float[1];
+        Location.distanceBetween(userLocation.getLatitude(), userLocation.getLongitude(),
+                marker.getPosition().latitude, marker.getPosition().longitude, results);
+        float distance = results[0] / 1000; // Convert to kilometers
+
+        // Show a Toast with the distance
+        String distanceText = String.format("Distance: %.2f km", distance);
+        Toast.makeText(this, distanceText, Toast.LENGTH_SHORT).show();
+    }
+}
