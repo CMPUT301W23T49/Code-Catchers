@@ -1,3 +1,9 @@
+/**
+ * a class
+ * @author CMPUT301W23T49
+ * @version 1.0
+ * @since [Monday April 3]
+ */
 package com.example.codecatchersapp;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -6,13 +12,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
-import android.util.Log;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import java.security.NoSuchAlgorithmException;
-import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * This class represents the MainActivity that initializes the Firebase Firestore and checks if the device ID exists

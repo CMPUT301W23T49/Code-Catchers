@@ -10,13 +10,10 @@ package com.example.codecatchersapp;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.PorterDuff;
 import android.graphics.RectF;
 
 import java.util.HashMap;
-import java.util.Random;
 
 // Define a set of features for a monster and set the values for each feature
 public class monsterFeatures {

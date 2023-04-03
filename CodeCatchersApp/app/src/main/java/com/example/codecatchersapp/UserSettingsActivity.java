@@ -1,3 +1,9 @@
+/**
+ * a class
+ * @author CMPUT301W23T49
+ * @version 1.0
+ * @since [Monday April 3]
+ */
 package com.example.codecatchersapp;
 
 import android.content.Intent;
@@ -10,10 +16,10 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 /**
- * UserSettingsActivity.java
- * This activity allows the user to change their username and contact information.
- * The user can also cancel the changes and go back to the previous activity.
+ The UserSettingsActivity class is responsible for displaying and allowing the user to edit their settings.
+ It extends the AppCompatActivity class and overrides the onCreate() method.
  */
 public class UserSettingsActivity extends AppCompatActivity {
     private FloatingActionButton backButton;
@@ -24,10 +30,11 @@ public class UserSettingsActivity extends AppCompatActivity {
     private String deviceID;
     private String userName;
     private String contactInfo;
+
     /**
-     * This method is called when the activity is created. It sets the content view, gets the intent
-     * extras, sets the text views, and sets the on click listeners.
-     * @param savedInstanceState The saved instance state.
+     This method is called when the activity is created.
+     It initializes the views and sets the corresponding listeners.
+     @param savedInstanceState A Bundle object containing the activity's previously saved state.
      */
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

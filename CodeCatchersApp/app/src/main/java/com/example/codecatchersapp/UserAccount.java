@@ -1,6 +1,10 @@
+/**
+ * a class
+ * @author CMPUT301W23T49
+ * @version 1.0
+ * @since [Monday April 3]
+ */
 package com.example.codecatchersapp;
-import android.content.Context;
-import android.provider.Settings;
 
 import java.io.Serializable;
 

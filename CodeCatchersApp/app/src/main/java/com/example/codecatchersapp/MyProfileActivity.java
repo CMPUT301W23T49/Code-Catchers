@@ -1,3 +1,9 @@
+/**
+ * a class
+ * @author CMPUT301W23T49
+ * @version 1.0
+ * @since [Monday April 3]
+ */
 package com.example.codecatchersapp;
 
 import android.content.Intent;
@@ -22,8 +28,11 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+
+
 /**
- * This class is the activity for the user's profile page
+ MyProfileActivity is an activity class that displays a user's profile. The activity contains the user's
+ name, score, and the number of monsters they have scanned. It also displays a RecyclerView containing
  */
 public class MyProfileActivity extends AppCompatActivity implements MonsterAdapter.ItemClickListener{
     private UserAccount user;
@@ -200,8 +209,11 @@ public class MyProfileActivity extends AppCompatActivity implements MonsterAdapt
                 });
 
     }
+
+
     /**
-     * This method is called when the back button is pressed. It starts the MainMenuActivity.
+     * The class implements the onItemClick() method from
+     * the MonsterAdapter.ItemClickListener interface to handle
      */
     @Override
     public void onItemClick(View view, int position) {

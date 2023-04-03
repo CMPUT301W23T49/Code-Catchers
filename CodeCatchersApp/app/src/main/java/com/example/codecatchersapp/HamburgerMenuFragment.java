@@ -1,3 +1,9 @@
+/**
+ * a class
+ * @author CMPUT301W23T49
+ * @version 1.0
+ * @since [Monday April 3]
+ */
 package com.example.codecatchersapp;
 
 import android.app.AlertDialog;
@@ -14,15 +20,9 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 /**
  * HamburgerMenuFragment is a DialogFragment that displays a hamburger menu with navigation options.
@@ -40,7 +40,6 @@ public class HamburgerMenuFragment extends DialogFragment {
 
     /**
      * Constructor for HamburgerMenuFragment.
-     *
      * @param id the fragment container view ID.
      */
     public HamburgerMenuFragment(int id) {
@@ -102,8 +101,10 @@ public class HamburgerMenuFragment extends DialogFragment {
             @Override
             public void onClick(View view) {                                                                    // When the button is clicked
                 Log.i("TAG", "Clicked the profile button");
+
                 Intent myProfileIntent = new Intent(getContext(), MyProfileActivity.class);                     // Create an intent to start the MyProfileActivity
                 startActivity(myProfileIntent);                                                                 // Start the activity
+
                 // Hide the hamburger menu when moving to the new fragment
                 HamburgerMenuFragment.this.dismiss();
 

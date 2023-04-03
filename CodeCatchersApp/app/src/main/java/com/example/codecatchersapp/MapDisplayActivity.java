@@ -1,20 +1,20 @@
+/**
+ * a class
+ * @author CMPUT301W23T49
+ * @version 1.0
+ * @since [Monday April 3]
+ */
 package com.example.codecatchersapp;
 
 import android.Manifest;
 
 
-import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.os.Bundle;
 
@@ -37,15 +37,12 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.BitmapDescriptor;
 
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.example.codecatchersapp.databinding.ActivityMapDisplayBinding;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-
 
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.GeoPoint;
@@ -55,9 +52,7 @@ import org.imperiumlabs.geofirestore.GeoQuery;
 
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * MapActivity is an implementation of the OnMapReadyCallback interface.
@@ -163,8 +158,6 @@ public class MapDisplayActivity extends FragmentActivity implements OnMapReadyCa
      * Sets the OnMarkerClickListener for the map.
      * Sets the OnMapClickListener for the map.
      * Sets the OnMapLongClickListener for the map.
-     *
-     * @param googleMap The GoogleMap object representing the map.
      */
     private void moveCameraToCurrentLocation() {                                                 // Move the camera to the current location
         if (mMap != null && mCurrentLocation != null) {                                          // If the map is not null and the current location is not null
@@ -179,8 +172,6 @@ public class MapDisplayActivity extends FragmentActivity implements OnMapReadyCa
      * Sets the OnMarkerClickListener for the map.
      * Sets the OnMapClickListener for the map.
      * Sets the OnMapLongClickListener for the map.
-     *
-     * @param googleMap The GoogleMap object representing the map.
      */
     private int getZoomLevelFromRadius(double radiusInKilometers) {                            // Get the zoom level from the radius
         double scale = radiusInKilometers * 1000 / 900;                                        // 500 is a rough estimation of the number of meters per pixel at zoom level 1
@@ -193,8 +184,6 @@ public class MapDisplayActivity extends FragmentActivity implements OnMapReadyCa
      * Sets the OnMarkerClickListener for the map.
      * Sets the OnMapClickListener for the map.
      * Sets the OnMapLongClickListener for the map.
-     *
-     * @param googleMap The GoogleMap object representing the map.
      */
     public void onSearchRadiusSelected(int radius) {                                                     // When the search radius is selected
         // Query Firestore for documents within the specified radius
