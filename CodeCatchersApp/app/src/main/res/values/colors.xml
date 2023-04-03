@@ -18,4 +18,5 @@
     // extra colors
     <color name="delete_button_pink">#E0577e</color>
     <color name="delete_button_green">#FF68d058</color>
+    <color name="color_barnz">#FFac1db8</color>
 </resources>
