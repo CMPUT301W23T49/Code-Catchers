@@ -22,12 +22,18 @@
             android:text="Search for Nearby QR Codes"/>
     </LinearLayout>
 
-    <!-- MapView for displaying the map -->
-    <com.google.android.gms.maps.MapView
-        android:id="@+id/map"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:clickable="true" />
+        android:orientation="vertical">
+
+        <!-- MapView for displaying the map -->
+        <fragment
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
 
 </LinearLayout>
