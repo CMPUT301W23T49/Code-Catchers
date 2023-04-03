@@ -75,9 +75,13 @@ public class MyMonsterProfile extends AppCompatActivity {
         Intent intent = getIntent();
         String userName = intent.getStringExtra("userName");
         String deviceID = intent.getStringExtra("deviceID");
-        String selectedMonsterHash = intent.getStringExtra("monsterHash"); // Database saves it as monsterSHAHash, so if theres an errors look here first - Noah 2
+
+        String shaHash = intent.getStringExtra("shaHash");
+        String binaryHash = intent.getStringExtra("binaryHash");
+
         String selectedMonsterName = intent.getStringExtra("monsterName");
         String selectedMonsterScore = intent.getStringExtra("monsterScore");
+
 
         monsterName = findViewById(R.id.monster_name_monster_profile);
         monsterView = findViewById(R.id.monster_image);
@@ -86,10 +90,10 @@ public class MyMonsterProfile extends AppCompatActivity {
         // comment stuff
         SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         String myUserName = sharedPreferences.getString("username", "");
-        String userID = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
-        String shaHash = intent.getStringExtra("monsterHash");
+        //String userID = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
+        //String shaHash = intent.getStringExtra("monsterHash");
         monsterName.setText(selectedMonsterName);
-        monsterView.setBinaryHash(selectedMonsterHash);
+        monsterView.setBinaryHash(binaryHash);
 
         FloatingActionButton backButton = findViewById(R.id.back_button);
         backButton.setOnClickListener(new View.OnClickListener() {
@@ -118,7 +122,7 @@ public class MyMonsterProfile extends AppCompatActivity {
              * Saves a new comment to the database.
              */
             public void saveComment() {
-                CollectionReference collectionReference = db.collection("PlayerDB/" + userID + "/Monsters/" + shaHash + "/comments");
+                CollectionReference collectionReference = db.collection("PlayerDB/" + deviceID + "/Monsters/" + shaHash + "/comments");
                 final String ogComment = commentEditText.getText().toString();
                 HashMap<String, String> data = new HashMap<>();
                 if (ogComment.length() > 0) {
@@ -181,10 +185,12 @@ public class MyMonsterProfile extends AppCompatActivity {
                 deleteButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        //CollectionReference collectionReference = db.collection("PlayerDB/" + deviceID + "/Monsters/" + selectedMonsterHash + "/comments");
-                        CollectionReference collectionReference = db.collection("PlayerDB/" + deviceID + "/Monsters");
+
+                        // TODO: delete monster from playerDB
+                        CollectionReference collectionReference = db.collection("PlayerDB/" + deviceID + "/Monsters/" + shaHash + "/comments");
+
                         // Reference to the document with the SHA hash to delete
-                        DocumentReference docRef = collectionReference.document(selectedMonsterHash);
+                        DocumentReference docRef = collectionReference.document(shaHash);
                         docRef.delete()
                                 /**
                                  * Logs a success message.
@@ -223,7 +229,10 @@ public class MyMonsterProfile extends AppCompatActivity {
         });
 
 
-        CollectionReference collectionReference = db.collection("PlayerDB/" + deviceID + "/Monsters/" + selectedMonsterHash + "/comments");
+
+
+        CollectionReference collectionReference = db.collection("PlayerDB/" + deviceID + "/Monsters/" + shaHash + "/comments");
+
         // Create an ArrayList for comments
         comments = new ArrayList<>();
 

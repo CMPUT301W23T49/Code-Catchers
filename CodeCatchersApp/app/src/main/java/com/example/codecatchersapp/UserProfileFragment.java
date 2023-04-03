@@ -24,9 +24,11 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
@@ -59,7 +61,6 @@ public class UserProfileFragment extends Fragment implements MonsterAdapter.Item
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     CollectionReference userCollection = db.collection("PlayerDB");
 
-    // TODO: set the monster image
 
 
     /**
@@ -151,79 +152,80 @@ public class UserProfileFragment extends Fragment implements MonsterAdapter.Item
             }
         });
 
+        userCollection.document(user.getDeviceID()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if(task.isSuccessful()) {
+                    DocumentSnapshot doc = task.getResult();
+                    userName.setText((String) doc.get("username"));
+                    userScore.setText((String) doc.get("totalscore"));
+                }
+            }
+        });
 
         // Get the users scanned monsters from the database
         monsters = new ArrayList<>();
 
-        // Check if a deviceID was passed into the constructor
-        if (deviceID == null) {
 
-            // Get the user info by username
-
-            Query query = userCollection.whereEqualTo("username", user.getUsername());
-
-            query.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                /**
-                 * Called when the query is successful.
-                 * @param queryDocumentSnapshots the query result
-                 */
-                @Override
-                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                    // Get the monster hashes from the user
-                    ArrayList<Object> tempList = new ArrayList<>();
-                    List<DocumentSnapshot> docs = queryDocumentSnapshots.getDocuments();
-                    for (DocumentSnapshot doc : docs) {
-                        Log.i("TAG", String.valueOf(doc));
-                        deviceID = doc.getId();
-                        tempList = (ArrayList<Object>) doc.get("Monsters");
-                    }
-                    if (tempList != null) {
-                        // Add the monster hashes to the monster list
-                        for (Object hash : tempList) {
-                            Monster currMonster = new Monster(hash.toString());
-                            monsters.add(currMonster);
-                            System.out.println("Monster score: " + currMonster.getMonsterScore());
-                        }
-                        Log.i("TAG", "Length of monsters: " + monsters.size());
-                        Collections.sort(monsters, new Comparator<Monster>() {
-                            /**
-                             * Compares two Monster objects by their monsterScore.
-                             * @param monster1 the first Monster object
-                             * @param monster2 the second Monster object
-                             * @return the difference between the two Monster objects' monsterScore
-                             */
-                            @Override
-                            public int compare(Monster monster1, Monster monster2) {
-                                return monster2.getMonsterScore().compareTo(monster1.getMonsterScore());
-
-                            }
-
-                        });
-                    }
-
+        // Get the user info by username
+        CollectionReference collectionReference = userCollection.document(user.getDeviceID()).collection("Monsters");
+        collectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            /**
+             * Called when the query is successful.
+             * @param queryDocumentSnapshots the query result
+             */
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                List<DocumentSnapshot> docs = queryDocumentSnapshots.getDocuments();
+                ArrayList<Monster> tempList = new ArrayList<>();
+                for (DocumentSnapshot doc : docs) {
+                    String shaHash = doc.getString("monsterSHAHAsh");
+                    String binaryHash = doc.getString("monsterBinaryHash");
+                    String monsterName = doc.getString("monsterName");
+                    String monsterScore = doc.getString("monsterScore");
+                    Monster currMonster = new Monster(shaHash, binaryHash, monsterName, monsterScore);
+                    tempList.add(currMonster);
                 }
-            }).addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                /**
-                 * Called when the query is complete.
-                 * @param task the task that was completed
-                 */
-                @Override
-                public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                    // Calculate the user's total score from their scanned monsters
-                    Integer tempScore = 0;
-                    for (Monster monster : monsters) {
-                        tempScore += Integer.parseInt(monster.getMonsterScore());
-
+                if (tempList != null) {
+                    for (Monster monster : tempList) {
+                        monsters.add(monster);
                     }
 
-                    // Set the TextViews and RecyclerView for the user's profile
-                    userScore.setText(tempScore.toString());
-                    userNumMonsters.setText(String.valueOf(monsters.size()));
-                    rv_monsters.setLayoutManager(new GridLayoutManager(view.getContext(), 2));
-                    monsterAdapter = new MonsterAdapter(monsters);
-                    monsterAdapter.setClickListener(UserProfileFragment.this);
-                    rv_monsters.setAdapter(monsterAdapter);
-                    userName.setText(user.getUsername());
+
+                    Collections.sort(monsters, new Comparator<Monster>() {
+                       /**
+                        * Compares two Monster objects by their monsterScore.
+                        * @param monster1 the first Monster object
+                        * @param monster2 the second Monster object
+                        * @return the difference between the two Monster objects' monsterScore
+                        */
+                        @Override
+                        public int compare(Monster monster1, Monster monster2) {
+                            return monster2.getMonsterScore().compareTo(monster1.getMonsterScore());
+
+                        }
+
+                    });
+                }
+
+                    //Log.i("QueryDocumentSnapshot:", queryDocumentSnapshots.getDocuments().toString());
+            }
+        }).addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+           /**
+            * Called when the query is complete.
+            * @param task the task that was completed
+            */
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                // Calculate the user's total score from their scanned monsters
+
+                // Set the TextViews and RecyclerView for the user's profile
+                userNumMonsters.setText(String.valueOf(monsters.size()));
+                rv_monsters.setLayoutManager(new GridLayoutManager(view.getContext(), 2));
+                monsterAdapter = new MonsterAdapter(monsters);
+                monsterAdapter.setClickListener(UserProfileFragment.this);
+                rv_monsters.setAdapter(monsterAdapter);
+                if (!monsters.isEmpty()) {
                     sortButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -264,6 +266,7 @@ public class UserProfileFragment extends Fragment implements MonsterAdapter.Item
                         }
                     });
                 }
+
             }).addOnFailureListener(new OnFailureListener() {
                 /**
                  * Called when the query fails.
@@ -368,12 +371,7 @@ public class UserProfileFragment extends Fragment implements MonsterAdapter.Item
                     });
 
 
-
-        }
     }
-
-
-
 
 
     /**
@@ -392,7 +390,8 @@ public class UserProfileFragment extends Fragment implements MonsterAdapter.Item
         // Create a new intent for the ViewMinProfile activity and pass the user and monster's info to it
         Intent monsterIntent = new Intent(getContext(), ViewMonProfile.class);
         monsterIntent.putExtra("userName", user.getUsername());
-        monsterIntent.putExtra("monsterHash", monster.getMonsterSHAHash());
+        monsterIntent.putExtra("shaHash", monster.getMonsterSHAHash());
+        monsterIntent.putExtra("binaryHash", monster.getMonsterBinaryHash());
         monsterIntent.putExtra("monsterName", monster.getMonsterName());
         monsterIntent.putExtra("monsterScore", monster.getMonsterScore());
         monsterIntent.putExtra("monsterScore", monster.getMonsterScore());

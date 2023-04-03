@@ -12,7 +12,7 @@ public class Monster {
 
     private String monsterBinaryHash;
     private String monsterName;
-    private String monsterScore;
+    private String monsterScore = "0";
 
     private GeoPoint geoloc;
 
@@ -47,6 +47,13 @@ public class Monster {
             this.monsterScore = "0";
         }
         this.geoloc = geoloc;
+    }
+
+    public Monster (String monsterSHAHash, String monsterBinaryHash, String monsterName, String monsterScore) {
+        this.monsterSHAHash = monsterSHAHash;
+        this.monsterBinaryHash = monsterBinaryHash;
+        this.monsterName = monsterName;
+        this.monsterScore = monsterScore;
     }
 
     /**

@@ -54,7 +54,7 @@ public class MonsterAdapter extends RecyclerView.Adapter<MonsterAdapter.ViewHold
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         // Get the monster from the list and get its info
         Monster monster = monsterList.get(position);
-        String monsterHash = monster.getMonsterSHAHash();
+        String monsterHash = monster.getMonsterBinaryHash();
         String monsterName = monster.getMonsterName();
         String monsterScore = monster.getMonsterScore();
 
