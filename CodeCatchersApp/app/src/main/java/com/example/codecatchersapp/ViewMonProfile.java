@@ -1,8 +1,11 @@
 package com.example.codecatchersapp;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -10,9 +13,11 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -24,6 +29,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -34,6 +40,7 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 /**
  ViewMonProfile displays the image of a monster along with its comments from the database.
@@ -64,10 +71,55 @@ public class ViewMonProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_monster);
         Intent intent = getIntent();
-        String userName = intent.getStringExtra("userName");
         String selectedMonsterHash = intent.getStringExtra("monsterHash");
         String selectedMonsterName = intent.getStringExtra("monsterName");
         String selectedMonsterScore = intent.getStringExtra("monsterScore");
+        String shaHash = intent.getStringExtra("monsterHash");
+
+        // comment stuff
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        String myUserName = sharedPreferences.getString("username", "");
+        String userID = "swag"; // TODO : GET USER ID
+        EditText commentEditText = findViewById(R.id.new_comment_other_user_text);
+        FloatingActionButton sendCommentButton = findViewById(R.id.send_comment_button);
+
+        // SAVE ANY NEW COMMENT TO DATABASE
+        sendCommentButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+
+            public void saveComment() {
+                CollectionReference collectionReference = db.collection("PlayerDB/" + userID + "/Monsters/" + shaHash + "/comments");
+                final String ogComment = commentEditText.getText().toString();
+                HashMap<String, String> data = new HashMap<>();
+
+                if (ogComment.length() > 0) {
+                    // TODO: change SomeUserID to current user's ID, change someMonsterID to monster hash
+                    data.put("userName", myUserName);
+                    collectionReference
+                            .document(ogComment)
+                            .set(data)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+                                    Log.d("Success", "Comment added successfully!");
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.d("Failure", "Comment addition failed" + e.toString());
+                                }
+                            });
+
+                }
+            }
+        });
+
+
+
 
         monsterName = findViewById(R.id.monster_name_monster_profile);
         monsterView = findViewById(R.id.monster_image);
@@ -82,6 +134,8 @@ public class ViewMonProfile extends AppCompatActivity {
                 onBackPressed();
             }
         });
+
+
 
 
         CollectionReference collectionReference = db.collection("PlayerDB/someUserID1/Monsters/someMonsterID/comments");
@@ -115,5 +169,7 @@ public class ViewMonProfile extends AppCompatActivity {
                 }
             }
         });
+
     }
+
 }
