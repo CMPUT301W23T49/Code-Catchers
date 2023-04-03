@@ -98,7 +98,6 @@ public class ViewMonProfile extends AppCompatActivity {
                 HashMap<String, String> data = new HashMap<>();
 
                 if (ogComment.length() > 0) {
-                    // TODO: change SomeUserID to current user's ID, change someMonsterID to monster hash
                     data.put("userName", myUserName);
                     collectionReference
                             .document(ogComment)
@@ -140,7 +139,7 @@ public class ViewMonProfile extends AppCompatActivity {
 
 
 
-        CollectionReference collectionReference = db.collection("PlayerDB/someUserID1/Monsters/someMonsterID/comments");
+        CollectionReference collectionReference = db.collection("PlayerDB/" + userID + "/Monsters/" + selectedMonsterHash + "/comments");
         // Create an ArrayList for comments
         comments = new ArrayList<>();
 
