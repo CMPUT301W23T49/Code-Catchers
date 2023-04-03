@@ -142,6 +142,10 @@ public class SearchUsersActivity extends AppCompatActivity implements UserAdapte
         // Get the users stored in the DB and add them to the list of users
         Query query = userCollection.orderBy("username");
         query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            /**
+             * Called when the query is completed. Adds the users from the database to the list of users.
+             * @param task the task that is completed
+             */
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 for (DocumentSnapshot doc : task.getResult()) {
@@ -156,6 +160,10 @@ public class SearchUsersActivity extends AppCompatActivity implements UserAdapte
                 Log.i("TAG", "In onCreate");
             }
         }).addOnFailureListener(new OnFailureListener() {
+            /**
+             * Called when the query fails. Displays a toast message to the user.
+             * @param e the exception that caused the failure
+             */
             @Override
             public void onFailure(@NonNull Exception e) {
                 Toast.makeText(SearchUsersActivity.this, "Failed to load users from database", Toast.LENGTH_SHORT).show();

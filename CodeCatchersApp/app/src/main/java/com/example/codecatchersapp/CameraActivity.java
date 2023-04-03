@@ -218,23 +218,4 @@ public class CameraActivity extends AppCompatActivity {
         docRef.set(imageMap);
     }
 
-    // for testing
-    private void getFireStoreImage() {
-        docRef.get()
-                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                    @Override
-                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        String base64Image = documentSnapshot.getString("base64");
-                        byte[] data = Base64.decode(base64Image, Base64.DEFAULT);
-                        Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
-                        // Do something with the bitmap
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        // Error retrieving document
-                    }
-                });
-    }
 }

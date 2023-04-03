@@ -13,13 +13,13 @@ package com.example.codecatchersapp;
  */
 public class Leaderboards implements Comparable<Leaderboards> {
 
-    private String username;
-    private String score;
+    private String username;                                 // Username of the user
+    private String score;                                    // Score of the user
 
     // Score will need to be a double again after testing
-    public Leaderboards(String username, String score){
-        this.username = username;
-        this.score = score;
+    public Leaderboards(String username, String score){     // Constructor
+        this.username = username;                           // Sets username
+        this.score = score;                                 // Sets score
     }
     
     /**
@@ -30,19 +30,14 @@ public class Leaderboards implements Comparable<Leaderboards> {
         return username;
     }
 
-    /*
-    public Double getScore(){
-        return score;
-    }
-     */
 
     /**
      * Gets score value as a string
      * @return score of this object
      */
-    public String getScoreStringRepresentation(){
-        String scoreString = score.toString();
-        return scoreString;
+    public String getScoreStringRepresentation(){           // Returns score as a string
+        String scoreString = score.toString();              // Converts score to a string
+        return scoreString;                                 // Returns score as a string
     }
 
     /**
@@ -50,13 +45,13 @@ public class Leaderboards implements Comparable<Leaderboards> {
      * @return -1 if this Leaderboard is larger than one it is being compared to, 0 if even, 1 otherwise
      */
     @Override
-    public int compareTo(Leaderboards otherScore) {
-        if (Integer.parseInt(this.score) > Integer.parseInt(otherScore.score)){
-            return -1;
-        } else if (Integer.parseInt(this.score) == Integer.parseInt(otherScore.score)) {
-            return 0;
+    public int compareTo(Leaderboards otherScore) {                                 // Compares Leaderboards objects based upon their score value
+        if (Integer.parseInt(this.score) > Integer.parseInt(otherScore.score)){     // If this Leaderboard is larger than one it is being compared to
+            return -1;                                                              // Return -1
+        } else if (Integer.parseInt(this.score) == Integer.parseInt(otherScore.score)) { // If this Leaderboard is equal to one it is being compared to
+            return 0;                                                                // Return 0
         } else {
-            return 1;
+            return 1;                                                                // Return 1
         }
     }
 }

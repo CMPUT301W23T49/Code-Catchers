@@ -123,6 +123,10 @@ public class UserAccountActivity extends AppCompatActivity {
 
         // Check if the passed in username exists in the database
         collectionReference.whereEqualTo("username", userName).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            /** Called when the task is complete.
+             *
+             * @param task
+             */
             @Override
             public void onComplete(@androidx.annotation.NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
@@ -141,6 +145,10 @@ public class UserAccountActivity extends AppCompatActivity {
 
                                         documentReference.update(leaderboardFields)
                                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                    /**
+                                                     * Called when the task is successful.
+                                                     * @param unused
+                                                     */
                                                     @Override
                                                     public void onSuccess(Void unused) {
                                                         Log.d("E","FIELDS ADDED");
@@ -151,6 +159,10 @@ public class UserAccountActivity extends AppCompatActivity {
                                                     }
                                                 })
                                                 .addOnFailureListener(new OnFailureListener() {
+                                                    /**
+                                                     * Called when the task fails.
+                                                     * @param e
+                                                     */
                                                     @Override
                                                     public void onFailure(@androidx.annotation.NonNull Exception e) {
                                                         Log.d("E","FAILURE, FIELDS NOT ADDED");
@@ -159,6 +171,10 @@ public class UserAccountActivity extends AppCompatActivity {
                                     }
                                 })
                                 .addOnFailureListener(new OnFailureListener() {
+                                    /**
+                                     * Called when the task fails.
+                                     * @param e
+                                     */
                                     @Override
                                     public void onFailure(@NonNull Exception e) {
                                         Log.e(TAG, "Error saving user account to database.", e);

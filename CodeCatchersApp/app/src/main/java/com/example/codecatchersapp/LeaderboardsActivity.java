@@ -37,19 +37,19 @@ import java.util.Map;
  * It is responsible for displaying leaderboards.xml.
  */
 public class LeaderboardsActivity extends AppCompatActivity {
-    FirebaseFirestore db;
-    private LeaderboardsArrayAdapter leaderboardsArrayAdapter;
+    FirebaseFirestore db;                                                     // The database
+    private LeaderboardsArrayAdapter leaderboardsArrayAdapter;                // The adapter for the list view
 
-    private FloatingActionButton backButton;
-    private FloatingActionButton hamburgerMenuButton;
-    private DialogFragment hamburgerMenuFragment;
-    private ListView leaderboardsList;
-    private ArrayList<Leaderboards> dataList = new ArrayList<>();
-    private ArrayList<String> testScannedMonstersList = new ArrayList<>();
-    private Integer usersScore;
-    private Button highestTotalScoreButton;
-    private Button mostMonsters;
-    private Button highestIndividualMonsterButton;
+    private FloatingActionButton backButton;                                  // Button to navigate back to the social menu
+    private FloatingActionButton hamburgerMenuButton;                         // Button to display the hamburger menu
+    private DialogFragment hamburgerMenuFragment;                             // The hamburger menu fragment
+    private ListView leaderboardsList;                                        // The list view for the leaderboard
+    private ArrayList<Leaderboards> dataList = new ArrayList<>();             // The list of leaderboard data
+    private ArrayList<String> testScannedMonstersList = new ArrayList<>();    // The list of scanned monsters
+    private Integer usersScore;                                               // The user's score
+    private Button highestTotalScoreButton;                                   // Button to sort by highest total score
+    private Button mostMonsters;                                              // Button to sort by most monsters
+    private Button highestIndividualMonsterButton;                            // Button to sort by highest individual monster score
 
     // TODO: Sort highest->lowest. Sort by most unique monsters
     /**
@@ -61,38 +61,38 @@ public class LeaderboardsActivity extends AppCompatActivity {
      */
     @SuppressLint("MissingInflatedId")
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.leaderboards);
-        db = FirebaseFirestore.getInstance();
-        dataList = new ArrayList<>();
+    protected void onCreate(Bundle savedInstanceState) {                     // Called when the activity is starting
+        super.onCreate(savedInstanceState);                                  // Call the superclass onCreate method
+        setContentView(R.layout.leaderboards);                               // Set the content view to leaderboards.xml
+        db = FirebaseFirestore.getInstance();                                // Get the database instance
+        dataList = new ArrayList<>();                                        // Initialize the dataList
 
-        leaderboardsList = findViewById(R.id.leaderboard_list);
-        leaderboardsArrayAdapter = new LeaderboardsArrayAdapter(this, dataList);
-        leaderboardsList.setAdapter(leaderboardsArrayAdapter);
-        backButton = findViewById(R.id.back_button);
-        hamburgerMenuButton = findViewById(R.id.hamburger_menu);
-        highestTotalScoreButton = findViewById(R.id.totalScore);
-        mostMonsters = findViewById(R.id.mostMonsters);
-        highestIndividualMonsterButton = findViewById(R.id.highestScoringMonster);
+        leaderboardsList = findViewById(R.id.leaderboard_list);             // Get the list view
+        leaderboardsArrayAdapter = new LeaderboardsArrayAdapter(this, dataList); // Initialize the adapter
+        leaderboardsList.setAdapter(leaderboardsArrayAdapter);             // Set the adapter for the list view
+        backButton = findViewById(R.id.back_button);                       // Get the back button
+        hamburgerMenuButton = findViewById(R.id.hamburger_menu);           // Get the hamburger menu button
+        highestTotalScoreButton = findViewById(R.id.totalScore);           // Get the highest total score button
+        mostMonsters = findViewById(R.id.mostMonsters);                    // Get the most monsters button
+        highestIndividualMonsterButton = findViewById(R.id.highestScoringMonster); // Get the highest individual monster button
 
-        // Upon opening leaderboards screen, display sorted by total score
-        displayLeaderboard("totalscore");
 
-        // Set click listener for back button and hamburger menu button
-        backButton.setOnClickListener(new View.OnClickListener() {
+        displayLeaderboard("totalscore");                          // Display the leaderboard sorted by total score
+
+
+        backButton.setOnClickListener(new View.OnClickListener() {          // Set click listener for back button
             /**
              * Navigates back to the SocialMenuActivity when clicked.
              * @param view the clicked view.
              */
             @Override
-            public void onClick(View view) {
-                Intent socialMenuIntent = new Intent(LeaderboardsActivity.this, SocialMenuActivity.class);
-                startActivity(socialMenuIntent);
+            public void onClick(View view) {                              // When the back button is clicked
+                Intent socialMenuIntent = new Intent(LeaderboardsActivity.this, SocialMenuActivity.class); // Create an intent to navigate to the SocialMenuActivity
+                startActivity(socialMenuIntent);                          // Start the intent
             }
         });
 
-        hamburgerMenuButton.setOnClickListener(new View.OnClickListener() {
+        hamburgerMenuButton.setOnClickListener(new View.OnClickListener() { // Set click listener for hamburger menu button
             /**
              * Shows the hamburger menu fragment when clicked
              * @param view the clicked view.
@@ -100,8 +100,8 @@ public class LeaderboardsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                hamburgerMenuFragment =  new HamburgerMenuFragment(R.id.leaderboards);
-                hamburgerMenuFragment.show(getSupportFragmentManager(), "HamburgerFragment");
+                hamburgerMenuFragment =  new HamburgerMenuFragment(R.id.leaderboards);            // Create a new hamburger menu fragment
+                hamburgerMenuFragment.show(getSupportFragmentManager(), "HamburgerFragment"); // Show the hamburger menu fragment
 
 
             }
@@ -129,56 +129,52 @@ public class LeaderboardsActivity extends AppCompatActivity {
         });
     }
 
-    private void displayLeaderboard(String fieldName){
-        leaderboardsArrayAdapter.clear();
-        CollectionReference collectionReference = db.collection("PlayerDB/");
-        collectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+    private void displayLeaderboard(String fieldName){                                                   // Displays the leaderboard sorted by the given field name
+        leaderboardsArrayAdapter.clear();                                                                // Clear the adapter
+        CollectionReference collectionReference = db.collection("PlayerDB/");               // Get the collection reference
+        collectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {          // Get the collection
             @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                List<String> userIDsList = new ArrayList<>();
-                List<String> listOfMonsters = new ArrayList<>();
-                List<Leaderboards> listOfLeaderboardEntries = new ArrayList<>();
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {                                // If the collection is successfully retrieved
+                List<String> userIDsList = new ArrayList<>();                                            // Create a list of user IDs
+                List<String> listOfMonsters = new ArrayList<>();                                         // Create a list of monsters
+                List<Leaderboards> listOfLeaderboardEntries = new ArrayList<>();                         // Create a list of leaderboard entries
 
-                // Iterates through every userID in PlayerDB collection
-                for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
-                    String userID = documentSnapshot.getId();
+                for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {                  // For each document in the collection
+                    String userID = documentSnapshot.getId();                                            // Get the user ID
 
-                    String username = documentSnapshot.getString("username");
-                    Log.e("Success", "USERNAME: " + username);
+                    String username = documentSnapshot.getString("username");                       // Get the username
+                    Log.e("Success", "USERNAME: " + username);                                 // Log the username
 
-                    // String:Object, as fields can contain a string, number, or list of Strings
-                    Map<String, Object> usersData = documentSnapshot.getData();
+                    Map<String, Object> usersData = documentSnapshot.getData();                          // Get the user's data
 
-                    System.out.println("\n");
+                    System.out.println("\n");                                                            // Print a new line
 
                     // Iterates through every field for every userID
-                    for (String key : usersData.keySet()) {
-                        // key can be userName, contactInfo, or scannedMonsters.
-                        ArrayList<String> testScannedMonstersList = new ArrayList<>();
-                        String temporaryScore;
-                        Integer totalScore = 0;
+                    for (String key : usersData.keySet()) {                                              // key can be userName, contactInfo, or scannedMonsters.
+                        ArrayList<String> testScannedMonstersList = new ArrayList<>();                   // Create a list of scanned monsters
+                        String temporaryScore;                                                           // Create a temporary score
+                        Integer totalScore = 0;                                                          // Create a total score
 
                         // Get user's total score
-                        if (key.compareTo(fieldName) == 0) {
-                            System.out.println("User "+ username + " has a score " + usersData.get(key) );
-                            usersScore = Integer.parseInt((String)usersData.get(key));
+                        if (key.compareTo(fieldName) == 0) {                                             // If the key is the field name
+                            System.out.println("User "+ username + " has a score " + usersData.get(key) ); // Print the user's score
+                            usersScore = Integer.parseInt((String)usersData.get(key));                   // Get the user's score
 
                             System.out.println();
 
-                            listOfLeaderboardEntries.add(new Leaderboards(username, usersData.get(key).toString()));
+                            listOfLeaderboardEntries.add(new Leaderboards(username, usersData.get(key).toString())); // Add the user's score to the leaderboard entries list
                         }
                     }
                 }
 
-                // Sort the list of leaderboard entries by their score
-                Collections.sort(listOfLeaderboardEntries);
-                for(Leaderboards item:listOfLeaderboardEntries){
-                    leaderboardsArrayAdapter.add(item);
+                Collections.sort(listOfLeaderboardEntries);                                           // Sort the list of leaderboard entries by their score
+                for(Leaderboards item:listOfLeaderboardEntries){                                      // For each leaderboard entry
+                    leaderboardsArrayAdapter.add(item);                                               // Add the leaderboard entry to the adapter
                 }
-                // Update leaderboards adapter to display users and their scores
-                leaderboardsArrayAdapter.notifyDataSetChanged();
+
+                leaderboardsArrayAdapter.notifyDataSetChanged();                                     // Notify the adapter that the data set has changed
             }
-        }).addOnFailureListener(new OnFailureListener() {
+        }).addOnFailureListener(new OnFailureListener() {                                             // If the collection is not successfully retrieved
             @Override
             public void onFailure(@NonNull Exception e) {
                 Log.e("Failure", "Error getting documents: ", e);

@@ -37,6 +37,10 @@ public class ScanErrorActivity extends AppCompatActivity {
         quitToMenuButton = findViewById(R.id.quit_to_menu_button);
 
         retryButton.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Handles the click event for the retry button.
+             * @param v The view that was clicked.
+             */
             @Override
             public void onClick(View v) {
                 // Handle button click
@@ -46,6 +50,10 @@ public class ScanErrorActivity extends AppCompatActivity {
         });
 
         quitToMenuButton.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Handles the click event for the quit to menu button.
+             * @param v The view that was clicked.
+             */
             @Override
             public void onClick(View v) {
                 // Handle button click

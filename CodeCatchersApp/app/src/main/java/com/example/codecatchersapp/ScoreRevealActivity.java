@@ -29,6 +29,7 @@ public class ScoreRevealActivity extends AppCompatActivity {
     private int score;                                                 // Score
     private MonsterNameGenerator monsterNameGenerator;                 // Monster name generator
 
+
     /**
      Called when the activity is starting. Initializes the layout and retrieves the hash and binaryHash values passed from the
      QRScannerActivity. Calculates the score based on the hash value and generates the name of the monster based on the binaryHash value.
@@ -60,6 +61,10 @@ public class ScoreRevealActivity extends AppCompatActivity {
 
         RelativeLayout rootLayout = findViewById(R.id.root_layout);   // Find root layout
         rootLayout.setOnClickListener(new View.OnClickListener() {    // Set click listener for root layout
+            /**
+             * Handles the click event for the root layout.
+             * @param v The view that was clicked.
+             */
             @Override
             public void onClick(View v) {                             // Handle click
                 Intent intent = new Intent(ScoreRevealActivity.this, QROptionsActivity.class); // New intent for QR options activity

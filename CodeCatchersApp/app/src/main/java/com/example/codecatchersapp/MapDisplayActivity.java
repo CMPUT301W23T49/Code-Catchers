@@ -196,10 +196,6 @@ public class MapDisplayActivity extends FragmentActivity implements OnMapReadyCa
 
         List<Marker> markers = new ArrayList<>();                                                          // Create a new ArrayList of Markers
 
-        // save to monsterDB
-        // uncomment for testing purposes - adds a point in edmonton to db with correct format
-        // GeoPoint geoloc = new GeoPoint(53.63, -113.3239);
-        // geoFirestore.setLocation("696ce4dbd7bb57cbfe58b64f530f428b74999cb37e2ee60980490cd9552de3a6", geoloc);
 
         // Begin Search Query in DB
         /**
@@ -323,13 +319,6 @@ public class MapDisplayActivity extends FragmentActivity implements OnMapReadyCa
         mMap = googleMap;                                                                           // Set the mMap variable to the GoogleMap object
         moveCameraToCurrentLocation();                                                              // Move the camera to the user's current location
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
             return;                                                                                 // Return
         }
         mMap.setMyLocationEnabled(true);                                                           // Enable the user's location on the map

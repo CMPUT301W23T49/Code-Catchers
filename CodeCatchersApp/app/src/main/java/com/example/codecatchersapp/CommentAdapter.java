@@ -71,7 +71,10 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
      Represents a single item view in the RecyclerView.
      */
     public static class ViewHolder extends RecyclerView.ViewHolder {
-
+        /**
+         The TextView used to display the username.
+         The TextView used to display the comment.
+         */
         public TextView usernameTextView;
         public TextView commentTextView;
 

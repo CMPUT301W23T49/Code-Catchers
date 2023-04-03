@@ -61,6 +61,11 @@ public class UserSettingsActivity extends AppCompatActivity {
 
         // Set on click listeners
         backButton.setOnClickListener(new View.OnClickListener() {
+            /**
+             * This method is called when the back button is clicked. It navigates back to the
+             * previous activity.
+             * @param view The clicked view.
+             */
             @Override
             public void onClick(View view) {
                 onBackPressed();

@@ -115,11 +115,17 @@ public class ViewMonProfile extends AppCompatActivity {
 
         // SAVE ANY NEW COMMENT TO DATABASE
         sendCommentButton.setOnClickListener(new View.OnClickListener() {
+            /**
+             Saves the comment to the database.
+             @param view The view that was clicked.
+             */
             @Override
             public void onClick(View view) {
                 saveComment();
             }
-
+            /**
+             Saves the comment to the database.
+             */
             public void saveComment() {
                 CollectionReference collectionReference = db.collection("PlayerDB/" + userID + "/Monsters/" + shaHash + "/comments");
                 final String ogComment = commentEditText.getText().toString();
@@ -131,12 +137,20 @@ public class ViewMonProfile extends AppCompatActivity {
                             .document(ogComment)
                             .set(data)
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                /**
+                                 Displays a message to the user if the comment was successfully saved.
+                                 @param unused
+                                 */
                                 @Override
                                 public void onSuccess(Void unused) {
                                     Log.d("Success", "Comment added successfully!");
                                 }
                             })
                             .addOnFailureListener(new OnFailureListener() {
+                                /**
+                                 Displays a message to the user if the comment was not successfully saved.
+                                 @param e The exception that was thrown.
+                                 */
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
                                     Log.d("Failure", "Comment addition failed" + e.toString());
@@ -182,9 +196,50 @@ public class ViewMonProfile extends AppCompatActivity {
 
         FloatingActionButton backButton = findViewById(R.id.back_button);
         backButton.setOnClickListener(new View.OnClickListener() {
+            /**
+             Returns to the previous activity.
+             @param view The view that was clicked.
+             */
             @Override
             public void onClick(View view) {
                 onBackPressed();
+            }
+        });
+
+
+        CollectionReference collectionReference = db.collection("PlayerDB/someUserID1/Monsters/someMonsterID/comments");
+        // Create an ArrayList for comments
+        comments = new ArrayList<>();
+
+        // Set up the RecycleView with UserAdapter and ClickListener
+        RecyclerView rvComments = findViewById(R.id.rv_comments);
+        rvComments.setLayoutManager(new LinearLayoutManager(this));
+        CommentAdapter commentAdapter = new CommentAdapter((ArrayList<Comment>) comments);
+        rvComments.setAdapter(commentAdapter);
+
+
+        // Get the users stored in the DB and add them to the list of users
+        Query query = collectionReference.orderBy("userName");
+
+        query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            /**
+             Retrieves the comments from the database and adds them to the list of comments.
+             @param task The task that was completed.
+             */
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (DocumentSnapshot document : task.getResult()) {
+                        String userName = document.getString("userName");
+                        String commentId = document.getId();
+                        Comment comment = new Comment(userName, commentId);
+                        comments.add(comment);
+                    }
+                    commentAdapter.notifyDataSetChanged();
+                    Log.d("CommentAdapter", "Number of comments retrieved: " + comments.size());
+                } else {
+                    Log.d("ERROR", "Error getting documents: ", task.getException());
+                }
             }
         });
 
