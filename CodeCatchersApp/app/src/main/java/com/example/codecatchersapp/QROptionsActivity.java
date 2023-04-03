@@ -119,16 +119,24 @@ public class QROptionsActivity extends AppCompatActivity {
                 saveComment();
 
                 // Adds geolocation data to firebase
+                Monster monster = new Monster(shaHash);
 
                 Boolean geolocationToggleState = geolocationToggle.isChecked();
                 if (geolocationToggleState == true) {
-                    saveGeolocation();
+                    saveGeolocation(monster);
                     //
                 } else {
-                    Monster monster = new Monster(shaHash);
-                    CollectionReference collectionReference = db.collection("MonsterDB");
-                    DocumentReference documentReference = collectionReference.document(shaHash);
+                    // Save to monsterDB
+                    CollectionReference collectionReference1 = db.collection("MonsterDB");
+                    DocumentReference documentReference = collectionReference1.document(shaHash);
                     documentReference.set(monster);
+
+                    // Save to PlayerDB
+                    CollectionReference collectionReference2 = db.collection("PlayerDB/" + userID + "/Monsters/");
+                    DocumentReference documentReference2 = collectionReference2.document(shaHash);
+                    documentReference2.set(monster);
+
+
                 }
 
                 Boolean locationPhotoToggleState = locationPhotoToggle.isChecked();
@@ -148,8 +156,9 @@ public class QROptionsActivity extends AppCompatActivity {
 
             /**
              * Retrieves user's geolocation and saves it in the database
+             * @param monster - Monster object that contains all relevant data to add to DB
              */
-            public void saveGeolocation() {
+            public void saveGeolocation(Monster monster) {
                 // TODO: change SomeUserID to current user's ID, change someMonsterID to monster hash
                 db = FirebaseFirestore.getInstance();
 
@@ -159,6 +168,10 @@ public class QROptionsActivity extends AppCompatActivity {
                 geoFirestore.setLocation(shaHash, geoloc);
 
                 // save to playerDB
+                CollectionReference collectionReference2 = db.collection("PlayerDB/" + userID + "/Monsters/");
+                DocumentReference documentReference2 = collectionReference2.document(shaHash);
+                documentReference2.set(monster);
+
                 CollectionReference collectionReferenceGeoLocation = db.collection("PlayerDB/" + userID + "/Monsters/" + shaHash + "/geolocationData");
                 Map<String, Object> coordinates = new HashMap<>();
                 coordinates.put("geoPoint", geoloc);
