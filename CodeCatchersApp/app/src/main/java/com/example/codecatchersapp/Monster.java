@@ -78,4 +78,5 @@ public class Monster {
         return geoloc;
     }
 
+    public void setGeoPoint(GeoPoint geoloc) {this.geoloc = geoloc;}
 }

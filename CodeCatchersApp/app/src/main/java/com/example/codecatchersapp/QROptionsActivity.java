@@ -168,10 +168,13 @@ public class QROptionsActivity extends AppCompatActivity {
                 geoFirestore.setLocation(shaHash, geoloc);
 
                 // save to playerDB
+                monster.setGeoPoint(geoloc);
+
                 CollectionReference collectionReference2 = db.collection("PlayerDB/" + userID + "/Monsters/");
                 DocumentReference documentReference2 = collectionReference2.document(shaHash);
                 documentReference2.set(monster);
 
+                /*
                 CollectionReference collectionReferenceGeoLocation = db.collection("PlayerDB/" + userID + "/Monsters/" + shaHash + "/geolocationData");
                 Map<String, Object> coordinates = new HashMap<>();
                 coordinates.put("geoPoint", geoloc);
@@ -190,6 +193,8 @@ public class QROptionsActivity extends AppCompatActivity {
                                 Log.w(TAG, "Error adding location to Firestore", e);
                             }
                         });
+
+                 */
             }
 
 
