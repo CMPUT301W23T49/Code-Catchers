@@ -71,10 +71,10 @@ public class ViewMonProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_monster);
         Intent intent = getIntent();
-        String selectedMonsterHash = intent.getStringExtra("monsterHash");
+        String shaHash = intent.getStringExtra("shaHash");
+        String binaryHash = intent.getStringExtra("binaryHash");
         String selectedMonsterName = intent.getStringExtra("monsterName");
         String selectedMonsterScore = intent.getStringExtra("monsterScore");
-        String shaHash = intent.getStringExtra("monsterHash");
 
 
 
@@ -141,7 +141,7 @@ public class ViewMonProfile extends AppCompatActivity {
         monsterView = findViewById(R.id.monster_image);
 
         monsterName.setText(selectedMonsterName);
-        monsterView.setBinaryHash(selectedMonsterHash);
+        monsterView.setBinaryHash(binaryHash);
 
         FloatingActionButton backButton = findViewById(R.id.back_button);
         backButton.setOnClickListener(new View.OnClickListener() {
@@ -155,7 +155,7 @@ public class ViewMonProfile extends AppCompatActivity {
             }
         });
 
-        CollectionReference collectionReference = db.collection("PlayerDB/someUserID1/Monsters/someMonsterID/comments");
+        CollectionReference collectionReference = db.collection("PlayerDB/" + userID + "/Monsters/" + shaHash +"/comments");
         // Create an ArrayList for comments
         comments = new ArrayList<>();
 
