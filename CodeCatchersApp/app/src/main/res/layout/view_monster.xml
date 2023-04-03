@@ -60,7 +60,7 @@
         android:id="@+id/new_comment_other_user_text"
         android:layout_width="350dp"
         android:layout_height="53dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="4dp"
         android:background="@drawable/rounded_corners"
         android:ems="10"
         android:gravity="start|top"
@@ -70,8 +70,8 @@
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rv_comments"
-        app:layout_constraintVertical_bias="0.461" />
+        app:layout_constraintTop_toBottomOf="@+id/monster_name_monster_profile"
+        app:layout_constraintVertical_bias="0.942" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/send_comment_button"
@@ -84,11 +84,13 @@
         app:backgroundTint="@color/dark_pink_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/new_comment_other_user_text"
-        app:layout_constraintTop_toBottomOf="@+id/rv_comments"
-        app:layout_constraintVertical_bias="0.521"
+        app:layout_constraintTop_toBottomOf="@+id/monster_name_monster_profile"
+        app:layout_constraintVertical_bias="0.952"
         app:rippleColor="#00FFFFFF"
         app:srcCompat="?attr/actionModeCloseDrawable" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

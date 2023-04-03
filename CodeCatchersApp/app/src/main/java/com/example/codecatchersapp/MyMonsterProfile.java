@@ -83,7 +83,7 @@ public class MyMonsterProfile extends AppCompatActivity {
         String userID = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
         String shaHash = intent.getStringExtra("monsterHash");
         monsterName.setText(selectedMonsterName);
-        monsterView.setBinaryHash(selectedMonsterHash);
+        monsterView.setBinaryHash(String.valueOf(selectedMonsterHash));
 
         FloatingActionButton backButton = findViewById(R.id.back_button);
         backButton.setOnClickListener(new View.OnClickListener() {
@@ -96,7 +96,7 @@ public class MyMonsterProfile extends AppCompatActivity {
         EditText commentEditText = findViewById(R.id.new_comment_my_monster_text);
         FloatingActionButton sendCommentButton = findViewById(R.id.send_comment_my_monster_button);
 
-        CollectionReference collectionReference = db.collection("PlayerDB/" + deviceID + "/Monsters/" + selectedMonsterHash + "/comments");
+        CollectionReference collectionReference = db.collection("PlayerDB/" + userID + "/Monsters/" + selectedMonsterHash + "/comments");
         // Create an ArrayList for comments
         comments = new ArrayList<>();
 
@@ -109,6 +109,24 @@ public class MyMonsterProfile extends AppCompatActivity {
 
         // Get the users stored in the DB and add them to the list of users
         Query query = collectionReference.orderBy("userName");
+
+        query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (DocumentSnapshot document : task.getResult()) {
+                        String userName = document.getString("userName");
+                        String commentId = document.getId();
+                        Comment comment = new Comment(userName, commentId);
+                        comments.add(comment);
+                    }
+                    commentAdapter.notifyDataSetChanged();
+                    Log.d("CommentAdapter", "Number of comments retrieved: " + comments.size());
+                } else {
+                    Log.d("ERROR", "Error getting documents: ", task.getException());
+                }
+            }
+        });
 
         // SAVE ANY NEW COMMENT TO DATABASE
         sendCommentButton.setOnClickListener(new View.OnClickListener() {
@@ -225,23 +243,5 @@ public class MyMonsterProfile extends AppCompatActivity {
             }
         });
 
-
-        query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                    for (DocumentSnapshot document : task.getResult()) {
-                        String userName = document.getString("userName");
-                        String commentId = document.getId();
-                        Comment comment = new Comment(userName, commentId);
-                        comments.add(comment);
-                    }
-                    commentAdapter.notifyDataSetChanged();
-                    Log.d("CommentAdapter", "Number of comments retrieved: " + comments.size());
-                } else {
-                    Log.d("ERROR", "Error getting documents: ", task.getException());
-                }
-            }
-        });
     }
 }
