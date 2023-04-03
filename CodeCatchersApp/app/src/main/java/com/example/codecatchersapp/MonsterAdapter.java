@@ -1,17 +1,19 @@
-
+/**
+ * a class
+ * @author CMPUT301W23T49
+ * @version 1.0
+ * @since [Monday April 3]
+ */
 package com.example.codecatchersapp;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 /**
@@ -54,7 +56,7 @@ public class MonsterAdapter extends RecyclerView.Adapter<MonsterAdapter.ViewHold
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         // Get the monster from the list and get its info
         Monster monster = monsterList.get(position);
-        String monsterHash = monster.getMonsterSHAHash();
+        String monsterHash = monster.getMonsterBinaryHash();
         String monsterName = monster.getMonsterName();
         String monsterScore = monster.getMonsterScore();
 

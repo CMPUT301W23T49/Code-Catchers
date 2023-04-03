@@ -1,11 +1,14 @@
+/**
+ * a class
+ * @author CMPUT301W23T49
+ * @version 1.0
+ * @since [Monday April 3]
+ */
 package com.example.codecatchersapp;
-
-import static android.content.ContentValues.TAG;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -23,7 +26,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.CollectionReference;
@@ -143,7 +145,7 @@ public class SearchUsersActivity extends AppCompatActivity implements UserAdapte
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 for (DocumentSnapshot doc : task.getResult()) {
-                    users.add(new UserAccount(doc.getString("username"), doc.getString("contactInfo")));
+                    users.add(new UserAccount(doc.getString("username"), doc.getString("contactInfo"), doc.getId().toString()));
                 }
                 // Set the searched users equal to the found users
                 searchedUsers = users;

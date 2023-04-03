@@ -1,9 +1,3 @@
-/**
- * This class is used to test the MonsterView class
- * @author  Code Catchers [Josie Matalski]
- * @version 1.0
- * @since   [Saturday March 4 2021]
- */
 package com.example.codecatchersapp;
 
 import android.content.Context;

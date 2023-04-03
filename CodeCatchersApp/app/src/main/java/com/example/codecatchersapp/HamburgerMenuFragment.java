@@ -1,3 +1,9 @@
+/**
+ * a class
+ * @author CMPUT301W23T49
+ * @version 1.0
+ * @since [Monday April 3]
+ */
 package com.example.codecatchersapp;
 
 import android.app.AlertDialog;
@@ -14,15 +20,9 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 /**
  * HamburgerMenuFragment is a DialogFragment that displays a hamburger menu with navigation options.
@@ -39,7 +39,6 @@ public class HamburgerMenuFragment extends DialogFragment {
 
     /**
      * Constructor for HamburgerMenuFragment.
-     *
      * @param id the fragment container view ID.
      */
     public HamburgerMenuFragment(int id) {
@@ -100,15 +99,6 @@ public class HamburgerMenuFragment extends DialogFragment {
                 Log.i("TAG", "Clicked the profile button");
                 Intent myProfileIntent = new Intent(getContext(), MyProfileActivity.class);
                 startActivity(myProfileIntent);
-                /**
-                // Get the fragment manager for the UserProfileFragment
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                Fragment profileFragment = new UserProfileFragment(deviceID);
-                fragmentManager.beginTransaction()
-                        .replace(id, profileFragment)
-                        .addToBackStack(null)
-                        .commit();
-                 **/
                 // Hide the hamburger menu when moving to the new fragment
                 HamburgerMenuFragment.this.dismiss();
 

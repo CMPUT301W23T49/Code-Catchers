@@ -1,3 +1,9 @@
+/**
+ * a class
+ * @author CMPUT301W23T49
+ * @version 1.0
+ * @since [Monday April 3]
+ */
 package com.example.codecatchersapp;
 
 import com.google.firebase.firestore.GeoPoint;
@@ -12,7 +18,7 @@ public class Monster {
 
     private String monsterBinaryHash;
     private String monsterName;
-    private String monsterScore;
+    private String monsterScore = "0";
 
     private GeoPoint geoloc;
 
@@ -44,6 +50,13 @@ public class Monster {
             this.monsterScore = "0";
         }
         this.geoloc = geoloc;
+    }
+
+    public Monster (String monsterSHAHash, String monsterBinaryHash, String monsterName, String monsterScore) {
+        this.monsterSHAHash = monsterSHAHash;
+        this.monsterBinaryHash = monsterBinaryHash;
+        this.monsterName = monsterName;
+        this.monsterScore = monsterScore;
     }
 
     /**

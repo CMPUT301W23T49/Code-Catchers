@@ -10,7 +10,6 @@ package com.example.codecatchersapp;
 
 import static android.content.ContentValues.TAG;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -32,13 +31,9 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
-
-import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-import android.provider.Settings;
-import android.content.Context;
 import android.widget.Toast;
 
 
