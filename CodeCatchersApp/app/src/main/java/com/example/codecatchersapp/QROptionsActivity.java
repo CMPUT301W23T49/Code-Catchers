@@ -101,7 +101,7 @@ public class QROptionsActivity extends AppCompatActivity {
                     return; // Stop executing the rest of the method
                 } else {
                     // Handle case where the SHA hash does not exist in the database
-                    updateLeaderboardFields(displayScore, shaHash);
+//                    updateLeaderboardFields(displayScore, shaHash);
                     Log.d(TAG, "SHA hash does not exist in database");
                 }
             }
@@ -270,10 +270,6 @@ public class QROptionsActivity extends AppCompatActivity {
 
         documentReferenceUserScoreField.get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                    /**
-                     * Updates the user's score fields so that the leaderboards correctly display their scores.
-                     * @param documentSnapshot
-                     */
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         if (documentSnapshot.exists()){
@@ -297,57 +293,47 @@ public class QROptionsActivity extends AppCompatActivity {
                                 newHighestMonsterScore = scoreString;
                             }
 
-                                Log.e("E","NEW TOTAL SCORE VALUE: " + newTotalScore);
-                                Log.e("E","NEW TOTAL MONSTER COUNT: " + newMonsterCount);
-                                Log.e("E","NEW HIGHEST MONSTER SCORE: " + newHighestMonsterScore);
+                            Log.e("E","NEW TOTAL SCORE VALUE: " + newTotalScore);
+                            Log.e("E","NEW TOTAL MONSTER COUNT: " + newMonsterCount);
+                            Log.e("E","NEW HIGHEST MONSTER SCORE: " + newHighestMonsterScore);
 
-                                // Check if shaHash already exists in the database before updating monstercount and totalscore
-                                if (!exists) {
-                                    Map<String, Object> newLeaderboardInfo = new HashMap<>();
-                                    newLeaderboardInfo.put("totalscore", newTotalScore);
-                                    newLeaderboardInfo.put("monstercount", newMonsterCount);
-                                    newLeaderboardInfo.put("highestmonsterscore", newHighestMonsterScore);
+                            Map<String, Object> newLeaderboardInfo = new HashMap<>();
+                            newLeaderboardInfo.put("totalscore", newTotalScore);
+                            newLeaderboardInfo.put("monstercount", newMonsterCount);
+                            newLeaderboardInfo.put("highestmonsterscore", newHighestMonsterScore);
 
-                                    for (Map.Entry<String, Object> entry : newLeaderboardInfo.entrySet()){
-                                        System.out.println("ENTERED LOOP");
-                                        System.out.println("Key: " + entry.getKey() + " Value: " + entry.getValue());
-                                    }
+                            for (Map.Entry<String, Object> entry : newLeaderboardInfo.entrySet()){
+                                System.out.println("ENTERED LOOP");
+                                System.out.println("Key: " + entry.getKey() + " Value: " + entry.getValue());
+                            }
 
-                                    documentReferenceUserScoreField.update(newLeaderboardInfo).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            documentReferenceUserScoreField.update(newLeaderboardInfo)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void unused) {
                                             Log.e("E","UPDATED FIELDS");
                                         }
-                                    }).addOnFailureListener(new OnFailureListener() {
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
                                         @Override
                                         public void onFailure(@NonNull Exception e) {
                                             Log.e("E","COULD NOT UPDATE FIELDS");
                                         }
                                     });
-                                }
-                            } else {
-                                Log.e("E","DOCUMENT DOES NOT EXIST");
-                            }
-                        }
 
+                        } else {
+                            Log.e("E","DOCUMENT DOES NOT EXIST");
+                        }
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
-                    /**
-                     * Updates the user's score fields so that the leaderboards correctly display their scores.
-                     * @param e
-                     */
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Log.e("E","ERROR GETTING DOCUMENT");
                     }
                 });
 
-                
     }
-
-
-
 
 
 
