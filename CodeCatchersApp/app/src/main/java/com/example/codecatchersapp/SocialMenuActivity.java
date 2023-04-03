@@ -1,7 +1,5 @@
 package com.example.codecatchersapp;
 
-import android.app.Activity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -11,7 +9,6 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 /**
@@ -23,7 +20,6 @@ public class SocialMenuActivity extends AppCompatActivity {
     private TextView titleTextView;
     private ConstraintLayout constraintLayout;
     private Button browseUsersButton;
-    private Button browseQRCodesButton;
     private Button leaderboardsButton;
     private Button myProfileButton;
 
@@ -39,7 +35,6 @@ public class SocialMenuActivity extends AppCompatActivity {
         // Find views by their IDs
         titleTextView = findViewById(R.id.title);
         browseUsersButton = findViewById(R.id.browse_users_button);
-        browseQRCodesButton = findViewById(R.id.browse_QR_codes_button);
         leaderboardsButton = findViewById(R.id.leaderboards_button);
         myProfileButton = findViewById(R.id.my_profile_button);
         constraintLayout = findViewById(R.id.social_menu);
@@ -51,13 +46,6 @@ public class SocialMenuActivity extends AppCompatActivity {
                 // Handle button click
                 Intent searchUsersIntent = new Intent(SocialMenuActivity.this, SearchUsersActivity.class);
                 startActivity(searchUsersIntent);
-            }
-        });
-
-        browseQRCodesButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Handle button click
             }
         });
 
@@ -85,7 +73,6 @@ public class SocialMenuActivity extends AppCompatActivity {
                 // Hide the views from the social menu
                 titleTextView.setVisibility(View.GONE);
                 browseUsersButton.setVisibility(View.GONE);
-                browseQRCodesButton.setVisibility(View.GONE);
                 leaderboardsButton.setVisibility(View.GONE);
                 myProfileButton.setVisibility(View.GONE);
 
@@ -100,7 +87,6 @@ public class SocialMenuActivity extends AppCompatActivity {
         // Set the previously hidden views to visible
         titleTextView.setVisibility(View.VISIBLE);
         browseUsersButton.setVisibility(View.VISIBLE);
-        browseQRCodesButton.setVisibility(View.VISIBLE);
         leaderboardsButton.setVisibility(View.VISIBLE);
         myProfileButton.setVisibility(View.VISIBLE);
     }

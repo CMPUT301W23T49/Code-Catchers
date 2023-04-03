@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="#FFE4F3"
     android:id="@+id/social_menu">
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -26,6 +27,7 @@
         android:text="SOCIAL"
         android:textColor="#000000"
         android:textSize="40sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
@@ -38,56 +40,48 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:width="350dp"
-        android:backgroundTint="#FF92C2"
-        android:text="Browse by Users"
+        android:backgroundTint="#ffff"
+        android:text="Browse Users"
+        android:textColor="#000000"
+        android:textStyle="bold"
         app:cornerRadius="30dip"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/profile_container"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title"
-        app:layout_constraintVertical_bias="0.164" />
-
-    <Button
-        android:id="@+id/browse_QR_codes_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:width="350dp"
-        android:backgroundTint="#FF92C2"
-        android:text="Browse by QR Codes"
-        app:cornerRadius="30dip"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/browse_users_button"
-        app:layout_constraintVertical_bias="0.06" />
+        app:layout_constraintVertical_bias="0.40" />
 
     <Button
         android:id="@+id/leaderboards_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:width="350dp"
-        android:backgroundTint="#FF92C2"
+        android:backgroundTint="#ffff"
         android:text="Leaderboards"
+        android:textColor="#000000"
+        android:textStyle="bold"
         app:cornerRadius="30dip"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/browse_QR_codes_button"
-        app:layout_constraintVertical_bias="0.08" />
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        app:layout_constraintVertical_bias="0.60" />
 
     <Button
         android:id="@+id/my_profile_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:width="350dp"
-        android:backgroundTint="#FF92C2"
-        android:text="My Profile"
+        android:backgroundTint="#FFff"
+        android:text="Profile"
+        android:textColor="#000000"
+        android:textStyle="bold"
         app:cornerRadius="30dip"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/leaderboards_button"
-        app:layout_constraintVertical_bias="0.075" />
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        app:layout_constraintVertical_bias="0.20" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
