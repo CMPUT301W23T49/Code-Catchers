@@ -26,6 +26,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.GeoPoint;
 
@@ -74,7 +75,7 @@ public class QROptionsActivity extends AppCompatActivity {
 
         // Get score of scanned monster
         try {
-            Score score = new Score(monsterHash);
+            Score score = new Score(binaryHash);
             displayScore = score.getScore();
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
