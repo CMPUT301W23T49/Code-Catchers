@@ -135,8 +135,6 @@ public class QROptionsActivity extends AppCompatActivity {
                     CollectionReference collectionReference2 = db.collection("PlayerDB/" + userID + "/Monsters/");
                     DocumentReference documentReference2 = collectionReference2.document(shaHash);
                     documentReference2.set(monster);
-
-
                 }
 
                 Boolean locationPhotoToggleState = locationPhotoToggle.isChecked();
@@ -243,6 +241,10 @@ public class QROptionsActivity extends AppCompatActivity {
                 startActivity(intent);
             }
 
+    /**
+     * Updates the user's score fields so that the leaderboards correctly display their scores.
+     * @param scoreString
+     */
     private void updateLeaderboardFields(String scoreString){
         String userID = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
         DocumentReference documentReferenceUserScoreField = db.collection("PlayerDB/").document(userID);

@@ -37,11 +37,14 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MyMonsterProfile extends AppCompatActivity {
     private LayoutInflater layoutInflater;
@@ -57,6 +60,9 @@ public class MyMonsterProfile extends AppCompatActivity {
     private MonsterView monsterView;
     private Button monsterSettings;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+    String newTotalScore;
+    String newMonsterCount;
+    String newHighestMonsterScore;
 
     /**
      Sets up the RecyclerView to display the comments and fetches them from the database.
@@ -69,7 +75,7 @@ public class MyMonsterProfile extends AppCompatActivity {
         Intent intent = getIntent();
         String userName = intent.getStringExtra("userName");
         String deviceID = intent.getStringExtra("deviceID");
-        String selectedMonsterHash = intent.getStringExtra("monsterHash");
+        String selectedMonsterHash = intent.getStringExtra("monsterHash"); // Database saves it as monsterSHAHash, so if theres an errors look here first - Noah 2
         String selectedMonsterName = intent.getStringExtra("monsterName");
         String selectedMonsterScore = intent.getStringExtra("monsterScore");
 
@@ -155,8 +161,8 @@ public class MyMonsterProfile extends AppCompatActivity {
                 deleteButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        // TODO: delete monster from playerDB
-                        CollectionReference collectionReference = db.collection("PlayerDB/" + deviceID + "/Monsters/" + selectedMonsterHash + "/comments");
+                        //CollectionReference collectionReference = db.collection("PlayerDB/" + deviceID + "/Monsters/" + selectedMonsterHash + "/comments");
+                        CollectionReference collectionReference = db.collection("PlayerDB/" + deviceID + "/Monsters");
                         // Reference to the document with the SHA hash to delete
                         DocumentReference docRef = collectionReference.document(selectedMonsterHash);
                         docRef.delete()
@@ -164,6 +170,7 @@ public class MyMonsterProfile extends AppCompatActivity {
                                     @Override
                                     public void onSuccess(Void aVoid) {
                                         Log.d(TAG, "DocumentSnapshot successfully deleted!");
+                                        updateLeaderboardFields(selectedMonsterScore);
                                     }
                                 })
                                 .addOnFailureListener(new OnFailureListener() {
@@ -184,7 +191,6 @@ public class MyMonsterProfile extends AppCompatActivity {
 
             }
         });
-
 
 
         CollectionReference collectionReference = db.collection("PlayerDB/" + deviceID + "/Monsters/" + selectedMonsterHash + "/comments");
@@ -218,5 +224,87 @@ public class MyMonsterProfile extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    /**
+     * Updates the user's score fields so that the leaderboards correctly display their scores.
+     * @param scoreString
+     */
+    public void updateLeaderboardFields(String scoreString) {
+        String userID = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
+        DocumentReference documentReferenceUserScoreField = db.collection("PlayerDB/").document(userID);
+
+        documentReferenceUserScoreField.get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        if (documentSnapshot.exists()) {
+                            Map<String, Object> data = documentSnapshot.getData();
+
+                            String oldTotalScore = (String) data.get("totalscore");
+                            System.out.println("\n\n\n" + scoreString + "    " + oldTotalScore);
+                            String oldMonsterCount = (String) data.get("monstercount");
+                            String oldHighestMonsterScore = (String) data.get("highestmonsterscore");
+
+                            newTotalScore = String.valueOf(Integer.parseInt(oldTotalScore) - Integer.parseInt(scoreString));
+                            newMonsterCount = String.valueOf(Integer.parseInt(oldMonsterCount) - 1);
+                            newHighestMonsterScore = "0";
+
+
+                            // Calculate highest score by iterating through all of user's monsters
+                            CollectionReference collectionReference = db.collection("PlayerDB/" + userID + "/Monsters");
+                            collectionReference.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                    if (task.isSuccessful()) {
+                                        for (QueryDocumentSnapshot document : task.getResult()) {
+                                            String individualScore = document.getString("monsterScore");
+                                           if (Integer.valueOf(individualScore) > Integer.valueOf(newHighestMonsterScore)){
+                                               newHighestMonsterScore = individualScore;
+                                            }
+                                        }
+
+                                    } else {
+                                        Log.d(TAG, "Error getting documents: ", task.getException());
+                                    }
+                                }
+                            });
+
+                            Map<String, Object> newLeaderboardInfo = new HashMap<>();
+                            newLeaderboardInfo.put("totalscore", newTotalScore);
+                            newLeaderboardInfo.put("monstercount", newMonsterCount);
+                            newLeaderboardInfo.put("highestmonsterscore", newHighestMonsterScore);
+
+                            for (Map.Entry<String, Object> entry : newLeaderboardInfo.entrySet()) {
+                                System.out.println("ENTERED LOOP");
+                                System.out.println("Key: " + entry.getKey() + " Value: " + entry.getValue());
+                            }
+
+                            documentReferenceUserScoreField.update(newLeaderboardInfo)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void unused) {
+                                            Log.e("E", "UPDATED FIELDS");
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Log.e("E", "COULD NOT UPDATE FIELDS");
+                                        }
+                                    });
+
+                        } else {
+                            Log.e("E", "DOCUMENT DOES NOT EXIST");
+                        }
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.e("E", "ERROR GETTING DOCUMENT");
+                    }
+                });
+
     }
 }
