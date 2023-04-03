@@ -101,9 +101,12 @@ public class ScannerActivity extends AppCompatActivity {
                             MessageDigest md = MessageDigest.getInstance("SHA-256");
                             byte[] hashBytes = md.digest(qrCodeValue.getBytes(StandardCharsets.UTF_8));
                             String hash = HexBinaryConverter.bytesToHex(hashBytes);
+                            System.out.println("QR Code SHA-256 Hash: " + hash); //TODO: remove this
+                            Log.d(TAG, "QR Code SHA-256 Hash: " + hash);   //TODO: remove this
 
                             // Convert the hash to binary representation
                             String binaryHash = HexBinaryConverter.hexToBinary(hash);
+                            System.out.println("binaryHashCONVERT: " + binaryHash); //TODO: remove this
 
                             // Start ScoreRevealActivity with hash value
                             Intent successIntent = new Intent(ScannerActivity.this, ScoreRevealActivity.class);

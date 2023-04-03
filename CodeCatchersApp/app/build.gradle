@@ -60,6 +60,8 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-idling-resource:3.4.0'
     androidTestImplementation 'androidx.test:rules:1.5.0'
     androidTestImplementation "androidx.test:runner:1.5.2"
+    androidTestImplementation 'androidx.test:core:1.4.1'
+    androidTestImplementation 'org.mockito:mockito-android:3.12.4'
 
     // firebase
     implementation platform('com.google.firebase:firebase-bom:31.2.2')
