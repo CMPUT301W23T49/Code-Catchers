@@ -161,8 +161,6 @@ public class QROptionsActivity extends AppCompatActivity {
                     CollectionReference collectionReference2 = db.collection("PlayerDB/" + userID + "/Monsters/");
                     DocumentReference documentReference2 = collectionReference2.document(shaHash);
                     documentReference2.set(monster);
-
-
                 }
 
                 Boolean locationPhotoToggleState = locationPhotoToggle.isChecked();
@@ -276,40 +274,37 @@ public class QROptionsActivity extends AppCompatActivity {
             }
 
     /**
-     * Updates the fields in the user's document to reflect changes in their scores.
-     * @param scoreString the input string
-     * @return void
+     * Updates the user's score fields so that the leaderboards correctly display their scores.
+     * @param scoreString
      */
-    private void updateLeaderboardFields(String scoreString, String shaHash) {
-        userAlreadyScannedCode(shaHash, new OnCheckShaHashListener() {
-            @Override
-            public void onCheckShaHashResult(boolean exists) {
-                if (!exists) {
-                    String userID = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
-                    DocumentReference documentReferenceUserScoreField = db.collection("PlayerDB/").document(userID);
+    private void updateLeaderboardFields(String scoreString){
+        String userID = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
+        DocumentReference documentReferenceUserScoreField = db.collection("PlayerDB/").document(userID);
 
-                    documentReferenceUserScoreField.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                        @Override
-                        public void onSuccess(DocumentSnapshot documentSnapshot) {
-                            if (documentSnapshot.exists()) {
-                                Map<String, Object> data = documentSnapshot.getData();
+        documentReferenceUserScoreField.get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        if (documentSnapshot.exists()){
+                            Map<String, Object> data = documentSnapshot.getData();
 
-                                String oldTotalScore = (String) data.get("totalscore");
-                                String oldMonsterCount = (String) data.get("monstercount");
-                                String oldHighestMonsterScore = (String) data.get("highestmonsterscore");
+                            String oldTotalScore = (String) data.get("totalscore");
+                            System.out.println("\n\n\n" + scoreString + "    " + oldTotalScore);
+                            String oldMonsterCount = (String) data.get("monstercount");
+                            String oldHighestMonsterScore = (String) data.get("highestmonsterscore");
 
-                                Log.e("E","OLD TOTAL SCORE VALUE: " + oldTotalScore);
-                                Log.e("E","OLD TOTAL MONSTER COUNT: " + oldMonsterCount);
-                                Log.e("E","OLD HIGHEST MONSTER SCORE: " + oldHighestMonsterScore);
+                            Log.e("E","OLD TOTAL SCORE VALUE: " + oldTotalScore);
+                            Log.e("E","OLD TOTAL MONSTER COUNT: " + oldMonsterCount);
+                            Log.e("E","OLD HIGHEST MONSTER SCORE: " + oldHighestMonsterScore);
 
-                                String newTotalScore = String.valueOf(Integer.parseInt(oldTotalScore) + Integer.parseInt(scoreString));
-                                String newMonsterCount = String.valueOf(Integer.parseInt(oldMonsterCount) + 1);
-                                String newHighestMonsterScore = oldHighestMonsterScore;
+                            newTotalScore = String.valueOf(Integer.parseInt(oldTotalScore) + Integer.parseInt(scoreString));
+                            newMonsterCount = String.valueOf(Integer.parseInt(oldMonsterCount) + 1);
+                            newHighestMonsterScore = oldHighestMonsterScore;
 
-                                // If new score is larger than previous highest score
-                                if (Integer.parseInt(scoreString) > Integer.parseInt(oldHighestMonsterScore)) {
-                                    newHighestMonsterScore = scoreString;
-                                }
+                            // If new score is larger than previous highest score
+                            if (Integer.parseInt(scoreString) > Integer.parseInt(oldHighestMonsterScore)) {
+                                newHighestMonsterScore = scoreString;
+                            }
 
                                 Log.e("E","NEW TOTAL SCORE VALUE: " + newTotalScore);
                                 Log.e("E","NEW TOTAL MONSTER COUNT: " + newMonsterCount);
