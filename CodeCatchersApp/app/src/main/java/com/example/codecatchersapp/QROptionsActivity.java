@@ -159,7 +159,7 @@ public class QROptionsActivity extends AppCompatActivity {
                 geoFirestore.setLocation(shaHash, geoloc);
 
                 // save to playerDB
-                CollectionReference collectionReferenceGeoLocation = db.collection("PlayerDB/" + userID + "/Monsters/" + binaryHash + "/geolocationData");
+                CollectionReference collectionReferenceGeoLocation = db.collection("PlayerDB/" + userID + "/Monsters/" + shaHash + "/geolocationData");
                 Map<String, Object> coordinates = new HashMap<>();
                 coordinates.put("geoPoint", geoloc);
 
@@ -187,7 +187,7 @@ public class QROptionsActivity extends AppCompatActivity {
 
             // TODO: CHANGE TO NEW SYSTEM -> MATHEW!!!!
             public void saveComment() {
-                CollectionReference collectionReference = db.collection("PlayerDB/" + userID + "/Monsters/" + binaryHash + "/comments");
+                CollectionReference collectionReference = db.collection("PlayerDB/" + userID + "/Monsters/" + shaHash + "/comments");
                 final String ogComment = commentEditText.getText().toString();
                 HashMap<String, String> data = new HashMap<>();
 
