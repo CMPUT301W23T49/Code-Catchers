@@ -112,10 +112,6 @@ public class QROptionsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                // Adds comment to firebase
-
-
-                // TODO: ADD COMMENT TO DATABASE
                 saveComment();
 
                 // Adds geolocation data to firebase
@@ -138,7 +134,7 @@ public class QROptionsActivity extends AppCompatActivity {
                 }
 
                 Boolean locationPhotoToggleState = locationPhotoToggle.isChecked();
-                // TODO: IF TRUE, GO TO CAMERA AFTER CONTINUE CLICKED, ELSE GO MAIN MENU?
+
                 if (locationPhotoToggleState == false) {
                     goMainMenu();
                 } else {
@@ -172,27 +168,6 @@ public class QROptionsActivity extends AppCompatActivity {
                 DocumentReference documentReference2 = collectionReference2.document(shaHash);
                 documentReference2.set(monster);
 
-                /*
-                CollectionReference collectionReferenceGeoLocation = db.collection("PlayerDB/" + userID + "/Monsters/" + shaHash + "/geolocationData");
-                Map<String, Object> coordinates = new HashMap<>();
-                coordinates.put("geoPoint", geoloc);
-
-                DocumentReference docReference = collectionReferenceGeoLocation.document("geoPoint");
-                docReference.set(coordinates)
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                Log.d(TAG, "Location added to Firestore");
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Log.w(TAG, "Error adding location to Firestore", e);
-                            }
-                        });
-
-                 */
             }
 
 
@@ -201,7 +176,6 @@ public class QROptionsActivity extends AppCompatActivity {
              */
             String userName;
 
-            // TODO: CHANGE TO NEW SYSTEM -> MATHEW!!!!
             public void saveComment() {
                 CollectionReference collectionReference = db.collection("PlayerDB/" + userID + "/Monsters/" + shaHash + "/comments");
                 final String ogComment = commentEditText.getText().toString();
@@ -214,6 +188,10 @@ public class QROptionsActivity extends AppCompatActivity {
                                             .document(ogComment)
                                             .set(data)
                                             .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                /**
+                                                 * Adds comment to database
+                                                 * @param unused
+                                                 */
                                                 @Override
                                                 public void onSuccess(Void unused) {
                                                     Log.d("Success", "Comment added successfully!");
@@ -221,6 +199,9 @@ public class QROptionsActivity extends AppCompatActivity {
                                             })
                                             .addOnFailureListener(new OnFailureListener() {
                                                 @Override
+                                                /**
+                                                 * Logs error if comment addition fails
+                                                 */
                                                 public void onFailure(@NonNull Exception e) {
                                                     Log.d("Failure", "Comment addition failed" + e.toString());
                                                 }
@@ -251,6 +232,10 @@ public class QROptionsActivity extends AppCompatActivity {
 
         documentReferenceUserScoreField.get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    /**
+                     * Updates the user's score fields so that the leaderboards correctly display their scores.
+                     * @param documentSnapshot
+                     */
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         if (documentSnapshot.exists()){
@@ -308,6 +293,10 @@ public class QROptionsActivity extends AppCompatActivity {
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
+                    /**
+                     * Updates the user's score fields so that the leaderboards correctly display their scores.
+                     * @param e
+                     */
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Log.e("E","ERROR GETTING DOCUMENT");

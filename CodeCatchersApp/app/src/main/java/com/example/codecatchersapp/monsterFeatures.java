@@ -28,7 +28,7 @@ public class monsterFeatures {
      */
     private Context mContext;
     private Paint mPaint;
-    private String faceType;
+
     private static HashMap<String, HashMap<String, String>> features = new HashMap<>();
 
     static {                                                // Initialize the features HashMap
@@ -72,7 +72,7 @@ public class monsterFeatures {
         mContext = context;                                // Set the mContext instance variable to the context parameter
         mPaint = paint;
         mPaint.setStyle(Paint.Style.FILL);                 // Set the style of the paint object to fill
-//        faceType = "round face";                           // Set the faceType instance variable to "round face"
+
     }
     /**
      * The generateMonster method generates a monster using the features HashMap.
@@ -85,8 +85,6 @@ public class monsterFeatures {
         if(binaryHash == null || binaryHash.isEmpty()) {            // Check if the binaryHash is null or empty
             return;                                                 // Return if the binaryHash is null or empty
         }
-
-        System.out.println("binaryHashAGAIN: " + binaryHash); //TODO: remove this line
 
 //        faceType = features.get("face").get(Character.toString(binaryHash.charAt(2))); // Set the faceType instance variable to the value of the face key in the features HashMap
 
@@ -203,15 +201,13 @@ public class monsterFeatures {
             canvas.drawArc(new RectF(375, 650, 625, 700), 0, -180, false, paint);
         }
 
-
-
-        // Print the monster features to terminal
-        System.out.println("Eye Type: " + eyeType);
-        System.out.println("Eyebrow Type: " + eyebrowType);
-        System.out.println("Face Type: " + faceType);
-        System.out.println("Nose Type: " + noseType);
-        System.out.println("Mouth Type: " + mouthType);
-        System.out.println("Ear Type: " + earType);
+//        // Print the monster features to terminal
+//        System.out.println("Eye Type: " + eyeType);
+//        System.out.println("Eyebrow Type: " + eyebrowType);
+//        System.out.println("Face Type: " + faceType);
+//        System.out.println("Nose Type: " + noseType);
+//        System.out.println("Mouth Type: " + mouthType);
+//        System.out.println("Ear Type: " + earType);
     }
 }
 

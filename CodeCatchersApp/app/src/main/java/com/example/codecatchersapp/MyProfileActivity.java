@@ -22,7 +22,9 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-
+/**
+ * This class is the activity for the user's profile page
+ */
 public class MyProfileActivity extends AppCompatActivity implements MonsterAdapter.ItemClickListener{
     private UserAccount user;
     private String deviceID;
@@ -37,6 +39,12 @@ public class MyProfileActivity extends AppCompatActivity implements MonsterAdapt
     private MonsterAdapter monsterAdapter;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     CollectionReference userCollection = db.collection("PlayerDB");
+    /**
+     * This method is called when the activity is created. It sets the content view and gets the
+     * views for the activity. It also sets the click listeners for the buttons.
+     *
+     * @param savedInstanceState the saved instance state.
+     */
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +67,11 @@ public class MyProfileActivity extends AppCompatActivity implements MonsterAdapt
         // Set click listener for back button
 
         backButton.setOnClickListener(new View.OnClickListener() {
+            /**
+             * This method is called when the back button is clicked. It starts the MainMenuActivity.
+             *
+             * @param view the view that was clicked.
+             */
             @Override
             public void onClick(View view) {
                 onBackPressed();
@@ -119,11 +132,24 @@ public class MyProfileActivity extends AppCompatActivity implements MonsterAdapt
                             rv_monsters.setAdapter(monsterAdapter);
                             userName.setText(user.getUsername());
                             sortButton.setOnClickListener(new View.OnClickListener() {
+                                /**
+                                 * This method is called when the sort button is clicked. It sorts the
+                                 * monsters by highest score or lowest score.
+                                 *
+                                 * @param view the view that was clicked.
+                                 */
                                 @Override
                                 public void onClick(View view) {
                                     if (sortButton.getText().toString().contains("highest")) {
                                         sortButton.setText("Sort by: lowest");
                                         Collections.sort(monsters, new Comparator<Monster>() {
+                                            /**
+                                             * This method compares two monsters by their score.
+                                             *
+                                             * @param monster1 the first monster.
+                                             * @param monster2 the second monster.
+                                             * @return the difference between the two monsters' scores.
+                                             */
                                             @Override
                                             public int compare(Monster monster1, Monster monster2) {
                                                 return monster1.getMonsterScore().compareTo(monster2.getMonsterScore());
@@ -133,6 +159,13 @@ public class MyProfileActivity extends AppCompatActivity implements MonsterAdapt
                                     } else {
                                         sortButton.setText("Sort by: highest");
                                         Collections.sort(monsters, new Comparator<Monster>() {
+                                            /**
+                                             * This method compares two monsters by their score.
+                                             *
+                                             * @param monster1 the first monster.
+                                             * @param monster2 the second monster.
+                                             * @return the difference between the two monsters' scores.
+                                             */
                                             @Override
                                             public int compare(Monster monster1, Monster monster2) {
                                                 return monster2.getMonsterScore().compareTo(monster1.getMonsterScore());
@@ -145,6 +178,12 @@ public class MyProfileActivity extends AppCompatActivity implements MonsterAdapt
                                     monsterAdapter.notifyDataSetChanged();
                                 }
                             });
+                            /**
+                             * This method is called when the settings button is clicked. It starts the
+                             * UserSettingsActivity.
+                             *
+                             * @param view the view that was clicked.
+                             */
                             settingsButton.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
@@ -161,7 +200,9 @@ public class MyProfileActivity extends AppCompatActivity implements MonsterAdapt
                 });
 
     }
-
+    /**
+     * This method is called when the back button is pressed. It starts the MainMenuActivity.
+     */
     @Override
     public void onItemClick(View view, int position) {
         Log.i("OnItemClick", "In onItemClick");

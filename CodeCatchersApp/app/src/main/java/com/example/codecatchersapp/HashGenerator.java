@@ -1,6 +1,5 @@
 package com.example.codecatchersapp;
 
-
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -10,9 +9,8 @@ import java.security.NoSuchAlgorithmException;
  @version 1.0
  @since [Sunday March 4 2021]
  */
-
-public class HashGenerator {
-    public static String generateAndWriteHash(String input) {
+public class HashGenerator {                                                            // https://www.baeldung.com/sha-256-hashing-java
+    public static String generateAndWriteHash(String input) {                           // https://stackoverflow.com/questions/5531455/how-to-hash-some-string-with-sha256-in-java
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             byte[] hash = digest.digest(input.getBytes());

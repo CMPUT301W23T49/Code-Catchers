@@ -163,6 +163,10 @@ public class UserProfileFragment extends Fragment implements MonsterAdapter.Item
             Query query = userCollection.whereEqualTo("username", user.getUsername());
 
             query.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                /**
+                 * Called when the query is successful.
+                 * @param queryDocumentSnapshots the query result
+                 */
                 @Override
                 public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                     // Get the monster hashes from the user
@@ -182,6 +186,12 @@ public class UserProfileFragment extends Fragment implements MonsterAdapter.Item
                         }
                         Log.i("TAG", "Length of monsters: " + monsters.size());
                         Collections.sort(monsters, new Comparator<Monster>() {
+                            /**
+                             * Compares two Monster objects by their monsterScore.
+                             * @param monster1 the first Monster object
+                             * @param monster2 the second Monster object
+                             * @return the difference between the two Monster objects' monsterScore
+                             */
                             @Override
                             public int compare(Monster monster1, Monster monster2) {
                                 return monster2.getMonsterScore().compareTo(monster1.getMonsterScore());
@@ -193,6 +203,10 @@ public class UserProfileFragment extends Fragment implements MonsterAdapter.Item
 
                 }
             }).addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                /**
+                 * Called when the query is complete.
+                 * @param task the task that was completed
+                 */
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                     // Calculate the user's total score from their scanned monsters
@@ -216,6 +230,12 @@ public class UserProfileFragment extends Fragment implements MonsterAdapter.Item
                             if (sortButton.getText().toString().contains("highest")) {
                                 sortButton.setText("Sort by: lowest");
                                 Collections.sort(monsters, new Comparator<Monster>() {
+                                    /**
+                                     * Compares two Monster objects by their monsterScore.
+                                     * @param monster1 the first Monster object
+                                     * @param monster2 the second Monster object
+                                     * @return the difference between the two Monster objects' monsterScore
+                                     */
                                     @Override
                                     public int compare(Monster monster1, Monster monster2) {
                                         return monster1.getMonsterScore().compareTo(monster2.getMonsterScore());
@@ -225,6 +245,12 @@ public class UserProfileFragment extends Fragment implements MonsterAdapter.Item
                             } else {
                                 sortButton.setText("Sort by: highest");
                                 Collections.sort(monsters, new Comparator<Monster>() {
+                                    /**
+                                     * Compares two Monster objects by their monsterScore.
+                                     * @param monster1 the first Monster object
+                                     * @param monster2 the second Monster object
+                                     * @return the difference between the two Monster objects' monsterScore
+                                     */
                                     @Override
                                     public int compare(Monster monster1, Monster monster2) {
                                         return monster2.getMonsterScore().compareTo(monster1.getMonsterScore());
@@ -239,6 +265,10 @@ public class UserProfileFragment extends Fragment implements MonsterAdapter.Item
                     });
                 }
             }).addOnFailureListener(new OnFailureListener() {
+                /**
+                 * Called when the query fails.
+                 * @param e the exception that was thrown
+                 */
                 @Override
                 public void onFailure(@NonNull Exception e) {
                     Toast.makeText(getContext(), "Failed to load user data", Toast.LENGTH_SHORT).show();
@@ -294,6 +324,12 @@ public class UserProfileFragment extends Fragment implements MonsterAdapter.Item
                                 rv_monsters.setAdapter(monsterAdapter);
                                 userName.setText(user.getUsername());
                                 sortButton.setOnClickListener(new View.OnClickListener() {
+                                    /**
+                                     * Handles the onClick event for the sortButton. It sorts the monsters
+                                     * by their monsterScore and then notifies the monsterAdapter that
+                                     * the data has changed.
+                                     * @param view the view that was clicked
+                                     */
                                     @Override
                                     public void onClick(View view) {
                                         if (sortButton.getText().toString().contains("highest")) {
@@ -308,6 +344,12 @@ public class UserProfileFragment extends Fragment implements MonsterAdapter.Item
                                         } else {
                                             sortButton.setText("Sort by: highest");
                                             Collections.sort(monsters, new Comparator<Monster>() {
+                                                /**
+                                                 * Compares two Monster objects by their monsterScore.
+                                                 * @param monster1 the first Monster object
+                                                 * @param monster2 the second Monster object
+                                                 * @return the difference between the two Monster objects' monsterScore
+                                                 */
                                                 @Override
                                                 public int compare(Monster monster1, Monster monster2) {
                                                     return monster2.getMonsterScore().compareTo(monster1.getMonsterScore());

@@ -87,9 +87,14 @@ public class ScannerActivity extends AppCompatActivity {
         codeScanner = new CodeScanner(this, scannerView);
         codeScanner.setDecodeCallback(new DecodeCallback() {
             // scan QR code, and onDecoded decode the QR code value
+            /**
+             * Called when a QR code is successfully decoded.
+             * @param result the result of the decoding
+             */
             @Override
             public void onDecoded(@NonNull Result result) {
                 runOnUiThread(new Runnable() {
+                    /** Called when the activity is starting. */
                     @Override
                     public void run() {
                         onPause();
@@ -131,6 +136,16 @@ public class ScannerActivity extends AppCompatActivity {
 
         codeScanner.startPreview();
     }
+    /**
+     * Called when the activity has detected the user's press of the back key.
+     * @param requestCode The integer request code originally supplied to
+     *                    startActivityForResult(), allowing you to identify who this
+     *                    result came from.
+     * @param permissions The requested permissions. Never null.
+     * @param grantResults The grant results for the corresponding permissions
+     *                     which is either PERMISSION_GRANTED or PERMISSION_DENIED.
+     *                     Never null.
+     */
     private static String bytesToHex(byte[] bytes) {
         StringBuilder sb = new StringBuilder();
         for (byte b : bytes) {
@@ -153,7 +168,9 @@ public class ScannerActivity extends AppCompatActivity {
         }
         return bin;
     }
-
+    /**
+     * Called when the activity is becoming visible to the user.
+     */
     @Override
     protected void onResume() {
         super.onResume();
@@ -161,7 +178,9 @@ public class ScannerActivity extends AppCompatActivity {
             codeScanner.startPreview();
         }
     }
-
+    /**
+     * Called when the activity is no longer visible to the user.
+     */
     @Override
     protected void onPause() {
         if (codeScanner != null) {

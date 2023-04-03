@@ -10,7 +10,11 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
+/**
+ * UserSettingsActivity.java
+ * This activity allows the user to change their username and contact information.
+ * The user can also cancel the changes and go back to the previous activity.
+ */
 public class UserSettingsActivity extends AppCompatActivity {
     private FloatingActionButton backButton;
     private EditText editUserName;
@@ -20,7 +24,11 @@ public class UserSettingsActivity extends AppCompatActivity {
     private String deviceID;
     private String userName;
     private String contactInfo;
-
+    /**
+     * This method is called when the activity is created. It sets the content view, gets the intent
+     * extras, sets the text views, and sets the on click listeners.
+     * @param savedInstanceState The saved instance state.
+     */
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +54,11 @@ public class UserSettingsActivity extends AppCompatActivity {
 
         // Set on click listeners
         backButton.setOnClickListener(new View.OnClickListener() {
+            /**
+             * This method is called when the back button is clicked. It navigates back to the
+             * previous activity.
+             * @param view The clicked view.
+             */
             @Override
             public void onClick(View view) {
                 onBackPressed();

@@ -93,6 +93,10 @@ public class MyMonsterProfile extends AppCompatActivity {
 
         FloatingActionButton backButton = findViewById(R.id.back_button);
         backButton.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Goes back to the previous activity.
+             * @param view The view that was clicked.
+             */
             @Override
             public void onClick(View view) {
                 onBackPressed();
@@ -101,14 +105,18 @@ public class MyMonsterProfile extends AppCompatActivity {
 
         EditText commentEditText = findViewById(R.id.new_comment_my_monster_text);
         FloatingActionButton sendCommentButton = findViewById(R.id.send_comment_my_monster_button);
-
+        /**
+         * Saves a new comment to the database.
+         */
         // SAVE ANY NEW COMMENT TO DATABASE
         sendCommentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 saveComment();
             }
-
+            /**
+             * Saves a new comment to the database.
+             */
             public void saveComment() {
                 CollectionReference collectionReference = db.collection("PlayerDB/" + userID + "/Monsters/" + shaHash + "/comments");
                 final String ogComment = commentEditText.getText().toString();
@@ -120,12 +128,20 @@ public class MyMonsterProfile extends AppCompatActivity {
                             .document(ogComment)
                             .set(data)
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                /**
+                                 * Logs a success message.
+                                 * @param unused Unused.
+                                 */
                                 @Override
                                 public void onSuccess(Void unused) {
                                     Log.d("Success", "Comment added successfully!");
                                 }
                             })
                             .addOnFailureListener(new OnFailureListener() {
+                                /**
+                                 * Logs a failure message.
+                                 * @param e The exception that was thrown.
+                                 */
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
                                     Log.d("Failure", "Comment addition failed" + e.toString());
@@ -135,7 +151,9 @@ public class MyMonsterProfile extends AppCompatActivity {
                 }
             }
         });
-
+        /**
+         * Sets up the RecyclerView to display the comments and fetches them from the database.
+         */
         monsterSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -157,7 +175,9 @@ public class MyMonsterProfile extends AppCompatActivity {
 
                 Button deleteButton = dialog.findViewById(R.id.delete_mon_settings);
                 Button returnButton = dialog.findViewById(R.id.return_mon_settings);
-
+                /**
+                 * Deletes the monster from the database.
+                 */
                 deleteButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -166,6 +186,10 @@ public class MyMonsterProfile extends AppCompatActivity {
                         // Reference to the document with the SHA hash to delete
                         DocumentReference docRef = collectionReference.document(selectedMonsterHash);
                         docRef.delete()
+                                /**
+                                 * Logs a success message.
+                                 * @param aVoid Unused.
+                                 */
                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void aVoid) {
@@ -173,6 +197,10 @@ public class MyMonsterProfile extends AppCompatActivity {
                                         updateLeaderboardFields(selectedMonsterScore);
                                     }
                                 })
+                                /**
+                                 * Logs a failure message.
+                                 * @param e The exception that was thrown.
+                                 */
                                 .addOnFailureListener(new OnFailureListener() {
                                     @Override
                                     public void onFailure(@NonNull Exception e) {
@@ -181,7 +209,9 @@ public class MyMonsterProfile extends AppCompatActivity {
                                 });
                     }
                 });
-
+                /**
+                 * Closes the dialog.
+                 */
                 returnButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -206,7 +236,9 @@ public class MyMonsterProfile extends AppCompatActivity {
 
         // Get the users stored in the DB and add them to the list of users
         Query query = collectionReference.orderBy("userName");
-
+        /**
+         * Fetches the comments from the database.
+         */
         query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -236,6 +268,10 @@ public class MyMonsterProfile extends AppCompatActivity {
 
         documentReferenceUserScoreField.get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    /**
+                     * Updates the user's score fields.
+                     * @param documentSnapshot The document snapshot of the user.
+                     */
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         if (documentSnapshot.exists()) {
@@ -254,6 +290,10 @@ public class MyMonsterProfile extends AppCompatActivity {
                             // Calculate highest score by iterating through all of user's monsters
                             CollectionReference collectionReference = db.collection("PlayerDB/" + userID + "/Monsters");
                             collectionReference.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                /**
+                                 * Iterates through all of the user's monsters and calculates the highest score.
+                                 * @param task The task that was completed.
+                                 */
                                 @Override
                                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                     if (task.isSuccessful()) {
@@ -282,12 +322,20 @@ public class MyMonsterProfile extends AppCompatActivity {
 
                             documentReferenceUserScoreField.update(newLeaderboardInfo)
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        /**
+                                         * Logs a success message.
+                                         * @param unused Unused.
+                                         */
                                         @Override
                                         public void onSuccess(Void unused) {
                                             Log.e("E", "UPDATED FIELDS");
                                         }
                                     })
                                     .addOnFailureListener(new OnFailureListener() {
+                                        /**
+                                         * Logs a failure message.
+                                         * @param e The exception that was thrown.
+                                         */
                                         @Override
                                         public void onFailure(@NonNull Exception e) {
                                             Log.e("E", "COULD NOT UPDATE FIELDS");
@@ -300,6 +348,10 @@ public class MyMonsterProfile extends AppCompatActivity {
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
+                    /**
+                     * Logs a failure message.
+                     * @param e The exception that was thrown.
+                     */
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Log.e("E", "ERROR GETTING DOCUMENT");

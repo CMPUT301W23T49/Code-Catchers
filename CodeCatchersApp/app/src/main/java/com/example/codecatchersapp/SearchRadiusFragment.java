@@ -56,18 +56,32 @@ public class SearchRadiusFragment extends DialogFragment {
         seekBar.setMax(100);
         seekBar.setProgress(50);
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-
+            /**
+             * Handles the change event for the seek bar.
+             *
+             * @param seekBar The seek bar that was changed.
+             * @param progress The current progress of the seek bar.
+             * @param fromUser True if the change was triggered by the user.
+             */
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 String valueText = progress + " km";
                 valueTextView.setText(valueText);
             }
-
+            /**
+             * Handles the start tracking touch event for the seek bar.
+             *
+             * @param seekBar The seek bar that was changed.
+             */
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
                 // This method is intentionally left blank
             }
-
+            /**
+             * Handles the stop tracking touch event for the seek bar.
+             *
+             * @param seekBar The seek bar that was changed.
+             */
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 // This method is intentionally left blank
@@ -76,6 +90,12 @@ public class SearchRadiusFragment extends DialogFragment {
 
         // Set up the "Go" button
         builder.setPositiveButton("Go", new DialogInterface.OnClickListener() {
+            /**
+             * Handles the click event for the go button.
+             *
+             * @param dialog The dialog that was clicked.
+             * @param which The button that was clicked.
+             */
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 // Retrieve the radius selected by the user
@@ -88,7 +108,12 @@ public class SearchRadiusFragment extends DialogFragment {
             }
 
         });
-
+        /**
+         * Handles the click event for the cancel button.
+         *
+         * @param dialog The dialog that was clicked.
+         * @param which The button that was clicked.
+         */
         // Set up the "Cancel" button
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override

@@ -56,6 +56,10 @@ public class SocialMenuActivity extends AppCompatActivity {
 
         // Set click listeners for the buttons
         browseUsersButton.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Navigates to the SearchUsersActivity when clicked.
+             * @param v the clicked view.
+             */
             @Override
             public void onClick(View v) {
                 // Handle button click
@@ -65,6 +69,10 @@ public class SocialMenuActivity extends AppCompatActivity {
         });
 
         leaderboardsButton.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Navigates to the LeaderboardsActivity when clicked.
+             * @param v the clicked view.
+             */
             @Override
             public void onClick(View v) {
                 // Handle button click
@@ -75,30 +83,22 @@ public class SocialMenuActivity extends AppCompatActivity {
         });
 
         myProfileButton.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Navigates to the MyProfileActivity when clicked.
+             * @param v the clicked view.
+             */
             @Override
             public void onClick(View v) {
-                /**
-                String deviceID = Settings.Secure.getString(SocialMenuActivity.this.getContentResolver(), Settings.Secure.ANDROID_ID);
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                UserProfileFragment profileFragment = new UserProfileFragment(deviceID);
-                fragmentManager.beginTransaction()
-                        .replace(R.id.profile_container, profileFragment)
-                        .addToBackStack(null)
-                        .commit();
-
-                // Hide the views from the social menu
-                titleTextView.setVisibility(View.GONE);
-                browseUsersButton.setVisibility(View.GONE);
-                leaderboardsButton.setVisibility(View.GONE);
-                myProfileButton.setVisibility(View.GONE);
-                 **/
                 Intent myProfileIntent = new Intent(SocialMenuActivity.this, MyProfileActivity.class);
                 startActivity(myProfileIntent);
 
             }
         });
     }
-
+    /**
+     * Called when the activity has detected the user's press of the back key.
+     * Sets the previously hidden views to visible.
+     */
     @Override
     public void onBackPressed() {
         super.onBackPressed();
