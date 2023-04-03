@@ -4,16 +4,17 @@
     android:id="@+id/root_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFC8FB">
+    android:background="#FFE4F3">
 
     <!-- Score display -->
     <TextView
         android:id="@+id/you_gotTextview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#000000"
-        android:text="You Got "
+        android:textColor="#FFac1db8"
+        android:text="CONGRATULATIONS!"
         android:textSize="24sp"
+        android:letterSpacing="0.3"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:paddingTop="16dp"
@@ -26,6 +27,7 @@
         android:textColor="#000000"
         android:text="XX"
         android:textSize="75dp"
+        android:letterSpacing="0.1"
         android:layout_below="@id/you_gotTextview"
         android:layout_centerHorizontal="true"
         android:gravity="center" />
@@ -34,9 +36,10 @@
         android:id="@+id/points_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#000000"
-        android:text="Points!"
+        android:textColor="#FFac1db8"
+        android:text="MONSTER POINTS!"
         android:textSize="24sp"
+        android:letterSpacing="0.3"
         android:layout_below="@id/scoreTextView"
         android:layout_centerHorizontal="true"
 
@@ -50,16 +53,33 @@
         android:layout_centerHorizontal="true"
         android:background="@android:color/transparent" />
 
-    <!-- Monster name -->
-    <TextView
-        android:id="@+id/monsterNameTextView"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/MonsterView"
         android:layout_centerHorizontal="true"
-        android:text="Monster Name"
-        android:textColor="#000000"
-        android:textSize="30sp" />
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/monsterNameTitleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Monster Name"
+            android:textColor="#FFac1db8"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/monsterNameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Monster Name"
+            android:textColor="#000000"
+            android:textSize="30sp" />
+    </LinearLayout>
+
+
 
     <!-- Tap anywhere to continue -->
     <TextView
@@ -68,7 +88,9 @@
         android:layout_height="wrap_content"
         android:textColor="#000000"
         android:text="Tap Anywhere to Continue"
+        android:textSize="20sp"
         android:layout_alignParentBottom="true"
         android:gravity="center_horizontal"/>
 
 </RelativeLayout>
+

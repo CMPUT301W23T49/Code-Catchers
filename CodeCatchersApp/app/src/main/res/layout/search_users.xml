@@ -13,11 +13,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="72dp"
-        android:gravity="left"
-        android:text="Browse by Users"
-        android:textColor="#000000"
-        android:textSize="30sp"
+        android:gravity="center_horizontal|top"
+        android:text="BROWSE USERS"
+        android:textColor="#FFac1db8"
+        android:textSize="31sp"
         android:textStyle="bold"
+        android:letterSpacing="0.3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

@@ -13,7 +13,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="136dp"
-        android:text="Would you like to record the geolocation of the QR code?"
+        android:text=" RECORD GEOLOCATION"
+        android:textSize="21sp"
+        android:textStyle="bold"
+        android:letterSpacing="0.2"
         android:textAlignment="center"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
@@ -26,7 +29,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="76dp"
-        android:text="Would you like to take a photo of the QR code location?"
+        android:text="TAKE PHOTO OF LOCATION"
+        android:textSize="21sp"
+        android:textStyle="bold"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.492"
@@ -45,15 +50,18 @@
         app:layout_constraintBottom_toTopOf="@+id/text_photo_prompt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/geolocation_prompt" />
+        app:layout_constraintTop_toBottomOf="@+id/geolocation_prompt"
+        android:thumbTint="@color/delete_button_green"
+        android:trackTint="@color/delete_button_green" />
 
     <TextView
         android:id="@+id/comment_photo_prompt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Would you like to add a comment to your QR code?"
+        android:text="ADD COMMENT TO PHOTO"
         android:textColor="@color/black"
-        android:textSize="15sp"
+        android:textSize="21sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -72,7 +80,9 @@
         app:layout_constraintBottom_toTopOf="@+id/comment_photo_prompt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_photo_prompt" />
+        app:layout_constraintTop_toBottomOf="@+id/text_photo_prompt"
+        android:thumbTint="@color/delete_button_green"
+        android:trackTint="@color/delete_button_green"/>
 
     <EditText
         android:id="@+id/editTextNewMonComment"
@@ -96,8 +106,11 @@
         android:id="@+id/continue_photo_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/dark_pink_button"
+        android:backgroundTint="@color/white"
+        android:textColor="#000000"
         android:text="Continue"
+        android:letterSpacing="0.1"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

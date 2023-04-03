@@ -172,7 +172,7 @@ public class MyProfileActivity extends AppCompatActivity implements MonsterAdapt
         Intent monsterIntent = new Intent(MyProfileActivity.this, MyMonsterProfile.class);
         monsterIntent.putExtra("userName", user.getUsername());
         monsterIntent.putExtra("deviceID", deviceID);
-        monsterIntent.putExtra("monsterHash", monster.getMonsterHash());
+        monsterIntent.putExtra("monsterHash", monster.getMonsterSHAHash());
         monsterIntent.putExtra("monsterName", monster.getMonsterName());
         monsterIntent.putExtra("monsterScore", monster.getMonsterScore());
         startActivity(monsterIntent);
