@@ -1,19 +1,21 @@
 package com.example.codecatchersapp;
+
 import android.Manifest;
-
-
-import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
-import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
+
+import android.util.Log;
+import android.widget.Button;
+import android.widget.EditText;
+
+import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentActivity;
+
+import com.example.codecatchersapp.databinding.ActivityMapDisplayBinding;
+
 
 import android.util.Log;
 
@@ -21,31 +23,27 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import org.imperiumlabs.geofirestore.listeners.GeoQueryEventListener;
+
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.example.codecatchersapp.databinding.ActivityMapDisplayBinding;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-
 
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.GeoPoint;
 
 import org.imperiumlabs.geofirestore.GeoFirestore;
 import org.imperiumlabs.geofirestore.GeoQuery;
+import org.imperiumlabs.geofirestore.listeners.GeoQueryEventListener;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * MapActivity is an implementation of the OnMapReadyCallback interface.
@@ -204,7 +202,6 @@ public class MapDisplayActivity extends FragmentActivity implements OnMapReadyCa
             }
         });
     }
-
         /**
          * Called when the map is ready to be used.
          * @param googleMap The GoogleMap object used to display the map.
