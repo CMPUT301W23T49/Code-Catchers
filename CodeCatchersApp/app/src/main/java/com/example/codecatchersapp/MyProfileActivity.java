@@ -1,9 +1,3 @@
-/**
- * a class
- * @author CMPUT301W23T49
- * @version 1.0
- * @since [Monday April 3]
- */
 package com.example.codecatchersapp;
 
 import android.content.Intent;
@@ -14,11 +8,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -28,12 +26,8 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
-
-/**
- MyProfileActivity is an activity class that displays a user's profile. The activity contains the user's
- name, score, and the number of monsters they have scanned. It also displays a RecyclerView containing
- */
 public class MyProfileActivity extends AppCompatActivity implements MonsterAdapter.ItemClickListener{
     private UserAccount user;
     private String deviceID;
@@ -48,12 +42,6 @@ public class MyProfileActivity extends AppCompatActivity implements MonsterAdapt
     private MonsterAdapter monsterAdapter;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     CollectionReference userCollection = db.collection("PlayerDB");
-    /**
-     * This method is called when the activity is created. It sets the content view and gets the
-     * views for the activity. It also sets the click listeners for the buttons.
-     *
-     * @param savedInstanceState the saved instance state.
-     */
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,21 +64,108 @@ public class MyProfileActivity extends AppCompatActivity implements MonsterAdapt
         // Set click listener for back button
 
         backButton.setOnClickListener(new View.OnClickListener() {
-            /**
-             * This method is called when the back button is clicked. It starts the MainMenuActivity.
-             *
-             * @param view the view that was clicked.
-             */
             @Override
             public void onClick(View view) {
-                onBackPressed();
+                Intent intent = new Intent(MyProfileActivity.this, SocialMenuActivity.class);
+                startActivity(intent);
             }
         });
 
 
 
+
+
         // Get the users scanned monsters from the database
         monsters = new ArrayList<>();
+        userCollection.document(deviceID).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if(task.isSuccessful()) {
+                    DocumentSnapshot doc = task.getResult();
+                    userName.setText((String) doc.get("username"));
+                }
+            }
+        });
+
+        CollectionReference collectionReference = userCollection.document(deviceID).collection("Monsters");
+        collectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                List<DocumentSnapshot> docs = queryDocumentSnapshots.getDocuments();
+                ArrayList<Monster> tempList = new ArrayList<>();
+                for (DocumentSnapshot doc : docs) {
+                    String shaHash = doc.getString("monsterSHAHash");
+                    String binaryHash = doc.getString("monsterBinaryHash");
+                    String monsterName = doc.getString("monsterName");
+                    String monsterScore = doc.getString("monsterScore");
+                    Monster currMonster = new Monster(shaHash, binaryHash, monsterName, monsterScore);
+                    tempList.add(currMonster);
+                }
+                if (tempList != null) {
+                    for (Monster monster : tempList) {
+                        monsters.add(monster);
+                    }
+
+                    Collections.sort(monsters, new Comparator<Monster>() {
+                        @Override
+                        public int compare(Monster monster1, Monster monster2) {
+                            return monster2.getMonsterScore().compareTo(monster1.getMonsterScore());
+
+                        }
+
+                    });
+                }
+                //Log.i("QueryDocumentSnapshot:", queryDocumentSnapshots.getDocuments().toString());
+            }
+        }).addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                // Calculate the user's total score from their scanned monsters
+                Integer tempScore = 0;
+                for (Monster monster : monsters) {
+                    tempScore += Integer.parseInt(monster.getMonsterScore());
+
+                }
+
+
+                // Set the TextViews and RecyclerView for the user's profile
+                userScore.setText(tempScore.toString());
+                userNumMonsters.setText(String.valueOf(monsters.size()));
+                rv_monsters.setLayoutManager(new GridLayoutManager(MyProfileActivity.this, 2));
+                monsterAdapter = new MonsterAdapter(monsters);
+                monsterAdapter.setClickListener(MyProfileActivity.this);
+                rv_monsters.setAdapter(monsterAdapter);
+                if (!monsters.isEmpty()) {
+                    sortButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            if (sortButton.getText().toString().contains("highest")) {
+                                sortButton.setText("Sort by: lowest");
+                                Collections.sort(monsters, new Comparator<Monster>() {
+                                    @Override
+                                    public int compare(Monster monster1, Monster monster2) {
+                                        return monster1.getMonsterScore().compareTo(monster2.getMonsterScore());
+                                    }
+                                });
+
+                            } else {
+                                sortButton.setText("Sort by: highest");
+                                Collections.sort(monsters, new Comparator<Monster>() {
+                                    @Override
+                                    public int compare(Monster monster1, Monster monster2) {
+                                        return monster2.getMonsterScore().compareTo(monster1.getMonsterScore());
+
+                                    }
+
+                                });
+
+                            }
+                            monsterAdapter.notifyDataSetChanged();
+                        }
+                    });
+                }
+            }
+        });
 
         // Get the user info by deviceID
         userCollection.whereEqualTo("deviceID", deviceID).get()
@@ -141,24 +216,11 @@ public class MyProfileActivity extends AppCompatActivity implements MonsterAdapt
                             rv_monsters.setAdapter(monsterAdapter);
                             userName.setText(user.getUsername());
                             sortButton.setOnClickListener(new View.OnClickListener() {
-                                /**
-                                 * This method is called when the sort button is clicked. It sorts the
-                                 * monsters by highest score or lowest score.
-                                 *
-                                 * @param view the view that was clicked.
-                                 */
                                 @Override
                                 public void onClick(View view) {
                                     if (sortButton.getText().toString().contains("highest")) {
                                         sortButton.setText("Sort by: lowest");
                                         Collections.sort(monsters, new Comparator<Monster>() {
-                                            /**
-                                             * This method compares two monsters by their score.
-                                             *
-                                             * @param monster1 the first monster.
-                                             * @param monster2 the second monster.
-                                             * @return the difference between the two monsters' scores.
-                                             */
                                             @Override
                                             public int compare(Monster monster1, Monster monster2) {
                                                 return monster1.getMonsterScore().compareTo(monster2.getMonsterScore());
@@ -168,13 +230,6 @@ public class MyProfileActivity extends AppCompatActivity implements MonsterAdapt
                                     } else {
                                         sortButton.setText("Sort by: highest");
                                         Collections.sort(monsters, new Comparator<Monster>() {
-                                            /**
-                                             * This method compares two monsters by their score.
-                                             *
-                                             * @param monster1 the first monster.
-                                             * @param monster2 the second monster.
-                                             * @return the difference between the two monsters' scores.
-                                             */
                                             @Override
                                             public int compare(Monster monster1, Monster monster2) {
                                                 return monster2.getMonsterScore().compareTo(monster1.getMonsterScore());
@@ -187,12 +242,6 @@ public class MyProfileActivity extends AppCompatActivity implements MonsterAdapt
                                     monsterAdapter.notifyDataSetChanged();
                                 }
                             });
-                            /**
-                             * This method is called when the settings button is clicked. It starts the
-                             * UserSettingsActivity.
-                             *
-                             * @param view the view that was clicked.
-                             */
                             settingsButton.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
@@ -210,11 +259,6 @@ public class MyProfileActivity extends AppCompatActivity implements MonsterAdapt
 
     }
 
-
-    /**
-     * The class implements the onItemClick() method from
-     * the MonsterAdapter.ItemClickListener interface to handle
-     */
     @Override
     public void onItemClick(View view, int position) {
         Log.i("OnItemClick", "In onItemClick");
@@ -225,9 +269,11 @@ public class MyProfileActivity extends AppCompatActivity implements MonsterAdapt
         Intent monsterIntent = new Intent(MyProfileActivity.this, MyMonsterProfile.class);
         monsterIntent.putExtra("userName", user.getUsername());
         monsterIntent.putExtra("deviceID", deviceID);
-        monsterIntent.putExtra("monsterHash", monster.getMonsterSHAHash());
+        monsterIntent.putExtra("shaHash", monster.getMonsterSHAHash());
+        monsterIntent.putExtra("binaryHash", monster.getMonsterBinaryHash());
         monsterIntent.putExtra("monsterName", monster.getMonsterName());
         monsterIntent.putExtra("monsterScore", monster.getMonsterScore());
+
         startActivity(monsterIntent);
 
     }

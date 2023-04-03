@@ -108,6 +108,12 @@
             android:name=".MyProfileActivity"
             android:exported="true">
         </activity>
+        <activity android:name=".UserSettingsActivity"
+            android:exported="true">
+        </activity>
+        <activity android:name=".MyMonsterProfile"
+            android:exported="true">
+        </activity>
 
     </application>
 

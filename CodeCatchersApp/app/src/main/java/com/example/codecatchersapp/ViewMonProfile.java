@@ -1,26 +1,30 @@
-/**
- * a class
- * @author CMPUT301W23T49
- * @version 1.0
- * @since [Monday April 3]
- */
 package com.example.codecatchersapp;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.PersistableBundle;
+import android.provider.Settings;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -67,10 +71,10 @@ public class ViewMonProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_monster);
         Intent intent = getIntent();
-        String shaHash = intent.getStringExtra("shaHash");
-        String binaryHash = intent.getStringExtra("binaryHash");
+        String selectedMonsterHash = intent.getStringExtra("monsterHash");
         String selectedMonsterName = intent.getStringExtra("monsterName");
         String selectedMonsterScore = intent.getStringExtra("monsterScore");
+        String shaHash = intent.getStringExtra("monsterHash");
 
 
 
@@ -81,38 +85,6 @@ public class ViewMonProfile extends AppCompatActivity {
         EditText commentEditText = findViewById(R.id.new_comment_other_user_text);
         FloatingActionButton sendCommentButton = findViewById(R.id.send_comment_button);
 
-        CollectionReference collectionReference = db.collection("PlayerDB/" + userID + "/Monsters/" + selectedMonsterHash + "/comments");
-        // Create an ArrayList for comments
-        comments = new ArrayList<>();
-
-        // Set up the RecycleView with UserAdapter and ClickListener
-        RecyclerView rvComments = findViewById(R.id.rv_comments);
-        rvComments.setLayoutManager(new LinearLayoutManager(this));
-        CommentAdapter commentAdapter = new CommentAdapter((ArrayList<Comment>) comments);
-        rvComments.setAdapter(commentAdapter);
-
-
-        // Get the users stored in the DB and add them to the list of users
-        Query query = collectionReference.orderBy("userName");
-
-        query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                    for (DocumentSnapshot document : task.getResult()) {
-                        String userName = document.getString("userName");
-                        String commentId = document.getId();
-                        Comment comment = new Comment(userName, commentId);
-                        comments.add(comment);
-                    }
-                    commentAdapter.notifyDataSetChanged();
-                    Log.d("CommentAdapter", "Number of comments retrieved: " + comments.size());
-                } else {
-                    Log.d("ERROR", "Error getting documents: ", task.getException());
-                }
-            }
-        });
-
         // SAVE ANY NEW COMMENT TO DATABASE
         sendCommentButton.setOnClickListener(new View.OnClickListener() {
             /**
@@ -121,7 +93,7 @@ public class ViewMonProfile extends AppCompatActivity {
              */
             @Override
             public void onClick(View view) {
-                saveComment();
+                onBackPressed();
             }
             /**
              Saves the comment to the database.
@@ -132,6 +104,7 @@ public class ViewMonProfile extends AppCompatActivity {
                 HashMap<String, String> data = new HashMap<>();
 
                 if (ogComment.length() > 0) {
+                    // TODO: change SomeUserID to current user's ID, change someMonsterID to monster hash
                     data.put("userName", myUserName);
                     collectionReference
                             .document(ogComment)
@@ -158,26 +131,6 @@ public class ViewMonProfile extends AppCompatActivity {
                             });
 
                 }
-                commentAdapter.notifyDataSetChanged();
-                commentEditText.setText("");
-
-                query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (DocumentSnapshot document : task.getResult()) {
-                                String userName = document.getString("userName");
-                                String commentId = document.getId();
-                                Comment comment = new Comment(userName, commentId);
-                                comments.add(comment);
-                            }
-                            commentAdapter.notifyDataSetChanged();
-                            Log.d("CommentAdapter", "Number of comments retrieved: " + comments.size());
-                        } else {
-                            Log.d("ERROR", "Error getting documents: ", task.getException());
-                        }
-                    }
-                });
             }
         });
 
@@ -188,11 +141,7 @@ public class ViewMonProfile extends AppCompatActivity {
         monsterView = findViewById(R.id.monster_image);
 
         monsterName.setText(selectedMonsterName);
-
-        monsterView.setBinaryHash(String.valueOf(selectedMonsterHash));
-
-        monsterView.setBinaryHash(binaryHash);
-
+        monsterView.setBinaryHash(selectedMonsterHash);
 
         FloatingActionButton backButton = findViewById(R.id.back_button);
         backButton.setOnClickListener(new View.OnClickListener() {
@@ -205,7 +154,6 @@ public class ViewMonProfile extends AppCompatActivity {
                 onBackPressed();
             }
         });
-
 
         CollectionReference collectionReference = db.collection("PlayerDB/someUserID1/Monsters/someMonsterID/comments");
         // Create an ArrayList for comments

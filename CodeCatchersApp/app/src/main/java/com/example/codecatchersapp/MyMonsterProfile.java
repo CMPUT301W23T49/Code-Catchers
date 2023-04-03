@@ -1,9 +1,3 @@
-/**
- * a class
- * @author CMPUT301W23T49
- * @version 1.0
- * @since [Monday April 3]
- */
 package com.example.codecatchersapp;
 
 import static android.content.ContentValues.TAG;
@@ -26,6 +20,7 @@ import android.widget.EditText;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -47,6 +42,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -64,6 +60,7 @@ public class MyMonsterProfile extends AppCompatActivity {
     private TextView monsterName;
     private MonsterView monsterView;
     private Button monsterSettings;
+    private String shaHash;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     String newTotalScore;
     String newMonsterCount;
@@ -81,7 +78,7 @@ public class MyMonsterProfile extends AppCompatActivity {
         String userName = intent.getStringExtra("userName");
         String deviceID = intent.getStringExtra("deviceID");
 
-        String shaHash = intent.getStringExtra("shaHash");
+        this.shaHash = intent.getStringExtra("shaHash");
         String binaryHash = intent.getStringExtra("binaryHash");
 
         String selectedMonsterName = intent.getStringExtra("monsterName");
@@ -95,21 +92,12 @@ public class MyMonsterProfile extends AppCompatActivity {
         // comment stuff
         SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         String myUserName = sharedPreferences.getString("username", "");
-        //String userID = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
-        //String shaHash = intent.getStringExtra("monsterHash");
+        String userID = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);;
         monsterName.setText(selectedMonsterName);
-
-        monsterView.setBinaryHash(String.valueOf(selectedMonsterHash));
-
         monsterView.setBinaryHash(binaryHash);
-
 
         FloatingActionButton backButton = findViewById(R.id.back_button);
         backButton.setOnClickListener(new View.OnClickListener() {
-            /**
-             * Goes back to the previous activity.
-             * @param view The view that was clicked.
-             */
             @Override
             public void onClick(View view) {
                 onBackPressed();
@@ -119,53 +107,13 @@ public class MyMonsterProfile extends AppCompatActivity {
         EditText commentEditText = findViewById(R.id.new_comment_my_monster_text);
         FloatingActionButton sendCommentButton = findViewById(R.id.send_comment_my_monster_button);
 
-        /**
-         * Saves a new comment to the database.
-         */
-
-
-        CollectionReference collectionReference = db.collection("PlayerDB/" + userID + "/Monsters/" + selectedMonsterHash + "/comments");
-        // Create an ArrayList for comments
-        comments = new ArrayList<>();
-
-        // Set up the RecycleView with UserAdapter and ClickListener
-        RecyclerView rvComments = findViewById(R.id.rv_comments);
-        rvComments.setLayoutManager(new LinearLayoutManager(this));
-        CommentAdapter commentAdapter = new CommentAdapter((ArrayList<Comment>) comments);
-        rvComments.setAdapter(commentAdapter);
-
-
-        // Get the users stored in the DB and add them to the list of users
-        Query query = collectionReference.orderBy("userName");
-
-        query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                    for (DocumentSnapshot document : task.getResult()) {
-                        String userName = document.getString("userName");
-                        String commentId = document.getId();
-                        Comment comment = new Comment(userName, commentId);
-                        comments.add(comment);
-                    }
-                    commentAdapter.notifyDataSetChanged();
-                    Log.d("CommentAdapter", "Number of comments retrieved: " + comments.size());
-                } else {
-                    Log.d("ERROR", "Error getting documents: ", task.getException());
-                }
-            }
-        });
-
-
         // SAVE ANY NEW COMMENT TO DATABASE
         sendCommentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 saveComment();
             }
-            /**
-             * Saves a new comment to the database.
-             */
+
             public void saveComment() {
                 CollectionReference collectionReference = db.collection("PlayerDB/" + deviceID + "/Monsters/" + shaHash + "/comments");
                 final String ogComment = commentEditText.getText().toString();
@@ -177,20 +125,12 @@ public class MyMonsterProfile extends AppCompatActivity {
                             .document(ogComment)
                             .set(data)
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                /**
-                                 * Logs a success message.
-                                 * @param unused Unused.
-                                 */
                                 @Override
                                 public void onSuccess(Void unused) {
                                     Log.d("Success", "Comment added successfully!");
                                 }
                             })
                             .addOnFailureListener(new OnFailureListener() {
-                                /**
-                                 * Logs a failure message.
-                                 * @param e The exception that was thrown.
-                                 */
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
                                     Log.d("Failure", "Comment addition failed" + e.toString());
@@ -198,31 +138,9 @@ public class MyMonsterProfile extends AppCompatActivity {
                             });
 
                 }
-                commentAdapter.notifyDataSetChanged();
-                commentEditText.setText("");
-
-                query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (DocumentSnapshot document : task.getResult()) {
-                                String userName = document.getString("userName");
-                                String commentId = document.getId();
-                                Comment comment = new Comment(userName, commentId);
-                                comments.add(comment);
-                            }
-                            commentAdapter.notifyDataSetChanged();
-                            Log.d("CommentAdapter", "Number of comments retrieved: " + comments.size());
-                        } else {
-                            Log.d("ERROR", "Error getting documents: ", task.getException());
-                        }
-                    }
-                });
             }
         });
-        /**
-         * Sets up the RecyclerView to display the comments and fetches them from the database.
-         */
+
         monsterSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -245,49 +163,30 @@ public class MyMonsterProfile extends AppCompatActivity {
                 Button deleteButton = dialog.findViewById(R.id.delete_mon_settings);
                 Button returnButton = dialog.findViewById(R.id.return_mon_settings);
 
-                /**
-                 * Deletes the monster from the database.
-                 */
-
                 deleteButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
 
-
                         // TODO: delete monster from playerDB
-                        CollectionReference collectionReference = db.collection("PlayerDB/" + deviceID + "/Monsters/" + shaHash + "/comments");
+                        CollectionReference collectionReference = db.collection("PlayerDB/" + deviceID + "/Monsters/");
+                        collectionReference.document(shaHash).delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    Intent intent = new Intent(MyMonsterProfile.this, MyProfileActivity.class);
+                                    startActivity(intent);
+                                    Toast.makeText(MyMonsterProfile.this, "Monster deleted successfully", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(MyMonsterProfile.this, "Failed to delete monster", Toast.LENGTH_SHORT).show();
+                                }
+                                dialog.dismiss();
+
+                            }
+                        });
+
+                    }});
 
 
-                        // Reference to the document with the SHA hash to delete
-                        DocumentReference docRef = collectionReference.document(shaHash);
-                        docRef.delete()
-                                /**
-                                 * Logs a success message.
-                                 * @param aVoid Unused.
-                                 */
-                                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void aVoid) {
-                                        Log.d(TAG, "DocumentSnapshot successfully deleted!");
-                                        onBackPressed();
-                                        updateLeaderboardFields(selectedMonsterScore);
-                                    }
-                                })
-                                /**
-                                 * Logs a failure message.
-                                 * @param e The exception that was thrown.
-                                 */
-                                .addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        Log.w(TAG, "Error deleting document", e);
-                                    }
-                                });
-                    }
-                });
-                /**
-                 * Closes the dialog.
-                 */
                 returnButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -297,6 +196,7 @@ public class MyMonsterProfile extends AppCompatActivity {
 
             }
         });
+
 
 
 
@@ -314,9 +214,7 @@ public class MyMonsterProfile extends AppCompatActivity {
 
         // Get the users stored in the DB and add them to the list of users
         Query query = collectionReference.orderBy("userName");
-        /**
-         * Fetches the comments from the database.
-         */
+
         query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -334,7 +232,6 @@ public class MyMonsterProfile extends AppCompatActivity {
                 }
             }
         });
-
     }
 
     /**
@@ -347,10 +244,6 @@ public class MyMonsterProfile extends AppCompatActivity {
 
         documentReferenceUserScoreField.get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                    /**
-                     * Updates the user's score fields.
-                     * @param documentSnapshot The document snapshot of the user.
-                     */
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         if (documentSnapshot.exists()) {
@@ -369,17 +262,13 @@ public class MyMonsterProfile extends AppCompatActivity {
                             // Calculate highest score by iterating through all of user's monsters
                             CollectionReference collectionReference = db.collection("PlayerDB/" + userID + "/Monsters");
                             collectionReference.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                                /**
-                                 * Iterates through all of the user's monsters and calculates the highest score.
-                                 * @param task The task that was completed.
-                                 */
                                 @Override
                                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                     if (task.isSuccessful()) {
                                         for (QueryDocumentSnapshot document : task.getResult()) {
                                             String individualScore = document.getString("monsterScore");
-                                           if (Integer.valueOf(individualScore) > Integer.valueOf(newHighestMonsterScore)){
-                                               newHighestMonsterScore = individualScore;
+                                            if (Integer.valueOf(individualScore) > Integer.valueOf(newHighestMonsterScore)){
+                                                newHighestMonsterScore = individualScore;
                                             }
                                         }
 
@@ -401,20 +290,12 @@ public class MyMonsterProfile extends AppCompatActivity {
 
                             documentReferenceUserScoreField.update(newLeaderboardInfo)
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                        /**
-                                         * Logs a success message.
-                                         * @param unused Unused.
-                                         */
                                         @Override
                                         public void onSuccess(Void unused) {
                                             Log.e("E", "UPDATED FIELDS");
                                         }
                                     })
                                     .addOnFailureListener(new OnFailureListener() {
-                                        /**
-                                         * Logs a failure message.
-                                         * @param e The exception that was thrown.
-                                         */
                                         @Override
                                         public void onFailure(@NonNull Exception e) {
                                             Log.e("E", "COULD NOT UPDATE FIELDS");
@@ -427,10 +308,6 @@ public class MyMonsterProfile extends AppCompatActivity {
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
-                    /**
-                     * Logs a failure message.
-                     * @param e The exception that was thrown.
-                     */
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Log.e("E", "ERROR GETTING DOCUMENT");
