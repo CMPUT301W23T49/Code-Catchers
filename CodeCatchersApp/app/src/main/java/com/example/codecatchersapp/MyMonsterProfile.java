@@ -155,6 +155,10 @@ public class MyMonsterProfile extends AppCompatActivity {
                 deleteButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        deleteMonster();
+                    }
+
+                    public void deleteMonster(){
                         CollectionReference collectionReference = db.collection("PlayerDB/" + deviceID + "/Monsters");
                         // Reference to the document with the SHA hash to delete
                         DocumentReference docRef = collectionReference.document(selectedMonsterHash);
