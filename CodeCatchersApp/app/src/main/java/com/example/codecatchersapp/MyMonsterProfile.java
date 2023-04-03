@@ -1,16 +1,16 @@
 package com.example.codecatchersapp;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -18,13 +18,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.CollectionReference;
@@ -35,13 +32,8 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
-/**
- ViewMonProfile displays the image of a monster along with its comments from the database.
- Currently settings button is not implemented, back button is not implemented, and new comment functionality
- is not implemented.
- */
-public class ViewMonProfile extends AppCompatActivity {
 
+public class MyMonsterProfile extends AppCompatActivity {
     private LayoutInflater layoutInflater;
     private PopupWindow popupWindow;
 
@@ -53,6 +45,7 @@ public class ViewMonProfile extends AppCompatActivity {
 
     private TextView monsterName;
     private MonsterView monsterView;
+    private Button monsterSettings;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     /**
@@ -62,15 +55,17 @@ public class ViewMonProfile extends AppCompatActivity {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.view_monster);
+        setContentView(R.layout.my_monster);
         Intent intent = getIntent();
         String userName = intent.getStringExtra("userName");
+        String deviceID = intent.getStringExtra("deviceID");
         String selectedMonsterHash = intent.getStringExtra("monsterHash");
         String selectedMonsterName = intent.getStringExtra("monsterName");
         String selectedMonsterScore = intent.getStringExtra("monsterScore");
 
         monsterName = findViewById(R.id.monster_name_monster_profile);
         monsterView = findViewById(R.id.monster_image);
+        monsterSettings = findViewById(R.id.mon_settings_button);
 
         monsterName.setText(selectedMonsterName);
         monsterView.setBinaryHash(selectedMonsterHash);
@@ -82,6 +77,47 @@ public class ViewMonProfile extends AppCompatActivity {
                 onBackPressed();
             }
         });
+
+        monsterSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Create a new dialog object
+                Dialog dialog = new Dialog(MyMonsterProfile.this);
+                dialog.setContentView(R.layout.fragment_mon_settings);
+
+                // Set the dialog window properties
+                Window window = dialog.getWindow();
+                window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                WindowManager.LayoutParams params = window.getAttributes();
+                params.dimAmount = 0.7f; // Set the amount of dimness you want
+                window.setAttributes(params);
+                window.addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+                dialog.getWindow().getDecorView().setBackgroundResource(android.R.color.transparent);
+
+                // Show the dialog
+                dialog.show();
+
+                Button deleteButton = dialog.findViewById(R.id.delete_mon_settings);
+                Button returnButton = dialog.findViewById(R.id.return_mon_settings);
+
+                deleteButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // TODO: delete monster from playerDB
+                        CollectionReference collectionReference = db.collection("PlayerDB/" + deviceID + "/Monsters/" + selectedMonsterHash + "/comments");
+                    }
+                });
+
+                returnButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss(); // Close the dialog
+                    }
+                });
+
+            }
+        });
+
 
 
         CollectionReference collectionReference = db.collection("PlayerDB/someUserID1/Monsters/someMonsterID/comments");

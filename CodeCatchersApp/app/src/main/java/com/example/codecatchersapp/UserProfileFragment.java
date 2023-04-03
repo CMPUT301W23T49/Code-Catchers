@@ -349,7 +349,7 @@ public class UserProfileFragment extends Fragment implements MonsterAdapter.Item
         // Create a new intent for the ViewMinProfile activity and pass the user and monster's info to it
         Intent monsterIntent = new Intent(getContext(), ViewMonProfile.class);
         monsterIntent.putExtra("userName", user.getUsername());
-        monsterIntent.putExtra("monsterHash", monster.getMonsterHash());
+        monsterIntent.putExtra("monsterHash", monster.getMonsterSHAHash());
         monsterIntent.putExtra("monsterName", monster.getMonsterName());
         monsterIntent.putExtra("monsterScore", monster.getMonsterScore());
         startActivity(monsterIntent);

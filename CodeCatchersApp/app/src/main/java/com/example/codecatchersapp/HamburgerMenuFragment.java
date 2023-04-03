@@ -98,6 +98,9 @@ public class HamburgerMenuFragment extends DialogFragment {
             @Override
             public void onClick(View view) {
                 Log.i("TAG", "Clicked the profile button");
+                Intent myProfileIntent = new Intent(getContext(), MyProfileActivity.class);
+                startActivity(myProfileIntent);
+                /**
                 // Get the fragment manager for the UserProfileFragment
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 Fragment profileFragment = new UserProfileFragment(deviceID);
@@ -105,6 +108,7 @@ public class HamburgerMenuFragment extends DialogFragment {
                         .replace(id, profileFragment)
                         .addToBackStack(null)
                         .commit();
+                 **/
                 // Hide the hamburger menu when moving to the new fragment
                 HamburgerMenuFragment.this.dismiss();
 
