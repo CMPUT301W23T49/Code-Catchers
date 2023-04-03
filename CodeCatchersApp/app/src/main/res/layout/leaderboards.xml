@@ -75,6 +75,7 @@
         android:layout_height="57dp"
         android:text="Highest Sum"
         android:textSize="12sp"
+        android:textColor="#FFFFFF"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="132dp"
         app:layout_constraintEnd_toStartOf="@id/mostMonsters"
@@ -89,6 +90,7 @@
         android:layout_height="61dp"
         android:text="Most Monsters"
         android:textSize="12sp"
+        android:textColor="#FFFFFF"
         tools:layout_editor_absoluteX="131dp"
         tools:layout_editor_absoluteY="128dp"
         app:layout_constraintEnd_toStartOf="@id/highestScoringMonster"
@@ -103,6 +105,7 @@
         android:layout_height="66dp"
         android:text="Highest Scoring Monster"
         android:textSize="12sp"
+        android:textColor="#FFFFFF"
         tools:layout_editor_absoluteX="259dp"
         tools:layout_editor_absoluteY="123dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -115,9 +118,11 @@
         android:id="@+id/leaderboard_list"
         android:layout_width="407dp"
         android:layout_height="530dp"
+        android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" 
+        app:layout_constraintTop_toBottomOf="@+id/highestScoringMonster" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
