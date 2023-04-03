@@ -152,6 +152,8 @@ public class MyMonsterProfile extends AppCompatActivity {
                 Button deleteButton = dialog.findViewById(R.id.delete_mon_settings);
                 Button returnButton = dialog.findViewById(R.id.return_mon_settings);
 
+
+                // delete monster
                 deleteButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
