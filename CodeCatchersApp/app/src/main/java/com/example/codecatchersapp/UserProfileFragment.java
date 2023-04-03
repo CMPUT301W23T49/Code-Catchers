@@ -169,6 +169,7 @@ public class UserProfileFragment extends Fragment implements MonsterAdapter.Item
                     DocumentSnapshot doc = task.getResult();
                     userName.setText((String) doc.get("username"));
                     userScore.setText((String) doc.get("totalscore"));
+                    deviceID =  doc.getId();
                 }
             }
         });
@@ -189,7 +190,7 @@ public class UserProfileFragment extends Fragment implements MonsterAdapter.Item
                 List<DocumentSnapshot> docs = queryDocumentSnapshots.getDocuments();
                 ArrayList<Monster> tempList = new ArrayList<>();
                 for (DocumentSnapshot doc : docs) {
-                    String shaHash = doc.getString("monsterSHAHAsh");
+                    String shaHash = doc.getString("monsterSHAHash");
                     String binaryHash = doc.getString("monsterBinaryHash");
                     String monsterName = doc.getString("monsterName");
                     String monsterScore = doc.getString("monsterScore");

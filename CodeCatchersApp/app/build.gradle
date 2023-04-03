@@ -9,6 +9,14 @@ android {
     namespace 'com.example.codecatchersapp'
     compileSdk 33
 
+    task androidJavadoc(type: Javadoc) {
+        source = android.sourceSets.main.java.srcDirs
+        classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+        options.links("https://developer.android.com/reference/");
+        exclude '**/BuildConfig.java'
+        exclude '**/R.java'
+    }
+
     defaultConfig {
         applicationId "com.example.codecatchersapp"
         minSdk 24
@@ -42,6 +50,9 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.camera:camera-view:1.2.1'
 
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
+    implementation 'androidx.annotation:annotation:1.3.0'
+
 
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
@@ -69,6 +80,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-database:20.0.2'
     implementation 'com.github.imperiumlabs:GeoFirestore-Android:v1.5.0'
     implementation 'com.firebase:geofire-android-common:3.1.0'
+    implementation 'com.google.firebase:firebase-firestore:24.0.1' // Check for the latest version
+    implementation 'com.google.android.gms:play-services-auth:20.0.0' // Check for the latest version
 
     // Geofire
     implementation 'com.firebase:geofire-android:3.1.0'
