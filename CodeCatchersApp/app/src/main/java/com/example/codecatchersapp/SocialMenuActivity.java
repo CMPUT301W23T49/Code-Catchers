@@ -62,6 +62,7 @@ public class SocialMenuActivity extends AppCompatActivity {
         myProfileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                /**
                 String deviceID = Settings.Secure.getString(SocialMenuActivity.this.getContentResolver(), Settings.Secure.ANDROID_ID);
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 UserProfileFragment profileFragment = new UserProfileFragment(deviceID);
@@ -75,6 +76,9 @@ public class SocialMenuActivity extends AppCompatActivity {
                 browseUsersButton.setVisibility(View.GONE);
                 leaderboardsButton.setVisibility(View.GONE);
                 myProfileButton.setVisibility(View.GONE);
+                 **/
+                Intent myProfileIntent = new Intent(SocialMenuActivity.this, MyProfileActivity.class);
+                startActivity(myProfileIntent);
 
             }
         });

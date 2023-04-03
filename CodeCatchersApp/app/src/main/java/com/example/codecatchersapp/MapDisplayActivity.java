@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
+
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,16 +15,26 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentActivity;
 
 import com.example.codecatchersapp.databinding.ActivityMapDisplayBinding;
+
+
+import android.util.Log;
+
+import android.widget.Button;
+import android.widget.EditText;
+
+import org.imperiumlabs.geofirestore.listeners.GeoQueryEventListener;
+
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapView;
+
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
+
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.GeoPoint;
 
@@ -52,11 +63,6 @@ public class MapDisplayActivity extends FragmentActivity implements OnMapReadyCa
     private LatLng mCurrentLocation;
     private EditText searchBox;
     private Button searchButton;
-
-    private int latitude;
-    private int longitude;
-
-
     /**
      * Called when the activity is starting.
      * Connects to the map_layout.xml and sets it as the content view.
@@ -71,19 +77,14 @@ public class MapDisplayActivity extends FragmentActivity implements OnMapReadyCa
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Connect to  map_layout.xml
-        setContentView(R.layout.activity_map_display);
         Intent intent = getIntent();
 
         binding = ActivityMapDisplayBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        MapView mapView = (MapView) findViewById(R.id.map);
-        mapView.onCreate(savedInstanceState);
-        mapView.getMapAsync(this);
-
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
 
         // Get the FusedLocationProviderClient
         mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
@@ -99,16 +100,15 @@ public class MapDisplayActivity extends FragmentActivity implements OnMapReadyCa
                     LOCATION_PERMISSION_REQUEST_CODE);
             return;
         }
+
         // If permission is granted, get the current location
         mFusedLocationProviderClient.getLastLocation()
                 .addOnSuccessListener(this, new OnSuccessListener<Location>() {
                     @Override
                     public void onSuccess(Location location) {
-                        // Got last known location. In some rare situations this can be null.
                         if (location != null) {
-                            // Set the current location variable and move the camera
                             mCurrentLocation = new LatLng(location.getLatitude(), location.getLongitude());
-                            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mCurrentLocation, 10));
+                            moveCameraToCurrentLocation();
                         }
                     }
                 });
@@ -123,6 +123,25 @@ public class MapDisplayActivity extends FragmentActivity implements OnMapReadyCa
             Log.d("Opening Dialog", "onSearchRadiusSelected: ");
         });
 
+    }
+
+    private void moveCameraToCurrentLocation() {
+        if (mMap != null && mCurrentLocation != null) {
+            int zoomLevel = getZoomLevelFromRadius(10);
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mCurrentLocation, zoomLevel));
+
+            // Add a purple marker for the current location
+            float huePurple = 290;
+            MarkerOptions currentLocationMarker = new MarkerOptions()
+                    .position(mCurrentLocation)
+                    .icon(BitmapDescriptorFactory.defaultMarker(huePurple));
+            mMap.addMarker(currentLocationMarker);
+        }
+    }
+    private int getZoomLevelFromRadius(double radiusInKilometers) {
+        double scale = radiusInKilometers * 1000 / 900; // 500 is a rough estimation of the number of meters per pixel at zoom level 1
+        int zoomLevel = (int) (16 - Math.log(scale) / Math.log(2));
+        return zoomLevel;
     }
 
     public void onSearchRadiusSelected(int radius) {
@@ -140,10 +159,24 @@ public class MapDisplayActivity extends FragmentActivity implements OnMapReadyCa
         geoQuery.addGeoQueryEventListener(new GeoQueryEventListener() {
             @Override
             public void onKeyEntered(String key, GeoPoint location) {
-                // Create LatLng objects for each document within the radius
-                LatLng documentLocation = new LatLng(location.getLatitude(), location.getLongitude());
-                MarkerOptions markerOptions = new MarkerOptions().position(documentLocation);
-                markers.add(mMap.addMarker(markerOptions));
+                // Retrieve the MonsterDB name associated with the GeoPoint
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                db.collection("monsters").document(key)
+                        .get()
+                        .addOnSuccessListener(documentSnapshot -> {
+                            String monsterName = key;
+                            // Create LatLng objects for each document within the radius
+                            LatLng documentLocation = new LatLng(location.getLatitude(), location.getLongitude());
+                            MarkerOptions markerOptions = new MarkerOptions()
+                                    .position(documentLocation)
+                                    .title(monsterName) // set the MonsterDB name as the marker title
+                                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET));
+                            markers.add(mMap.addMarker(markerOptions));
+                            Log.d("MyApp", "Marker title set to: " + monsterName);
+                        })
+                        .addOnFailureListener(e -> {
+                            // handle any errors retrieving the MonsterDB name
+                        });
             }
 
             @Override
@@ -169,13 +202,13 @@ public class MapDisplayActivity extends FragmentActivity implements OnMapReadyCa
             }
         });
     }
-
-    /**
-     * Called when the map is ready to be used.
-     * @param googleMap The GoogleMap object used to display the map.
-     */
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
+        /**
+         * Called when the map is ready to be used.
+         * @param googleMap The GoogleMap object used to display the map.
+         */
+        @Override
+        public void onMapReady(GoogleMap googleMap){
+            mMap = googleMap;
+            moveCameraToCurrentLocation();
+        }
     }
-}

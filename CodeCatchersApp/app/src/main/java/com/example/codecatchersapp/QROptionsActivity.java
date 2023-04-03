@@ -125,7 +125,7 @@ public class QROptionsActivity extends AppCompatActivity {
                     saveGeolocation();
                     //
                 } else {
-                    Monster monster = new Monster(shaHash);      // changed to use binaryHash for better DB implementation
+                    Monster monster = new Monster(shaHash);
                     CollectionReference collectionReference = db.collection("MonsterDB");
                     DocumentReference documentReference = collectionReference.document(shaHash);
                     documentReference.set(monster);
@@ -156,10 +156,10 @@ public class QROptionsActivity extends AppCompatActivity {
                 // save to monsterDB
                 GeoFirestore geoFirestore = new GeoFirestore(db.collection("MonsterDB"));
                 GeoPoint geoloc = new GeoPoint(finalLatitude, finalLongitude);
-                geoFirestore.setLocation(binaryHash, geoloc);
+                geoFirestore.setLocation(shaHash, geoloc);
 
                 // save to playerDB
-                CollectionReference collectionReferenceGeoLocation = db.collection("PlayerDB/" + userID + "/Monsters/" + binaryHash + "/geolocationData");
+                CollectionReference collectionReferenceGeoLocation = db.collection("PlayerDB/" + userID + "/Monsters/" + shaHash + "/geolocationData");
                 Map<String, Object> coordinates = new HashMap<>();
                 coordinates.put("geoPoint", geoloc);
 
@@ -187,7 +187,7 @@ public class QROptionsActivity extends AppCompatActivity {
 
             // TODO: CHANGE TO NEW SYSTEM -> MATHEW!!!!
             public void saveComment() {
-                CollectionReference collectionReference = db.collection("PlayerDB/" + userID + "/Monsters/" + binaryHash + "/comments");
+                CollectionReference collectionReference = db.collection("PlayerDB/" + userID + "/Monsters/" + shaHash + "/comments");
                 final String ogComment = commentEditText.getText().toString();
                 HashMap<String, String> data = new HashMap<>();
 
