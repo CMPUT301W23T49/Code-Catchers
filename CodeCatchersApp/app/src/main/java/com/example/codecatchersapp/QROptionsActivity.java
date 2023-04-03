@@ -56,12 +56,12 @@ public class QROptionsActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         String myUserName = sharedPreferences.getString("username", "");
 
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.qr_options);
         Intent intent = getIntent();
         String shaHash = intent.getStringExtra("shaHash");
         String binaryHash = intent.getStringExtra("binaryHash");
+//      String hash = intent.getStringExtra("hash");
         String userID = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
         EditText commentEditText = findViewById(R.id.editTextNewMonComment);
         Switch geolocationToggle = findViewById(R.id.geolocation_switch);
@@ -75,7 +75,7 @@ public class QROptionsActivity extends AppCompatActivity {
 
         // Get score of scanned monster
         try {
-            Score score = new Score(binaryHash);
+            Score score = new Score(shaHash);
             displayScore = score.getScore();
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
@@ -125,7 +125,7 @@ public class QROptionsActivity extends AppCompatActivity {
                     saveGeolocation();
                     //
                 } else {
-                    Monster monster = new Monster(binaryHash);      // changed to use binaryHash for better DB implementation
+                    Monster monster = new Monster(shaHash);      // changed to use binaryHash for better DB implementation
                     CollectionReference collectionReference = db.collection("MonsterDB");
                     DocumentReference documentReference = collectionReference.document(shaHash);
                     documentReference.set(monster);
