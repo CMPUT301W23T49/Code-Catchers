@@ -22,13 +22,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.GeoPoint;
+import com.google.firebase.firestore.Query;
 
 import org.imperiumlabs.geofirestore.GeoFirestore;
 
@@ -46,6 +49,7 @@ public class QROptionsActivity extends AppCompatActivity {
     String newTotalScore;
     String newMonsterCount;
     String newHighestMonsterScore;
+    boolean scannedYet;
 
     /**
      Takes in choices for photo and geolocation, saves comment to database
@@ -81,7 +85,10 @@ public class QROptionsActivity extends AppCompatActivity {
             throw new RuntimeException(e);
         }
 
-        updateLeaderboardFields(displayScore);
+        userAlreadyScannedCode(shaHash);
+        if (scannedYet == false) {
+            updateLeaderboardFields(displayScore);
+        }
 
         // TODO: Can be made better by only prompting when user toggles for geo-location in future, but issues arise due to use of "this" in line 50
         // This if statement prompts the user for permission to access their location, if not already granted.
@@ -225,6 +232,11 @@ public class QROptionsActivity extends AppCompatActivity {
                 startActivity(intent);
             }
 
+    /**
+     * Updates the fields in the user's document to reflect changes in their scores.
+     * @param scoreString the input string
+     * @return void
+     */
     private void updateLeaderboardFields(String scoreString){
         String userID = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
         DocumentReference documentReferenceUserScoreField = db.collection("PlayerDB/").document(userID);
@@ -295,4 +307,29 @@ public class QROptionsActivity extends AppCompatActivity {
                 });
 
     }
+
+    /**
+     * Checks the firestore to see if the monster's sha code already exists in the database
+     * if it is, then set scannedYet to true.
+     * @param shaHash
+     * @return void
+     */
+    private void userAlreadyScannedCode(String shaHash) {
+        String userID = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
+        CollectionReference collectionReference = db.collection("PlayerDB/" + userID + "/Monsters");
+        DocumentReference documentReference = collectionReference.document(shaHash);
+
+        documentReference.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                DocumentSnapshot documentSnapshot = task.getResult();
+                if (documentSnapshot.exists()) {
+                    scannedYet = true;
+                } else {
+                    scannedYet = false;
+                }
+            }
+        });
+    }
+
+
 }
