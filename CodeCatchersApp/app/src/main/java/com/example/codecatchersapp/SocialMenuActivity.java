@@ -11,6 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.FragmentManager;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 /**
  * The SocialMenuActivity class represents the main activity for the social menu screen.
  * It allows users to navigate to different parts of the social app.
@@ -38,6 +40,19 @@ public class SocialMenuActivity extends AppCompatActivity {
         leaderboardsButton = findViewById(R.id.leaderboards_button);
         myProfileButton = findViewById(R.id.my_profile_button);
         constraintLayout = findViewById(R.id.social_menu);
+        FloatingActionButton backButton = findViewById(R.id.back_button);
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Navigates back to the SocialMenuActivity when clicked.
+             * @param view the clicked view.
+             */
+            @Override
+            public void onClick(View view) {
+                Intent backIntent = new Intent(SocialMenuActivity.this, MainMenuActivity.class);
+                startActivity(backIntent);
+            }
+        });
 
         // Set click listeners for the buttons
         browseUsersButton.setOnClickListener(new View.OnClickListener() {
