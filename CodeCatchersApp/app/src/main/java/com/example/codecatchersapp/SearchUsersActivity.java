@@ -143,7 +143,7 @@ public class SearchUsersActivity extends AppCompatActivity implements UserAdapte
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 for (DocumentSnapshot doc : task.getResult()) {
-                    users.add(new UserAccount(doc.getString("username"), doc.getString("contactInfo")));
+                    users.add(new UserAccount(doc.getString("username"), doc.getString("contactInfo"), doc.getId().toString()));
                 }
                 // Set the searched users equal to the found users
                 searchedUsers = users;
