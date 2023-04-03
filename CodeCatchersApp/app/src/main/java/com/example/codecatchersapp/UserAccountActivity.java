@@ -88,7 +88,14 @@ public class UserAccountActivity extends AppCompatActivity {
                 String contactInfo = etContact.getText().toString().trim();
 
                 // Create a new UserAccount object and set the username
-                saveAccount(userName,contactInfo);
+
+                if (userName.length() > 0){
+                    saveAccount(userName,contactInfo);
+                }
+                else{
+                    // do nothing
+                }
+
 
             }
         });
