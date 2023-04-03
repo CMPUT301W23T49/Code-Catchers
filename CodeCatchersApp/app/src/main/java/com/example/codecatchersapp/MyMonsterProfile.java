@@ -98,7 +98,11 @@ public class MyMonsterProfile extends AppCompatActivity {
         //String userID = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
         //String shaHash = intent.getStringExtra("monsterHash");
         monsterName.setText(selectedMonsterName);
+
+        monsterView.setBinaryHash(String.valueOf(selectedMonsterHash));
+
         monsterView.setBinaryHash(binaryHash);
+
 
         FloatingActionButton backButton = findViewById(R.id.back_button);
         backButton.setOnClickListener(new View.OnClickListener() {
@@ -110,6 +114,38 @@ public class MyMonsterProfile extends AppCompatActivity {
 
         EditText commentEditText = findViewById(R.id.new_comment_my_monster_text);
         FloatingActionButton sendCommentButton = findViewById(R.id.send_comment_my_monster_button);
+
+        CollectionReference collectionReference = db.collection("PlayerDB/" + userID + "/Monsters/" + selectedMonsterHash + "/comments");
+        // Create an ArrayList for comments
+        comments = new ArrayList<>();
+
+        // Set up the RecycleView with UserAdapter and ClickListener
+        RecyclerView rvComments = findViewById(R.id.rv_comments);
+        rvComments.setLayoutManager(new LinearLayoutManager(this));
+        CommentAdapter commentAdapter = new CommentAdapter((ArrayList<Comment>) comments);
+        rvComments.setAdapter(commentAdapter);
+
+
+        // Get the users stored in the DB and add them to the list of users
+        Query query = collectionReference.orderBy("userName");
+
+        query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (DocumentSnapshot document : task.getResult()) {
+                        String userName = document.getString("userName");
+                        String commentId = document.getId();
+                        Comment comment = new Comment(userName, commentId);
+                        comments.add(comment);
+                    }
+                    commentAdapter.notifyDataSetChanged();
+                    Log.d("CommentAdapter", "Number of comments retrieved: " + comments.size());
+                } else {
+                    Log.d("ERROR", "Error getting documents: ", task.getException());
+                }
+            }
+        });
 
         // SAVE ANY NEW COMMENT TO DATABASE
         sendCommentButton.setOnClickListener(new View.OnClickListener() {
@@ -142,6 +178,26 @@ public class MyMonsterProfile extends AppCompatActivity {
                             });
 
                 }
+                commentAdapter.notifyDataSetChanged();
+                commentEditText.setText("");
+
+                query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (DocumentSnapshot document : task.getResult()) {
+                                String userName = document.getString("userName");
+                                String commentId = document.getId();
+                                Comment comment = new Comment(userName, commentId);
+                                comments.add(comment);
+                            }
+                            commentAdapter.notifyDataSetChanged();
+                            Log.d("CommentAdapter", "Number of comments retrieved: " + comments.size());
+                        } else {
+                            Log.d("ERROR", "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
             }
         });
 
@@ -167,12 +223,16 @@ public class MyMonsterProfile extends AppCompatActivity {
                 Button deleteButton = dialog.findViewById(R.id.delete_mon_settings);
                 Button returnButton = dialog.findViewById(R.id.return_mon_settings);
 
+
+                // delete monster
                 deleteButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
 
+
                         // TODO: delete monster from playerDB
                         CollectionReference collectionReference = db.collection("PlayerDB/" + deviceID + "/Monsters/" + shaHash + "/comments");
+
 
                         // Reference to the document with the SHA hash to delete
                         DocumentReference docRef = collectionReference.document(shaHash);
@@ -181,6 +241,7 @@ public class MyMonsterProfile extends AppCompatActivity {
                                     @Override
                                     public void onSuccess(Void aVoid) {
                                         Log.d(TAG, "DocumentSnapshot successfully deleted!");
+                                        onBackPressed();
                                         updateLeaderboardFields(selectedMonsterScore);
                                     }
                                 })
@@ -202,7 +263,6 @@ public class MyMonsterProfile extends AppCompatActivity {
 
             }
         });
-
 
 
 
@@ -238,6 +298,7 @@ public class MyMonsterProfile extends AppCompatActivity {
                 }
             }
         });
+
     }
 
     /**

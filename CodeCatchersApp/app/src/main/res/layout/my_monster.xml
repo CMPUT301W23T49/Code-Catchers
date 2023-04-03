@@ -69,21 +69,20 @@
 
     <EditText
         android:id="@+id/new_comment_my_monster_text"
-        android:layout_width="322dp"
-        android:layout_height="44dp"
+        android:layout_width="350dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="4dp"
         android:background="@drawable/rounded_corners"
         android:ems="10"
         android:gravity="start|top"
         android:hint="Write a comment..."
         android:inputType="textMultiLine"
-        android:paddingTop="10dp"
+        android:paddingTop="15dp"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.191"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/monster_name_monster_profile"
-        app:layout_constraintVertical_bias="0.944" />
+        app:layout_constraintVertical_bias="0.942" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/send_comment_my_monster_button"
@@ -96,10 +95,10 @@
         app:backgroundTint="@color/dark_pink_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.98"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rv_comments"
-        app:layout_constraintVertical_bias="0.733"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/new_comment_my_monster_text"
+        app:layout_constraintTop_toBottomOf="@+id/monster_name_monster_profile"
+        app:layout_constraintVertical_bias="0.952"
         app:rippleColor="#00FFFFFF"
         app:srcCompat="?attr/actionModeCloseDrawable" />
 

@@ -28,13 +28,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.GeoPoint;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import org.imperiumlabs.geofirestore.GeoFirestore;
 
@@ -52,6 +56,7 @@ public class QROptionsActivity extends AppCompatActivity {
     String newTotalScore;
     String newMonsterCount;
     String newHighestMonsterScore;
+    boolean scannedYet;
 
     /**
      Takes in choices for photo and geolocation, saves comment to database
@@ -87,7 +92,21 @@ public class QROptionsActivity extends AppCompatActivity {
             throw new RuntimeException(e);
         }
 
-        updateLeaderboardFields(displayScore);
+        userAlreadyScannedCode(shaHash, new OnCheckShaHashListener() {
+            @Override
+            public void onCheckShaHashResult(boolean exists) {
+                if (exists) {
+                    // Handle case where the SHA hash already exists in the database
+                    Log.d(TAG, "SHA hash already exists in database");
+                    return; // Stop executing the rest of the method
+                } else {
+                    // Handle case where the SHA hash does not exist in the database
+                    updateLeaderboardFields(displayScore, shaHash);
+                    Log.d(TAG, "SHA hash does not exist in database");
+                }
+            }
+        });
+
 
         // TODO: Can be made better by only prompting when user toggles for geo-location in future, but issues arise due to use of "this" in line 50
         // This if statement prompts the user for permission to access their location, if not already granted.
@@ -137,6 +156,13 @@ public class QROptionsActivity extends AppCompatActivity {
                     DocumentReference documentReference = collectionReference1.document(shaHash);
                     documentReference.set(monster);
 
+                    // save binaryHash
+                    DocumentReference docRef = db.collection("MonsterDB").document(shaHash);
+                    Map<String, Object> data = new HashMap<>();
+                    data.put("monsterBinaryHash", binaryHash);
+                    docRef.set(data);
+
+
                     // Save to PlayerDB
                     CollectionReference collectionReference2 = db.collection("PlayerDB/" + userID + "/Monsters/");
                     DocumentReference documentReference2 = collectionReference2.document(shaHash);
@@ -166,10 +192,16 @@ public class QROptionsActivity extends AppCompatActivity {
                 // TODO: change SomeUserID to current user's ID, change someMonsterID to monster hash
                 db = FirebaseFirestore.getInstance();
 
-                // save to monsterDB
+                // save to monsterDB with geolocation
                 GeoFirestore geoFirestore = new GeoFirestore(db.collection("MonsterDB"));
                 GeoPoint geoloc = new GeoPoint(finalLatitude, finalLongitude);
                 geoFirestore.setLocation(shaHash, geoloc);
+
+                // save binary hash
+                DocumentReference docRef = db.collection("MonsterDB").document(shaHash);
+                Map<String, Object> data = new HashMap<>();
+                data.put("monsterBinaryHash", binaryHash);
+                docRef.update(data);
 
                 // save to playerDB
                 monster.setGeoPoint(geoloc);
@@ -280,45 +312,84 @@ public class QROptionsActivity extends AppCompatActivity {
                                 newHighestMonsterScore = scoreString;
                             }
 
-                            Log.e("E","NEW TOTAL SCORE VALUE: " + newTotalScore);
-                            Log.e("E","NEW TOTAL MONSTER COUNT: " + newMonsterCount);
-                            Log.e("E","NEW HIGHEST MONSTER SCORE: " + newHighestMonsterScore);
+                                Log.e("E","NEW TOTAL SCORE VALUE: " + newTotalScore);
+                                Log.e("E","NEW TOTAL MONSTER COUNT: " + newMonsterCount);
+                                Log.e("E","NEW HIGHEST MONSTER SCORE: " + newHighestMonsterScore);
 
-                            Map<String, Object> newLeaderboardInfo = new HashMap<>();
-                            newLeaderboardInfo.put("totalscore", newTotalScore);
-                            newLeaderboardInfo.put("monstercount", newMonsterCount);
-                            newLeaderboardInfo.put("highestmonsterscore", newHighestMonsterScore);
+                                // Check if shaHash already exists in the database before updating monstercount and totalscore
+                                if (!exists) {
+                                    Map<String, Object> newLeaderboardInfo = new HashMap<>();
+                                    newLeaderboardInfo.put("totalscore", newTotalScore);
+                                    newLeaderboardInfo.put("monstercount", newMonsterCount);
+                                    newLeaderboardInfo.put("highestmonsterscore", newHighestMonsterScore);
 
-                            for (Map.Entry<String, Object> entry : newLeaderboardInfo.entrySet()){
-                                System.out.println("ENTERED LOOP");
-                                System.out.println("Key: " + entry.getKey() + " Value: " + entry.getValue());
-                            }
+                                    for (Map.Entry<String, Object> entry : newLeaderboardInfo.entrySet()){
+                                        System.out.println("ENTERED LOOP");
+                                        System.out.println("Key: " + entry.getKey() + " Value: " + entry.getValue());
+                                    }
 
-                            documentReferenceUserScoreField.update(newLeaderboardInfo)
-                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    documentReferenceUserScoreField.update(newLeaderboardInfo).addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void unused) {
                                             Log.e("E","UPDATED FIELDS");
                                         }
-                                    })
-                                    .addOnFailureListener(new OnFailureListener() {
+                                    }).addOnFailureListener(new OnFailureListener() {
                                         @Override
                                         public void onFailure(@NonNull Exception e) {
                                             Log.e("E","COULD NOT UPDATE FIELDS");
                                         }
                                     });
-
-                        } else {
-                            Log.e("E","DOCUMENT DOES NOT EXIST");
+                                }
+                            } else {
+                                Log.e("E","DOCUMENT DOES NOT EXIST");
+                            }
                         }
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.e("E","ERROR GETTING DOCUMENT");
-                    }
-                });
-
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.e("E","ERROR GETTING DOCUMENT");
+                        }
+                    });
+                } else {
+                    // Handle case where the SHA hash already exists in the database
+                    Log.d(TAG, "SHA hash already exists in database");
+                }
+            }
+        });
     }
+
+
+
+
+
+    /**
+     * Checks the firestore to see if the monster's sha code already exists in the database
+     * if it is, then set scannedYet to true.
+     * @param shaHash
+     * @return void
+     */
+    private void userAlreadyScannedCode(String shaHash, OnCheckShaHashListener listener) {
+        String deviceID = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference docRef = db.collection("PlayerDB/" + deviceID + "/Monsters/").document(shaHash);
+        docRef.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                DocumentSnapshot document = task.getResult();
+                if (document.exists()) {
+                    // shaHash exists in database
+                    listener.onCheckShaHashResult(true);
+                } else {
+                    listener.onCheckShaHashResult(false);
+                }
+            } else {
+                Log.d(TAG, "get failed with ", task.getException());
+            }
+        });
+    }
+    public interface OnCheckShaHashListener {
+        void onCheckShaHashResult(boolean exists);
+    }
+
+
+
 }
