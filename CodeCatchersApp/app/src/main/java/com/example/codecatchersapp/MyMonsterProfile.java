@@ -226,7 +226,10 @@ public class MyMonsterProfile extends AppCompatActivity {
         });
     }
 
-
+    /**
+     * Updates the user's score fields so that the leaderboards correctly display their scores.
+     * @param scoreString
+     */
     public void updateLeaderboardFields(String scoreString) {
         String userID = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
         DocumentReference documentReferenceUserScoreField = db.collection("PlayerDB/").document(userID);
