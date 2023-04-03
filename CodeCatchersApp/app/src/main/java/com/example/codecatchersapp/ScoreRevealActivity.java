@@ -35,7 +35,7 @@ public class ScoreRevealActivity extends AppCompatActivity {
 
         // Get hash from intent
         Intent intent = getIntent();
-        String hash = intent.getStringExtra("hash");             // Used for score calculation
+        String hash = intent.getStringExtra("shaHash");             // Used for score calculation
         String binaryHash = intent.getStringExtra("binaryHash"); // Used for monster name generation and monster view
         System.out.println("binaryHashAGAIN: " + binaryHash);
         System.out.println("hashAGAIN: " + hash);
@@ -54,6 +54,7 @@ public class ScoreRevealActivity extends AppCompatActivity {
             public void onClick(View v) {                             // Handle click
                 Intent intent = new Intent(ScoreRevealActivity.this, QROptionsActivity.class); // New intent for QR options activity
                 intent.putExtra("shaHash", hash);               // Put hash in intent
+                intent.putExtra("binaryHash", binaryHash);
                 startActivity(intent);                                // Start QR options activity
             }
         });

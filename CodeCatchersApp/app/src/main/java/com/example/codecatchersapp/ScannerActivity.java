@@ -110,7 +110,7 @@ public class ScannerActivity extends AppCompatActivity {
 
                             // Start ScoreRevealActivity with hash value
                             Intent successIntent = new Intent(ScannerActivity.this, ScoreRevealActivity.class);
-                            successIntent.putExtra("hash", hash);
+                            successIntent.putExtra("shaHash", hash);
                             successIntent.putExtra("binaryHash", binaryHash);
                             startActivity(successIntent);
                         } catch (Exception e) {
