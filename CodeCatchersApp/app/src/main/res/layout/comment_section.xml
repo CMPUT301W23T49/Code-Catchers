@@ -26,7 +26,8 @@
         android:paddingLeft="10sp"
         android:paddingRight="10sp"
         android:text="Comment"
-        android:textSize="18sp"
+        android:textSize="20sp"
+        android:letterSpacing="0.3"
         tools:layout_editor_absoluteX="52dp"
         tools:layout_editor_absoluteY="31dp" />
 </LinearLayout>

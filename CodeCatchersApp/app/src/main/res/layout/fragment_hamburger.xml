@@ -11,14 +11,14 @@
 
         android:layout_width="110dp"
         android:layout_height="70dp"
-        android:backgroundTint="@color/dark_pink_button"
+        android:backgroundTint="#FF68d058"
         android:text="Main Menu" />
 
     <Button
         android:id="@+id/hb_profile_button"
         android:layout_width="110dp"
         android:layout_height="70dp"
-        android:backgroundTint="@color/dark_pink_button"
+        android:backgroundTint="#FF68d058"
         android:layout_marginTop="30dp"
         android:text="Profile" />
 </LinearLayout>
