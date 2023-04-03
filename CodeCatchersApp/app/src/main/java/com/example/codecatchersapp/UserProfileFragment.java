@@ -170,6 +170,7 @@ public class UserProfileFragment extends Fragment implements MonsterAdapter.Item
                     List<DocumentSnapshot> docs = queryDocumentSnapshots.getDocuments();
                     for (DocumentSnapshot doc : docs) {
                         Log.i("TAG", String.valueOf(doc));
+                        deviceID = doc.getId();
                         tempList = (ArrayList<Object>) doc.get("Monsters");
                     }
                     if (tempList != null) {
@@ -352,6 +353,9 @@ public class UserProfileFragment extends Fragment implements MonsterAdapter.Item
         monsterIntent.putExtra("monsterHash", monster.getMonsterSHAHash());
         monsterIntent.putExtra("monsterName", monster.getMonsterName());
         monsterIntent.putExtra("monsterScore", monster.getMonsterScore());
+        monsterIntent.putExtra("monsterScore", monster.getMonsterScore());
+        monsterIntent.putExtra("userID", deviceID);
+
         startActivity(monsterIntent);
     }
 }
