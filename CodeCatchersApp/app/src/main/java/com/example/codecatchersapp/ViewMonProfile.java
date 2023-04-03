@@ -85,60 +85,6 @@ public class ViewMonProfile extends AppCompatActivity {
         EditText commentEditText = findViewById(R.id.new_comment_other_user_text);
         FloatingActionButton sendCommentButton = findViewById(R.id.send_comment_button);
 
-        // SAVE ANY NEW COMMENT TO DATABASE
-        sendCommentButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onBackPressed();
-            }
-
-            public void saveComment() {
-                CollectionReference collectionReference = db.collection("PlayerDB/" + userID + "/Monsters/" + shaHash + "/comments");
-                final String ogComment = commentEditText.getText().toString();
-                HashMap<String, String> data = new HashMap<>();
-
-                if (ogComment.length() > 0) {
-                    data.put("userName", myUserName);
-                    collectionReference
-                            .document(ogComment)
-                            .set(data)
-                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void unused) {
-                                    Log.d("Success", "Comment added successfully!");
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Log.d("Failure", "Comment addition failed" + e.toString());
-                                }
-                            });
-
-                }
-            }
-        });
-
-
-
-
-        monsterName = findViewById(R.id.monster_name_monster_profile);
-        monsterView = findViewById(R.id.monster_image);
-
-        monsterName.setText(selectedMonsterName);
-        monsterView.setBinaryHash(selectedMonsterHash);
-
-        FloatingActionButton backButton = findViewById(R.id.back_button);
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onBackPressed();
-            }
-        });
-
-
-
-
         CollectionReference collectionReference = db.collection("PlayerDB/" + userID + "/Monsters/" + selectedMonsterHash + "/comments");
         // Create an ArrayList for comments
         comments = new ArrayList<>();
@@ -168,6 +114,77 @@ public class ViewMonProfile extends AppCompatActivity {
                 } else {
                     Log.d("ERROR", "Error getting documents: ", task.getException());
                 }
+            }
+        });
+
+        // SAVE ANY NEW COMMENT TO DATABASE
+        sendCommentButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                saveComment();
+            }
+
+            public void saveComment() {
+                CollectionReference collectionReference = db.collection("PlayerDB/" + userID + "/Monsters/" + shaHash + "/comments");
+                final String ogComment = commentEditText.getText().toString();
+                HashMap<String, String> data = new HashMap<>();
+
+                if (ogComment.length() > 0) {
+                    data.put("userName", myUserName);
+                    collectionReference
+                            .document(ogComment)
+                            .set(data)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+                                    Log.d("Success", "Comment added successfully!");
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.d("Failure", "Comment addition failed" + e.toString());
+                                }
+                            });
+
+                }
+                commentAdapter.notifyDataSetChanged();
+                commentEditText.setText("");
+
+                query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (DocumentSnapshot document : task.getResult()) {
+                                String userName = document.getString("userName");
+                                String commentId = document.getId();
+                                Comment comment = new Comment(userName, commentId);
+                                comments.add(comment);
+                            }
+                            commentAdapter.notifyDataSetChanged();
+                            Log.d("CommentAdapter", "Number of comments retrieved: " + comments.size());
+                        } else {
+                            Log.d("ERROR", "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+            }
+        });
+
+
+
+
+        monsterName = findViewById(R.id.monster_name_monster_profile);
+        monsterView = findViewById(R.id.monster_image);
+
+        monsterName.setText(selectedMonsterName);
+        monsterView.setBinaryHash(String.valueOf(selectedMonsterHash));
+
+        FloatingActionButton backButton = findViewById(R.id.back_button);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
             }
         });
 

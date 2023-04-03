@@ -96,6 +96,20 @@ public class MyMonsterProfile extends AppCompatActivity {
         EditText commentEditText = findViewById(R.id.new_comment_my_monster_text);
         FloatingActionButton sendCommentButton = findViewById(R.id.send_comment_my_monster_button);
 
+        CollectionReference collectionReference = db.collection("PlayerDB/" + deviceID + "/Monsters/" + selectedMonsterHash + "/comments");
+        // Create an ArrayList for comments
+        comments = new ArrayList<>();
+
+        // Set up the RecycleView with UserAdapter and ClickListener
+        RecyclerView rvComments = findViewById(R.id.rv_comments);
+        rvComments.setLayoutManager(new LinearLayoutManager(this));
+        CommentAdapter commentAdapter = new CommentAdapter((ArrayList<Comment>) comments);
+        rvComments.setAdapter(commentAdapter);
+
+
+        // Get the users stored in the DB and add them to the list of users
+        Query query = collectionReference.orderBy("userName");
+
         // SAVE ANY NEW COMMENT TO DATABASE
         sendCommentButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -127,6 +141,26 @@ public class MyMonsterProfile extends AppCompatActivity {
                             });
 
                 }
+                commentAdapter.notifyDataSetChanged();
+                commentEditText.setText("");
+
+                query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (DocumentSnapshot document : task.getResult()) {
+                                String userName = document.getString("userName");
+                                String commentId = document.getId();
+                                Comment comment = new Comment(userName, commentId);
+                                comments.add(comment);
+                            }
+                            commentAdapter.notifyDataSetChanged();
+                            Log.d("CommentAdapter", "Number of comments retrieved: " + comments.size());
+                        } else {
+                            Log.d("ERROR", "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
             }
         });
 
@@ -191,21 +225,6 @@ public class MyMonsterProfile extends AppCompatActivity {
             }
         });
 
-
-
-        CollectionReference collectionReference = db.collection("PlayerDB/" + deviceID + "/Monsters/" + selectedMonsterHash + "/comments");
-        // Create an ArrayList for comments
-        comments = new ArrayList<>();
-
-        // Set up the RecycleView with UserAdapter and ClickListener
-        RecyclerView rvComments = findViewById(R.id.rv_comments);
-        rvComments.setLayoutManager(new LinearLayoutManager(this));
-        CommentAdapter commentAdapter = new CommentAdapter((ArrayList<Comment>) comments);
-        rvComments.setAdapter(commentAdapter);
-
-
-        // Get the users stored in the DB and add them to the list of users
-        Query query = collectionReference.orderBy("userName");
 
         query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
