@@ -19,12 +19,22 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import java.security.NoSuchAlgorithmException;
 
+/**
+ This class represents the Score Reveal Activity in the Monster Scanner app. It displays the score calculated based on the contents
+ delivered from the QR code, along with the generated name of the monster corresponding to the QR code. The class also allows the user
+ to click on the root layout to navigate to the QR Options Activity for further options.
+ */
 public class ScoreRevealActivity extends AppCompatActivity {
 
     private int score;                                                 // Score
     private MonsterNameGenerator monsterNameGenerator;                 // Monster name generator
 
-
+    /**
+     Called when the activity is starting. Initializes the layout and retrieves the hash and binaryHash values passed from the
+     QRScannerActivity. Calculates the score based on the hash value and generates the name of the monster based on the binaryHash value.
+     It also sets a click listener for the root layout to navigate to the QR Options Activity.
+     @param savedInstanceState a Bundle object containing the activity's previously saved state, or null if there was no saved state.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);                            // Call the super class onCreate to complete view hierarchy
@@ -73,5 +83,4 @@ public class ScoreRevealActivity extends AppCompatActivity {
         monsterNameTextView.setText(monsterName);                                     // Set monster name text view to display monster name
 
     }
-
 }
