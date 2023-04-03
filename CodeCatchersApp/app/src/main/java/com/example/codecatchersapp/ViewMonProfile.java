@@ -76,10 +76,12 @@ public class ViewMonProfile extends AppCompatActivity {
         String selectedMonsterScore = intent.getStringExtra("monsterScore");
         String shaHash = intent.getStringExtra("monsterHash");
 
+
+
         // comment stuff
         SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         String myUserName = sharedPreferences.getString("username", "");
-        String userID = "swag"; // TODO : GET USER ID
+        String userID = intent.getStringExtra("userID");
         EditText commentEditText = findViewById(R.id.new_comment_other_user_text);
         FloatingActionButton sendCommentButton = findViewById(R.id.send_comment_button);
 
