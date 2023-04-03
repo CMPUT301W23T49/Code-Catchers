@@ -1,14 +1,22 @@
 package com.example.codecatchersapp;
 
+import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.PopupWindow;
@@ -64,7 +72,9 @@ public class ViewMonProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_monster);
         Intent intent = getIntent();
-        String userName = intent.getStringExtra("userName");
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        String myUserName = sharedPreferences.getString("username", "");
+        String userID = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
         String selectedMonsterHash = intent.getStringExtra("monsterHash");
         String selectedMonsterName = intent.getStringExtra("monsterName");
         String selectedMonsterScore = intent.getStringExtra("monsterScore");
@@ -83,7 +93,47 @@ public class ViewMonProfile extends AppCompatActivity {
             }
         });
 
-        Button deleteButton = findViewById(R.id.mon_settings_button);
+        Button settingsButton = findViewById(R.id.mon_settings_button);
+
+        settingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Create a new dialog object
+                Dialog dialog = new Dialog(ViewMonProfile.this);
+                dialog.setContentView(R.layout.fragment_mon_settings);
+
+                // Set the dialog window properties
+                Window window = dialog.getWindow();
+                window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                WindowManager.LayoutParams params = window.getAttributes();
+                params.dimAmount = 0.7f; // Set the amount of dimness you want
+                window.setAttributes(params);
+                window.addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+                dialog.getWindow().getDecorView().setBackgroundResource(android.R.color.transparent);
+
+                // Show the dialog
+                dialog.show();
+
+                Button deleteButton = dialog.findViewById(R.id.delete_mon_settings);
+                Button returnButton = dialog.findViewById(R.id.return_mon_settings);
+
+                deleteButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // TODO: delete monster from playerDB
+                        CollectionReference collectionReference = db.collection("PlayerDB/" + userID + "/Monsters/" + "testmonhash" + "/comments");
+                    }
+                });
+
+                returnButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss(); // Close the dialog
+                    }
+                });
+
+            }
+        });
 
         CollectionReference collectionReference = db.collection("PlayerDB/someUserID1/Monsters/someMonsterID/comments");
         // Create an ArrayList for comments
