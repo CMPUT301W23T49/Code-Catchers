@@ -170,7 +170,7 @@ public class UserProfileFragment extends Fragment implements MonsterAdapter.Item
                     List<DocumentSnapshot> docs = queryDocumentSnapshots.getDocuments();
                     for (DocumentSnapshot doc : docs) {
                         Log.i("TAG", String.valueOf(doc));
-                        tempList = (ArrayList<Object>) doc.get("scannedMonsters");
+                        tempList = (ArrayList<Object>) doc.get("Monsters");
                     }
                     if (tempList != null) {
                         // Add the monster hashes to the monster list
@@ -257,7 +257,7 @@ public class UserProfileFragment extends Fragment implements MonsterAdapter.Item
                                 this.user = new UserAccount(name, contact, deviceID);
                                 // Get the monster hashes from the user
                                 ArrayList<Object> tempList = new ArrayList<>();
-                                tempList = (ArrayList<Object>) doc.get("scannedMonsters");
+                                tempList = (ArrayList<Object>) doc.get("Monsters");
 
                                 if (tempList != null) {
                                     // Add the monster hashes to the monster list

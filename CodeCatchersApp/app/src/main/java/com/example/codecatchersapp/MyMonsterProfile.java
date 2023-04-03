@@ -1,16 +1,22 @@
 package com.example.codecatchersapp;
 
+import static android.content.ContentValues.TAG;
+
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -22,15 +28,19 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class MyMonsterProfile extends AppCompatActivity {
@@ -67,6 +77,11 @@ public class MyMonsterProfile extends AppCompatActivity {
         monsterView = findViewById(R.id.monster_image);
         monsterSettings = findViewById(R.id.mon_settings_button);
 
+        // comment stuff
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        String myUserName = sharedPreferences.getString("username", "");
+        String userID = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
+        String shaHash = intent.getStringExtra("monsterHash");
         monsterName.setText(selectedMonsterName);
         monsterView.setBinaryHash(selectedMonsterHash);
 
@@ -75,6 +90,43 @@ public class MyMonsterProfile extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 onBackPressed();
+            }
+        });
+
+        EditText commentEditText = findViewById(R.id.new_comment_my_monster_text);
+        FloatingActionButton sendCommentButton = findViewById(R.id.send_comment_my_monster_button);
+
+        // SAVE ANY NEW COMMENT TO DATABASE
+        sendCommentButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                saveComment();
+            }
+
+            public void saveComment() {
+                CollectionReference collectionReference = db.collection("PlayerDB/" + userID + "/Monsters/" + shaHash + "/comments");
+                final String ogComment = commentEditText.getText().toString();
+                HashMap<String, String> data = new HashMap<>();
+                if (ogComment.length() > 0) {
+                    // TODO: change SomeUserID to current user's ID, change someMonsterID to monster hash
+                    data.put("userName", myUserName);
+                    collectionReference
+                            .document(ogComment)
+                            .set(data)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+                                    Log.d("Success", "Comment added successfully!");
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.d("Failure", "Comment addition failed" + e.toString());
+                                }
+                            });
+
+                }
             }
         });
 
@@ -105,6 +157,21 @@ public class MyMonsterProfile extends AppCompatActivity {
                     public void onClick(View v) {
                         // TODO: delete monster from playerDB
                         CollectionReference collectionReference = db.collection("PlayerDB/" + deviceID + "/Monsters/" + selectedMonsterHash + "/comments");
+                        // Reference to the document with the SHA hash to delete
+                        DocumentReference docRef = collectionReference.document(selectedMonsterHash);
+                        docRef.delete()
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        Log.d(TAG, "DocumentSnapshot successfully deleted!");
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Log.w(TAG, "Error deleting document", e);
+                                    }
+                                });
                     }
                 });
 
@@ -120,7 +187,7 @@ public class MyMonsterProfile extends AppCompatActivity {
 
 
 
-        CollectionReference collectionReference = db.collection("PlayerDB/someUserID1/Monsters/someMonsterID/comments");
+        CollectionReference collectionReference = db.collection("PlayerDB/" + deviceID + "/Monsters/" + selectedMonsterHash + "/comments");
         // Create an ArrayList for comments
         comments = new ArrayList<>();
 
