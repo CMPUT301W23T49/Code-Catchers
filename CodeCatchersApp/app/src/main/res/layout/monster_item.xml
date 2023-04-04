@@ -12,6 +12,7 @@
         android:padding="5dp"
         android:layout_gravity="top|right"
         android:text="100"
+        android:textColor="#000000"
         android:textStyle="bold"
         />
     <com.example.codecatchersapp.MonsterView
