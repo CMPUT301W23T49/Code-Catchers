@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.PopupWindow;
@@ -148,6 +149,13 @@ public class MyMonsterProfile extends AppCompatActivity {
                             });
 
                 }
+                commentAdapter.notifyDataSetChanged();
+                // Hide the keyboard before moving to MyMonsterProfile
+                InputMethodManager inputMethodManager = (InputMethodManager) MyMonsterProfile.this.getSystemService(Context.INPUT_METHOD_SERVICE);
+                if (MyMonsterProfile.this.getCurrentFocus() != null) {
+                    inputMethodManager.hideSoftInputFromWindow(MyMonsterProfile.this.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                }
+                commentEditText.setText("");
             }
         });
 
