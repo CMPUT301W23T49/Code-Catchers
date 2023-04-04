@@ -86,7 +86,7 @@
             android:layout_gravity="left"
             android:text="Contact Information:"
             app:layout_constraintBottom_toTopOf="@id/edit_contact"
-            app:layout_constraintTop_toBottomOf="@id/edit_username"
+            app:layout_constraintTop_toBottomOf="@id/username"
             tools:ignore="MissingConstraints" />
 
         <EditText
