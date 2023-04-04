@@ -138,6 +138,7 @@ public class QROptionsActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 saveComment();
+                updateLeaderboardFields(displayScore);
 
                 // Adds geolocation data to firebase
                 Monster monster = new Monster(shaHash);
