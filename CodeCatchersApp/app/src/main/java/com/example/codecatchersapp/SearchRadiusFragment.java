@@ -20,9 +20,8 @@ import android.widget.Toast;
 import androidx.fragment.app.DialogFragment;
 
 /**
- * Creates a new instance of the SearchRadiusFragment.
- *
- * @return a new instance of the SearchRadiusFragment
+ * A class representing the SearchRadiusFragment, which allows users to select a search radius.
+ * This fragment contains a SeekBar and a TextView to display the selected radius value.
  */
 public class SearchRadiusFragment extends DialogFragment {
     private SeekBar seekBar;

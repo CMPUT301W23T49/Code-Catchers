@@ -28,6 +28,7 @@ public class MapDisplayActivityTest {
 
     /**
      * Sets up the test environment before executing the test methods.
+     * @throws Exception if any error occurs during the setup
      */
     @Before
     public void setUp() throws Exception {
@@ -52,6 +53,7 @@ public class MapDisplayActivityTest {
 
     /**
      * Cleans up the test environment after executing the test methods.
+     * @throws Exception if any error occurs during the setup
      */
     @After
     public void tearDown() throws Exception {

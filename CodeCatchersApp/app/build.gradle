@@ -9,14 +9,6 @@ android {
     namespace 'com.example.codecatchersapp'
     compileSdk 33
 
-    task androidJavadoc(type: Javadoc) {
-        source = android.sourceSets.main.java.srcDirs
-        classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-        options.links("https://developer.android.com/reference/");
-        exclude '**/BuildConfig.java'
-        exclude '**/R.java'
-    }
-
     defaultConfig {
         applicationId "com.example.codecatchersapp"
         minSdk 24
@@ -43,6 +35,7 @@ android {
 }
 dependencies {
 
+    implementation files('/Users/josiematalski/Library/Android/sdk/platforms/android-33/android.jar')
     implementation 'com.github.imperiumlabs:GeoFirestore-Android:v1.6.1'
 
     implementation 'androidx.appcompat:appcompat:1.6.0'
@@ -80,8 +73,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-database:20.0.2'
     implementation 'com.github.imperiumlabs:GeoFirestore-Android:v1.5.0'
     implementation 'com.firebase:geofire-android-common:3.1.0'
-    implementation 'com.google.firebase:firebase-firestore:24.0.1' // Check for the latest version
-    implementation 'com.google.android.gms:play-services-auth:20.0.0' // Check for the latest version
+
 
     // Geofire
     implementation 'com.firebase:geofire-android:3.1.0'

@@ -97,10 +97,14 @@ public class UserAccountActivity extends AppCompatActivity {
     }
 
     /**
-     * Saves a user to the database by device ID
-     * @param userName
-     * @param contactInfo
+     * Saves a user account with the provided username and contact information. This method stores the
+     * username in the shared preferences, retrieves the device ID, and creates a UserAccount object.
+     * It then initializes the Firebase instance and checks if the given username exists in the database.
+     *
+     * @param userName    The username of the user for which the account will be saved.
+     * @param contactInfo The contact information associated with the user account.
      */
+
     public void saveAccount(String userName, String contactInfo){
         Log.d(TAG, "Saving account for user: " + userName);
 
