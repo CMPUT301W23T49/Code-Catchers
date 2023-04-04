@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -22,7 +23,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
  */
 public class UserSettingsActivity extends AppCompatActivity {
     private FloatingActionButton backButton;
-    private EditText editUserName;
+    private TextView userNameView;
     private EditText editContactInfo;
     private Button cancelButton;
     private Button saveButton;
@@ -53,13 +54,13 @@ public class UserSettingsActivity extends AppCompatActivity {
 
         // Get the views for UserSettingsActivity
         backButton = findViewById(R.id.back_button);
-        editUserName = findViewById(R.id.edit_username);
+        userNameView = findViewById(R.id.username);
         editContactInfo = findViewById(R.id.edit_contact);
         cancelButton = findViewById(R.id.cancel_button);
         saveButton = findViewById(R.id.save_button);
 
         // Set the text views
-        editUserName.setText(userName);
+        userNameView.setText(userName);
         editContactInfo.setText(contactInfo);
 
         // Set on click listeners
