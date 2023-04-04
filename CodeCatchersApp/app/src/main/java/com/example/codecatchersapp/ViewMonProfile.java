@@ -54,7 +54,7 @@ public class ViewMonProfile extends AppCompatActivity {
 
     private RelativeLayout relativeLayout;
 
-    private List<Comment> comments;
+    private List<Comment> comments = new ArrayList<>();
 
     private CommentAdapter commentAdapter;
 
@@ -78,11 +78,20 @@ public class ViewMonProfile extends AppCompatActivity {
 
 
 
+        // Set up the RecycleView with UserAdapter and ClickListener
+        RecyclerView rvComments = findViewById(R.id.rv_comments);
+        rvComments.setLayoutManager(new LinearLayoutManager(this));
+        CommentAdapter commentAdapter = new CommentAdapter((ArrayList<Comment>) comments);
+        rvComments.setAdapter(commentAdapter);
+
+
+
         // comment stuff
         SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         String myUserName = sharedPreferences.getString("username", "");
         String userID = intent.getStringExtra("userID");
         EditText commentEditText = findViewById(R.id.new_comment_other_user_text);
+        commentEditText.clearFocus();
         FloatingActionButton sendCommentButton = findViewById(R.id.send_comment_button);
 
         // SAVE ANY NEW COMMENT TO DATABASE
@@ -93,7 +102,7 @@ public class ViewMonProfile extends AppCompatActivity {
              */
             @Override
             public void onClick(View view) {
-                onBackPressed();
+                saveComment();
             }
             /**
              Saves the comment to the database.
@@ -117,6 +126,8 @@ public class ViewMonProfile extends AppCompatActivity {
                                 @Override
                                 public void onSuccess(Void unused) {
                                     Log.d("Success", "Comment added successfully!");
+                                    comments.add(new Comment(myUserName, ogComment));
+                                    commentAdapter.notifyDataSetChanged();
                                 }
                             })
                             .addOnFailureListener(new OnFailureListener() {
@@ -156,14 +167,7 @@ public class ViewMonProfile extends AppCompatActivity {
         });
 
         CollectionReference collectionReference = db.collection("PlayerDB/" + userID + "/Monsters/" + shaHash +"/comments");
-        // Create an ArrayList for comments
-        comments = new ArrayList<>();
 
-        // Set up the RecycleView with UserAdapter and ClickListener
-        RecyclerView rvComments = findViewById(R.id.rv_comments);
-        rvComments.setLayoutManager(new LinearLayoutManager(this));
-        CommentAdapter commentAdapter = new CommentAdapter((ArrayList<Comment>) comments);
-        rvComments.setAdapter(commentAdapter);
 
 
         // Get the users stored in the DB and add them to the list of users

@@ -53,7 +53,7 @@ public class MyMonsterProfile extends AppCompatActivity {
 
     private RelativeLayout relativeLayout;
 
-    private List<Comment> comments;
+    private List<Comment> comments = new ArrayList<>();
 
     private CommentAdapter commentAdapter;
 
@@ -65,6 +65,7 @@ public class MyMonsterProfile extends AppCompatActivity {
     String newTotalScore;
     String newMonsterCount;
     String newHighestMonsterScore;
+    // Create an ArrayList for comments
 
     /**
      Sets up the RecyclerView to display the comments and fetches them from the database.
@@ -83,6 +84,12 @@ public class MyMonsterProfile extends AppCompatActivity {
 
         String selectedMonsterName = intent.getStringExtra("monsterName");
         String selectedMonsterScore = intent.getStringExtra("monsterScore");
+
+        // Set up the RecycleView with UserAdapter and ClickListener
+        RecyclerView rvComments = findViewById(R.id.rv_comments);
+        rvComments.setLayoutManager(new LinearLayoutManager(this));
+        CommentAdapter commentAdapter = new CommentAdapter((ArrayList<Comment>) comments);
+        rvComments.setAdapter(commentAdapter);
 
 
         monsterName = findViewById(R.id.monster_name_monster_profile);
@@ -112,6 +119,7 @@ public class MyMonsterProfile extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 saveComment();
+                commentEditText.setText("");
             }
 
             public void saveComment() {
@@ -128,6 +136,8 @@ public class MyMonsterProfile extends AppCompatActivity {
                                 @Override
                                 public void onSuccess(Void unused) {
                                     Log.d("Success", "Comment added successfully!");
+                                    comments.add(new Comment(myUserName, ogComment));
+                                    commentAdapter.notifyDataSetChanged();
                                 }
                             })
                             .addOnFailureListener(new OnFailureListener() {
@@ -168,7 +178,7 @@ public class MyMonsterProfile extends AppCompatActivity {
                     public void onClick(View v) {
 
                         // TODO: delete monster from playerDB
-                        CollectionReference collectionReference = db.collection("PlayerDB/" + deviceID + "/Monsters/");
+                        CollectionReference collectionReference = db.collection("PlayerDB/" + deviceID + "/Monsters");
                         collectionReference.document(shaHash).delete().addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
@@ -176,6 +186,7 @@ public class MyMonsterProfile extends AppCompatActivity {
                                     Intent intent = new Intent(MyMonsterProfile.this, MyProfileActivity.class);
                                     startActivity(intent);
                                     Toast.makeText(MyMonsterProfile.this, "Monster deleted successfully", Toast.LENGTH_SHORT).show();
+                                    updateLeaderboardFields(selectedMonsterScore);
                                 } else {
                                     Toast.makeText(MyMonsterProfile.this, "Failed to delete monster", Toast.LENGTH_SHORT).show();
                                 }
@@ -202,14 +213,7 @@ public class MyMonsterProfile extends AppCompatActivity {
 
         CollectionReference collectionReference = db.collection("PlayerDB/" + deviceID + "/Monsters/" + shaHash + "/comments");
 
-        // Create an ArrayList for comments
-        comments = new ArrayList<>();
 
-        // Set up the RecycleView with UserAdapter and ClickListener
-        RecyclerView rvComments = findViewById(R.id.rv_comments);
-        rvComments.setLayoutManager(new LinearLayoutManager(this));
-        CommentAdapter commentAdapter = new CommentAdapter((ArrayList<Comment>) comments);
-        rvComments.setAdapter(commentAdapter);
 
 
         // Get the users stored in the DB and add them to the list of users
