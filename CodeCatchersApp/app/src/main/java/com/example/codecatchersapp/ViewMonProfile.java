@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -140,7 +141,14 @@ public class ViewMonProfile extends AppCompatActivity {
                                     Log.d("Failure", "Comment addition failed" + e.toString());
                                 }
                             });
+                    commentAdapter.notifyDataSetChanged();
+                    // Hide the keyboard before moving to ViewMonProfile
+                    InputMethodManager inputMethodManager = (InputMethodManager) ViewMonProfile.this.getSystemService(Context.INPUT_METHOD_SERVICE);
+                    if (ViewMonProfile.this.getCurrentFocus() != null) {
+                        inputMethodManager.hideSoftInputFromWindow(ViewMonProfile.this.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                    }
 
+                    commentEditText.setText("");
                 }
             }
         });
