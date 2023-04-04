@@ -35,7 +35,6 @@ android {
 }
 dependencies {
 
-    implementation files('/Users/josiematalski/Library/Android/sdk/platforms/android-33/android.jar')
     implementation 'com.github.imperiumlabs:GeoFirestore-Android:v1.6.1'
 
     implementation 'androidx.appcompat:appcompat:1.6.0'
