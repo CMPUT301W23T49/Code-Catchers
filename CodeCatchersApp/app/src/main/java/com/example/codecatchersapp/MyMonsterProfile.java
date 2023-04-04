@@ -235,9 +235,13 @@ public class MyMonsterProfile extends AppCompatActivity {
     }
 
     /**
-     * Updates the user's score fields so that the leaderboards correctly display their scores.
-     * @param scoreString
+     * This updates the user's score fields in the leaderboard based on the given score.
+     * retrieves the user's information, calculates a new total score, monster count, and
+     * highest monster score, and updates the user's record in the database.
+     *
+     * @param scoreString The score value to be subtracted from the user's total score.
      */
+
     public void updateLeaderboardFields(String scoreString) {
         String userID = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
         DocumentReference documentReferenceUserScoreField = db.collection("PlayerDB/").document(userID);

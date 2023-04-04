@@ -179,12 +179,12 @@ public class MapDisplayActivity extends FragmentActivity implements OnMapReadyCa
         return zoomLevel;                                                                      // Return the zoom level
     }
     /**
-     * Called when the map is ready to be used.
-     * Sets the map type to normal and enables the location layer.
-     * Sets the OnMarkerClickListener for the map.
-     * Sets the OnMapClickListener for the map.
-     * Sets the OnMapLongClickListener for the map.
+     * Called when the search radius is selected. Queries Firestore for documents within the specified radius,
+     * and sets up GeoFirestore and GeoQuery objects.
+     *
+     * @param radius The selected search radius in meters.
      */
+
     public void onSearchRadiusSelected(int radius) {                                                     // When the search radius is selected
         // Query Firestore for documents within the specified radius
         FirebaseFirestore db = FirebaseFirestore.getInstance();                                         // Get the instance of the Firestore database
@@ -324,7 +324,8 @@ public class MapDisplayActivity extends FragmentActivity implements OnMapReadyCa
         mMap.setMyLocationEnabled(true);                                                           // Enable the user's location on the map
     }
     /**
-     * Moves the camera to the user's current location.
+     * Moves the camera to the user's current location when a marker is clicked.
+     * @param marker The marker that was clicked.
      */
     public void onMarkerClick(Marker marker) {                                                      // When a marker is clicked
         Location userLocation = mMap.getMyLocation();                                               // Get the user's location

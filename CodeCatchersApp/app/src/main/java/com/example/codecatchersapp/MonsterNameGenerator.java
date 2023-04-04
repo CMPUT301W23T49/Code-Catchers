@@ -36,9 +36,13 @@ public class MonsterNameGenerator { //
         nameDict.put(5, new String[]{"BarnZ", "BarnE"});   // Add word fragments to the dictionary
     }
     /**
-     * Generates name for a monster based on a given input string (binary).
-     * @param input the input string
-     * @return the name of the monster
+     * Generates a name for a monster based on a given input binary string. The input binary string
+     * should have a length of at most 6. Each character in the binary string is used to determine
+     * a word fragment from the nameDict, which are then combined to form the monster name.
+     *
+     * @param binary The input binary string used for generating the monster name.
+     * @return The generated monster name.
+     * @throws IllegalArgumentException if the binary string has a length greater than 6.
      */
     public String generateNameFromBinary(String binary) {
         if (binary.length() > 6) {                                                              // Check if the binary string is too long
