@@ -81,7 +81,7 @@
         android:clickable="true"
         android:rotationY="-180"
         android:tint="#00FFFFFF"
-        app:backgroundTint="@color/dark_pink_button"
+        app:backgroundTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
