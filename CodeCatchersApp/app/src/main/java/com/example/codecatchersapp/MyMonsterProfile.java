@@ -216,9 +216,6 @@ public class MyMonsterProfile extends AppCompatActivity {
             }
         });
 
-
-
-
         CollectionReference collectionReference = db.collection("PlayerDB/" + deviceID + "/Monsters/" + shaHash + "/comments");
 
 
@@ -288,35 +285,37 @@ public class MyMonsterProfile extends AppCompatActivity {
                                             }
                                         }
 
+                                        Map<String, Object> newLeaderboardInfo = new HashMap<>();
+                                        newLeaderboardInfo.put("totalscore", newTotalScore);
+                                        newLeaderboardInfo.put("monstercount", newMonsterCount);
+                                        newLeaderboardInfo.put("highestmonsterscore", newHighestMonsterScore);
+
+                                        for (Map.Entry<String, Object> entry : newLeaderboardInfo.entrySet()) {
+                                            System.out.println("ENTERED LOOP");
+                                            System.out.println("Key: " + entry.getKey() + " Value: " + entry.getValue());
+                                        }
+
+                                        documentReferenceUserScoreField.update(newLeaderboardInfo)
+                                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                    @Override
+                                                    public void onSuccess(Void unused) {
+                                                        Log.e("E", "UPDATED FIELDS");
+                                                    }
+                                                })
+                                                .addOnFailureListener(new OnFailureListener() {
+                                                    @Override
+                                                    public void onFailure(@NonNull Exception e) {
+                                                        Log.e("E", "COULD NOT UPDATE FIELDS");
+                                                    }
+                                                });
+
                                     } else {
                                         Log.d(TAG, "Error getting documents: ", task.getException());
                                     }
                                 }
                             });
 
-                            Map<String, Object> newLeaderboardInfo = new HashMap<>();
-                            newLeaderboardInfo.put("totalscore", newTotalScore);
-                            newLeaderboardInfo.put("monstercount", newMonsterCount);
-                            newLeaderboardInfo.put("highestmonsterscore", newHighestMonsterScore);
 
-                            for (Map.Entry<String, Object> entry : newLeaderboardInfo.entrySet()) {
-                                System.out.println("ENTERED LOOP");
-                                System.out.println("Key: " + entry.getKey() + " Value: " + entry.getValue());
-                            }
-
-                            documentReferenceUserScoreField.update(newLeaderboardInfo)
-                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                        @Override
-                                        public void onSuccess(Void unused) {
-                                            Log.e("E", "UPDATED FIELDS");
-                                        }
-                                    })
-                                    .addOnFailureListener(new OnFailureListener() {
-                                        @Override
-                                        public void onFailure(@NonNull Exception e) {
-                                            Log.e("E", "COULD NOT UPDATE FIELDS");
-                                        }
-                                    });
 
                         } else {
                             Log.e("E", "DOCUMENT DOES NOT EXIST");
